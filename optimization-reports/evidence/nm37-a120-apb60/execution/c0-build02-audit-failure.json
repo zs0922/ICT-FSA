@@ -1,0 +1,17 @@
+{
+  "recorded_utc": "2026-10-23T14:47:13.020628+00:00",
+  "hardware_execution_commit": "f577b977891dbcc504e2265e350b1e6ac1e2b042",
+  "correction_commit": "b6fbf163",
+  "exit_code": 1,
+  "reason": "Original audit rejected rounded APB/DUT periods; implementation and strict global timing completed. No original pass marker is created. Revised read-only acceptance is separate.",
+  "checkpoint_sha256": "fd58df97e84206ad33f8615cea8b56cb81c16d4944031379b0b264870905f92d",
+  "files": {
+    "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/build.json": "6e6b95cccadea0ae7c62e701955367533e62e52301436727220946c85f32a112",
+    "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/physical.failed.json": "9bd48fca4055bf9f3af891ddeb6645dc2577772c745799999703c5f741a1e809",
+    "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/A120/implementation.log": "6c00bddc060445da515614f2a0404f8dfa3c09181a70fc962cf065eaf5ff5e59",
+    "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/A120/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/audit/audit_status.txt": "889cb5a0a2321a7d234df81affe94fc0f1467f1003be1699d524d91ad05090a5",
+    "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/A120/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/hbm_audit/properties.txt": "d1057a943a46a0d8676b41b3b580e6a1c49cf3aadc2bd5d7e4632d921d03998d",
+    "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02-original-physical.log": "2e03f19535e1b4276acb699e5e75818c09d1c22447597a3c09bb482eb9ba63d4"
+  }
+}

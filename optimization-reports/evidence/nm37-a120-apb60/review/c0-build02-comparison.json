@@ -1,0 +1,3065 @@
+{
+  "method": "Exact bytes for inputs/configuration; exact FP32 payloads and all eight counters; RTL removes only CIRCT source location line comments.",
+  "script_sha256": "ccda82a275ddddc803ff39a0af0490f2e3d93be57c57dfed9ed3770df0f3e15f",
+  "helpers_sha256": "feac6bac7eef833ee113f8c765d6b7b333e3204ba2e3a3643102791802765647",
+  "builds": {
+    "A110": {
+      "build_json": "/home/zhangsi/tmp/FSA-m1/nm37-m1-pipeline/apb110-20261020/build04/build.json",
+      "build_sha256": "f262579e75146e476c751a6e1a3aed100c3833161a825305fe668d556f1b30fc",
+      "root_commit": "eeb1a1d0ac6f47497eb2806e412d9df9ad4b6b67",
+      "generator_sha256": "2f9a015891494a85ce30f43fcff17e6fc20212e5d8f8c0ef3c8a9209cc61b8e9",
+      "stages": {
+        "sim4": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-m1-pipeline/apb110-20261020/build04/sim4.passed.json",
+          "sha256": "53eb74bd2e8393982d41e895c4b53e6a09da1d45b1ef61e00f0cbb40136a8f1c",
+          "build_sha256": "f262579e75146e476c751a6e1a3aed100c3833161a825305fe668d556f1b30fc",
+          "verified_file_count": 245
+        },
+        "sim8": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-m1-pipeline/apb110-20261020/build04/sim8.passed.json",
+          "sha256": "53e2b71098eae46c9b02668dffdd28c8b570d4ba5bee8e35a82badc46057b872",
+          "build_sha256": "f262579e75146e476c751a6e1a3aed100c3833161a825305fe668d556f1b30fc",
+          "verified_file_count": 251
+        },
+        "sim16": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-m1-pipeline/apb110-20261020/build04/sim16.passed.json",
+          "sha256": "36937a234e6e47d70dcb84f09ce599e9095ec811ad78e4c27bc285320c3980fa",
+          "build_sha256": "f262579e75146e476c751a6e1a3aed100c3833161a825305fe668d556f1b30fc",
+          "verified_file_count": 263
+        },
+        "elaborate": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-m1-pipeline/apb110-20261020/build04/elaborate.passed.json",
+          "sha256": "12a6e94609540e4f5e822d91078722798d3e2534504af8a053f308feb1d875b8",
+          "build_sha256": "f262579e75146e476c751a6e1a3aed100c3833161a825305fe668d556f1b30fc",
+          "verified_file_count": 132
+        }
+      }
+    },
+    "A120": {
+      "build_json": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/build.json",
+      "build_sha256": "6e6b95cccadea0ae7c62e701955367533e62e52301436727220946c85f32a112",
+      "root_commit": "f577b977891dbcc504e2265e350b1e6ac1e2b042",
+      "generator_sha256": "f2eaa2d1c54e3da25af18429414600a8612fcc8d10d529569c431883c87df7dd",
+      "stages": {
+        "sim4": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/sim4.passed.json",
+          "sha256": "208b134f0a3501ad7d3f53e4427a6d7648a75d12f38a46337b5368ea5f907e16",
+          "build_sha256": "6e6b95cccadea0ae7c62e701955367533e62e52301436727220946c85f32a112",
+          "verified_file_count": 245
+        },
+        "sim8": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/sim8.passed.json",
+          "sha256": "b1ac904e349fa3c4476cb35c6f4d33c9ad0f35c020cf1e799be432acd4ceb872",
+          "build_sha256": "6e6b95cccadea0ae7c62e701955367533e62e52301436727220946c85f32a112",
+          "verified_file_count": 251
+        },
+        "sim16": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/sim16.passed.json",
+          "sha256": "dca568318d61b47b29dfff98b97ab3f096aefa8917fa366eaa6f33af075d9967",
+          "build_sha256": "6e6b95cccadea0ae7c62e701955367533e62e52301436727220946c85f32a112",
+          "verified_file_count": 263
+        },
+        "elaborate": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/elaborate.passed.json",
+          "sha256": "68000895fcc50c691515131482a142db71c2f38e4449ccb690d83985e0795fb8",
+          "build_sha256": "6e6b95cccadea0ae7c62e701955367533e62e52301436727220946c85f32a112",
+          "verified_file_count": 132
+        }
+      }
+    }
+  },
+  "rtl": {
+    "board": [
+      {
+        "name": "AXI4Buffer.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2723be621180f6e71dfb0c05a72faaf405af51b054f8026ffb54f36cb78d6e4d",
+          "A120": "2723be621180f6e71dfb0c05a72faaf405af51b054f8026ffb54f36cb78d6e4d"
+        },
+        "equal": true
+      },
+      {
+        "name": "AXI4FSA.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0f6a696d18fa7c3c946d8591fd834a510d6e7877ac611a9498d017f6addad050",
+          "A120": "0f6a696d18fa7c3c946d8591fd834a510d6e7877ac611a9498d017f6addad050"
+        },
+        "equal": true
+      },
+      {
+        "name": "AXI4Fragmenter.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "82949ed24b6dcd9cd75da07aba4d962f696102afbf7e8a8b657cac32c274e9f2",
+          "A120": "82949ed24b6dcd9cd75da07aba4d962f696102afbf7e8a8b657cac32c274e9f2"
+        },
+        "equal": true
+      },
+      {
+        "name": "AXI4Fragmenter_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "47045cdfe59dffa33be936a4b7b969213189d7bea0c6cdac0987dd419988ac9a",
+          "A120": "47045cdfe59dffa33be936a4b7b969213189d7bea0c6cdac0987dd419988ac9a"
+        },
+        "equal": true
+      },
+      {
+        "name": "AXI4UserYanker.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "32836e861f8fec4ff4788aaa066b14f383e5a3441fcd833736e2a6721160122d",
+          "A120": "32836e861f8fec4ff4788aaa066b14f383e5a3441fcd833736e2a6721160122d"
+        },
+        "equal": true
+      },
+      {
+        "name": "AXI4Xbar.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ca103889305afb3c6b55dd136dc22d6ce9f17432de307da3733640b56e103dea",
+          "A120": "ca103889305afb3c6b55dd136dc22d6ce9f17432de307da3733640b56e103dea"
+        },
+        "equal": true
+      },
+      {
+        "name": "AccumulationSRAM.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "19a4a60254622efa877d28000577bc3617d6a38be6f2fc570dcd42d640baf6ce",
+          "A120": "19a4a60254622efa877d28000577bc3617d6a38be6f2fc570dcd42d640baf6ce"
+        },
+        "equal": true
+      },
+      {
+        "name": "Accumulator.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "d437cc7d0e7e3143db6f9546e2cc74372ee6117ad2865925f7a89f550d2882fb",
+          "A120": "d437cc7d0e7e3143db6f9546e2cc74372ee6117ad2865925f7a89f550d2882fb"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetReg.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "059f3ff04b7fe6ed80c4b76c836919affc3cabbcfa2d2dd919fb5b0a9a4b66a4",
+          "A120": "059f3ff04b7fe6ed80c4b76c836919affc3cabbcfa2d2dd919fb5b0a9a4b66a4"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetRegVec_w13_i0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4d8d3893173a6e1e278e527e687cdd923095d2c3d6d65d7e0056bbee8bed3ee6",
+          "A120": "4d8d3893173a6e1e278e527e687cdd923095d2c3d6d65d7e0056bbee8bed3ee6"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerPrimitiveShiftReg_d3_i0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0e1332b2795c6577d1e423345b622ca953dc8ffe9930b4155f58c9c42aa17889",
+          "A120": "0e1332b2795c6577d1e423345b622ca953dc8ffe9930b4155f58c9c42aa17889"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerShiftReg_w1_d3_i0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4b02408e04ea7066f617c8655a315937f9e456aca62c78b4e1539f604aa62d86",
+          "A120": "4b02408e04ea7066f617c8655a315937f9e456aca62c78b4e1539f604aa62d86"
+        },
+        "equal": true
+      },
+      {
+        "name": "CMP.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "92074fd2de45df8b3226884883aee4dd296e99eee1239ad4eaa1c7d5ba7dc259",
+          "A120": "92074fd2de45df8b3226884883aee4dd296e99eee1239ad4eaa1c7d5ba7dc259"
+        },
+        "equal": true
+      },
+      {
+        "name": "ClockGroup.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5f3fce40f00418e7c58585fd4afe1f12105d7f43845001828f5ae32fffab50ac",
+          "A120": "5f3fce40f00418e7c58585fd4afe1f12105d7f43845001828f5ae32fffab50ac"
+        },
+        "equal": true
+      },
+      {
+        "name": "ClockSinkDomain.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "818f6d6f168a1ef262ab1007e15bdc9e92138bab0996e9ab75644a12a08f94fc",
+          "A120": "818f6d6f168a1ef262ab1007e15bdc9e92138bab0996e9ab75644a12a08f94fc"
+        },
+        "equal": true
+      },
+      {
+        "name": "CustomXDMA.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8f7488425038bca0f767389096bee20115379f750cfb8722e0825c57c4747e81",
+          "A120": "8f7488425038bca0f767389096bee20115379f750cfb8722e0825c57c4747e81"
+        },
+        "equal": true
+      },
+      {
+        "name": "DMA.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e291d22c9995d5b2d33e523c9bf9df7fe8ed04e3cbe5236b85008effd8925b15",
+          "A120": "e291d22c9995d5b2d33e523c9bf9df7fe8ed04e3cbe5236b85008effd8925b15"
+        },
+        "equal": true
+      },
+      {
+        "name": "Decoder.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "6bf945bb3f0a8f27b7e657a2d13e126eae2290696b446476cf919d2415b1cdc5",
+          "A120": "6bf945bb3f0a8f27b7e657a2d13e126eae2290696b446476cf919d2415b1cdc5"
+        },
+        "equal": true
+      },
+      {
+        "name": "Ehr.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2eaf2eaf024c039d4931cb975b48a4d62a7eaa4276f6cb2f69f9bf7a909d4516",
+          "A120": "2eaf2eaf024c039d4931cb975b48a4d62a7eaa4276f6cb2f69f9bf7a909d4516"
+        },
+        "equal": true
+      },
+      {
+        "name": "EmptyChipTop.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c7347a28eeb491ab1889dab7996c5ee388cd47567e7e2462634a17921e82d13a",
+          "A120": "c7347a28eeb491ab1889dab7996c5ee388cd47567e7e2462634a17921e82d13a"
+        },
+        "equal": true
+      },
+      {
+        "name": "FMA.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4bd2b55a1e510cc43a6298edb687a1dca91740c5f32f8dd4864873a905dd9a14",
+          "A120": "4bd2b55a1e510cc43a6298edb687a1dca91740c5f32f8dd4864873a905dd9a14"
+        },
+        "equal": true
+      },
+      {
+        "name": "FPAccUnit.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c21ad3e260d5a2c0ba2e7e4a716621f401bf8bf2d8f0a52ab3aa7912c37b4306",
+          "A120": "c21ad3e260d5a2c0ba2e7e4a716621f401bf8bf2d8f0a52ab3aa7912c37b4306"
+        },
+        "equal": true
+      },
+      {
+        "name": "FPCmpUnit.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4a9c8e9770d566f759a6b410e2beec523d317a5ff866704fc7dcb57cc8cf2f24",
+          "A120": "4a9c8e9770d566f759a6b410e2beec523d317a5ff866704fc7dcb57cc8cf2f24"
+        },
+        "equal": true
+      },
+      {
+        "name": "FPMacUnit.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "a823a3ae0bb1a237bc7c094fcd280e7d51c17b117d92ff1f9c41a65dacf01d1b",
+          "A120": "a823a3ae0bb1a237bc7c094fcd280e7d51c17b117d92ff1f9c41a65dacf01d1b"
+        },
+        "equal": true
+      },
+      {
+        "name": "FSA.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "29e7174590562267afa0fadc40cb8049a9c034741175ddd95ba35a214a72d1cf",
+          "A120": "29e7174590562267afa0fadc40cb8049a9c034741175ddd95ba35a214a72d1cf"
+        },
+        "equal": true
+      },
+      {
+        "name": "FixedClockBroadcast_2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c698158d23d6790c45b1de7b233c8fda487ba781629be7f1cc06de2ae3c33aa4",
+          "A120": "c698158d23d6790c45b1de7b233c8fda487ba781629be7f1cc06de2ae3c33aa4"
+        },
+        "equal": true
+      },
+      {
+        "name": "FixedClockBroadcast_5.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "37c6a990c0a14b62a89d91cdbfa0faf91e8b6b129eca51ff0d232ebb4c98ca6b",
+          "A120": "37c6a990c0a14b62a89d91cdbfa0faf91e8b6b129eca51ff0d232ebb4c98ca6b"
+        },
+        "equal": true
+      },
+      {
+        "name": "HBMAXIStartupGate.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "6195cb86faabd5132cffc79f0e348abebefcd1500fed2f73312e4b6916553508",
+          "A120": "6195cb86faabd5132cffc79f0e348abebefcd1500fed2f73312e4b6916553508"
+        },
+        "equal": true
+      },
+      {
+        "name": "HBMAsyncLevelSynchronizer.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "835c302b484dbc1acef04ce6e486b61aaf26b50d50578a8a2a30bb9ee2faca2d",
+          "A120": "835c302b484dbc1acef04ce6e486b61aaf26b50d50578a8a2a30bb9ee2faca2d"
+        },
+        "equal": true
+      },
+      {
+        "name": "HBMPLLResetControl.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0de17ef0586b12ce4ce550725e9253e1187deaace1c17357833aaa5013c89c37",
+          "A120": "0de17ef0586b12ce4ce550725e9253e1187deaace1c17357833aaa5013c89c37"
+        },
+        "equal": true
+      },
+      {
+        "name": "HBMStartupControl.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8acae0c1fb2dd17230dbf306cf898ebe9737125b60522459ccdaa0733e452890",
+          "A120": "8acae0c1fb2dd17230dbf306cf898ebe9737125b60522459ccdaa0733e452890"
+        },
+        "equal": true
+      },
+      {
+        "name": "InputDelayer.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "962ac06ff8abd56e8e6bd8fae1575d435a6ff8b59845e5dbe042d6712fbd0e60",
+          "A120": "962ac06ff8abd56e8e6bd8fae1575d435a6ff8b59845e5dbe042d6712fbd0e60"
+        },
+        "equal": true
+      },
+      {
+        "name": "InputDelayer_1.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "ac3bbd80a07d45881f88572edf9bddc29dd93ae791e85cb8672e7824d8818063",
+          "A120": "ac3bbd80a07d45881f88572edf9bddc29dd93ae791e85cb8672e7824d8818063"
+        },
+        "equal": true
+      },
+      {
+        "name": "InstructionMerger.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "6fb446c53159eb64be507f9ff5bea1caea73eed44b90f91cd559320980b4b5e4",
+          "A120": "6fb446c53159eb64be507f9ff5bea1caea73eed44b90f91cd559320980b4b5e4"
+        },
+        "equal": true
+      },
+      {
+        "name": "InstructionMerger_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b052818929411ef32302cc9692adb22ee7a3fa85b108f78c9e7199ae8c973bd8",
+          "A120": "b052818929411ef32302cc9692adb22ee7a3fa85b108f78c9e7199ae8c973bd8"
+        },
+        "equal": true
+      },
+      {
+        "name": "LazyAXI4ClockConverter.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ef0db2d84c340d690420b98d5dcd524e8ed7e7e70dcea891a1f864b22c941670",
+          "A120": "ef0db2d84c340d690420b98d5dcd524e8ed7e7e70dcea891a1f864b22c941670"
+        },
+        "equal": true
+      },
+      {
+        "name": "LazyAXI4ClockConverter_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7b2d00994d3e76c35fb4bed4ebf7f2fcaab39d3f6056bb7b27ef9799eaa31b15",
+          "A120": "7b2d00994d3e76c35fb4bed4ebf7f2fcaab39d3f6056bb7b27ef9799eaa31b15"
+        },
+        "equal": true
+      },
+      {
+        "name": "LoadQueue.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "d6712b1c1ea1aa3f13d347de1d79ca143ea83ea9ee69feab9348ab1d226ae931",
+          "A120": "d6712b1c1ea1aa3f13d347de1d79ca143ea83ea9ee69feab9348ab1d226ae931"
+        },
+        "equal": true
+      },
+      {
+        "name": "MatrixControlFSM.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "76d57da2ab5240b200469f1946bec7a61b2d348ff907147f0a52608ca9183436",
+          "A120": "76d57da2ab5240b200469f1946bec7a61b2d348ff907147f0a52608ca9183436"
+        },
+        "equal": true
+      },
+      {
+        "name": "MatrixEngineController.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "897dc7c9842e863acb5660bb5d04cd0147d3f8a053f1f54b97c0abe342690095",
+          "A120": "897dc7c9842e863acb5660bb5d04cd0147d3f8a053f1f54b97c0abe342690095"
+        },
+        "equal": true
+      },
+      {
+        "name": "NM37FPGATestHarness.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3a4dec18232e352d161cd67d8559702f5613a0575a2a0c5d018baa485cbfa50b",
+          "A120": "3a4dec18232e352d161cd67d8559702f5613a0575a2a0c5d018baa485cbfa50b"
+        },
+        "equal": true
+      },
+      {
+        "name": "OutputDelayer.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "2c4de7d5eb3310a397ee439f74318a0454806800eb67bd2afb71671227e7bb18",
+          "A120": "2c4de7d5eb3310a397ee439f74318a0454806800eb67bd2afb71671227e7bb18"
+        },
+        "equal": true
+      },
+      {
+        "name": "PE.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "c99e1d52330ddf8bb1dcef68dd5aafd0b4e877e9d7514fd9d1c05c18b242f9ea",
+          "A120": "c99e1d52330ddf8bb1dcef68dd5aafd0b4e877e9d7514fd9d1c05c18b242f9ea"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_AXI4BundleAR.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e049917e64bc1205eacc19f1299bbf8c25c124f0cb9c9fc16169084309df253e",
+          "A120": "e049917e64bc1205eacc19f1299bbf8c25c124f0cb9c9fc16169084309df253e"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_AXI4BundleAR_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0e9a5df2ad68265152c2ee9d1a041ef050ece4ad6b3274a7bfcf342280eb5807",
+          "A120": "0e9a5df2ad68265152c2ee9d1a041ef050ece4ad6b3274a7bfcf342280eb5807"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_AXI4BundleAW.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3d0df7a688440ec6eee2deec91d9c837cb1bfc0d10dffec16d477526a598cc99",
+          "A120": "3d0df7a688440ec6eee2deec91d9c837cb1bfc0d10dffec16d477526a598cc99"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_AXI4BundleAW_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f752e1534fadcc762f7e470f84928afb36c661fbb84984c613c2a815356d3893",
+          "A120": "f752e1534fadcc762f7e470f84928afb36c661fbb84984c613c2a815356d3893"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_AXI4BundleW.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a03b14d1471a1416816eb98f5e909b3c1134b64782a9f9e4376cafcb2e6e5a36",
+          "A120": "a03b14d1471a1416816eb98f5e909b3c1134b64782a9f9e4376cafcb2e6e5a36"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_AXI4BundleW_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "d2842a122d72d6a3cca8ab41d9deb8785d6e38157a0f75722874e1e5275a365b",
+          "A120": "d2842a122d72d6a3cca8ab41d9deb8785d6e38157a0f75722874e1e5275a365b"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue256_UInt32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7096e16bc2927b5649be6c376d0032fbfabf40361e0cd819e0db0f25aa34dca8",
+          "A120": "7096e16bc2927b5649be6c376d0032fbfabf40361e0cd819e0db0f25aa34dca8"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_AXI4BundleAR.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4eaac66500fc6d4860eb47c10628f32495781fe502a6e9bb4b7c5b13530791e8",
+          "A120": "4eaac66500fc6d4860eb47c10628f32495781fe502a6e9bb4b7c5b13530791e8"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_AXI4BundleAW.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3c0d0691d4766ce8ef7814d7456af134f545eedf971245407838d92e044a6338",
+          "A120": "3c0d0691d4766ce8ef7814d7456af134f545eedf971245407838d92e044a6338"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_AXI4BundleB.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ce450eed734f1349a5047f8dc5cf4e2ea5c70e789a70e58ce175f731695df45b",
+          "A120": "ce450eed734f1349a5047f8dc5cf4e2ea5c70e789a70e58ce175f731695df45b"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_AXI4BundleR.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b298cb1e8f955068740eddc8ef28ce1ba7328ebd453cc6e3ae0bf40e6b58e5e9",
+          "A120": "b298cb1e8f955068740eddc8ef28ce1ba7328ebd453cc6e3ae0bf40e6b58e5e9"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_AXI4BundleW.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "bee6e3daef3105cb7db8a48025f46efb9d1f8e6bf0aa2c137b31570f3fad0908",
+          "A120": "bee6e3daef3105cb7db8a48025f46efb9d1f8e6bf0aa2c137b31570f3fad0908"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_DMAInstruction.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "52df197eba3e0863cdbe6e5191ea47cf7d4befa996a8e0db2f8a322569271034",
+          "A120": "52df197eba3e0863cdbe6e5191ea47cf7d4befa996a8e0db2f8a322569271034"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_RegMapperOutput.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "46733cd1b106fd43b1f83d089f972c15439ed3f5857aabdfcdc54ee5f36f67f9",
+          "A120": "46733cd1b106fd43b1f83d089f972c15439ed3f5857aabdfcdc54ee5f36f67f9"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_UInt2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "d194bfe269aa546bbc4b542d506a32ec95f3b73cf4008ef897241fe2fef1c55f",
+          "A120": "d194bfe269aa546bbc4b542d506a32ec95f3b73cf4008ef897241fe2fef1c55f"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_UInt256.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8286938c4d93ec68ebb5519e7291f52bd7ca80c3396fb24154c32a7a1cf64d2b",
+          "A120": "8286938c4d93ec68ebb5519e7291f52bd7ca80c3396fb24154c32a7a1cf64d2b"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue8_BundleMap.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "d9abf2550382121715d5c70a3493c5278482768b9a4eba3665d1368cf4df1f3f",
+          "A120": "d9abf2550382121715d5c70a3493c5278482768b9a4eba3665d1368cf4df1f3f"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue8_MatrixInstruction.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "409114b7916158b24c8d890e7cba9958da351511dfbc9383e453a8118a57a76e",
+          "A120": "409114b7916158b24c8d890e7cba9958da351511dfbc9383e453a8118a57a76e"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_FMA.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "5ed294007a214155873997eacd87e9b60a84f3eec90f55acf5b76af7539ded3f",
+          "A120": "5ed294007a214155873997eacd87e9b60a84f3eec90f55acf5b76af7539ded3f"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_FMA_16.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "2f2fbe0af1ef2c27b9bcc999a2dae5221feea30438d0c19c7ef58c07285de364",
+          "A120": "2f2fbe0af1ef2c27b9bcc999a2dae5221feea30438d0c19c7ef58c07285de364"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_FMA_17.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "a9ef91e0b35d8894ef03fb61b4c87c24298d120af270aa57c07eb978191d5747",
+          "A120": "a9ef91e0b35d8894ef03fb61b4c87c24298d120af270aa57c07eb978191d5747"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_MulAddExp2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1a1e2b378ba18159d080be8bf18bc922bb6e80d42ce493eb9f0392ed42a034c0",
+          "A120": "1a1e2b378ba18159d080be8bf18bc922bb6e80d42ce493eb9f0392ed42a034c0"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_MulAddExp2_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3438d64c0123aa862c65dfe0ed2ddb7839a3199bb9a60495183aae830176579c",
+          "A120": "3438d64c0123aa862c65dfe0ed2ddb7839a3199bb9a60495183aae830176579c"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_SplitIF.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3c0ed280ae6e44299c74e6fd7ad50fe015ac1547026d3553ebe82e3a04dd12c9",
+          "A120": "3c0ed280ae6e44299c74e6fd7ad50fe015ac1547026d3553ebe82e3a04dd12c9"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_SplitIF_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "fb4961d66ed58247a3a031136aa74c685f5ed6044c8a8945e2a5304c30d5ed0f",
+          "A120": "fb4961d66ed58247a3a031136aa74c685f5ed6044c8a8945e2a5304c30d5ed0f"
+        },
+        "equal": true
+      },
+      {
+        "name": "Reciprocal.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8003151383a003982dde0840bb90f7bfc6a134df23677106535446407263b05c",
+          "A120": "8003151383a003982dde0840bb90f7bfc6a134df23677106535446407263b05c"
+        },
+        "equal": true
+      },
+      {
+        "name": "RequestPartitioner.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e5ecc21f7e9fa0abf8781bf8404b40bf31d0eb9fe2cfeb196b13996b0c63d799",
+          "A120": "e5ecc21f7e9fa0abf8781bf8404b40bf31d0eb9fe2cfeb196b13996b0c63d799"
+        },
+        "equal": true
+      },
+      {
+        "name": "ResetCatchAndSync_d3.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c0096e33b552afc265c2cbc1b64670a19628b3a2ec2fa1b4907c09d2cc1205e4",
+          "A120": "c0096e33b552afc265c2cbc1b64670a19628b3a2ec2fa1b4907c09d2cc1205e4"
+        },
+        "equal": true
+      },
+      {
+        "name": "ResetWrangler.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "d61169192f7306063b5d281e12884909fc6f44ff0f188cbed0a8b5b30b693aa0",
+          "A120": "637844e15d74a417dc919994ac55f22d0573c09c871649c9e71cec53f7796b75"
+        },
+        "equal": false
+      },
+      {
+        "name": "ScratchPadSRAM.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "11c303d4435514eed14e5c4f0fcedc8c02c03f63edfd512a9e796e73f5c8f1c9",
+          "A120": "11c303d4435514eed14e5c4f0fcedc8c02c03f63edfd512a9e796e73f5c8f1c9"
+        },
+        "equal": true
+      },
+      {
+        "name": "Semaphores.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1b1fb7a8a95fd532e2559c94a6b99f6d44afed4b8ded3fa262efef3a586e629f",
+          "A120": "1b1fb7a8a95fd532e2559c94a6b99f6d44afed4b8ded3fa262efef3a586e629f"
+        },
+        "equal": true
+      },
+      {
+        "name": "ShiftRightJam.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3439096cd15b67f1395afd347885746b6fd04c4a5053ca40dc5137ae25b21651",
+          "A120": "3439096cd15b67f1395afd347885746b6fd04c4a5053ca40dc5137ae25b21651"
+        },
+        "equal": true
+      },
+      {
+        "name": "ShiftRightJam_16.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2330b48a6cf7084bbd856b6666c6def787eb2b7003afb276ba3929e8752101d4",
+          "A120": "2330b48a6cf7084bbd856b6666c6def787eb2b7003afb276ba3929e8752101d4"
+        },
+        "equal": true
+      },
+      {
+        "name": "StoreQueue.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ce264ebf9257c216003320a9dcd695417bc2ad44cd0eca27e0694b4b590f4de5",
+          "A120": "ce264ebf9257c216003320a9dcd695417bc2ad44cd0eca27e0694b4b590f4de5"
+        },
+        "equal": true
+      },
+      {
+        "name": "SystolicArray.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "d57fce4a16ebe5e3dcc60df4870af496185271ff0ebc5fb53ef0e301e7b4a3f3",
+          "A120": "d57fce4a16ebe5e3dcc60df4870af496185271ff0ebc5fb53ef0e301e7b4a3f3"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a9e6c478bc35d4028334ea33805691bbdad0f4e4b07745db2f838ac17741014c",
+          "A120": "a9e6c478bc35d4028334ea33805691bbdad0f4e4b07745db2f838ac17741014c"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5aa9761c168cb74ea20fd7d42171d4b03830a4a4d5506d34610269acc6c86be6",
+          "A120": "5aa9761c168cb74ea20fd7d42171d4b03830a4a4d5506d34610269acc6c86be6"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e9068c4f1f4e91362d12bbfd9612586819af882aa9c58d3db4a347648a320cc2",
+          "A120": "e9068c4f1f4e91362d12bbfd9612586819af882aa9c58d3db4a347648a320cc2"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_1_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1327210112d12a48eb0108ead2c69c6479e9546ff3aca6be29eed2e0ac75e7b9",
+          "A120": "1327210112d12a48eb0108ead2c69c6479e9546ff3aca6be29eed2e0ac75e7b9"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "d31a20a10a8ded6de3bf0f8b8f146dde7b280a2101c9d0cd2a71954c71a52f30",
+          "A120": "d31a20a10a8ded6de3bf0f8b8f146dde7b280a2101c9d0cd2a71954c71a52f30"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_3.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e6afba9d36d0368c77473466c934a987711a6250fd0699fcbc9e095096493d77",
+          "A120": "e6afba9d36d0368c77473466c934a987711a6250fd0699fcbc9e095096493d77"
+        },
+        "equal": true
+      },
+      {
+        "name": "extern_modules.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8b992ee5fa3aab48ab256196c0fe72ea35a0437cfc52aa1dcee62059e4b42872",
+          "A120": "8b992ee5fa3aab48ab256196c0fe72ea35a0437cfc52aa1dcee62059e4b42872"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_256x32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "37333491b673ebbf6895bbe0bdb43ce946daf96f33835313e27b43b7491e05bb",
+          "A120": "37333491b673ebbf6895bbe0bdb43ce946daf96f33835313e27b43b7491e05bb"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x103.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a07d67bb9b3dfbcdb37a9d57b534764ca432e3a8bc5d9812d45b248696375030",
+          "A120": "a07d67bb9b3dfbcdb37a9d57b534764ca432e3a8bc5d9812d45b248696375030"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e0c99db17aeb1a078e3de9836396cb6ee0b451e4f5cbb045450cd32b088a4f9b",
+          "A120": "e0c99db17aeb1a078e3de9836396cb6ee0b451e4f5cbb045450cd32b088a4f9b"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x256.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "393d1ab150681250b0920a3c33aa10a3b5ce95a310a9c648fb49f6b021196d76",
+          "A120": "393d1ab150681250b0920a3c33aa10a3b5ce95a310a9c648fb49f6b021196d76"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x35.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0cce456287890f6f71bf38f25c424810e8fb920ba8b11e02bdd77002e77f6d33",
+          "A120": "0cce456287890f6f71bf38f25c424810e8fb920ba8b11e02bdd77002e77f6d33"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x37.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0f38971e5747eb845ae9bea81a03bc7dd4c43a1f0254e377b6728db091d1b17e",
+          "A120": "0f38971e5747eb845ae9bea81a03bc7dd4c43a1f0254e377b6728db091d1b17e"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x42.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "40b552691e8be926304b590f3f62dffbf63037169ad8d4afad491f91f43a0fed",
+          "A120": "40b552691e8be926304b590f3f62dffbf63037169ad8d4afad491f91f43a0fed"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_8x45.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5ae1d99f429dc88385f49faa9682eb062213f1de33fcd13abe3b8a54b238ed17",
+          "A120": "5ae1d99f429dc88385f49faa9682eb062213f1de33fcd13abe3b8a54b238ed17"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_real_last_8x1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "63f909ec5af41afa0efb3d8a3953cc8dab6acdfb489e718692dd22c1417e2462",
+          "A120": "63f909ec5af41afa0efb3d8a3953cc8dab6acdfb489e718692dd22c1417e2462"
+        },
+        "equal": true
+      }
+    ],
+    "sim16": [
+      {
+        "name": "AXI4FSA.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "10fc22fe49ace19c078845be39e6c3070aa419a6d25a288878240c88cb23ef8d",
+          "A120": "10fc22fe49ace19c078845be39e6c3070aa419a6d25a288878240c88cb23ef8d"
+        },
+        "equal": true
+      },
+      {
+        "name": "AXI4UserYanker.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "82f4f71d53cebdb3cbafef74f1e78d10f6181ef307e9d6b665d4acf82d6c8235",
+          "A120": "82f4f71d53cebdb3cbafef74f1e78d10f6181ef307e9d6b665d4acf82d6c8235"
+        },
+        "equal": true
+      },
+      {
+        "name": "AccumulationSRAM.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "502c4d47170c1d49f2ae6066f1c06fd9d345e2c76888c6403b7441bd4ca1e13a",
+          "A120": "502c4d47170c1d49f2ae6066f1c06fd9d345e2c76888c6403b7441bd4ca1e13a"
+        },
+        "equal": true
+      },
+      {
+        "name": "Accumulator.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "d437cc7d0e7e3143db6f9546e2cc74372ee6117ad2865925f7a89f550d2882fb",
+          "A120": "d437cc7d0e7e3143db6f9546e2cc74372ee6117ad2865925f7a89f550d2882fb"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueue.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "70dd1014ff024b74ead65a456825855c3b659caceb9fd689020e1215638e2baf",
+          "A120": "70dd1014ff024b74ead65a456825855c3b659caceb9fd689020e1215638e2baf"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueueSink_Phit.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "de3c3050593899ae5660d7f56f5e658ace0c7e7f109012160b585412a9bc9855",
+          "A120": "de3c3050593899ae5660d7f56f5e658ace0c7e7f109012160b585412a9bc9855"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueueSink_Phit_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4a29985403a29e5604a9514fcafe3948ce9321d81ded3f5e63eee17d3bc9b309",
+          "A120": "4a29985403a29e5604a9514fcafe3948ce9321d81ded3f5e63eee17d3bc9b309"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueueSink_TLBundleA_a16d32s4k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b66568ff17060b22001b56fca02d5c2e1fa3e5cc193ed18f2fad187fa2917f66",
+          "A120": "b66568ff17060b22001b56fca02d5c2e1fa3e5cc193ed18f2fad187fa2917f66"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueueSink_TLBundleD_a16d32s4k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5ff38c06dff678eb81a7b489de91a647f66388602b5616bca2e230cc6bef3596",
+          "A120": "5ff38c06dff678eb81a7b489de91a647f66388602b5616bca2e230cc6bef3596"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueueSource_Phit.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "fa21aacff2b407adf7f0afeb35c185dcae431b04bd6c9e8680c816302ba64450",
+          "A120": "fa21aacff2b407adf7f0afeb35c185dcae431b04bd6c9e8680c816302ba64450"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueueSource_Phit_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "21cc175afc3c0292ec95a1fa85ac8c3ef9f08ab24cc0e8c929c89f8e0fc03a95",
+          "A120": "21cc175afc3c0292ec95a1fa85ac8c3ef9f08ab24cc0e8c929c89f8e0fc03a95"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueueSource_TLBundleA_a16d32s4k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1bb3b90d9320f919a813bf60117679ecae3fe801b4a187244340d7193050b5c7",
+          "A120": "1bb3b90d9320f919a813bf60117679ecae3fe801b4a187244340d7193050b5c7"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueueSource_TLBundleD_a16d32s4k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3da9ccb904d491cb6f15d960beb9734b16e0ddd950809f5b18a20cde44f158cd",
+          "A120": "3da9ccb904d491cb6f15d960beb9734b16e0ddd950809f5b18a20cde44f158cd"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncQueue_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "86916af75269a3b6bb94ce01f6ef8beb01215e43b67f6084e1211cff368aa81f",
+          "A120": "86916af75269a3b6bb94ce01f6ef8beb01215e43b67f6084e1211cff368aa81f"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerPrimitiveShiftReg_d3_i0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b7d4acdd4c5b69d92c26168ccf7c2d74cee7da56a67da69c58d63ab6e4baaffc",
+          "A120": "b7d4acdd4c5b69d92c26168ccf7c2d74cee7da56a67da69c58d63ab6e4baaffc"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerPrimitiveShiftReg_d3_i0_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8d67f9339bae9fca3077ae5246e01bda79c5ea5eee2b96d5697bcf303fa74cfa",
+          "A120": "8d67f9339bae9fca3077ae5246e01bda79c5ea5eee2b96d5697bcf303fa74cfa"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerShiftReg_w1_d3_i0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b3b45b104c26cea5405adcd1e06cca8fec90f39d1a27cf98acabd3970f37623d",
+          "A120": "b3b45b104c26cea5405adcd1e06cca8fec90f39d1a27cf98acabd3970f37623d"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerShiftReg_w1_d3_i0_16.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "52de7f80f1deb829c349ea9dfb8767bcc46e5a6488d1043398da96d4cae098f7",
+          "A120": "52de7f80f1deb829c349ea9dfb8767bcc46e5a6488d1043398da96d4cae098f7"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerShiftReg_w1_d3_i0_16_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3f093068c82bf522be4f067ef5554fdeffd50137562ea29962a0452c9f884484",
+          "A120": "3f093068c82bf522be4f067ef5554fdeffd50137562ea29962a0452c9f884484"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerShiftReg_w1_d3_i0_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "91b2d75e51a7204faaba74bdbc430074cf56dff8d7b017fec8622e6a7f3790d6",
+          "A120": "91b2d75e51a7204faaba74bdbc430074cf56dff8d7b017fec8622e6a7f3790d6"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerShiftReg_w4_d3_i0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2b408dfa6d3d1f97daa94906be202b9ccfb13dbd82b9e13c4b696d0d6d1a66e1",
+          "A120": "2b408dfa6d3d1f97daa94906be202b9ccfb13dbd82b9e13c4b696d0d6d1a66e1"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncResetSynchronizerShiftReg_w4_d3_i0_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f3dad06479cfb2381cf48b24c9cf21270b473641c6c9c4c0a511580db65ee5bb",
+          "A120": "f3dad06479cfb2381cf48b24c9cf21270b473641c6c9c4c0a511580db65ee5bb"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncValidSync.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f85779674daaf62e4b7b4542d8403c6518ba7a8befbaf679f6043a509c32131c",
+          "A120": "f85779674daaf62e4b7b4542d8403c6518ba7a8befbaf679f6043a509c32131c"
+        },
+        "equal": true
+      },
+      {
+        "name": "AsyncValidSync_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "af03d88af3b763a236baed8b60872fd2ae63b1a8c6aa1b4585316bad9e8edeeb",
+          "A120": "af03d88af3b763a236baed8b60872fd2ae63b1a8c6aa1b4585316bad9e8edeeb"
+        },
+        "equal": true
+      },
+      {
+        "name": "BankBinder.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c43a63d108234477123e6752cf3b8c4ad77636dba77549854c910aecd9396461",
+          "A120": "c43a63d108234477123e6752cf3b8c4ad77636dba77549854c910aecd9396461"
+        },
+        "equal": true
+      },
+      {
+        "name": "CMP.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "92074fd2de45df8b3226884883aee4dd296e99eee1239ad4eaa1c7d5ba7dc259",
+          "A120": "92074fd2de45df8b3226884883aee4dd296e99eee1239ad4eaa1c7d5ba7dc259"
+        },
+        "equal": true
+      },
+      {
+        "name": "ChipTop.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "19e8661a1098ffd5799d1cfa15ac8559ac2c1d310a6c074c58dcfc1ebcba1c41",
+          "A120": "19e8661a1098ffd5799d1cfa15ac8559ac2c1d310a6c074c58dcfc1ebcba1c41"
+        },
+        "equal": true
+      },
+      {
+        "name": "ChipyardPRCICtrlClockSinkDomain.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a869e34b084d088d0bbaecfe927c052b19d8dd0062a2c2267fff26a09a8d544d",
+          "A120": "a869e34b084d088d0bbaecfe927c052b19d8dd0062a2c2267fff26a09a8d544d"
+        },
+        "equal": true
+      },
+      {
+        "name": "ClockCrossingReg_w32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1c3fd0c489e009f4dfdd3e43e314298b9ce07722df2ba3b510d1d572f92671a8",
+          "A120": "1c3fd0c489e009f4dfdd3e43e314298b9ce07722df2ba3b510d1d572f92671a8"
+        },
+        "equal": true
+      },
+      {
+        "name": "ClockCrossingReg_w32_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5ca6ac8a561dd71a5b74d9e709af2eae5d5e7b5c8a01ccf0d95ce27420dd82a2",
+          "A120": "5ca6ac8a561dd71a5b74d9e709af2eae5d5e7b5c8a01ccf0d95ce27420dd82a2"
+        },
+        "equal": true
+      },
+      {
+        "name": "ClockCrossingReg_w47.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2b64f91b1d010544401ac43d8cbcaefbadd849de940e60146da8cdaaeeedd3fc",
+          "A120": "2b64f91b1d010544401ac43d8cbcaefbadd849de940e60146da8cdaaeeedd3fc"
+        },
+        "equal": true
+      },
+      {
+        "name": "ClockCrossingReg_w66.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "80b677cd383b713796a8b74edad069ba680a8a40691305188c10a4af14545798",
+          "A120": "80b677cd383b713796a8b74edad069ba680a8a40691305188c10a4af14545798"
+        },
+        "equal": true
+      },
+      {
+        "name": "ClockGroupAggregator_allClocks.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "cf2283d694995737b9e0ab2699770778c8a75ddf434287a850b713910f7da8f3",
+          "A120": "cf2283d694995737b9e0ab2699770778c8a75ddf434287a850b713910f7da8f3"
+        },
+        "equal": true
+      },
+      {
+        "name": "ClockGroupCombiner.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5032bbfd63141354518c59166a898c80d1dfba69c439ad2f340f00b5cfac69de",
+          "A120": "5032bbfd63141354518c59166a898c80d1dfba69c439ad2f340f00b5cfac69de"
+        },
+        "equal": true
+      },
+      {
+        "name": "ClockGroupResetSynchronizer.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3338b33ab7e34d3731d95772290ac1a942030ea973abc039485d44622e46b9f2",
+          "A120": "3338b33ab7e34d3731d95772290ac1a942030ea973abc039485d44622e46b9f2"
+        },
+        "equal": true
+      },
+      {
+        "name": "CoherenceManagerWrapper.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2bd5c2b8199f50970ab1ad3816a4a9c3769c9e34c3130e2534d9a2b501350059",
+          "A120": "2bd5c2b8199f50970ab1ad3816a4a9c3769c9e34c3130e2534d9a2b501350059"
+        },
+        "equal": true
+      },
+      {
+        "name": "DMA.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0030327b4216143d4581970e29e5e9768700abdf238e538ec6ffc80a8a35eeb4",
+          "A120": "0030327b4216143d4581970e29e5e9768700abdf238e538ec6ffc80a8a35eeb4"
+        },
+        "equal": true
+      },
+      {
+        "name": "Decoder.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "313d95d8b9ee425866ea881cd0717ec3261131135b941a08c45673740cc867fe",
+          "A120": "313d95d8b9ee425866ea881cd0717ec3261131135b941a08c45673740cc867fe"
+        },
+        "equal": true
+      },
+      {
+        "name": "DecoupledSerialPhy.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1ff0e8681dfcec46347caac622a0c93f86eaab601c0422a3c28c64f3405da3b1",
+          "A120": "1ff0e8681dfcec46347caac622a0c93f86eaab601c0422a3c28c64f3405da3b1"
+        },
+        "equal": true
+      },
+      {
+        "name": "DecoupledSerialPhy_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f3859c6af5b190748a1c9ed5210ca501c9c25010c41e236faa335f48f3360f40",
+          "A120": "f3859c6af5b190748a1c9ed5210ca501c9c25010c41e236faa335f48f3360f40"
+        },
+        "equal": true
+      },
+      {
+        "name": "DigitalTop.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ef5cf27f6dd567364b49e545c161481fde245a40aac3e6c64402deb29ad900dd",
+          "A120": "ef5cf27f6dd567364b49e545c161481fde245a40aac3e6c64402deb29ad900dd"
+        },
+        "equal": true
+      },
+      {
+        "name": "Ehr.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2eaf2eaf024c039d4931cb975b48a4d62a7eaa4276f6cb2f69f9bf7a909d4516",
+          "A120": "2eaf2eaf024c039d4931cb975b48a4d62a7eaa4276f6cb2f69f9bf7a909d4516"
+        },
+        "equal": true
+      },
+      {
+        "name": "FMA.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4bd2b55a1e510cc43a6298edb687a1dca91740c5f32f8dd4864873a905dd9a14",
+          "A120": "4bd2b55a1e510cc43a6298edb687a1dca91740c5f32f8dd4864873a905dd9a14"
+        },
+        "equal": true
+      },
+      {
+        "name": "FPAccUnit.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c21ad3e260d5a2c0ba2e7e4a716621f401bf8bf2d8f0a52ab3aa7912c37b4306",
+          "A120": "c21ad3e260d5a2c0ba2e7e4a716621f401bf8bf2d8f0a52ab3aa7912c37b4306"
+        },
+        "equal": true
+      },
+      {
+        "name": "FPCmpUnit.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4a9c8e9770d566f759a6b410e2beec523d317a5ff866704fc7dcb57cc8cf2f24",
+          "A120": "4a9c8e9770d566f759a6b410e2beec523d317a5ff866704fc7dcb57cc8cf2f24"
+        },
+        "equal": true
+      },
+      {
+        "name": "FPMacUnit.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "a823a3ae0bb1a237bc7c094fcd280e7d51c17b117d92ff1f9c41a65dacf01d1b",
+          "A120": "a823a3ae0bb1a237bc7c094fcd280e7d51c17b117d92ff1f9c41a65dacf01d1b"
+        },
+        "equal": true
+      },
+      {
+        "name": "FSA.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "37b4059f0f9c80dbc4c7cb5e8bccb174890191503fb2b64515a0de913894c28a",
+          "A120": "37b4059f0f9c80dbc4c7cb5e8bccb174890191503fb2b64515a0de913894c28a"
+        },
+        "equal": true
+      },
+      {
+        "name": "FixedClockBroadcast_2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c698158d23d6790c45b1de7b233c8fda487ba781629be7f1cc06de2ae3c33aa4",
+          "A120": "c698158d23d6790c45b1de7b233c8fda487ba781629be7f1cc06de2ae3c33aa4"
+        },
+        "equal": true
+      },
+      {
+        "name": "FixedClockBroadcast_3.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f8ca99ec4e2d0b3759d3afbae958883fab5c0696be95f9fb42e64b6318352774",
+          "A120": "f8ca99ec4e2d0b3759d3afbae958883fab5c0696be95f9fb42e64b6318352774"
+        },
+        "equal": true
+      },
+      {
+        "name": "FlitToPhit_f32_p32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a9dcbf9b51d2b3bff0acc6659e7a352fbc4501776728f5afb6a7e44e96655d71",
+          "A120": "a9dcbf9b51d2b3bff0acc6659e7a352fbc4501776728f5afb6a7e44e96655d71"
+        },
+        "equal": true
+      },
+      {
+        "name": "FlitToPhit_f32_p32_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c40f3bcfdb0306b3e01d87c31387551cdaab6a5667047cc34f6b13dfcc5fb6f2",
+          "A120": "c40f3bcfdb0306b3e01d87c31387551cdaab6a5667047cc34f6b13dfcc5fb6f2"
+        },
+        "equal": true
+      },
+      {
+        "name": "FrontBus.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "dd04dcda8fb9c0df07b8b42f4aaa2696a494f2eb665b23eaa035dbb98b70bfc2",
+          "A120": "dd04dcda8fb9c0df07b8b42f4aaa2696a494f2eb665b23eaa035dbb98b70bfc2"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericDeserializer_TLBeatw10_f32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7dde2607a9970ece14c8eee0d05158612a1638d75c3ae79e7ec6f193fb055d03",
+          "A120": "7dde2607a9970ece14c8eee0d05158612a1638d75c3ae79e7ec6f193fb055d03"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericDeserializer_TLBeatw10_f32_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1dd638a318ffa6b144c41b28683f89b1ac51f27863cc9a15003fd50a19cf35c6",
+          "A120": "1dd638a318ffa6b144c41b28683f89b1ac51f27863cc9a15003fd50a19cf35c6"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericDeserializer_TLBeatw67_f32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c18793a068bf083fd525af6b1efbfe80107d5b2b8ecb151d1ec7b8c5178df902",
+          "A120": "c18793a068bf083fd525af6b1efbfe80107d5b2b8ecb151d1ec7b8c5178df902"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericDeserializer_TLBeatw67_f32_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "9ac526c6530d3f0793a83bb6bc90397804a30738adff019ac6b64bf07e753a88",
+          "A120": "9ac526c6530d3f0793a83bb6bc90397804a30738adff019ac6b64bf07e753a88"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericDeserializer_TLBeatw87_f32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "51256d4d67ada3097a98c0ba663bda45d24fc87e6d31b9d594854b3fa0c660c4",
+          "A120": "51256d4d67ada3097a98c0ba663bda45d24fc87e6d31b9d594854b3fa0c660c4"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericDeserializer_TLBeatw87_f32_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2042545d7237e8896707eed62fbf63af3084dff2dcf0af135466eecb96d5a6c3",
+          "A120": "2042545d7237e8896707eed62fbf63af3084dff2dcf0af135466eecb96d5a6c3"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericDeserializer_TLBeatw88_f32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "6d9532826171b683f124cefafea2b872fbbefc9365bff06df9b613116793e84b",
+          "A120": "6d9532826171b683f124cefafea2b872fbbefc9365bff06df9b613116793e84b"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericDeserializer_TLBeatw88_f32_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "27014c8e8ba08b20fef971afc32016c9df193ef422d3839d238c87cf008265ef",
+          "A120": "27014c8e8ba08b20fef971afc32016c9df193ef422d3839d238c87cf008265ef"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericSerializer_TLBeatw10_f32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f082f046d805769bd7c00b36658b1e8e851ed2572d39022e9cf61a1c8c303088",
+          "A120": "f082f046d805769bd7c00b36658b1e8e851ed2572d39022e9cf61a1c8c303088"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericSerializer_TLBeatw67_f32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "9ceb7c38aa4fe1a2026e0cd9a2a2c9e85c1ea7f31d4a555ff604bb793cc040a7",
+          "A120": "9ceb7c38aa4fe1a2026e0cd9a2a2c9e85c1ea7f31d4a555ff604bb793cc040a7"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericSerializer_TLBeatw87_f32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "017eaffceeeceb7499341360cc2c8fd655e01330ba1e7a06c9d2a19e267f1670",
+          "A120": "017eaffceeeceb7499341360cc2c8fd655e01330ba1e7a06c9d2a19e267f1670"
+        },
+        "equal": true
+      },
+      {
+        "name": "GenericSerializer_TLBeatw88_f32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a532a672ef3f3ed193a170a90ee61b5ce53a2198013589c3912139747f4a1688",
+          "A120": "a532a672ef3f3ed193a170a90ee61b5ce53a2198013589c3912139747f4a1688"
+        },
+        "equal": true
+      },
+      {
+        "name": "InputDelayer.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "962ac06ff8abd56e8e6bd8fae1575d435a6ff8b59845e5dbe042d6712fbd0e60",
+          "A120": "962ac06ff8abd56e8e6bd8fae1575d435a6ff8b59845e5dbe042d6712fbd0e60"
+        },
+        "equal": true
+      },
+      {
+        "name": "InputDelayer_1.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "ac3bbd80a07d45881f88572edf9bddc29dd93ae791e85cb8672e7824d8818063",
+          "A120": "ac3bbd80a07d45881f88572edf9bddc29dd93ae791e85cb8672e7824d8818063"
+        },
+        "equal": true
+      },
+      {
+        "name": "InstructionMerger.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "6fb446c53159eb64be507f9ff5bea1caea73eed44b90f91cd559320980b4b5e4",
+          "A120": "6fb446c53159eb64be507f9ff5bea1caea73eed44b90f91cd559320980b4b5e4"
+        },
+        "equal": true
+      },
+      {
+        "name": "InstructionMerger_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b052818929411ef32302cc9692adb22ee7a3fa85b108f78c9e7199ae8c973bd8",
+          "A120": "b052818929411ef32302cc9692adb22ee7a3fa85b108f78c9e7199ae8c973bd8"
+        },
+        "equal": true
+      },
+      {
+        "name": "LoadQueue.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "180fe2ec582e2a147020de812f991e23e9a85d1b49f72c3940ab105b3d31f51e",
+          "A120": "180fe2ec582e2a147020de812f991e23e9a85d1b49f72c3940ab105b3d31f51e"
+        },
+        "equal": true
+      },
+      {
+        "name": "MatrixControlFSM.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "76d57da2ab5240b200469f1946bec7a61b2d348ff907147f0a52608ca9183436",
+          "A120": "76d57da2ab5240b200469f1946bec7a61b2d348ff907147f0a52608ca9183436"
+        },
+        "equal": true
+      },
+      {
+        "name": "MatrixEngineController.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "897dc7c9842e863acb5660bb5d04cd0147d3f8a053f1f54b97c0abe342690095",
+          "A120": "897dc7c9842e863acb5660bb5d04cd0147d3f8a053f1f54b97c0abe342690095"
+        },
+        "equal": true
+      },
+      {
+        "name": "MemoryBus.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "74da4c40c9a1807ce90495ab8547e93a66551b8a1032cfd1bd746a0b6d1378a4",
+          "A120": "74da4c40c9a1807ce90495ab8547e93a66551b8a1032cfd1bd746a0b6d1378a4"
+        },
+        "equal": true
+      },
+      {
+        "name": "OutputDelayer.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "2c4de7d5eb3310a397ee439f74318a0454806800eb67bd2afb71671227e7bb18",
+          "A120": "2c4de7d5eb3310a397ee439f74318a0454806800eb67bd2afb71671227e7bb18"
+        },
+        "equal": true
+      },
+      {
+        "name": "PE.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "c99e1d52330ddf8bb1dcef68dd5aafd0b4e877e9d7514fd9d1c05c18b242f9ea",
+          "A120": "c99e1d52330ddf8bb1dcef68dd5aafd0b4e877e9d7514fd9d1c05c18b242f9ea"
+        },
+        "equal": true
+      },
+      {
+        "name": "PhitArbiter_p32_f32_n5.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2153882811ec15e32cb772605225a5aec3ee59b9d92c45de420b2406208fac79",
+          "A120": "2153882811ec15e32cb772605225a5aec3ee59b9d92c45de420b2406208fac79"
+        },
+        "equal": true
+      },
+      {
+        "name": "PhitArbiter_p32_f32_n5_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a1d9364e294181f90a7621f4ae91cdd1d5430c2b583f5fb557b0258095ba950e",
+          "A120": "a1d9364e294181f90a7621f4ae91cdd1d5430c2b583f5fb557b0258095ba950e"
+        },
+        "equal": true
+      },
+      {
+        "name": "PhitDemux_p32_f32_n5.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "9a37345e02cde0eca3262e085fcf50b1ce2357d2c0e670d21b3b76f37c4fc9e9",
+          "A120": "9a37345e02cde0eca3262e085fcf50b1ce2357d2c0e670d21b3b76f37c4fc9e9"
+        },
+        "equal": true
+      },
+      {
+        "name": "PhitDemux_p32_f32_n5_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b229e999bb9aa9ca2f8a9ba7f26f59f8a5f8085f32d538c902d346877adf38dd",
+          "A120": "b229e999bb9aa9ca2f8a9ba7f26f59f8a5f8085f32d538c902d346877adf38dd"
+        },
+        "equal": true
+      },
+      {
+        "name": "PhitToFlit_p32_f32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c233345abdb59813471a52c563e0f0644a7b84048c1bde7ed41b9c51647f23e7",
+          "A120": "c233345abdb59813471a52c563e0f0644a7b84048c1bde7ed41b9c51647f23e7"
+        },
+        "equal": true
+      },
+      {
+        "name": "PhitToFlit_p32_f32_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7f3f933777e1fb93e8a73b36378fe911b1843cdf969ac44a700f75450568956c",
+          "A120": "7f3f933777e1fb93e8a73b36378fe911b1843cdf969ac44a700f75450568956c"
+        },
+        "equal": true
+      },
+      {
+        "name": "ProbePicker.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c76ef88f3b708d6fb90860aa815e5da45ce1ae286250315db55c89a577d08c70",
+          "A120": "c76ef88f3b708d6fb90860aa815e5da45ce1ae286250315db55c89a577d08c70"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_AXI4BundleARW.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1e895a9b97d6e9ecc68cd22a323bc3bcba41e41b5920a617487fe974b8199255",
+          "A120": "1e895a9b97d6e9ecc68cd22a323bc3bcba41e41b5920a617487fe974b8199255"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_AXI4BundleW.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ab9f3b1fdbb4c70fd9de14cb79632268e2d0ea27330e715aa00529dc5579ae94",
+          "A120": "ab9f3b1fdbb4c70fd9de14cb79632268e2d0ea27330e715aa00529dc5579ae94"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_TLBundleA_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "270ee86f483ee494a0c93e834481c2dc6988e1538920b0cfab291aaa5011c9da",
+          "A120": "270ee86f483ee494a0c93e834481c2dc6988e1538920b0cfab291aaa5011c9da"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue1_TLBundleD_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e305028e2bb056437175319aef4b08a6ebca7a23cb29d2abfc79f3e59ba18ebc",
+          "A120": "e305028e2bb056437175319aef4b08a6ebca7a23cb29d2abfc79f3e59ba18ebc"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue256_UInt32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7096e16bc2927b5649be6c376d0032fbfabf40361e0cd819e0db0f25aa34dca8",
+          "A120": "7096e16bc2927b5649be6c376d0032fbfabf40361e0cd819e0db0f25aa34dca8"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_DMAInstruction.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8bb1284fe84697eb28ac48ce9508d364508e5f8a0b0a154a9f65805da686a687",
+          "A120": "8bb1284fe84697eb28ac48ce9508d364508e5f8a0b0a154a9f65805da686a687"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_RegMapperOutput.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7a378c5541c1329b84c79a23e4d8a9863d62d3bdb04aca7832a339ae13c810c4",
+          "A120": "7a378c5541c1329b84c79a23e4d8a9863d62d3bdb04aca7832a339ae13c810c4"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_TLBundleA_a15d32s4k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ad9bb77940f6bed1a286ae10d1a2fc31daeb0b216246ce423397994e508fd902",
+          "A120": "ad9bb77940f6bed1a286ae10d1a2fc31daeb0b216246ce423397994e508fd902"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_TLBundleA_a15d64s10k1z2u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e5d54a1603f5497cca492623aee22d312059212fe89af59e185df63c1cd72fe0",
+          "A120": "e5d54a1603f5497cca492623aee22d312059212fe89af59e185df63c1cd72fe0"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_TLBundleA_a15d64s6k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "d8aa756b931afaa0033c6fddc5189db0c14180033265ba77d56fd0ac94415492",
+          "A120": "d8aa756b931afaa0033c6fddc5189db0c14180033265ba77d56fd0ac94415492"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_TLBundleA_a16d32s1k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "84a20ea8c7bbc02eac4e7e3254578bf50e476f060122f6984dbd693d5a991df3",
+          "A120": "84a20ea8c7bbc02eac4e7e3254578bf50e476f060122f6984dbd693d5a991df3"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_TLBundleA_a16d32s4k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8ce0dd759f706f84198ca77d387f2c5e0af91d32081191e516cea5c9a0152dc8",
+          "A120": "8ce0dd759f706f84198ca77d387f2c5e0af91d32081191e516cea5c9a0152dc8"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_TLBundleD_a15d32s4k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "996e2c741fdd24b27e9621ec8dc3680eddd71adad2c0ab867b271fa6e501bc0f",
+          "A120": "996e2c741fdd24b27e9621ec8dc3680eddd71adad2c0ab867b271fa6e501bc0f"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_TLBundleD_a15d64s6k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8fd39f1c6b71dc060aad58f58daea43e66d80a0c76b77cc5d9dbbed930214cef",
+          "A120": "8fd39f1c6b71dc060aad58f58daea43e66d80a0c76b77cc5d9dbbed930214cef"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_TLBundleD_a16d32s1k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5f892573a982e920eb61465ab297bbadc049f1308f2867f7e608d0e7f931d0b8",
+          "A120": "5f892573a982e920eb61465ab297bbadc049f1308f2867f7e608d0e7f931d0b8"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_TLBundleD_a16d32s4k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3015eb6f568f4bd4661d30c208034c66d3856d0c9f2e830a72320c191f75c23a",
+          "A120": "3015eb6f568f4bd4661d30c208034c66d3856d0c9f2e830a72320c191f75c23a"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue2_UInt64.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "75f34c6c16e97b8d067e445b438872d71c430c35faa9db6c0b9a3f856e5483ac",
+          "A120": "75f34c6c16e97b8d067e445b438872d71c430c35faa9db6c0b9a3f856e5483ac"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue512_BundleMap.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8526a33d95f115a8160a3a4e246f7e1bd231ada9d344c3f78d77c6c20b7a33a0",
+          "A120": "8526a33d95f115a8160a3a4e246f7e1bd231ada9d344c3f78d77c6c20b7a33a0"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue8_Flit.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "cc2779259196fcb8fd3be9d20d9098019138be50d16620c9cb2df8214fe270f8",
+          "A120": "cc2779259196fcb8fd3be9d20d9098019138be50d16620c9cb2df8214fe270f8"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue8_Flit_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c0164693fca09721f7a3b63d3a6b8380d790ec80a0409cdeed67940569bb64bc",
+          "A120": "c0164693fca09721f7a3b63d3a6b8380d790ec80a0409cdeed67940569bb64bc"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue8_MatrixInstruction.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "409114b7916158b24c8d890e7cba9958da351511dfbc9383e453a8118a57a76e",
+          "A120": "409114b7916158b24c8d890e7cba9958da351511dfbc9383e453a8118a57a76e"
+        },
+        "equal": true
+      },
+      {
+        "name": "Queue8_TLBroadcastData.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "815f32f2452ca828cc37c3d69604d901f4e54f5221d53832f1521d062cecdf6e",
+          "A120": "815f32f2452ca828cc37c3d69604d901f4e54f5221d53832f1521d062cecdf6e"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_FMA.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "5ed294007a214155873997eacd87e9b60a84f3eec90f55acf5b76af7539ded3f",
+          "A120": "5ed294007a214155873997eacd87e9b60a84f3eec90f55acf5b76af7539ded3f"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_FMA_16.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "2f2fbe0af1ef2c27b9bcc999a2dae5221feea30438d0c19c7ef58c07285de364",
+          "A120": "2f2fbe0af1ef2c27b9bcc999a2dae5221feea30438d0c19c7ef58c07285de364"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_FMA_17.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "a9ef91e0b35d8894ef03fb61b4c87c24298d120af270aa57c07eb978191d5747",
+          "A120": "a9ef91e0b35d8894ef03fb61b4c87c24298d120af270aa57c07eb978191d5747"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_MulAddExp2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1a1e2b378ba18159d080be8bf18bc922bb6e80d42ce493eb9f0392ed42a034c0",
+          "A120": "1a1e2b378ba18159d080be8bf18bc922bb6e80d42ce493eb9f0392ed42a034c0"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_MulAddExp2_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3438d64c0123aa862c65dfe0ed2ddb7839a3199bb9a60495183aae830176579c",
+          "A120": "3438d64c0123aa862c65dfe0ed2ddb7839a3199bb9a60495183aae830176579c"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_SplitIF.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3c0ed280ae6e44299c74e6fd7ad50fe015ac1547026d3553ebe82e3a04dd12c9",
+          "A120": "3c0ed280ae6e44299c74e6fd7ad50fe015ac1547026d3553ebe82e3a04dd12c9"
+        },
+        "equal": true
+      },
+      {
+        "name": "RawFloat_SplitIF_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "fb4961d66ed58247a3a031136aa74c685f5ed6044c8a8945e2a5304c30d5ed0f",
+          "A120": "fb4961d66ed58247a3a031136aa74c685f5ed6044c8a8945e2a5304c30d5ed0f"
+        },
+        "equal": true
+      },
+      {
+        "name": "Reciprocal.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8003151383a003982dde0840bb90f7bfc6a134df23677106535446407263b05c",
+          "A120": "8003151383a003982dde0840bb90f7bfc6a134df23677106535446407263b05c"
+        },
+        "equal": true
+      },
+      {
+        "name": "Repeater_TLBundleA_a15d64s6k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "fde9ce7b7a12857d2f1bf909c53e02e915daac505cc368cc7167cfd9606c2b1b",
+          "A120": "fde9ce7b7a12857d2f1bf909c53e02e915daac505cc368cc7167cfd9606c2b1b"
+        },
+        "equal": true
+      },
+      {
+        "name": "Repeater_TLBundleA_a16d32s4k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c6c3419281a06231c2b8bcfbdc6532f251ee4e2c77dfd971842d7878e8622c7e",
+          "A120": "c6c3419281a06231c2b8bcfbdc6532f251ee4e2c77dfd971842d7878e8622c7e"
+        },
+        "equal": true
+      },
+      {
+        "name": "Repeater_TLBundleD_a15d64s4k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e35c048ee922b7f5f1f82c10cad1548a14dd6871aac26c86d516ccffe3e534be",
+          "A120": "e35c048ee922b7f5f1f82c10cad1548a14dd6871aac26c86d516ccffe3e534be"
+        },
+        "equal": true
+      },
+      {
+        "name": "RequestPartitioner.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "bb256a3b919f2b353ac5c5e78620f0eb4f7ec3c9b99416e12113e634c463e067",
+          "A120": "bb256a3b919f2b353ac5c5e78620f0eb4f7ec3c9b99416e12113e634c463e067"
+        },
+        "equal": true
+      },
+      {
+        "name": "ResetCatchAndSync_d3.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5f52699517d9218bc53e507035676f8629fce727a6c708eeeae5287735be3fdb",
+          "A120": "5f52699517d9218bc53e507035676f8629fce727a6c708eeeae5287735be3fdb"
+        },
+        "equal": true
+      },
+      {
+        "name": "ResetCatchAndSync_d3_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "873c9517c33f0200fb425b4a88d5401087c3095fbd205f11e81d641176df651d",
+          "A120": "873c9517c33f0200fb425b4a88d5401087c3095fbd205f11e81d641176df651d"
+        },
+        "equal": true
+      },
+      {
+        "name": "ScratchPadSRAM.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "0fbcf6a0430f055aad88c08336fd6303f7984a24d4fcc6f1999410348cc6cbf5",
+          "A120": "0fbcf6a0430f055aad88c08336fd6303f7984a24d4fcc6f1999410348cc6cbf5"
+        },
+        "equal": true
+      },
+      {
+        "name": "Semaphores.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1b1fb7a8a95fd532e2559c94a6b99f6d44afed4b8ded3fa262efef3a586e629f",
+          "A120": "1b1fb7a8a95fd532e2559c94a6b99f6d44afed4b8ded3fa262efef3a586e629f"
+        },
+        "equal": true
+      },
+      {
+        "name": "SerialRAM.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "208d10bcb84e73cfdc6e704b99c48335c3f186e96889d91a7ff5f72545c31c51",
+          "A120": "208d10bcb84e73cfdc6e704b99c48335c3f186e96889d91a7ff5f72545c31c51"
+        },
+        "equal": true
+      },
+      {
+        "name": "SerialTL0ClockSinkDomain.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "939c31066fa863e3fbd11609ad2392a483ae689a73a66b3c81e351f375d80cd9",
+          "A120": "939c31066fa863e3fbd11609ad2392a483ae689a73a66b3c81e351f375d80cd9"
+        },
+        "equal": true
+      },
+      {
+        "name": "ShiftRightJam.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3439096cd15b67f1395afd347885746b6fd04c4a5053ca40dc5137ae25b21651",
+          "A120": "3439096cd15b67f1395afd347885746b6fd04c4a5053ca40dc5137ae25b21651"
+        },
+        "equal": true
+      },
+      {
+        "name": "ShiftRightJam_16.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2330b48a6cf7084bbd856b6666c6def787eb2b7003afb276ba3929e8752101d4",
+          "A120": "2330b48a6cf7084bbd856b6666c6def787eb2b7003afb276ba3929e8752101d4"
+        },
+        "equal": true
+      },
+      {
+        "name": "StoreQueue.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8865e9e8d813cab9eb72f80e3b4712085cb40d2f3c2d90b78ad336afe2e76385",
+          "A120": "8865e9e8d813cab9eb72f80e3b4712085cb40d2f3c2d90b78ad336afe2e76385"
+        },
+        "equal": true
+      },
+      {
+        "name": "SystemBus.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "80785e6887e748e5b1d393d9e58cbce39f9714e85db322bcbd3ff7fd688dc412",
+          "A120": "80785e6887e748e5b1d393d9e58cbce39f9714e85db322bcbd3ff7fd688dc412"
+        },
+        "equal": true
+      },
+      {
+        "name": "SystolicArray.sv",
+        "core": true,
+        "normalized_sha256": {
+          "A110": "d57fce4a16ebe5e3dcc60df4870af496185271ff0ebc5fb53ef0e301e7b4a3f3",
+          "A120": "d57fce4a16ebe5e3dcc60df4870af496185271ff0ebc5fb53ef0e301e7b4a3f3"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLAFromBeat_SerialRAM_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0a30d9dee782347321bc566dc86b7b61a57f2e3d1193f5719d57fa36bc6d52d5",
+          "A120": "0a30d9dee782347321bc566dc86b7b61a57f2e3d1193f5719d57fa36bc6d52d5"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLAFromBeat_serial_tl_0_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "bd538da6f3e40fe4be86614f84b8899cce7c924c7cc6e63575201473a486ccca",
+          "A120": "bd538da6f3e40fe4be86614f84b8899cce7c924c7cc6e63575201473a486ccca"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLAToBeat_SerialRAM_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "519a79376ce2bfb6c036eebd6d7f3c9709088edc5b3bfca7ea9c128577d1cd93",
+          "A120": "519a79376ce2bfb6c036eebd6d7f3c9709088edc5b3bfca7ea9c128577d1cd93"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLAsyncCrossingSink_a16d32s4k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "9b5ff7cf4ba4c833430e90879ff8730936408b69465bfc3b101ddc5d196c52b8",
+          "A120": "9b5ff7cf4ba4c833430e90879ff8730936408b69465bfc3b101ddc5d196c52b8"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLAsyncCrossingSource_a16d32s4k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "96e7d85856fdf201112495a8c4bd6a132b492880ece2c9598e61308f61b609c1",
+          "A120": "96e7d85856fdf201112495a8c4bd6a132b492880ece2c9598e61308f61b609c1"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBFromBeat_SerialRAM_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0de9ace536023519718cab6c0a9aceeec955b32cdc6f34660cb3509f020be97b",
+          "A120": "0de9ace536023519718cab6c0a9aceeec955b32cdc6f34660cb3509f020be97b"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBFromBeat_serial_tl_0_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "16f7fc6e75db1d9a2d92deaebc881bc6219b56fec26d55a2fc39c36e6e7464bf",
+          "A120": "16f7fc6e75db1d9a2d92deaebc881bc6219b56fec26d55a2fc39c36e6e7464bf"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBToBeat_serial_tl_0_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "48c3ba411ce67d141d0ee9108373500032e1f71e62ee6a22b6915a227da56307",
+          "A120": "48c3ba411ce67d141d0ee9108373500032e1f71e62ee6a22b6915a227da56307"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBroadcast.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "73608d409232b56e4846a1787d72e266f5c23fdbcab51b2d5dbd745b67c6388a",
+          "A120": "73608d409232b56e4846a1787d72e266f5c23fdbcab51b2d5dbd745b67c6388a"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBroadcastTracker.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "6531f986f5d4019ef1dc2533f34e28e39982547aa8f86050f0c3500fc7a16640",
+          "A120": "6531f986f5d4019ef1dc2533f34e28e39982547aa8f86050f0c3500fc7a16640"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBroadcastTracker_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2a5f5d7c7aae8ecce3b3032d43f33d7cc8575e01440b4de2066835258afc1645",
+          "A120": "2a5f5d7c7aae8ecce3b3032d43f33d7cc8575e01440b4de2066835258afc1645"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBroadcastTracker_2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a004091b1e36f37577592d1561746e18a1552abcd07580324b1a6dc1885c113f",
+          "A120": "a004091b1e36f37577592d1561746e18a1552abcd07580324b1a6dc1885c113f"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBroadcastTracker_3.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e638c2c5033ff3273da6294b6ff4598f527b2a2602664ed1ab11287adea3bc32",
+          "A120": "e638c2c5033ff3273da6294b6ff4598f527b2a2602664ed1ab11287adea3bc32"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBuffer_a15d32s4k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "26ced4a2ea4c27dcf11a5bf264d2bbd856d054a018688f5ff466f3ee31cdeac6",
+          "A120": "26ced4a2ea4c27dcf11a5bf264d2bbd856d054a018688f5ff466f3ee31cdeac6"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBuffer_a15d64s6k1z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e4ef1106c83b8c10d37f1cdf0f039f4a5009c0e071ab6ab41e7e9af151ed53e9",
+          "A120": "e4ef1106c83b8c10d37f1cdf0f039f4a5009c0e071ab6ab41e7e9af151ed53e9"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBuffer_a16d32s1k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "9e9c9cd33ba082e279f80e5b818fe3865e19caf2d013f3a1e90cd73449981c58",
+          "A120": "9e9c9cd33ba082e279f80e5b818fe3865e19caf2d013f3a1e90cd73449981c58"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLBuffer_a16d32s4k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2ea759b02a6fd422a8f54de1d176ee5e7b1c85b4f7ae4d29cafad81d6c81e7c7",
+          "A120": "2ea759b02a6fd422a8f54de1d176ee5e7b1c85b4f7ae4d29cafad81d6c81e7c7"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLCFromBeat_SerialRAM_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4d0e6b88ba8e128406b02285dcce0c63e31c88259f70bebb2fd718e6cd7e06d9",
+          "A120": "4d0e6b88ba8e128406b02285dcce0c63e31c88259f70bebb2fd718e6cd7e06d9"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLCFromBeat_serial_tl_0_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b8b2c8ee472f1b42f0165aa8f559a9a399b1d3646e58cfd2d1d3341e4b7f3c3f",
+          "A120": "b8b2c8ee472f1b42f0165aa8f559a9a399b1d3646e58cfd2d1d3341e4b7f3c3f"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLCToBeat_SerialRAM_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0a6427387eae6b3dbf00ceecddc172a1ce7740b181d65fdcc2a366ed495aa07e",
+          "A120": "0a6427387eae6b3dbf00ceecddc172a1ce7740b181d65fdcc2a366ed495aa07e"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLDFromBeat_SerialRAM_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7903698eb4515b0b84e9cf576a00304f536810e4b3348e378d7dc7e450cbbd5a",
+          "A120": "7903698eb4515b0b84e9cf576a00304f536810e4b3348e378d7dc7e450cbbd5a"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLDFromBeat_serial_tl_0_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "9054bc67ec9a391aff963e5ae4f036a2ea36bd076cfa175c8d5a618b82172630",
+          "A120": "9054bc67ec9a391aff963e5ae4f036a2ea36bd076cfa175c8d5a618b82172630"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLDToBeat_serial_tl_0_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a6fab5ff0273d29c6ea674b8768216bc7e065ffbf7cad89b85eb1c70eeea5315",
+          "A120": "a6fab5ff0273d29c6ea674b8768216bc7e065ffbf7cad89b85eb1c70eeea5315"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLEFromBeat_SerialRAM_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7baae297035cdb1686c923da6dd68046d29ee68d35f1adf0883612b530d02809",
+          "A120": "7baae297035cdb1686c923da6dd68046d29ee68d35f1adf0883612b530d02809"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLEFromBeat_serial_tl_0_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8e9bc9005abf642583e35f21375fd62d33f263f0ccfd036ce8e5f31a60933ae0",
+          "A120": "8e9bc9005abf642583e35f21375fd62d33f263f0ccfd036ce8e5f31a60933ae0"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLEToBeat_SerialRAM_a64d64s8k8z8c.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "812141b8bb041874c8c3eea809f64afe5f6aab75144a2deea77e38f36241874f",
+          "A120": "812141b8bb041874c8c3eea809f64afe5f6aab75144a2deea77e38f36241874f"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLFragmenter.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b5d34f7d7de91e8002e3a92026323ecad5f70ed616bc92db5a75d95326f91c57",
+          "A120": "b5d34f7d7de91e8002e3a92026323ecad5f70ed616bc92db5a75d95326f91c57"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLFragmenter_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "9be2ec33de7295eebe1fe5c37c92d39760515da03afd5464c83c285079d03494",
+          "A120": "9be2ec33de7295eebe1fe5c37c92d39760515da03afd5464c83c285079d03494"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLInterconnectCoupler_fbus_from_port_named_serial_tl_0_in.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "22728cdb36e30d48c6a0abd28449ecb84b1de951fc7414e22faf1b3fed6829c3",
+          "A120": "22728cdb36e30d48c6a0abd28449ecb84b1de951fc7414e22faf1b3fed6829c3"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLInterconnectCoupler_fbus_to_fsa.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "980310ffba5719f3ca650d3f8fffa4fe0921978c7bce89b52ee674ce4863b27f",
+          "A120": "980310ffba5719f3ca650d3f8fffa4fe0921978c7bce89b52ee674ce4863b27f"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLInterconnectCoupler_sbus_from_bus_named_fbus.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f3cc5cd41e6c5f002f8ad8f8b1219316e49caa363c543fcbbfb082b1feaac519",
+          "A120": "f3cc5cd41e6c5f002f8ad8f8b1219316e49caa363c543fcbbfb082b1feaac519"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5d533c4d7ab763d101b76eefac8b3077e52acffcc1a7827414e58ab0d531240d",
+          "A120": "5d533c4d7ab763d101b76eefac8b3077e52acffcc1a7827414e58ab0d531240d"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "92836201632230c516b7aacb8c830f3a18a582d9130cb9c05f79a82c30aa41b7",
+          "A120": "92836201632230c516b7aacb8c830f3a18a582d9130cb9c05f79a82c30aa41b7"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_10.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "63fb27349cf68afb69c82200ef1b87570e84747bce232445048e846a3f800991",
+          "A120": "63fb27349cf68afb69c82200ef1b87570e84747bce232445048e846a3f800991"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_11.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c9b0379eb12c795b204f690666af809e6ab93caecd9eb6e8e084ba2b1a70078d",
+          "A120": "c9b0379eb12c795b204f690666af809e6ab93caecd9eb6e8e084ba2b1a70078d"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_12.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "14a43bafca717e5b290ad121f19c1a8a52233abec5fe3900dc7eca581d408ffb",
+          "A120": "14a43bafca717e5b290ad121f19c1a8a52233abec5fe3900dc7eca581d408ffb"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_13.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "cf75c1fc71b4c342164014a08848318f453a0a5140f518b4759da3cc813aac82",
+          "A120": "cf75c1fc71b4c342164014a08848318f453a0a5140f518b4759da3cc813aac82"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_14.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0f9620720b99566a41514d5a8a0e0803c15e8c2dd6aee53ad6014f1682c458b6",
+          "A120": "0f9620720b99566a41514d5a8a0e0803c15e8c2dd6aee53ad6014f1682c458b6"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2f0f54f86f17444f7653073ec9e186768cf4790309587c7c512026db643c778f",
+          "A120": "2f0f54f86f17444f7653073ec9e186768cf4790309587c7c512026db643c778f"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_3.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "15c077d07fd69d6a65e94cbaf5a4eaa5d6fdf41aff40936b56817af2fa104ed0",
+          "A120": "15c077d07fd69d6a65e94cbaf5a4eaa5d6fdf41aff40936b56817af2fa104ed0"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_4.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ab38fe4fb0e04bfa787ebf8966a1628b09923fc2995fabfe265811992b95af06",
+          "A120": "ab38fe4fb0e04bfa787ebf8966a1628b09923fc2995fabfe265811992b95af06"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_5.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1d55930c06f628e655fb4ba43781a60c1bead42bc6103acfc35755c0e495e831",
+          "A120": "1d55930c06f628e655fb4ba43781a60c1bead42bc6103acfc35755c0e495e831"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_6.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "652bfcfad2daaa8962d3695a5bc055ffa3ae5f3249f3811f07422e80f9cae03a",
+          "A120": "652bfcfad2daaa8962d3695a5bc055ffa3ae5f3249f3811f07422e80f9cae03a"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_7.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3ffdca1e896632b613d63672c079ac65aa62f036e6789724b4b2f7b0c7c4e241",
+          "A120": "3ffdca1e896632b613d63672c079ac65aa62f036e6789724b4b2f7b0c7c4e241"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_8.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "94c709b53a91cc065e7edac6ec836dbb15a93a0f4f66ed1d5dd010ff140c0a06",
+          "A120": "94c709b53a91cc065e7edac6ec836dbb15a93a0f4f66ed1d5dd010ff140c0a06"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLMonitor_9.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f9d4c5580a7547b1b09b28c4e337ed43f28b4e63e843f37bd6decb6523d56d68",
+          "A120": "f9d4c5580a7547b1b09b28c4e337ed43f28b4e63e843f37bd6decb6523d56d68"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLSerdesser_SerialRAM.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "23032038f31ea9594f38d08906fdff582288712b61120bbb8cc666fa026b58df",
+          "A120": "23032038f31ea9594f38d08906fdff582288712b61120bbb8cc666fa026b58df"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLSerdesser_serial_tl_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c4d5f887115eecad77bb9722dcee3fcf9009cef0acfef2c34de571fcccea93c1",
+          "A120": "c4d5f887115eecad77bb9722dcee3fcf9009cef0acfef2c34de571fcccea93c1"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLToAXI4.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4ae80bf59af8f9a6e3d0e33cd9339af2383718d82c13f9a7d39b5b06dc7f7214",
+          "A120": "4ae80bf59af8f9a6e3d0e33cd9339af2383718d82c13f9a7d39b5b06dc7f7214"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLWidthWidget4.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f5093fc397c3f0ac87e4f053c9c6eee72ba29cee85929c4d2d026601be9908a7",
+          "A120": "f5093fc397c3f0ac87e4f053c9c6eee72ba29cee85929c4d2d026601be9908a7"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLXbar_fbus_i1_o2_a16d32s4k2z3u.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a32043c686244c3e1aff33ded3042820970bc7486343577ab6f4ee5ca6a3a443",
+          "A120": "a32043c686244c3e1aff33ded3042820970bc7486343577ab6f4ee5ca6a3a443"
+        },
+        "equal": true
+      },
+      {
+        "name": "TLZero.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "70f5f8bbffd5f8049c0680f3de7898a1383d1e4fe42d4913851cbed29d5b04b8",
+          "A120": "70f5f8bbffd5f8049c0680f3de7898a1383d1e4fe42d4913851cbed29d5b04b8"
+        },
+        "equal": true
+      },
+      {
+        "name": "TSIToTileLink.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e8d2e9c3f6826a4f5bfcaad4bc73186ae96c46d21252148949f23adda2c56697",
+          "A120": "e8d2e9c3f6826a4f5bfcaad4bc73186ae96c46d21252148949f23adda2c56697"
+        },
+        "equal": true
+      },
+      {
+        "name": "TestHarness.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7ac3af1556cdf864a30c41183b000d9012ebaee93d21a27f40352d4809e1f8bf",
+          "A120": "7ac3af1556cdf864a30c41183b000d9012ebaee93d21a27f40352d4809e1f8bf"
+        },
+        "equal": true
+      },
+      {
+        "name": "ZeroDeviceWrapper.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "8d209f9c8d7b4ab797c6127242f35df551f5761bbbb458148ccf1e86fe15c585",
+          "A120": "8d209f9c8d7b4ab797c6127242f35df551f5761bbbb458148ccf1e86fe15c585"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "cda62b9c3b6a65aabae3fb5f1359880e65cc6035c8ff474c6dc70688a0fa506a",
+          "A120": "cda62b9c3b6a65aabae3fb5f1359880e65cc6035c8ff474c6dc70688a0fa506a"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1b854dd13e471f83f3f0a64963ee7e879244e0cf5180b04699446c06c4f764ba",
+          "A120": "1b854dd13e471f83f3f0a64963ee7e879244e0cf5180b04699446c06c4f764ba"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_1.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "afb7ac6c59b520580a3bb36a473800dfeabc5ae4442c2e9261ee11ebbb06afe4",
+          "A120": "afb7ac6c59b520580a3bb36a473800dfeabc5ae4442c2e9261ee11ebbb06afe4"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_10.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a48ab23031fc3e7f07b85d818c3436c7d87f9544aabdabbe9bbc3a9183e688c5",
+          "A120": "a48ab23031fc3e7f07b85d818c3436c7d87f9544aabdabbe9bbc3a9183e688c5"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_11.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "b18493159f1a9c67fbccec951da6c21e517e45c6ee888114600da07470119571",
+          "A120": "b18493159f1a9c67fbccec951da6c21e517e45c6ee888114600da07470119571"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_12.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4e7aed45297f5c0e6016cbf8cfe7187336fe7238ef43b1731d7ab502a6859115",
+          "A120": "4e7aed45297f5c0e6016cbf8cfe7187336fe7238ef43b1731d7ab502a6859115"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_13.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2da7beb8550c76779c4016825b722af2c5484d421e2b048d4fb4b6af8d303c6f",
+          "A120": "2da7beb8550c76779c4016825b722af2c5484d421e2b048d4fb4b6af8d303c6f"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_14.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "68fa3d60adce8f8123e70fe829fad688637d475d372982197749bafabc544cb2",
+          "A120": "68fa3d60adce8f8123e70fe829fad688637d475d372982197749bafabc544cb2"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_15.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "6c417c5a9d7d54bfad46de2a454501c210481cd768fd4c8f368c83dd11affdad",
+          "A120": "6c417c5a9d7d54bfad46de2a454501c210481cd768fd4c8f368c83dd11affdad"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_1_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "80009efe892e012aa7367185dd08d6b8c4837070363179c10758397544f87d00",
+          "A120": "80009efe892e012aa7367185dd08d6b8c4837070363179c10758397544f87d00"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_2.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "c5b1a2821caceda892b040a2cf4dfb1f88cbc37d3d68fc90630fafb2044cce99",
+          "A120": "c5b1a2821caceda892b040a2cf4dfb1f88cbc37d3d68fc90630fafb2044cce99"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_2_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2b26be5043218c5e76f433d48db2c46356de18cef1c1fefccc2951e89b2ef6ec",
+          "A120": "2b26be5043218c5e76f433d48db2c46356de18cef1c1fefccc2951e89b2ef6ec"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_3.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e549266030bffab7c9cf3ee65aa2f940471f364aed95100132bf0b44252fa040",
+          "A120": "e549266030bffab7c9cf3ee65aa2f940471f364aed95100132bf0b44252fa040"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_3_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "cefa020cb38f158f0a8771e6f5fd6b02e1e6fac519a33afce83336b2b0ca4b1a",
+          "A120": "cefa020cb38f158f0a8771e6f5fd6b02e1e6fac519a33afce83336b2b0ca4b1a"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_4.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "99ead83f2c467e584e8e58b82950065fd9c09a7d5c6ee168f156688b3049211f",
+          "A120": "99ead83f2c467e584e8e58b82950065fd9c09a7d5c6ee168f156688b3049211f"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_4_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ff4d9448a804912cf6e9699ecb6c66cd01a3d032c4afe54a331d9a357fe5a146",
+          "A120": "ff4d9448a804912cf6e9699ecb6c66cd01a3d032c4afe54a331d9a357fe5a146"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_5.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "6ed652892bba1287ba5de1c699bc1894c79eb2c4891beef535b1160398e49d14",
+          "A120": "6ed652892bba1287ba5de1c699bc1894c79eb2c4891beef535b1160398e49d14"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_5_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "50b291702262a30af09716ed426c1c429a03684f819b54fe612a12142da545dd",
+          "A120": "50b291702262a30af09716ed426c1c429a03684f819b54fe612a12142da545dd"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_6.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "13ef76f4979d2413eac5bdf2d04dce8a2b75937c4cabc594d448f7d320b914d8",
+          "A120": "13ef76f4979d2413eac5bdf2d04dce8a2b75937c4cabc594d448f7d320b914d8"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_6_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "d7863447a93c27227e866cfe3077e6330a984f1bf4f024136e78b1a62b88cfc4",
+          "A120": "d7863447a93c27227e866cfe3077e6330a984f1bf4f024136e78b1a62b88cfc4"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_7.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "7f2f6346828bd443414dcb9791bc398ad012aeda5f05431f6545d0ac7b4ad6b0",
+          "A120": "7f2f6346828bd443414dcb9791bc398ad012aeda5f05431f6545d0ac7b4ad6b0"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_7_0.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "cc960adfa58b56f102fa1b74bc48924e338d29d68af333f5662ef3724e6e18d4",
+          "A120": "cc960adfa58b56f102fa1b74bc48924e338d29d68af333f5662ef3724e6e18d4"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_8.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2ebe1494c0d1841b50cbfb7822ebdec5a52e5ff77172d0e69830d94198b405b4",
+          "A120": "2ebe1494c0d1841b50cbfb7822ebdec5a52e5ff77172d0e69830d94198b405b4"
+        },
+        "equal": true
+      },
+      {
+        "name": "banks_subBanks_sram_mem_9.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "2f4bad31f01b8e53dbd35bd99d4f66be88c11f1d899cdc3c55ef097e2628b3be",
+          "A120": "2f4bad31f01b8e53dbd35bd99d4f66be88c11f1d899cdc3c55ef097e2628b3be"
+        },
+        "equal": true
+      },
+      {
+        "name": "extern_modules.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "4b19d8f31e21661655fdda843e0d3b60282a5c546ca1aab3f64f746e4bb7bbb9",
+          "A120": "4b19d8f31e21661655fdda843e0d3b60282a5c546ca1aab3f64f746e4bb7bbb9"
+        },
+        "equal": true
+      },
+      {
+        "name": "fsaClockSinkDomain.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "38d686236d837d75506e0f3201ff9fc1f8508381e827ed69834a50c085db8822",
+          "A120": "38d686236d837d75506e0f3201ff9fc1f8508381e827ed69834a50c085db8822"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_256x32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "37333491b673ebbf6895bbe0bdb43ce946daf96f33835313e27b43b7491e05bb",
+          "A120": "37333491b673ebbf6895bbe0bdb43ce946daf96f33835313e27b43b7491e05bb"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x101.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "07a101e5284046736e698486c2b11124932aa287a3a829e5d11f115ee84376f7",
+          "A120": "07a101e5284046736e698486c2b11124932aa287a3a829e5d11f115ee84376f7"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x103.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a07d67bb9b3dfbcdb37a9d57b534764ca432e3a8bc5d9812d45b248696375030",
+          "A120": "a07d67bb9b3dfbcdb37a9d57b534764ca432e3a8bc5d9812d45b248696375030"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x15.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "196988da1f447761538aafcd1eeb7af402025ae55257e7a963917ceef858d619",
+          "A120": "196988da1f447761538aafcd1eeb7af402025ae55257e7a963917ceef858d619"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x33.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e433bf2eb7c9ade18b8fd7fe2c378ce4b115aa2ac151f09843a34253e7e2cbc8",
+          "A120": "e433bf2eb7c9ade18b8fd7fe2c378ce4b115aa2ac151f09843a34253e7e2cbc8"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x45.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "f37bdf87f80ebbdb86a94c45c4b98783e93ad39e212676fd49f470e03ac258ef",
+          "A120": "f37bdf87f80ebbdb86a94c45c4b98783e93ad39e212676fd49f470e03ac258ef"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x48.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "ceed5cc33b8df833afd14a0407606294b54665680300c14ca2bacec4d3d07cda",
+          "A120": "ceed5cc33b8df833afd14a0407606294b54665680300c14ca2bacec4d3d07cda"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x63.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "d437962e615de7d55d17f3bf7c874af92091c2a9a49167f4d3e6c986c6afa59e",
+          "A120": "d437962e615de7d55d17f3bf7c874af92091c2a9a49167f4d3e6c986c6afa59e"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x64.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "dd9686c36e9c5190570ce9c22ba8b2bfdaf54b61ebb018fdfb433f5787fea7f6",
+          "A120": "dd9686c36e9c5190570ce9c22ba8b2bfdaf54b61ebb018fdfb433f5787fea7f6"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x65.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "0fff7c09b8165a1a821f01e62513749f0efdb92c28731f97762b8bbfaf530c4e",
+          "A120": "0fff7c09b8165a1a821f01e62513749f0efdb92c28731f97762b8bbfaf530c4e"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x66.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "e26d0c5689da4e2886549c9de86382160762bc0b756632e03407b563834cd0c2",
+          "A120": "e26d0c5689da4e2886549c9de86382160762bc0b756632e03407b563834cd0c2"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_2x81.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "37fd576c81aaf2921c818472123f1d4b493f5418bfd110159dc1a772407de1af",
+          "A120": "37fd576c81aaf2921c818472123f1d4b493f5418bfd110159dc1a772407de1af"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_512x13.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "3efc57f92c8722fb29c505cdc138887c70598bf1ffe2460be3a057ed363e0c02",
+          "A120": "3efc57f92c8722fb29c505cdc138887c70598bf1ffe2460be3a057ed363e0c02"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_8x45.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "5ae1d99f429dc88385f49faa9682eb062213f1de33fcd13abe3b8a54b238ed17",
+          "A120": "5ae1d99f429dc88385f49faa9682eb062213f1de33fcd13abe3b8a54b238ed17"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_8x72.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "215d04d71b348777c3424279ff0f881e9c4eb6d1cadf3583598abae8e4e60d28",
+          "A120": "215d04d71b348777c3424279ff0f881e9c4eb6d1cadf3583598abae8e4e60d28"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_flit_8x32.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "a7aab34db63fbcd4f4eabcbc4c4737824cf8b6193267119f08ee22cda2ee0ceb",
+          "A120": "a7aab34db63fbcd4f4eabcbc4c4737824cf8b6193267119f08ee22cda2ee0ceb"
+        },
+        "equal": true
+      },
+      {
+        "name": "ram_flit_8x32_TestHarness_UNIQUIFIED.sv",
+        "core": false,
+        "normalized_sha256": {
+          "A110": "1d8d10426cf89bb003007844cbdc865d18ee0df08795024db214b5484e7f8ea2",
+          "A120": "1d8d10426cf89bb003007844cbdc865d18ee0df08795024db214b5484e7f8ea2"
+        },
+        "equal": true
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case": "sim4/seq4",
+      "counters": {
+        "dmaActive": 16,
+        "dmaInst": 4,
+        "execTime": 368,
+        "fence": 1,
+        "mxActive": 162,
+        "mxBubble": 153,
+        "mxInst": 5,
+        "rawInst": 32
+      },
+      "testbench_cycles": 4707,
+      "output_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+      "exec_us_A110": 3.3454545454545452,
+      "exec_us_A120": 3.066666666666667,
+      "speedup": 1.0909090909090908,
+      "mxBubble_fraction_of_execTime": 0.4157608695652174
+    },
+    {
+      "case": "sim4/seq8",
+      "counters": {
+        "dmaActive": 48,
+        "dmaInst": 12,
+        "execTime": 1083,
+        "fence": 1,
+        "mxActive": 464,
+        "mxBubble": 646,
+        "mxInst": 16,
+        "rawInst": 97
+      },
+      "testbench_cycles": 11857,
+      "output_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+      "exec_us_A110": 9.845454545454546,
+      "exec_us_A120": 9.025,
+      "speedup": 1.0909090909090908,
+      "mxBubble_fraction_of_execTime": 0.5964912280701754
+    },
+    {
+      "case": "sim8/seq8",
+      "counters": {
+        "dmaActive": 40,
+        "dmaInst": 4,
+        "execTime": 385,
+        "fence": 1,
+        "mxActive": 210,
+        "mxBubble": 134,
+        "mxInst": 5,
+        "rawInst": 32
+      },
+      "testbench_cycles": 4827,
+      "output_sha256": "3153831639ec49f9fdbee68e9f8f0d06b3b34d7ad83d29f5f7776a0c5d051162",
+      "exec_us_A110": 3.5,
+      "exec_us_A120": 3.2083333333333335,
+      "speedup": 1.0909090909090908,
+      "mxBubble_fraction_of_execTime": 0.34805194805194806
+    },
+    {
+      "case": "sim8/seq16",
+      "counters": {
+        "dmaActive": 116,
+        "dmaInst": 12,
+        "execTime": 1100,
+        "fence": 1,
+        "mxActive": 642,
+        "mxBubble": 535,
+        "mxInst": 16,
+        "rawInst": 97
+      },
+      "testbench_cycles": 11977,
+      "output_sha256": "b1ec74fcd3ba3977be92ada2a5751f826838aec5b6bf5d95a191636110396b92",
+      "exec_us_A110": 10.0,
+      "exec_us_A120": 9.166666666666666,
+      "speedup": 1.0909090909090908,
+      "mxBubble_fraction_of_execTime": 0.4863636363636364
+    },
+    {
+      "case": "sim16/seq16",
+      "counters": {
+        "dmaActive": 76,
+        "dmaInst": 4,
+        "execTime": 437,
+        "fence": 1,
+        "mxActive": 267,
+        "mxBubble": 103,
+        "mxInst": 5,
+        "rawInst": 32
+      },
+      "testbench_cycles": 5427,
+      "output_sha256": "8301342a7ede27a230080c6aa86ec4f393e99b421cab234ac64436dd17488e0d",
+      "exec_us_A110": 3.9727272727272727,
+      "exec_us_A120": 3.6416666666666666,
+      "speedup": 1.0909090909090908,
+      "mxBubble_fraction_of_execTime": 0.23569794050343248
+    },
+    {
+      "case": "sim16/seq32",
+      "counters": {
+        "dmaActive": 220,
+        "dmaInst": 12,
+        "execTime": 1152,
+        "fence": 1,
+        "mxActive": 824,
+        "mxBubble": 295,
+        "mxInst": 16,
+        "rawInst": 97
+      },
+      "testbench_cycles": 12577,
+      "output_sha256": "4cbe4b2e2c63af6ba4c8a28086b07503164c29ee900817c5f61d991f7f204cb3",
+      "exec_us_A110": 10.472727272727273,
+      "exec_us_A120": 9.6,
+      "speedup": 1.0909090909090908,
+      "mxBubble_fraction_of_execTime": 0.2560763888888889
+    }
+  ],
+  "reset_debounce": {
+    "baseline_ticks": 5500,
+    "candidate_ticks": 6000,
+    "baseline_MHz": 55,
+    "candidate_MHz": 60,
+    "time_us": 100,
+    "note": "ResetWrangler uses its slowest input clock; no pipeline stage changed."
+  },
+  "status": "pass",
+  "performance_scope": "Simulation counters; microseconds are cycles/frequency, not board measurements. mxBubble is the hardware counter, not every idle cycle."
+}

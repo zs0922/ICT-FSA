@@ -1,0 +1,1210 @@
+{
+  "global": {
+    "status": "available",
+    "wns_ns": {
+      "value": 0.041,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "tns_ns": {
+      "value": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "setup_failing_endpoints": {
+      "value": 0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "setup_total_endpoints": {
+      "value": 266114,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "whs_ns": {
+      "value": 0.01,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "ths_ns": {
+      "value": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "hold_failing_endpoints": {
+      "value": 0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "hold_total_endpoints": {
+      "value": 266114,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "wpws_ns": {
+      "value": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "tpws_ns": {
+      "value": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "pulse_failing_endpoints": {
+      "value": 0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "pulse_total_endpoints": {
+      "value": 149113,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      }
+    },
+    "constraints_met": {
+      "value": true,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/timing_summary.rpt",
+        "sha256": "3dccfecdf17aae00d7848d5af43abc0fd6175f14b575a353ff0c9f0ca478ae8d",
+        "line": 132,
+        "raw_line": "      0.041        0.000                      0               266114        0.010        0.000                      0               266114        0.000        0.000                       0                149113  "
+      },
+      "method": "All setup/hold/pulse worst slacks nonnegative; negative slack totals and failing counts zero"
+    }
+  },
+  "dut": {
+    "status": "available",
+    "reported_paths": {
+      "value": 1000,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+        "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5"
+      }
+    },
+    "worst_slack_ns": {
+      "value": 0.235,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+        "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+        "line": 15,
+        "raw_line": "Slack (MET) :             0.235ns  (required time - arrival time)"
+      }
+    },
+    "paths": [
+      {
+        "rank_in_report": 1,
+        "slack_ns": {
+          "value": 0.235,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 15,
+            "raw_line": "Slack (MET) :             0.235ns  (required time - arrival time)"
+          }
+        },
+        "source": {
+          "value": "dutDomain/fsa/fsa/sa/mesh_6_12/expInput_exp_reg[1]/C",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 16,
+            "raw_line": "  Source:                 dutDomain/fsa/fsa/sa/mesh_6_12/expInput_exp_reg[1]/C"
+          }
+        },
+        "destination": {
+          "value": "dutDomain/fsa/fsa/sa/mesh_6_12/macUnit/mulAddExp2/fma/adderOutAbs_reg[53]_bret/D",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 18,
+            "raw_line": "  Destination:            dutDomain/fsa/fsa/sa/mesh_6_12/macUnit/mulAddExp2/fma/adderOutAbs_reg[53]_bret/D"
+          }
+        },
+        "path_group": {
+          "value": "clk_out1_harnessSysPLL",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 20,
+            "raw_line": "  Path Group:             clk_out1_harnessSysPLL"
+          }
+        },
+        "path_type": {
+          "value": "Setup (Max at Slow Process Corner)",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 21,
+            "raw_line": "  Path Type:              Setup (Max at Slow Process Corner)"
+          }
+        },
+        "requirement_ns": {
+          "value": 8.333,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 22,
+            "raw_line": "  Requirement:            8.333ns  (clk_out1_harnessSysPLL rise@8.333ns - clk_out1_harnessSysPLL rise@0.000ns)"
+          }
+        },
+        "logic_levels": {
+          "value": 25,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 24,
+            "raw_line": "  Logic Levels:           25  (CARRY8=9 LUT2=2 LUT3=3 LUT5=1 LUT6=10)"
+          }
+        },
+        "data_delay_ns": {
+          "value": 8.028,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 23,
+            "raw_line": "  Data Path Delay:        8.028ns  (logic 2.140ns (26.657%)  route 5.888ns (73.343%))"
+          }
+        },
+        "logic_delay_ns": {
+          "value": 2.14,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 23,
+            "raw_line": "  Data Path Delay:        8.028ns  (logic 2.140ns (26.657%)  route 5.888ns (73.343%))"
+          }
+        },
+        "logic_percent": {
+          "value": 26.657,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 23,
+            "raw_line": "  Data Path Delay:        8.028ns  (logic 2.140ns (26.657%)  route 5.888ns (73.343%))"
+          }
+        },
+        "route_delay_ns": {
+          "value": 5.888,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 23,
+            "raw_line": "  Data Path Delay:        8.028ns  (logic 2.140ns (26.657%)  route 5.888ns (73.343%))"
+          }
+        },
+        "route_percent": {
+          "value": 73.343,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 23,
+            "raw_line": "  Data Path Delay:        8.028ns  (logic 2.140ns (26.657%)  route 5.888ns (73.343%))"
+          }
+        }
+      },
+      {
+        "rank_in_report": 2,
+        "slack_ns": {
+          "value": 0.247,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 205,
+            "raw_line": "Slack (MET) :             0.247ns  (required time - arrival time)"
+          }
+        },
+        "source": {
+          "value": "dutDomain/fsa/fsa/sa/mesh_6_12/expInput_exp_reg[1]/C",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 206,
+            "raw_line": "  Source:                 dutDomain/fsa/fsa/sa/mesh_6_12/expInput_exp_reg[1]/C"
+          }
+        },
+        "destination": {
+          "value": "dutDomain/fsa/fsa/sa/mesh_6_12/macUnit/mulAddExp2/fma/adderOutAbs_reg[13]_bret__0/D",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 208,
+            "raw_line": "  Destination:            dutDomain/fsa/fsa/sa/mesh_6_12/macUnit/mulAddExp2/fma/adderOutAbs_reg[13]_bret__0/D"
+          }
+        },
+        "path_group": {
+          "value": "clk_out1_harnessSysPLL",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 210,
+            "raw_line": "  Path Group:             clk_out1_harnessSysPLL"
+          }
+        },
+        "path_type": {
+          "value": "Setup (Max at Slow Process Corner)",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 211,
+            "raw_line": "  Path Type:              Setup (Max at Slow Process Corner)"
+          }
+        },
+        "requirement_ns": {
+          "value": 8.333,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 212,
+            "raw_line": "  Requirement:            8.333ns  (clk_out1_harnessSysPLL rise@8.333ns - clk_out1_harnessSysPLL rise@0.000ns)"
+          }
+        },
+        "logic_levels": {
+          "value": 25,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 214,
+            "raw_line": "  Logic Levels:           25  (CARRY8=9 LUT2=2 LUT3=3 LUT5=1 LUT6=10)"
+          }
+        },
+        "data_delay_ns": {
+          "value": 8.016,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 213,
+            "raw_line": "  Data Path Delay:        8.016ns  (logic 2.127ns (26.534%)  route 5.889ns (73.466%))"
+          }
+        },
+        "logic_delay_ns": {
+          "value": 2.127,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 213,
+            "raw_line": "  Data Path Delay:        8.016ns  (logic 2.127ns (26.534%)  route 5.889ns (73.466%))"
+          }
+        },
+        "logic_percent": {
+          "value": 26.534,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 213,
+            "raw_line": "  Data Path Delay:        8.016ns  (logic 2.127ns (26.534%)  route 5.889ns (73.466%))"
+          }
+        },
+        "route_delay_ns": {
+          "value": 5.889,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 213,
+            "raw_line": "  Data Path Delay:        8.016ns  (logic 2.127ns (26.534%)  route 5.889ns (73.466%))"
+          }
+        },
+        "route_percent": {
+          "value": 73.466,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 213,
+            "raw_line": "  Data Path Delay:        8.016ns  (logic 2.127ns (26.534%)  route 5.889ns (73.466%))"
+          }
+        }
+      },
+      {
+        "rank_in_report": 3,
+        "slack_ns": {
+          "value": 0.256,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 395,
+            "raw_line": "Slack (MET) :             0.256ns  (required time - arrival time)"
+          }
+        },
+        "source": {
+          "value": "wrangler/nodeOut_reset_catcher/io_sync_reset_chain/output_chain/sync_1_reg/C",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 396,
+            "raw_line": "  Source:                 wrangler/nodeOut_reset_catcher/io_sync_reset_chain/output_chain/sync_1_reg/C"
+          }
+        },
+        "destination": {
+          "value": "wrangler/nodeOut_reset_catcher/io_sync_reset_chain/output_chain/sync_0_reg_replica_211/D",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 398,
+            "raw_line": "  Destination:            wrangler/nodeOut_reset_catcher/io_sync_reset_chain/output_chain/sync_0_reg_replica_211/D"
+          }
+        },
+        "path_group": {
+          "value": "clk_out1_harnessSysPLL",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 400,
+            "raw_line": "  Path Group:             clk_out1_harnessSysPLL"
+          }
+        },
+        "path_type": {
+          "value": "Setup (Max at Slow Process Corner)",
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 401,
+            "raw_line": "  Path Type:              Setup (Max at Slow Process Corner)"
+          }
+        },
+        "requirement_ns": {
+          "value": 8.333,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 402,
+            "raw_line": "  Requirement:            8.333ns  (clk_out1_harnessSysPLL rise@8.333ns - clk_out1_harnessSysPLL rise@0.000ns)"
+          }
+        },
+        "logic_levels": {
+          "value": 0,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 404,
+            "raw_line": "  Logic Levels:           0  "
+          }
+        },
+        "data_delay_ns": {
+          "value": 7.706,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 403,
+            "raw_line": "  Data Path Delay:        7.706ns  (logic 0.079ns (1.025%)  route 7.627ns (98.975%))"
+          }
+        },
+        "logic_delay_ns": {
+          "value": 0.079,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 403,
+            "raw_line": "  Data Path Delay:        7.706ns  (logic 0.079ns (1.025%)  route 7.627ns (98.975%))"
+          }
+        },
+        "logic_percent": {
+          "value": 1.025,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 403,
+            "raw_line": "  Data Path Delay:        7.706ns  (logic 0.079ns (1.025%)  route 7.627ns (98.975%))"
+          }
+        },
+        "route_delay_ns": {
+          "value": 7.627,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 403,
+            "raw_line": "  Data Path Delay:        7.706ns  (logic 0.079ns (1.025%)  route 7.627ns (98.975%))"
+          }
+        },
+        "route_percent": {
+          "value": 98.975,
+          "source": {
+            "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+            "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+            "line": 403,
+            "raw_line": "  Data Path Delay:        7.706ns  (logic 0.079ns (1.025%)  route 7.627ns (98.975%))"
+          }
+        }
+      }
+    ],
+    "scope": "First actual DUT-domain paths in Vivado report order; source preserves Vivado launch-clock pin notation"
+  },
+  "resources": {
+    "CLB LUTs": {
+      "used": 356619.0,
+      "available": 1303680.0,
+      "reported_percent": 27.35,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 39,
+        "raw_line": "| CLB LUTs                   | 356619 |     0 |   1303680 | 27.35 |"
+      }
+    },
+    "LUT as Logic": {
+      "used": 351885.0,
+      "available": 1303680.0,
+      "reported_percent": 26.99,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 40,
+        "raw_line": "|   LUT as Logic             | 351885 |     0 |   1303680 | 26.99 |"
+      }
+    },
+    "LUT as Memory": {
+      "used": 4734.0,
+      "available": 600960.0,
+      "reported_percent": 0.79,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 41,
+        "raw_line": "|   LUT as Memory            |   4734 |     0 |    600960 |  0.79 |"
+      }
+    },
+    "CLB Registers": {
+      "used": 140554.0,
+      "available": 2607360.0,
+      "reported_percent": 5.39,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 44,
+        "raw_line": "| CLB Registers              | 140554 |     0 |   2607360 |  5.39 |"
+      }
+    },
+    "Register as Flip Flop": {
+      "used": 140554.0,
+      "available": 2607360.0,
+      "reported_percent": 5.39,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 45,
+        "raw_line": "|   Register as Flip Flop    | 140554 |     0 |   2607360 |  5.39 |"
+      }
+    },
+    "Register as Latch": {
+      "used": 0.0,
+      "available": 2607360.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 46,
+        "raw_line": "|   Register as Latch        |      0 |     0 |   2607360 |  0.00 |"
+      }
+    },
+    "CARRY8": {
+      "used": 7272.0,
+      "available": 162960.0,
+      "reported_percent": 4.46,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 47,
+        "raw_line": "| CARRY8                     |   7272 |     0 |    162960 |  4.46 |"
+      }
+    },
+    "F7 Muxes": {
+      "used": 2367.0,
+      "available": 651840.0,
+      "reported_percent": 0.36,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 48,
+        "raw_line": "| F7 Muxes                   |   2367 |     0 |    651840 |  0.36 |"
+      }
+    },
+    "F8 Muxes": {
+      "used": 202.0,
+      "available": 325920.0,
+      "reported_percent": 0.06,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 49,
+        "raw_line": "| F8 Muxes                   |    202 |     0 |    325920 |  0.06 |"
+      }
+    },
+    "F9 Muxes": {
+      "used": 0.0,
+      "available": 162960.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 50,
+        "raw_line": "| F9 Muxes                   |      0 |     0 |    162960 |  0.00 |"
+      }
+    },
+    "CLB": {
+      "used": 61641.0,
+      "available": 162960.0,
+      "reported_percent": 37.83,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 79,
+        "raw_line": "| CLB                                        |  61641 |     0 |    162960 | 37.83 |"
+      }
+    },
+    "Unique Control Sets": {
+      "used": 4317.0,
+      "available": 325920.0,
+      "reported_percent": 1.32,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 100,
+        "raw_line": "| Unique Control Sets                        |   4317 |       |    325920 |  1.32 |"
+      }
+    },
+    "Block RAM Tile": {
+      "used": 60.0,
+      "available": 2016.0,
+      "reported_percent": 2.98,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 111,
+        "raw_line": "| Block RAM Tile    |   60 |     0 |      2016 |  2.98 |"
+      }
+    },
+    "RAMB36/FIFO": {
+      "used": 60.0,
+      "available": 2016.0,
+      "reported_percent": 2.98,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 112,
+        "raw_line": "|   RAMB36/FIFO*    |   60 |     0 |      2016 |  2.98 |"
+      }
+    },
+    "RAMB18": {
+      "used": 0.0,
+      "available": 4032.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 114,
+        "raw_line": "|   RAMB18          |    0 |     0 |      4032 |  0.00 |"
+      }
+    },
+    "URAM": {
+      "used": 0.0,
+      "available": 960.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 115,
+        "raw_line": "| URAM              |    0 |     0 |       960 |  0.00 |"
+      }
+    },
+    "DSPs": {
+      "used": 288.0,
+      "available": 9024.0,
+      "reported_percent": 3.19,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 126,
+        "raw_line": "| DSPs           |  288 |     0 |      9024 |  3.19 |"
+      }
+    },
+    "Bonded IOB": {
+      "used": 3.0,
+      "available": 624.0,
+      "reported_percent": 0.48,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 137,
+        "raw_line": "| Bonded IOB       |    3 |     3 |       624 |  0.48 |"
+      }
+    },
+    "HPIOB_M": {
+      "used": 1.0,
+      "available": 288.0,
+      "reported_percent": 0.35,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 138,
+        "raw_line": "| HPIOB_M          |    1 |     1 |       288 |  0.35 |"
+      }
+    },
+    "HPIOB_S": {
+      "used": 1.0,
+      "available": 288.0,
+      "reported_percent": 0.35,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 142,
+        "raw_line": "| HPIOB_S          |    1 |     1 |       288 |  0.35 |"
+      }
+    },
+    "HPIOB_SNGL": {
+      "used": 1.0,
+      "available": 48.0,
+      "reported_percent": 2.08,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 146,
+        "raw_line": "| HPIOB_SNGL       |    1 |     1 |        48 |  2.08 |"
+      }
+    },
+    "HPIOBDIFFINBUF": {
+      "used": 1.0,
+      "available": 288.0,
+      "reported_percent": 0.35,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 150,
+        "raw_line": "| HPIOBDIFFINBUF   |    1 |     1 |       288 |  0.35 |"
+      }
+    },
+    "HPIOBDIFFOUTBUF": {
+      "used": 0.0,
+      "available": 288.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 152,
+        "raw_line": "| HPIOBDIFFOUTBUF  |    0 |     0 |       288 |  0.00 |"
+      }
+    },
+    "BITSLICE_CONTROL": {
+      "used": 0.0,
+      "available": 96.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 153,
+        "raw_line": "| BITSLICE_CONTROL |    0 |     0 |        96 |  0.00 |"
+      }
+    },
+    "BITSLICE_RX_TX": {
+      "used": 0.0,
+      "available": 624.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 154,
+        "raw_line": "| BITSLICE_RX_TX   |    0 |     0 |       624 |  0.00 |"
+      }
+    },
+    "BITSLICE_TX": {
+      "used": 0.0,
+      "available": 96.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 155,
+        "raw_line": "| BITSLICE_TX      |    0 |     0 |        96 |  0.00 |"
+      }
+    },
+    "RIU_OR": {
+      "used": 0.0,
+      "available": 48.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 156,
+        "raw_line": "| RIU_OR           |    0 |     0 |        48 |  0.00 |"
+      }
+    },
+    "GLOBAL CLOCK BUFFERs": {
+      "used": 18.0,
+      "available": 1008.0,
+      "reported_percent": 1.79,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 166,
+        "raw_line": "| GLOBAL CLOCK BUFFERs |   18 |     0 |      1008 |  1.79 |"
+      }
+    },
+    "BUFGCE": {
+      "used": 4.0,
+      "available": 288.0,
+      "reported_percent": 1.39,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 167,
+        "raw_line": "|   BUFGCE             |    4 |     0 |       288 |  1.39 |"
+      }
+    },
+    "BUFGCE_DIV": {
+      "used": 0.0,
+      "available": 48.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 168,
+        "raw_line": "|   BUFGCE_DIV         |    0 |     0 |        48 |  0.00 |"
+      }
+    },
+    "BUFG_GT": {
+      "used": 14.0,
+      "available": 576.0,
+      "reported_percent": 2.43,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 169,
+        "raw_line": "|   BUFG_GT            |   14 |     0 |       576 |  2.43 |"
+      }
+    },
+    "BUFGCTRL": {
+      "used": 0.0,
+      "available": 96.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 170,
+        "raw_line": "|   BUFGCTRL*          |    0 |     0 |        96 |  0.00 |"
+      }
+    },
+    "PLL": {
+      "used": 0.0,
+      "available": 24.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 171,
+        "raw_line": "| PLL                  |    0 |     0 |        24 |  0.00 |"
+      }
+    },
+    "MMCM": {
+      "used": 1.0,
+      "available": 12.0,
+      "reported_percent": 8.33,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 172,
+        "raw_line": "| MMCM                 |    1 |     0 |        12 |  8.33 |"
+      }
+    },
+    "CMACE4": {
+      "used": 0.0,
+      "available": 8.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 183,
+        "raw_line": "| CMACE4               |    0 |     0 |         8 |  0.00 |"
+      }
+    },
+    "GTYE4_CHANNEL": {
+      "used": 8.0,
+      "available": 96.0,
+      "reported_percent": 8.33,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 184,
+        "raw_line": "| GTYE4_CHANNEL        |    8 |     8 |        96 |  8.33 |"
+      }
+    },
+    "GTYE4_COMMON": {
+      "used": 2.0,
+      "available": 24.0,
+      "reported_percent": 8.33,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 185,
+        "raw_line": "| GTYE4_COMMON         |    2 |     0 |        24 |  8.33 |"
+      }
+    },
+    "HBM_REF_CLK": {
+      "used": 1.0,
+      "available": 2.0,
+      "reported_percent": 50.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 186,
+        "raw_line": "| HBM_REF_CLK          |    1 |     1 |         2 | 50.00 |"
+      }
+    },
+    "HBM_SNGLBLI_INTF_APB": {
+      "used": 1.0,
+      "available": 32.0,
+      "reported_percent": 3.13,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 187,
+        "raw_line": "| HBM_SNGLBLI_INTF_APB |    1 |     1 |        32 |  3.13 |"
+      }
+    },
+    "HBM_SNGLBLI_INTF_AXI": {
+      "used": 16.0,
+      "available": 32.0,
+      "reported_percent": 50.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 188,
+        "raw_line": "| HBM_SNGLBLI_INTF_AXI |   16 |    16 |        32 | 50.00 |"
+      }
+    },
+    "ILKNE4": {
+      "used": 0.0,
+      "available": 4.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 189,
+        "raw_line": "| ILKNE4               |    0 |     0 |         4 |  0.00 |"
+      }
+    },
+    "OBUFDS_GTE4": {
+      "used": 0.0,
+      "available": 48.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 190,
+        "raw_line": "| OBUFDS_GTE4          |    0 |     0 |        48 |  0.00 |"
+      }
+    },
+    "OBUFDS_GTE4_ADV": {
+      "used": 0.0,
+      "available": 48.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 191,
+        "raw_line": "| OBUFDS_GTE4_ADV      |    0 |     0 |        48 |  0.00 |"
+      }
+    },
+    "PCIE40E4": {
+      "used": 0.0,
+      "available": 2.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 192,
+        "raw_line": "| PCIE40E4             |    0 |     0 |         2 |  0.00 |"
+      }
+    },
+    "PCIE4CE4": {
+      "used": 1.0,
+      "available": 4.0,
+      "reported_percent": 25.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 193,
+        "raw_line": "| PCIE4CE4             |    1 |     1 |         4 | 25.00 |"
+      }
+    },
+    "SYSMONE4": {
+      "used": 0.0,
+      "available": 3.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 194,
+        "raw_line": "| SYSMONE4             |    0 |     0 |         3 |  0.00 |"
+      }
+    },
+    "BSCANE2": {
+      "used": 0.0,
+      "available": 12.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 204,
+        "raw_line": "| BSCANE2     |    0 |     0 |        12 |  0.00 |"
+      }
+    },
+    "DNA_PORTE2": {
+      "used": 0.0,
+      "available": 3.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 205,
+        "raw_line": "| DNA_PORTE2  |    0 |     0 |         3 |  0.00 |"
+      }
+    },
+    "EFUSE_USR": {
+      "used": 0.0,
+      "available": 3.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 206,
+        "raw_line": "| EFUSE_USR   |    0 |     0 |         3 |  0.00 |"
+      }
+    },
+    "FRAME_ECCE4": {
+      "used": 0.0,
+      "available": 3.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 207,
+        "raw_line": "| FRAME_ECCE4 |    0 |     0 |         3 |  0.00 |"
+      }
+    },
+    "ICAPE3": {
+      "used": 0.0,
+      "available": 6.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 208,
+        "raw_line": "| ICAPE3      |    0 |     0 |         6 |  0.00 |"
+      }
+    },
+    "MASTER_JTAG": {
+      "used": 0.0,
+      "available": 3.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 209,
+        "raw_line": "| MASTER_JTAG |    0 |     0 |         3 |  0.00 |"
+      }
+    },
+    "STARTUPE3": {
+      "used": 0.0,
+      "available": 3.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 210,
+        "raw_line": "| STARTUPE3   |    0 |     0 |         3 |  0.00 |"
+      }
+    },
+    "SLR2 <-> SLR1": {
+      "used": 0.0,
+      "available": 23040.0,
+      "reported_percent": 0.0,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 280,
+        "raw_line": "| SLR2 <-> SLR1                    |    0 |       |     23040 |  0.00 |"
+      }
+    },
+    "SLR1 <-> SLR0": {
+      "used": 1696.0,
+      "available": 23040.0,
+      "reported_percent": 7.36,
+      "source": {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/utilization_flat.rpt",
+        "sha256": "2dd1622ed7fe1e85783a0e4bcfa274b1917996360a8cbec8a3fe73a17c8b79ca",
+        "line": 289,
+        "raw_line": "| SLR1 <-> SLR0                    | 1696 |       |     23040 |  7.36 |"
+      }
+    }
+  },
+  "apb": {
+    "status": "available",
+    "raw_checks": [
+      {
+        "kind": "Min Period",
+        "corner": "n/a",
+        "primitive_pin": "HBM_SNGLBLI_INTF_APB/PCLK",
+        "library_pin": "n/a",
+        "required_ns": 10.0,
+        "actual_ns": 16.667,
+        "slack_ns": 6.667,
+        "site": "BLI_HBM_APB_INTF_X8Y0",
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK",
+        "source": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+          "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+          "line": 21,
+          "raw_line": "Min Period        n/a     HBM_SNGLBLI_INTF_APB/PCLK  n/a            10.000        16.667      6.667      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+        }
+      },
+      {
+        "kind": "Low Pulse Width",
+        "corner": "Fast",
+        "primitive_pin": "HBM_SNGLBLI_INTF_APB/PCLK",
+        "library_pin": "n/a",
+        "required_ns": 5.0,
+        "actual_ns": 8.333,
+        "slack_ns": 3.333,
+        "site": "BLI_HBM_APB_INTF_X8Y0",
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK",
+        "source": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+          "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+          "line": 22,
+          "raw_line": "Low Pulse Width   Fast    HBM_SNGLBLI_INTF_APB/PCLK  n/a            5.000         8.333       3.333      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+        }
+      },
+      {
+        "kind": "Low Pulse Width",
+        "corner": "Slow",
+        "primitive_pin": "HBM_SNGLBLI_INTF_APB/PCLK",
+        "library_pin": "n/a",
+        "required_ns": 5.0,
+        "actual_ns": 8.333,
+        "slack_ns": 3.333,
+        "site": "BLI_HBM_APB_INTF_X8Y0",
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK",
+        "source": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+          "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+          "line": 23,
+          "raw_line": "Low Pulse Width   Slow    HBM_SNGLBLI_INTF_APB/PCLK  n/a            5.000         8.333       3.333      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+        }
+      },
+      {
+        "kind": "High Pulse Width",
+        "corner": "Slow",
+        "primitive_pin": "HBM_SNGLBLI_INTF_APB/PCLK",
+        "library_pin": "n/a",
+        "required_ns": 5.0,
+        "actual_ns": 8.333,
+        "slack_ns": 3.333,
+        "site": "BLI_HBM_APB_INTF_X8Y0",
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK",
+        "source": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+          "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+          "line": 24,
+          "raw_line": "High Pulse Width  Slow    HBM_SNGLBLI_INTF_APB/PCLK  n/a            5.000         8.333       3.333      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+        }
+      },
+      {
+        "kind": "High Pulse Width",
+        "corner": "Fast",
+        "primitive_pin": "HBM_SNGLBLI_INTF_APB/PCLK",
+        "library_pin": "n/a",
+        "required_ns": 5.0,
+        "actual_ns": 8.333,
+        "slack_ns": 3.333,
+        "site": "BLI_HBM_APB_INTF_X8Y0",
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK",
+        "source": {
+          "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+          "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+          "line": 25,
+          "raw_line": "High Pulse Width  Fast    HBM_SNGLBLI_INTF_APB/PCLK  n/a            5.000         8.333       3.333      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+        }
+      }
+    ],
+    "missing_check_types": [],
+    "minimum_slack_ns": 3.333,
+    "all_reported_checks_nonnegative": true,
+    "aggregation_sources": [
+      {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+        "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+        "line": 21,
+        "raw_line": "Min Period        n/a     HBM_SNGLBLI_INTF_APB/PCLK  n/a            10.000        16.667      6.667      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+      },
+      {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+        "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+        "line": 22,
+        "raw_line": "Low Pulse Width   Fast    HBM_SNGLBLI_INTF_APB/PCLK  n/a            5.000         8.333       3.333      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+      },
+      {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+        "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+        "line": 23,
+        "raw_line": "Low Pulse Width   Slow    HBM_SNGLBLI_INTF_APB/PCLK  n/a            5.000         8.333       3.333      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+      },
+      {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+        "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+        "line": 24,
+        "raw_line": "High Pulse Width  Slow    HBM_SNGLBLI_INTF_APB/PCLK  n/a            5.000         8.333       3.333      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+      },
+      {
+        "path": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/pulse_width.rpt",
+        "sha256": "5e3cf90a8ee73582369c525dbd90a09a4744998f4faac16fb102fcfddbd87645",
+        "line": 25,
+        "raw_line": "High Pulse Width  Fast    HBM_SNGLBLI_INTF_APB/PCLK  n/a            5.000         8.333       3.333      BLI_HBM_APB_INTF_X8Y0  dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_APB_INST/PCLK"
+      }
+    ]
+  }
+}

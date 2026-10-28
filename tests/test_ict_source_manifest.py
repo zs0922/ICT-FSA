@@ -22,7 +22,7 @@ class SourceManifestTest(unittest.TestCase):
         scripts = self.root / 'scripts'
         scripts.mkdir()
         shutil.copy2(REPO / 'scripts/ict-source-manifest.py', scripts)
-        for short in ('a100', 'a110'):
+        for short in ('a100', 'a110', 'a120'):
             dest = scripts / ('nm37-' + short)
             dest.mkdir()
             shutil.copy2(REPO / 'scripts' / dest.name / 'check.py', dest)
@@ -47,11 +47,11 @@ class SourceManifestTest(unittest.TestCase):
         return p
 
     def lock(self, profile):
-        short = 'a100' if profile == 'A100' else 'a110'
+        short = {'A100': 'a100', 'A110-APB55': 'a110', 'A120-APB60': 'a120'}[profile]
         return self.root / f'fpga/baselines/nm37-{short}/source-lock.json'
 
     def test_content_change_updates_both_locks_and_check_does_not_write(self):
-        for profile in ('A100', 'A110-APB55'):
+        for profile in ('A100', 'A110-APB55', 'A120-APB60'):
             with self.subTest(profile=profile):
                 self.refresh(profile)
                 path = self.lock(profile)

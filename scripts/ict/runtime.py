@@ -15,7 +15,7 @@ import struct
 import sys
 import time
 
-CLOCKS = {'A70-P2': 70, 'A70-P3': 70, 'A100': 100, 'A110-APB55': 110}
+CLOCKS = {'A70-P2': 70, 'A70-P3': 70, 'A100': 100, 'A110-APB55': 110, 'A120-APB60': 120}
 COUNTERS = {
     'execTime': 'PERF_EXEC_TIME', 'mxBubble': 'PERF_MX_BUBBLE',
     'mxActive': 'PERF_MX_ACTIVE', 'dmaActive': 'PERF_DMA_ACTIVE',

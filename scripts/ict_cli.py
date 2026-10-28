@@ -27,7 +27,7 @@ def git(*args):
 
 def profile():
     p = json.loads((ROOT / 'profiles/current.json').read_text())
-    if p.get('schema_version') != 1 or p.get('id') not in ('U280', 'NM37', 'A70-P3', 'A100', 'A110-APB55'):
+    if p.get('schema_version') != 1 or p.get('id') not in ('U280', 'NM37', 'A70-P3', 'A100', 'A110-APB55', 'A120-APB60'):
         raise ValueError('Unsupported profiles/current.json; checkout a complete milestone commit')
     if p.get('board') not in ('U280', 'NM37') or p.get('dut_mhz', 0) <= 0:
         raise ValueError('Profile board/frequency missing')

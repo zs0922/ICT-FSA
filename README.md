@@ -2,7 +2,33 @@
 
 这是整理后的源码候选仓库。每个里程碑提交包含自己的硬件、主机软件、依赖锁和工具入口；旧 FSA 仓库和既有构建保持独立。**整理及脚本测试通过不表示这个新提交已经完成 Vivado 重建、CDC 验收或实板验收。** 查看本提交 `profiles/current.json`、`docs/history/` 和 `reports/` 了解实际验证范围。当前不需要另一个 integration-tools checkout。
 
-阶段为 U280 → NM37 初始迁移 → NM37 A70-P3 → NM37 A100 → NM37 A110/APB55。具体 commit 与已验证范围见 [本地迁移记录](reports/ICT_FSA_LOCAL_MIGRATION.md)（完整映射：`docs/history/migration-map.json`）；候选提交可切换，验收标签要等对应复现通过后再创建。下面命令在 Bash/tmux 中逐条执行；**不要在交互终端执行 `set -euo pipefail`**。
+阶段为 U280 → NM37 初始迁移 → NM37 A70-P3 → NM37 A100 → NM37 A110/APB55 → NM37 A120/APB60。具体 commit 与已验证范围见 [本地迁移记录](reports/ICT_FSA_LOCAL_MIGRATION.md)（完整映射：`docs/history/migration-map.json`）；候选提交可切换，验收标签要等对应复现通过后再创建。下面命令在 Bash/tmux 中逐条执行；**不要在交互终端执行 `set -euo pipefail`**。
+
+## 本次 A120/APB60 从哪里开始
+
+当前 A120 分支 `codex/nm37-a120-apb60` 对应 DUT/HBM AXI **120MHz**、HBM APB **60MHz**，PE 流水深度不变。详细来源、历史实现结果和本次迁移验证范围见 [A120 迁移记录](reports/ICT_FSA_A120_MIGRATION.md)。该分支目前仅本地提交，**不能通过 GitHub fetch 获取尚未推送的提交**。
+
+在本机从 `/home/zhangsi/tmp/ICT-FSA` clone；在另一台机器先传输本次交付的 `ICT-FSA-A120.bundle` 与 `SHA256SUMS`，校验后 clone。不要修改已有 A70/A100/A110 源码或输出目录：
+
+```bash
+# 接收 bundle 的目录中执行（本机直接 clone 仓库时跳过校验）
+sha256sum -c SHA256SUMS
+export ICT_REPO="$PWD/ICT-FSA-A120.bundle"
+# 若在整理仓库所在机器：export ICT_REPO=/home/zhangsi/tmp/ICT-FSA
+export WORK="$HOME/ict-fsa-a120-reproduce"
+mkdir -p "$WORK"
+git clone --no-hardlinks --branch codex/nm37-a120-apb60 "$ICT_REPO" "$WORK/a120-source"
+export SRC="$WORK/a120-source"
+export COMMIT="$(git -C "$SRC" rev-parse HEAD)"
+git -C "$SRC" checkout --detach "$COMMIT"
+cd "$SRC"
+cat profiles/current.json  # 必须显示 A120-APB60 / 120 / 60
+export BUILD_OUT="$WORK/a120-build-attempt01"
+```
+
+随后**跳过第 1 节重复 clone，依次执行第 2–6 节**：工具/依赖/Python → build → verify → sim 4/8/16 → elaborate → implement → export。第 4 节 seq1024 是可选追加测试；固定 4/8/16 回归是必须项。导出的文件为 `$EXPORT_OUT/A120-APB60_EXPERIMENTAL.bit`。生成 bit 不烧录板卡；要上板时再执行第 7–9 节。
+
+旧 FSA A120 实验已完成完整布局布线：DUT setup +0.235ns、全局 WNS +0.041ns、WHS +0.010ns；这是旧实现的证据，**不是当前 ICT-FSA 提交已完成重建/板测的证明**。本次不复用旧 JAR、仿真器或 DCP。CDC 继承告警及已记录的复位同步器属性问题仍待独立验收；实验导出不会将其标为已关闭。
 
 ## 1. 获取指定版本（固定输入）
 
@@ -18,7 +44,7 @@
 
 例如复现 A70 时，将下方 `COMMIT` 设为表中 A70 的完整值。主分支另含操作说明、审查记录和维护工具修复；上表记录真正执行硬件构建的提交。冻结 profile 中的 `validation_status` 是创建候选时的状态，不会随外部构建自动更新；验收结论以对应提交的复现记录为准。
 
-新远程仓库尚未创建或推送时，从本地整理仓库 clone；发布后只替换仓库地址。`COMMIT` 使用交付记录中的完整新 commit，不使用旧 FSA 的 hash。
+已推送的 A70/A100/A110 提交可从 `https://github.com/zs0922/ICT-FSA.git` clone。未推送的 A120 使用上面的本地仓库或 bundle。`COMMIT` 使用交付记录中的完整新 commit，不使用旧 FSA 的 hash。
 
 ```bash
 export ICT_REPO=/absolute/path/to/local/ICT-FSA
@@ -63,7 +89,7 @@ python3 scripts/fsa.py status --out "$BUILD_OUT"
 
 ## 4. 定向验证与 Verilator 功能回归
 
-A70-P3/A100/A110 先执行定向测试及等价证明；A110 还包括独立 APB 时钟域的 HBM 复位/启动验证：
+A70-P3/A100/A110/A120 先执行定向测试及等价证明；A110/A120 还包括独立 APB 时钟域的 HBM 复位/启动验证：
 
 ```bash
 python3 scripts/fsa.py verify --out "$BUILD_OUT"
@@ -74,9 +100,9 @@ U280 和初始 NM37 没有继承这些后来新增的证明套件，跳过该命
 ```bash
 # 所有阶段都有 4×4。
 python3 scripts/fsa.py sim --out "$BUILD_OUT" --array-size 4
-# A100 和 A110/APB55 额外执行 8×8；U280/NM37/A70 不执行这一行。
+# A100、A110/APB55 和 A120/APB60 额外执行 8×8；U280/NM37/A70 不执行这一行。
 python3 scripts/fsa.py sim --out "$BUILD_OUT" --array-size 8
-# A70-P3、A100、A110/APB55 执行 16×16；U280/初始 NM37 不执行这一行。
+# A70-P3、A100、A110/APB55、A120/APB60 执行 16×16；U280/初始 NM37 不执行这一行。
 python3 scripts/fsa.py sim --out "$BUILD_OUT" --array-size 16
 ```
 
@@ -91,7 +117,7 @@ timeout --signal=TERM --kill-after=10s 7200s \
 
 额外测试不替代固定回归。U280/初始 NM37 当前只承诺已恢复的 4×4 仿真入口；这不表示其板上阵列是 4×4。
 
-比较仿真周期时还需核对内存拓扑：A70-P3 的 16×16 使用 `A70SinglePort16X16Fp16Config`（1 路、每拍 32 字节），A100/A110 固定回归使用 `AXI4FSA16X16Fp16Config`（8 路、每路每拍 8 字节）。两者均可用于各自功能回归，但其周期和 bubble 差异包含内存接口差异，不能作为纯提频/流水优化的加速比。这些固定回归默认使用 `mm_magic_t` 功能内存模型，未启用 DRAMSim，也不模拟真实 HBM 延迟。公平的跨版本仿真性能比较需另外统一接口与内存模型；板上性能使用第 8–9 节的实际烧录测试。
+比较仿真周期时还需核对内存拓扑：A70-P3 的 16×16 使用 `A70SinglePort16X16Fp16Config`（1 路、每拍 32 字节），A100/A110/A120 固定回归使用 `AXI4FSA16X16Fp16Config`（8 路、每路每拍 8 字节）。两者均可用于各自功能回归，但其周期和 bubble 差异包含内存接口差异，不能作为纯提频/流水优化的加速比。这些固定回归默认使用 `mm_magic_t` 功能内存模型，未启用 DRAMSim，也不模拟真实 HBM 延迟。公平的跨版本仿真性能比较需另外统一接口与内存模型；板上性能使用第 8–9 节的实际烧录测试。
 
 ## 5. 生成板级 RTL，然后完整布局布线
 
@@ -103,7 +129,7 @@ python3 scripts/fsa.py status --out "$BUILD_OUT"
 
 `elaborate` 将 Chisel 配置展开成 RTL，包含板级时钟/IP 配置；`implement` 执行 Vivado 综合、优化、布局、布线和报告。报告主要位于 `post_route.dcp` 旁的 `report/`、`audit/`。检查真实时钟、全局及 DUT setup/hold、脉宽、DRC、CDC、未约束端点和 exceptions；WNS 非负不自动证明 CDC 正确。
 
-A100/A110 后端仍保留严格发布审查门槛；布局布线成功而 CDC 新问题需要审查时，`implement` 可能最后报失败，但 DCP 和报告会保留。先检查日志，不能将工具错误当成通过，也不要手写成功 seal。A110 可按[恢复说明的独立复审入口](docs/reproduction/recovery.md#a110apb55-已完成布线但-cdc-审查缺失)对已有 DCP 重新生成审查报告，保留原失败状态。需要实验板测时，下一节独立重新检查 routed DCP 的时序和 DRC；不会宣称 CDC/正式交付已通过。
+A100/A110/A120 后端仍保留严格发布审查门槛；布局布线成功而 CDC 新问题需要审查时，`implement` 可能最后报失败，但 DCP 和报告会保留。先检查日志，不能将工具错误当成通过，也不要手写成功 seal。A110 可按[恢复说明的独立复审入口](docs/reproduction/recovery.md#a110apb55-已完成布线但-cdc-审查缺失)对已有 DCP 重新生成审查报告，保留原失败状态。需要实验板测时，下一节独立重新检查 routed DCP 的时序和 DRC；不会宣称 CDC/正式交付已通过。
 
 ## 6. 导出实验 bit（不是烧录）
 
@@ -114,7 +140,7 @@ cat "$EXPORT_OUT/experiment.json"
 (cd "$EXPORT_OUT" && sha256sum -c SHA256SUMS)
 ```
 
-自动保存 bit、生成配置、SHA256、时钟/时序/资源/CDC/约束报告和源码身份。实验导出不要求手写 JSON，不降低 DRC 严重级别，也不关闭 CDC 验收问题。输出目录已存在则换新 attempt，旧记录保留。
+自动保存 bit、生成配置、SHA256、时钟/时序/资源/CDC/约束报告和源码身份。实验导出不要求手写 JSON，不降低 DRC 严重级别，也不关闭 CDC 验收问题。输出目录已存在则换新 attempt，旧记录保留。A120 导出文件名为 `A120-APB60_EXPERIMENTAL.bit`。若 implement 仅因 CDC 待审查退出，且已留下完整 routed DCP，可继续实验导出；若是综合/布线/时序/DRC 失败，则先解决实际失败，不能用导出跳过。
 
 ## 7. 实际烧录对应 bit（切换变量不等于烧录）
 

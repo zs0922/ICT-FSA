@@ -1,0 +1,8 @@
+{
+  "reason": "Frozen A120 reset auditor retained 110 MHz guard; attempt 02 exited after placement, before reset replication and routing. Not a routed timing failure.",
+  "exit_code": 1,
+  "log_sha256": "fbb0e9ac8dc6551ad905b7d69d817c4e684edf227882fe4be54a79d499f0d6d8",
+  "fix_commit": "f577b977",
+  "new_output": "c0-build02",
+  "time_utc": "2026-10-23T11:25:56.684065+00:00"
+}

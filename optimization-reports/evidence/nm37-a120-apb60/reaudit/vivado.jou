@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2_AR75986 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Oct 23 14:39:06 2026
+# Process ID: 254015
+# Current directory: /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01
+# Command line: vivado -mode batch -log /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01/vivado-native.log -journal /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01/vivado.jou -source /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01/auditor/reaudit.tcl -tclargs /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/A120/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/post_route.dcp /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01/obj /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01/implementation-drivers /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/c0-build02/A120/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01/auditor
+# Log file: /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01/vivado-native.log
+# Journal file: /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01/vivado.jou
+#-----------------------------------------------------------
+source /home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/reaudit01/auditor/reaudit.tcl

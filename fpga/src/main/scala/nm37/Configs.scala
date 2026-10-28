@@ -8,7 +8,7 @@ import freechips.rocketchip.subsystem.ExtMem
 // Both the design clock metadata and the actual harness PLL use this value.
 object NM37DUTClock {
   val frequencyMHz: Int = sys.props.get("fsa.nm37MHz").map(_.toInt).getOrElse(70)
-  require(Set(70, 100, 110).contains(frequencyMHz), "fsa.nm37MHz must be 70, 100, or 110")
+  require(Set(70, 100, 110, 120).contains(frequencyMHz), "fsa.nm37MHz must be 70, 100, 110, or 120")
 }
 
 class WithNM37DDRMemBase extends Config((site, here, up) => {

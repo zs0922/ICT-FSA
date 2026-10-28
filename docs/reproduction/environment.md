@@ -14,7 +14,7 @@ export LD_LIBRARY_PATH="$RISCV/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export CHISEL_FIRTOOL_PATH="$(dirname "$(command -v firtool)")"
 export JAVA_TOOL_OPTIONS='-Dsbt.supershell=false -Dsbt.server.forcestart=false -Dsbt.server.autostart=false'
 unset JDK_JAVA_OPTIONS _JAVA_OPTIONS
-# 不要继承之前 A100/A110 实验的 -Dfsa.* 手动参数。
+# 不要继承之前 A100/A110/A120 实验的 -Dfsa.* 手动参数。
 test -s "$RISCV/lib/libfesvr.a"
 test -s "$RISCV/lib/libriscv.so"
 "$CC" -dumpfullversion
@@ -27,7 +27,7 @@ vivado -version
 
 脚本中的 `JAVA_TOOL_OPTIONS` 只在子进程设置所需堆栈、内存和硬件配置。不要用宿主机默认的 JDK21/25 替代锁定 JDK20；旧 sbt/Scala 解析 JDK 类文件可能报 `bad constant pool index` 或 `Could not initialize class sbt.internal.parser.SbtParser`。
 
-还需要 GNU make、C/C++ 编译器、Git、uv、器件支持/许可证、已安装的 XDMA 驱动（仅板测）以及证明工具。A70-P3 默认使用 `yowasp-yosys`，可以通过 `YOSYS=/absolute/path/to/yowasp-yosys` 指定；A100/A110 对照各自 `scripts/nm37-a100`、`scripts/nm37-a110` 验证器的实际需求。
+还需要 GNU make、C/C++ 编译器、Git、uv、器件支持/许可证、已安装的 XDMA 驱动（仅板测）以及证明工具。A70-P3 默认使用 `yowasp-yosys`，可以通过 `YOSYS=/absolute/path/to/yowasp-yosys` 指定；A100/A110/A120 对照各自 `scripts/nm37-a100`、`scripts/nm37-a110`、`scripts/nm37-a120` 验证器的实际需求。
 
 用于定向形式验证的工具采用固定 Python 包版本和 Python 3.13；仓库含完整 requirements。不要用未指定版本的 `python3 -m venv`：Chipyard conda 环境可能提供 Python 3.10，与这些固定包的 Python 要求不兼容。创建独立环境：
 

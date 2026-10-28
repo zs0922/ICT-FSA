@@ -12,11 +12,11 @@ from pathlib import Path
 import subprocess
 
 p = argparse.ArgumentParser(description=__doc__)
-p.add_argument('--profile', required=True, choices=['A100', 'A110-APB55'])
+p.add_argument('--profile', required=True, choices=['A100', 'A110-APB55', 'A120-APB60'])
 p.add_argument('--write', action='store_true', help='Explicitly rewrite the reviewed source input lock')
 a = p.parse_args()
 root = Path(__file__).resolve().parents[1]
-short = 'a100' if a.profile == 'A100' else 'a110'
+short = {'A100': 'a100', 'A110-APB55': 'a110', 'A120-APB60': 'a120'}[a.profile]
 path = root / ('scripts/nm37-' + short + '/check.py')
 spec = importlib.util.spec_from_file_location('stagecheck', path)
 check = importlib.util.module_from_spec(spec)

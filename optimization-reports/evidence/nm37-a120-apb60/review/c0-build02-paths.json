@@ -1,0 +1,319 @@
+{
+  "scope": "Actual A120 routed checkpoint reports; no extrapolated Fmax or board measurements. SLR data covers reported SLICE sites, not every routing PIP.",
+  "reports": {
+    "dut_setup_top1000.rpt": {
+      "source": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/dut_setup_top1000.rpt",
+      "sha256": "9b414abcb5c36043a2083fdabc5ef36ceac823df8451c8f985b6cf28202e90b5",
+      "path_count": 1000,
+      "worst": {
+        "slack_ns": 0.235,
+        "start": "dutDomain/fsa/fsa/sa/mesh_6_12/expInput_exp_reg[1]/C",
+        "end": "dutDomain/fsa/fsa/sa/mesh_6_12/macUnit/mulAddExp2/fma/adderOutAbs_reg[53]_bret/D",
+        "requirement_ns": 8.333,
+        "data_ns": 8.028,
+        "logic_ns": 2.14,
+        "route_ns": 5.888,
+        "logic_levels": 25,
+        "path_type": "Setup (Max at Slow Process Corner)",
+        "route_pct": 73.34329845540607,
+        "pe": "6,12",
+        "category": "pe_before_add_register"
+      },
+      "categories": {
+        "cmp_internal": {
+          "count": 13,
+          "worst": {
+            "slack_ns": 0.922,
+            "start": "dutDomain/fsa/fsa/sa/pipe_b_6_cmd_reg[0]/C",
+            "end": "dutDomain/fsa/fsa/sa/cmp_array_7/cmpUnit/fma/rawFMA/adderOutAbs_reg[8]/D",
+            "requirement_ns": 8.333,
+            "data_ns": 7.206,
+            "logic_ns": 2.358,
+            "route_ns": 4.848,
+            "logic_levels": 21,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 67.27726894254788,
+            "pe": null,
+            "category": "cmp_internal"
+          }
+        },
+        "cmp_output_link": {
+          "count": 9,
+          "worst": {
+            "slack_ns": 1.008,
+            "start": "dutDomain/fsa/fsa/sa/cmp_array_13/cmpUnit/fma/rawFMA/alignShiftAmt2_reg[7]/C",
+            "end": "dutDomain/fsa/fsa/sa/cmp_out_pipe_b_13_mantissa_reg[14]/D",
+            "requirement_ns": 8.333,
+            "data_ns": 7.14,
+            "logic_ns": 2.11,
+            "route_ns": 5.03,
+            "logic_levels": 21,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 70.44817927170868,
+            "pe": null,
+            "category": "cmp_output_link"
+          }
+        },
+        "other": {
+          "count": 2,
+          "worst": {
+            "slack_ns": 1.052,
+            "start": "dutDomain/fsa/fsa/sa/mesh_1_12/macUnit/mulAddExp2/fma/adderOutAbs_reg[13]_bret__0/C",
+            "end": "dutDomain/fsa/fsa/sa/pipe_b_913_exp_reg[1]/D",
+            "requirement_ns": 8.333,
+            "data_ns": 7.005,
+            "logic_ns": 1.73,
+            "route_ns": 5.275,
+            "logic_levels": 15,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 75.30335474660957,
+            "pe": null,
+            "category": "other"
+          }
+        },
+        "pe_before_add_register": {
+          "count": 970,
+          "worst": {
+            "slack_ns": 0.235,
+            "start": "dutDomain/fsa/fsa/sa/mesh_6_12/expInput_exp_reg[1]/C",
+            "end": "dutDomain/fsa/fsa/sa/mesh_6_12/macUnit/mulAddExp2/fma/adderOutAbs_reg[53]_bret/D",
+            "requirement_ns": 8.333,
+            "data_ns": 8.028,
+            "logic_ns": 2.14,
+            "route_ns": 5.888,
+            "logic_levels": 25,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 73.34329845540607,
+            "pe": "6,12",
+            "category": "pe_before_add_register"
+          }
+        },
+        "pe_other": {
+          "count": 1,
+          "worst": {
+            "slack_ns": 1.037,
+            "start": "dutDomain/fsa/fsa/sa/mesh_15_1/expActive_reg/C",
+            "end": "dutDomain/fsa/fsa/sa/mesh_15_1/macUnit/mulAddExp2/fma/cGtProd2_reg/D",
+            "requirement_ns": 8.333,
+            "data_ns": 7.13,
+            "logic_ns": 2.617,
+            "route_ns": 4.513,
+            "logic_levels": 27,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 63.295932678821885,
+            "pe": "15,1",
+            "category": "pe_other"
+          }
+        },
+        "reset": {
+          "count": 5,
+          "worst": {
+            "slack_ns": 0.256,
+            "start": "wrangler/nodeOut_reset_catcher/io_sync_reset_chain/output_chain/sync_1_reg/C",
+            "end": "wrangler/nodeOut_reset_catcher/io_sync_reset_chain/output_chain/sync_0_reg_replica_211/D",
+            "requirement_ns": 8.333,
+            "data_ns": 7.706,
+            "logic_ns": 0.079,
+            "route_ns": 7.627,
+            "logic_levels": 0,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 98.97482481183492,
+            "pe": null,
+            "category": "reset"
+          }
+        }
+      },
+      "pe_counts": {
+        "6,12": 103,
+        "1,12": 93,
+        "15,1": 55,
+        "1,8": 79,
+        "11,14": 74,
+        "15,14": 54,
+        "5,7": 71,
+        "10,15": 54,
+        "15,6": 29,
+        "12,14": 55,
+        "14,15": 47,
+        "11,15": 49,
+        "5,2": 25,
+        "15,9": 39,
+        "15,3": 38,
+        "11,8": 17,
+        "15,7": 20,
+        "11,3": 15,
+        "15,8": 4,
+        "2,8": 13,
+        "10,12": 12,
+        "8,7": 10,
+        "5,0": 10,
+        "12,15": 1,
+        "13,12": 2,
+        "8,9": 1,
+        "15,10": 1
+      }
+    },
+    "from_pe_fma.rpt": {
+      "source": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/from_pe_fma.rpt",
+      "sha256": "894fdfe016b1208af518456356c7e503f67ac03dd4a7b11e84283083f7150f31",
+      "path_count": 20,
+      "worst": {
+        "slack_ns": 1.052,
+        "start": "dutDomain/fsa/fsa/sa/mesh_1_12/macUnit/mulAddExp2/fma/adderOutAbs_reg[13]_bret__0/C",
+        "end": "dutDomain/fsa/fsa/sa/pipe_b_913_exp_reg[1]/D",
+        "requirement_ns": 8.333,
+        "data_ns": 7.005,
+        "logic_ns": 1.73,
+        "route_ns": 5.275,
+        "logic_levels": 15,
+        "path_type": "Setup (Max at Slow Process Corner)",
+        "route_pct": 75.30335474660957,
+        "pe": null,
+        "category": "other"
+      },
+      "categories": {
+        "other": {
+          "count": 20,
+          "worst": {
+            "slack_ns": 1.052,
+            "start": "dutDomain/fsa/fsa/sa/mesh_1_12/macUnit/mulAddExp2/fma/adderOutAbs_reg[13]_bret__0/C",
+            "end": "dutDomain/fsa/fsa/sa/pipe_b_913_exp_reg[1]/D",
+            "requirement_ns": 8.333,
+            "data_ns": 7.005,
+            "logic_ns": 1.73,
+            "route_ns": 5.275,
+            "logic_levels": 15,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 75.30335474660957,
+            "pe": null,
+            "category": "other"
+          }
+        }
+      },
+      "pe_counts": {}
+    },
+    "from_accumulator.rpt": {
+      "source": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/from_accumulator.rpt",
+      "sha256": "85a8be365de06d3d745293ffe4924f9398d46dd7d80b49138e8a1236b41081b7",
+      "path_count": 20,
+      "worst": {
+        "slack_ns": 1.274,
+        "start": "dutDomain/fsa/fsa/accumulator/accUnit_10/mulAddExp2/fma/alignShiftAmt2_reg[8]/C",
+        "end": "dutDomain/fsa/fsa/accRAM_sram/banks_subBanks_sram_mem_1/banks_subBanks_sram_mem_1_0_ext/mem_0_0/ram_reg_0_31_56_69/RAMF_D1/I",
+        "requirement_ns": 8.333,
+        "data_ns": 6.749,
+        "logic_ns": 1.725,
+        "route_ns": 5.024,
+        "logic_levels": 17,
+        "path_type": "Setup (Max at Slow Process Corner)",
+        "route_pct": 74.44065787524077,
+        "pe": null,
+        "category": "other"
+      },
+      "categories": {
+        "other": {
+          "count": 20,
+          "worst": {
+            "slack_ns": 1.274,
+            "start": "dutDomain/fsa/fsa/accumulator/accUnit_10/mulAddExp2/fma/alignShiftAmt2_reg[8]/C",
+            "end": "dutDomain/fsa/fsa/accRAM_sram/banks_subBanks_sram_mem_1/banks_subBanks_sram_mem_1_0_ext/mem_0_0/ram_reg_0_31_56_69/RAMF_D1/I",
+            "requirement_ns": 8.333,
+            "data_ns": 6.749,
+            "logic_ns": 1.725,
+            "route_ns": 5.024,
+            "logic_levels": 17,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 74.44065787524077,
+            "pe": null,
+            "category": "other"
+          }
+        }
+      },
+      "pe_counts": {}
+    },
+    "from_scratchpad.rpt": {
+      "source": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/from_scratchpad.rpt",
+      "sha256": "c4519d47d5a58dc3480abd08f1308c82fc4d62d3a114bfa707ddc90962d9cfa0",
+      "path_count": 20,
+      "worst": {
+        "slack_ns": 5.433,
+        "start": "dutDomain/fsa/fsa/spRAM_sram/banks_subBanks_sram_mem_1/banks_subBanks_sram_mem_1_ext/mem_0_0/ram_reg_2/CLKARDCLK",
+        "end": "dutDomain/fsa/fsa/r_10_mantissa_reg[2]/D",
+        "requirement_ns": 8.333,
+        "data_ns": 2.635,
+        "logic_ns": 1.132,
+        "route_ns": 1.503,
+        "logic_levels": 3,
+        "path_type": "Setup (Max at Slow Process Corner)",
+        "route_pct": 57.03984819734345,
+        "pe": null,
+        "category": "other"
+      },
+      "categories": {
+        "other": {
+          "count": 20,
+          "worst": {
+            "slack_ns": 5.433,
+            "start": "dutDomain/fsa/fsa/spRAM_sram/banks_subBanks_sram_mem_1/banks_subBanks_sram_mem_1_ext/mem_0_0/ram_reg_2/CLKARDCLK",
+            "end": "dutDomain/fsa/fsa/r_10_mantissa_reg[2]/D",
+            "requirement_ns": 8.333,
+            "data_ns": 2.635,
+            "logic_ns": 1.132,
+            "route_ns": 1.503,
+            "logic_levels": 3,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 57.03984819734345,
+            "pe": null,
+            "category": "other"
+          }
+        }
+      },
+      "pe_counts": {}
+    },
+    "from_reset.rpt": {
+      "source": "/home/zhangsi/tmp/FSA-m1/nm37-a120-20261023/routed-analysis-c0-build02/from_reset.rpt",
+      "sha256": "c4881cc509a7a6936d7df8fa8cb34a54658a713edc404003c0cf46f8813646ba",
+      "path_count": 20,
+      "worst": {
+        "slack_ns": 3.602,
+        "start": "wrangler/nodeOut_reset_catcher/io_sync_reset_chain/output_chain/sync_0_reg_replica_211/C",
+        "end": "dutDomain/fsa/fsa/sa/mesh_5_7/expIndex_reg[0]/R",
+        "requirement_ns": 8.333,
+        "data_ns": 4.305,
+        "logic_ns": 0.167,
+        "route_ns": 4.138,
+        "logic_levels": 1,
+        "path_type": "Setup (Max at Slow Process Corner)",
+        "route_pct": 96.12078977932637,
+        "pe": "5,7",
+        "category": "pe_other"
+      },
+      "categories": {
+        "pe_other": {
+          "count": 20,
+          "worst": {
+            "slack_ns": 3.602,
+            "start": "wrangler/nodeOut_reset_catcher/io_sync_reset_chain/output_chain/sync_0_reg_replica_211/C",
+            "end": "dutDomain/fsa/fsa/sa/mesh_5_7/expIndex_reg[0]/R",
+            "requirement_ns": 8.333,
+            "data_ns": 4.305,
+            "logic_ns": 0.167,
+            "route_ns": 4.138,
+            "logic_levels": 1,
+            "path_type": "Setup (Max at Slow Process Corner)",
+            "route_pct": 96.12078977932637,
+            "pe": "5,7",
+            "category": "pe_other"
+          }
+        }
+      },
+      "pe_counts": {
+        "5,7": 8,
+        "6,7": 7,
+        "9,7": 5
+      }
+    }
+  },
+  "script_sha256": "e2ec1cb8952b79a07ef277ccdfc3a6f9a17b5046eefb2d4dcd9576ab45f605d1",
+  "helper_sha256": "618924916bb78b3608315aebd350b027d972eb685c0a4324fb2fc3c7863e8922"
+}

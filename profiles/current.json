@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "id": "A110-APB55",
+  "id": "A120-APB60",
   "board": "NM37",
-  "dut_mhz": 110,
-  "apb_mhz": 55,
+  "dut_mhz": 120,
+  "apb_mhz": 60,
   "array_sizes": [
     4,
     8,
     16
   ],
   "default_array_size": 16,
-  "build_label": "A110",
+  "build_label": "A120",
   "validation_status": "organized_local_candidate_not_rebuilt_or_board_accepted",
   "expected_tools": {
     "java": "20.0.2",
@@ -19,36 +19,36 @@
     "vivado": "2020.2_AR75986"
   },
   "driver": {
-    "output_env": "A110_OUT",
+    "output_env": "A120_OUT",
     "commands": {
       "build": [
         [
           "bash",
-          "scripts/nm37-a110/run.sh",
+          "scripts/nm37-a120/run.sh",
           "prepare"
         ]
       ],
       "verify": [
         [
           "bash",
-          "scripts/nm37-a110/run.sh",
+          "scripts/nm37-a120/run.sh",
           "units"
         ],
         [
           "bash",
-          "scripts/nm37-a110/run.sh",
+          "scripts/nm37-a120/run.sh",
           "formal"
         ],
         [
           "bash",
-          "scripts/nm37-a110/run.sh",
+          "scripts/nm37-a120/run.sh",
           "hbm-startup"
         ]
       ],
       "sim": [
         [
           "bash",
-          "scripts/nm37-a110/run.sh",
+          "scripts/nm37-a120/run.sh",
           "sim",
           "{array_size}"
         ]
@@ -56,14 +56,14 @@
       "elaborate": [
         [
           "bash",
-          "scripts/nm37-a110/run.sh",
+          "scripts/nm37-a120/run.sh",
           "elaborate"
         ]
       ],
       "implement": [
         [
           "bash",
-          "scripts/nm37-a110/run.sh",
+          "scripts/nm37-a120/run.sh",
           "implement"
         ]
       ]
