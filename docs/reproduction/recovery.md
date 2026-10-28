@@ -19,3 +19,27 @@ rg -n 'ERROR|Error|Exception|failed|bad constant|OutOfMemory' "$BUILD_OUT.ict-st
 - **板测 timeout/队列不空**：保存该结果目录，确认没有并发访问，按板卡流程重新烧录/复位并产生新 receipt，再用新 attempt 运行。
 
 这轮迁移不提供“任意失败阶段自动续写”功能。失败环境修复后采用新输出进行完整重试，下载缓存继续复用；已完成阶段结果保留且不会被破坏。以后若添加产物重用，必须先校验对应源码、工具、输出 hash 和完成证据，不能只因文件存在就略过编译。
+
+
+## A110/APB55 已完成布线，但 CDC 审查缺失
+
+如果日志已经完成 `route_design`、写出 `post_route.dcp` 并生成报告，最后错误为缺少本次 `cdc-review.json`，先保留 `physical.failed.json` 和 `*.ict-state`。这不是重新编译或重跑 P&R 的理由；也不能直接把 failure 改成 passed。下面只适用于 A110/APB55，使用实际执行该构建的源码目录：
+
+```bash
+export REAUDIT_OUT="$WORK/reaudit-$COMMIT-attempt01"
+python3 "$SRC/scripts/nm37-a110/reaudit.py" run \
+  --source "$SRC" --build "$BUILD_OUT" --out "$REAUDIT_OUT"
+```
+
+该命令重新打开已有 routed DCP，在独立目录生成新的时序、CDC、HBM 和复位复制报告，绑定原源码、生成器、IP、DCP 和原报告哈希。它不修改设计、不重新布局布线、不写原构建目录，也不是自动 CDC 放行。执行需要相同 Vivado 环境，输出目录必须为新目录。
+
+之后可用独立 acceptance attempt 执行实际检查；缺失或不完整审查会写入本次 acceptance 的失败记录，并给出待审查项：
+
+```bash
+python3 "$SRC/scripts/nm37-a110/reaudit.py" accept \
+  --out "$REAUDIT_OUT" --attempt check01
+```
+
+`cdc-review.required.json` 是待审查模板，不是成功证据。检查每条实际发现的源/目的网表、同步结构、时钟和复位关系后，才能形成与本次 DCP/CDC 报告绑定、包含证据哈希的 `cdc-review.json`；不允许复制旧 DCP 的结论或把真实缺陷填成工具误报。审查补齐后用新的 `--attempt check02`，保留 check01 失败记录。无法证明的条目保留待处理，不能为通过门槛扩大 false-path。
+
+即使该独立复审通过，它仍保留 `board_signoff=false`；不代表实板测试或所有异步故障场景已验证。2026-10-28 的实际执行与边界见[复现记录](../../reports/ICT_FSA_REPRODUCTION_20261028.md)。如目的是实验板测，根 README 的独立 `export` 入口仍会重新检查时序和 DRC，并明确保留 CDC 未签核状态。

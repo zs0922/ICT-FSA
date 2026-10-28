@@ -1,0 +1,102 @@
+[
+  {
+    "run": "a70",
+    "source_metrics": "a70-routed-complete.json",
+    "global_wns_ns": 0.047,
+    "global_whs_ns": 0.01,
+    "dut_wns_ns": 0.419,
+    "resources": {
+      "Total LUTs": 378248,
+      "Logic LUTs": 372342,
+      "LUTRAMs": 4958,
+      "SRLs": 948,
+      "FFs": 71330,
+      "RAMB36": 52,
+      "RAMB18": 0,
+      "URAM": 0,
+      "DSP Blocks": 288
+    },
+    "checkpoint_sha256": "dcc05fd3cbcac572db83d743c3912a0747c59f530feb7512f72754557364215d",
+    "strict_board_signoff": false
+  },
+  {
+    "run": "a100-original",
+    "source_metrics": "a100-original-routed-withprobe.json",
+    "global_wns_ns": 0.049,
+    "global_whs_ns": 0.01,
+    "dut_wns_ns": 0.534,
+    "resources": {
+      "Total LUTs": 355692,
+      "Logic LUTs": 350958,
+      "LUTRAMs": 3774,
+      "SRLs": 960,
+      "FFs": 140263,
+      "RAMB36": 60,
+      "RAMB18": 0,
+      "URAM": 0,
+      "DSP Blocks": 288
+    },
+    "checkpoint_sha256": "5420a3f09a23b726ad749f158d8b138440884022b3d3709b4b17aff59ff3874d",
+    "strict_board_signoff": false
+  },
+  {
+    "run": "a100-fixed",
+    "source_metrics": "a100-fixed-routed-withprobe.json",
+    "global_wns_ns": 0.073,
+    "global_whs_ns": 0.01,
+    "dut_wns_ns": 0.642,
+    "resources": {
+      "Total LUTs": 355683,
+      "Logic LUTs": 350949,
+      "LUTRAMs": 3774,
+      "SRLs": 960,
+      "FFs": 140257,
+      "RAMB36": 60,
+      "RAMB18": 0,
+      "URAM": 0,
+      "DSP Blocks": 288
+    },
+    "checkpoint_sha256": "1e1fc9f7fbf88035fae084cbf21c935c0f8d9b6d2be9bf36a1beeb8036f9592e",
+    "strict_board_signoff": false
+  },
+  {
+    "run": "a110-original",
+    "source_metrics": "a110-original-routed-complete.json",
+    "global_wns_ns": 0.114,
+    "global_whs_ns": 0.01,
+    "dut_wns_ns": 0.802,
+    "resources": {
+      "Total LUTs": 355981,
+      "Logic LUTs": 351247,
+      "LUTRAMs": 3774,
+      "SRLs": 960,
+      "FFs": 140324,
+      "RAMB36": 60,
+      "RAMB18": 0,
+      "URAM": 0,
+      "DSP Blocks": 288
+    },
+    "checkpoint_sha256": "1d7cf7221b7785d45afb98ac49588efbeb0a1b2635d4590c4591d7e2db6e3268",
+    "strict_board_signoff": false
+  },
+  {
+    "run": "a110-fixed",
+    "source_metrics": "a110-fixed-routed-complete.json",
+    "global_wns_ns": 0.114,
+    "global_whs_ns": 0.01,
+    "dut_wns_ns": 0.802,
+    "resources": {
+      "Total LUTs": 355981,
+      "Logic LUTs": 351247,
+      "LUTRAMs": 3774,
+      "SRLs": 960,
+      "FFs": 140324,
+      "RAMB36": 60,
+      "RAMB18": 0,
+      "URAM": 0,
+      "DSP Blocks": 288
+    },
+    "checkpoint_sha256": "ee2a49e1a8b8a99e4d4028d43cc3ac3b6f90d75d0a19d1ac33f6f9a25e4fb794",
+    "strict_board_signoff": false
+  }
+]

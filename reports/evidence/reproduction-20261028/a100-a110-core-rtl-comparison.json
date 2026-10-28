@@ -1,0 +1,57 @@
+{
+  "FSA.sv": {
+    "A100_sha256": "03c892aa965d95a399e2ce1a6dfccd6de4769bff8985249ddc4879236befe878",
+    "A110_sha256": "03c892aa965d95a399e2ce1a6dfccd6de4769bff8985249ddc4879236befe878",
+    "equal": true
+  },
+  "SystolicArray.sv": {
+    "A100_sha256": "8d81aa69a7c8132f4b57e72718e2f59808c67e9c707d5618e4094746d6f43b89",
+    "A110_sha256": "8d81aa69a7c8132f4b57e72718e2f59808c67e9c707d5618e4094746d6f43b89",
+    "equal": true
+  },
+  "PE.sv": {
+    "A100_sha256": "0cc1805bb5a4be43daf389f5e61d9dc60a54e575f03719b1815a42011eff5c56",
+    "A110_sha256": "0cc1805bb5a4be43daf389f5e61d9dc60a54e575f03719b1815a42011eff5c56",
+    "equal": true
+  },
+  "CMP.sv": {
+    "A100_sha256": "e359a4e0a219dc941b40a2c193339dfe5f75da2dec84679acdb26f67865e8b7e",
+    "A110_sha256": "e359a4e0a219dc941b40a2c193339dfe5f75da2dec84679acdb26f67865e8b7e",
+    "equal": true
+  },
+  "FPMacUnit.sv": {
+    "A100_sha256": "c61543b918da0216eb2250424abc86a0b5c2bdc5b05d1b5503fdbeb61975ec8b",
+    "A110_sha256": "c61543b918da0216eb2250424abc86a0b5c2bdc5b05d1b5503fdbeb61975ec8b",
+    "equal": true
+  },
+  "RawFloat_MulAddExp2.sv": {
+    "A100_sha256": "2d57e4f439a9addde29e835e72a2345ecc1234a0ebd7a8bc4f22183de1b566be",
+    "A110_sha256": "2d57e4f439a9addde29e835e72a2345ecc1234a0ebd7a8bc4f22183de1b566be",
+    "equal": true
+  },
+  "RawFloat_FMA_16.sv": {
+    "A100_sha256": "2ed124dd5b7ccbf39f5bdd7bb2855f81cb44a29b862ec5cb110a2a0b329bc58c",
+    "A110_sha256": "2ed124dd5b7ccbf39f5bdd7bb2855f81cb44a29b862ec5cb110a2a0b329bc58c",
+    "equal": true
+  },
+  "InputDelayer.sv": {
+    "A100_sha256": "ffe160435ba2ce7a6df4f2e9fd42ea551bb2f2617c6b1f3f7bf641fc9c465f9c",
+    "A110_sha256": "ffe160435ba2ce7a6df4f2e9fd42ea551bb2f2617c6b1f3f7bf641fc9c465f9c",
+    "equal": true
+  },
+  "InputDelayer_1.sv": {
+    "A100_sha256": "96daeec1158f1c3fc6a155da5a7c3e6a928aeabf4b01051c288fe7ea46154c54",
+    "A110_sha256": "96daeec1158f1c3fc6a155da5a7c3e6a928aeabf4b01051c288fe7ea46154c54",
+    "equal": true
+  },
+  "OutputDelayer.sv": {
+    "A100_sha256": "86ada4e348955a70049d397d4c3b48162db276d592915c9cea5ec55d903765cf",
+    "A110_sha256": "86ada4e348955a70049d397d4c3b48162db276d592915c9cea5ec55d903765cf",
+    "equal": true
+  },
+  "Accumulator.sv": {
+    "A100_sha256": "2390c28c4bf9a7735d604882349da9fd890a8c1cc4a87587a90581ce4e48dc5e",
+    "A110_sha256": "2390c28c4bf9a7735d604882349da9fd890a8c1cc4a87587a90581ce4e48dc5e",
+    "equal": true
+  }
+}

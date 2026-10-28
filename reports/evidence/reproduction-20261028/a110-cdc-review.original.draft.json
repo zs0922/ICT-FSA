@@ -1,0 +1,1347 @@
+{
+  "schema": 1,
+  "reviewer": "Codex A110 reproduction agent; review not accepted",
+  "build_sha256": "8d404791c993397ea65c15afb63c0dc542e63475184afaf65dba992af45c52e3",
+  "checkpoint_sha256": "1d7cf7221b7785d45afb98ac49588efbeb0a1b2635d4590c4591d7e2db6e3268",
+  "cdc_report_sha256": "72412daf1630f2334b673efd05dd945d94e391b999c446bba1b6d806eedc9369",
+  "reviewed_findings": [
+    {
+      "finding": [
+        "CDC-10",
+        "Critical",
+        "Combinational logic detected before a synchronizer",
+        "3",
+        "False Path",
+        "pcieResetControl/releaseSync/sync_reg[2]/C",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]/CLR",
+        "sys_clock",
+        "_pcie_io_clocks_axi_aclk"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destination is the first FDCE/FDPE stage of vendor xpm_cdc_async_rst, with ASYNC_REG=1 and PCIe user clock period 4ns. Generated PCIe source combines sys_rst_n with link/hot-reset state before its async reset synchronizers (DEST_SYNC_FF=2), accounting for the combinational-logic warning. The added upstream fundamental reset has a three-stage sys_clock100 release synchronizer and 10000-cycle qualification, but that qualification does not cover vendor-internal hot-reset/link-down causes. This explains the reset synchronizer structure only and is not full reset protocol or board signoff.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "tool_recognition_limit",
+      "group": "G2_vendor_xpm_async_reset",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-10",
+        "Critical",
+        "Combinational logic detected before a synchronizer",
+        "3",
+        "False Path",
+        "pcieResetControl/releaseSync/sync_reg[2]/C",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]/PRE",
+        "sys_clock",
+        "_pcie_io_clocks_axi_aclk"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destination is the first FDCE/FDPE stage of vendor xpm_cdc_async_rst, with ASYNC_REG=1 and PCIe user clock period 4ns. Generated PCIe source combines sys_rst_n with link/hot-reset state before its async reset synchronizers (DEST_SYNC_FF=2), accounting for the combinational-logic warning. The added upstream fundamental reset has a three-stage sys_clock100 release synchronizer and 10000-cycle qualification, but that qualification does not cover vendor-internal hot-reset/link-down causes. This explains the reset synchronizer structure only and is not full reset protocol or board signoff.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "tool_recognition_limit",
+      "group": "G2_vendor_xpm_async_reset",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[0]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[10]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[11]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[12]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[1]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[2]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[3]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[4]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[5]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[6]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[7]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[8]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[9]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[0]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[10]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[11]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[12]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[1]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[2]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[3]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[4]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[5]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[6]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[7]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[8]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[9]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-7",
+        "Critical",
+        "Asynchronous reset unknown CDC circuitry",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/deglitched_deglitch/reg_0_reg/PRE",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-7",
+        "Critical",
+        "Asynchronous reset unknown CDC circuitry",
+        "0",
+        "False Path",
+        "pcieResetControl/releaseSync/sync_reg[2]/C",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg/CLR",
+        "sys_clock",
+        "_pcie_io_clocks_axi_aclk"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual reset destination belongs to unchanged generated PCIe vendor core: user_lnk_up D takes synchronized user_lnk_up_cdc_o with asynchronous clear driven by user_lnk_up_int (including PHY-link status); as_mac_in_detect_user, pipe_tx_rate_ff and speed_change_in_progress use sys_or_hot_rst = ~sys_rst_n || cfg_hot_reset_out. Generated source and actual fanin explain these reset sinks. The new 10000-cycle qualification applies only to the added upstream fundamental-reset cause and does not qualify all vendor-internal runtime causes. Positive Recovery slack (global WNS 0.114ns) is not asynchronous-release proof. These remain structural explanations pending review, not protocol/MTBF or board signoff.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G3_vendor_reset_sinks",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-7",
+        "Critical",
+        "Asynchronous reset unknown CDC circuitry",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/deglitched_deglitch/reg_0_reg/PRE",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual destinations are APB55 FDCE 13-bit debounce CLR or FDPE deglitch PRE, with fanin from PCIe user_reset, power-on reset and PLL LOCKED. ResetWrangler selects the slowest input (55 MHz), qualifies deassertion for 5500 ticks and sends deglitched reset to per-domain ResetCatchAndSync. PCIe user_reset includes runtime hot-reset, link-down, PHY-link state and ds_pulse causes, so this is an asynchronous reset-qualification structure, not solely a cold-reset source or a multibit application-data transfer. This explains these 28 findings structurally only; it does not resolve missing ASYNC_REG on the downstream PCIe release chain, prove analog behavior, or establish all runtime-reset protocols.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G1_wrangler_reset_qualification",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-7",
+        "Critical",
+        "Asynchronous reset unknown CDC circuitry",
+        "0",
+        "None",
+        "pcieResetControl/releaseSync/sync_reg[2]/C",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg/PRE",
+        "sys_clock",
+        "_pcie_io_clocks_axi_aclk"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual reset destination belongs to unchanged generated PCIe vendor core: user_lnk_up D takes synchronized user_lnk_up_cdc_o with asynchronous clear driven by user_lnk_up_int (including PHY-link status); as_mac_in_detect_user, pipe_tx_rate_ff and speed_change_in_progress use sys_or_hot_rst = ~sys_rst_n || cfg_hot_reset_out. Generated source and actual fanin explain these reset sinks. The new 10000-cycle qualification applies only to the added upstream fundamental-reset cause and does not qualify all vendor-internal runtime causes. Positive Recovery slack (global WNS 0.114ns) is not asynchronous-release proof. These remain structural explanations pending review, not protocol/MTBF or board signoff.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G3_vendor_reset_sinks",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-7",
+        "Critical",
+        "Asynchronous reset unknown CDC circuitry",
+        "0",
+        "None",
+        "pcieResetControl/releaseSync/sync_reg[2]/C",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]/CLR",
+        "sys_clock",
+        "pipe_clk"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual reset destination belongs to unchanged generated PCIe vendor core: user_lnk_up D takes synchronized user_lnk_up_cdc_o with asynchronous clear driven by user_lnk_up_int (including PHY-link status); as_mac_in_detect_user, pipe_tx_rate_ff and speed_change_in_progress use sys_or_hot_rst = ~sys_rst_n || cfg_hot_reset_out. Generated source and actual fanin explain these reset sinks. The new 10000-cycle qualification applies only to the added upstream fundamental-reset cause and does not qualify all vendor-internal runtime causes. Positive Recovery slack (global WNS 0.114ns) is not asynchronous-release proof. These remain structural explanations pending review, not protocol/MTBF or board signoff.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G3_vendor_reset_sinks",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-7",
+        "Critical",
+        "Asynchronous reset unknown CDC circuitry",
+        "0",
+        "None",
+        "pcieResetControl/releaseSync/sync_reg[2]/C",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]/CLR",
+        "sys_clock",
+        "pipe_clk"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual reset destination belongs to unchanged generated PCIe vendor core: user_lnk_up D takes synchronized user_lnk_up_cdc_o with asynchronous clear driven by user_lnk_up_int (including PHY-link status); as_mac_in_detect_user, pipe_tx_rate_ff and speed_change_in_progress use sys_or_hot_rst = ~sys_rst_n || cfg_hot_reset_out. Generated source and actual fanin explain these reset sinks. The new 10000-cycle qualification applies only to the added upstream fundamental-reset cause and does not qualify all vendor-internal runtime causes. Positive Recovery slack (global WNS 0.114ns) is not asynchronous-release proof. These remain structural explanations pending review, not protocol/MTBF or board signoff.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G3_vendor_reset_sinks",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-7",
+        "Critical",
+        "Asynchronous reset unknown CDC circuitry",
+        "0",
+        "None",
+        "pcieResetControl/releaseSync/sync_reg[2]/C",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg/CLR",
+        "sys_clock",
+        "pipe_clk"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual reset destination belongs to unchanged generated PCIe vendor core: user_lnk_up D takes synchronized user_lnk_up_cdc_o with asynchronous clear driven by user_lnk_up_int (including PHY-link status); as_mac_in_detect_user, pipe_tx_rate_ff and speed_change_in_progress use sys_or_hot_rst = ~sys_rst_n || cfg_hot_reset_out. Generated source and actual fanin explain these reset sinks. The new 10000-cycle qualification applies only to the added upstream fundamental-reset cause and does not qualify all vendor-internal runtime causes. Positive Recovery slack (global WNS 0.114ns) is not asynchronous-release proof. These remain structural explanations pending review, not protocol/MTBF or board signoff.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": "equivalent_existing_structure",
+      "group": "G3_vendor_reset_sinks",
+      "proposed_disposition": "structurally_explained_pending_independent_review"
+    },
+    {
+      "finding": [
+        "CDC-8",
+        "Warning",
+        "Asynchronous reset synchronized with missing ASYNC_REG property",
+        "3",
+        "Asynch Clock Groups",
+        "wrangler/deglitched_deglitch/reg_0_reg/C",
+        "wrangler/nodeOut_reset_catcher_2/io_sync_reset_chain/output_chain/sync_2_reg/CLR",
+        "clk_out2_harnessSysPLL",
+        "_pcie_io_clocks_axi_aclk"
+      ],
+      "disposition": "pending",
+      "classification": "",
+      "rationale": "Actual routed FDCE sync_2_reg in nodeOut_reset_catcher_2 has empty ASYNC_REG. The three-stage ResetCatchAndSync source explains its intended function, but does not establish the physical synchronizer marking/protection or MTBF. Keep this Warning unresolved; do not label it a harmless recognition limit or write an acceptance pass.",
+      "evidence": [
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt",
+          "sha256": "a2aee058aa444153dc9328209f645f6560ff5aa0516730ef1f6fa5244264b10b"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt",
+          "sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json",
+          "sha256": "8239411df2b45b97c96278a85d549c8cd1b8246297c41730fef9e9733026ca58"
+        },
+        {
+          "path": "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json",
+          "sha256": "d54954d1c2da3708448f834552f35e1597c55aedd6dc7c9bffd4d15954e74825"
+        }
+      ],
+      "proposed_classification": null,
+      "group": "G4_missing_async_reg",
+      "proposed_disposition": "not_accepted"
+    }
+  ],
+  "status": "draft_for_independent_review",
+  "strict_cdc_acceptance": false,
+  "board_signoff": false,
+  "unresolved": "CDC-8 actual ASYNC_REG empty at wrangler/nodeOut_reset_catcher_2/.../sync_2_reg",
+  "scope": "No CDC review accepted.json or physical pass manufactured. All disposition fields remain pending. Classification suggestions explain 35 findings and explicitly leave CDC-8 unresolved.",
+  "independent_review": "A70 reproduction agent independently checked exact 36-finding set, all 4 evidence hashes, 8 source provenance hashes, actual G2 synchronizer attributes and G4 pending status. G1/G3 wording narrowed to include vendor runtime reset causes; all dispositions remain pending."
+}

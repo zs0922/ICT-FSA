@@ -1,0 +1,99 @@
+{
+  "obj": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build/A100/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj",
+  "checkpoint_sha256": "08698428f31fe5527a12775f12b2d8ed4ae6e9d166334227e05326be7d7a4165",
+  "timing": {
+    "wns_ns": 0.049,
+    "tns_ns": 0.0,
+    "setup_failing": 0.0,
+    "setup_total": 265381.0,
+    "whs_ns": 0.01,
+    "ths_ns": 0.0,
+    "hold_failing": 0.0,
+    "hold_total": 265381.0,
+    "wpws_ns": 0.0,
+    "tpws_ns": 0.0,
+    "pulse_failing": 0.0,
+    "pulse_total": 148820.0
+  },
+  "dut": {
+    "part": "xcvu37p_CIV-fsvh2892-2L-e",
+    "dut_period": "10.000",
+    "dut_setup_wns": "0.534",
+    "dut_hold_whs": "0.010"
+  },
+  "resources": {
+    "Total LUTs": 355692,
+    "Logic LUTs": 350958,
+    "LUTRAMs": 3774,
+    "SRLs": 960,
+    "FFs": 140263,
+    "RAMB36": 60,
+    "RAMB18": 0,
+    "URAM": 0,
+    "DSP Blocks": 288
+  },
+  "utilization": {},
+  "constraint_coverage": {
+    "no_clock": 0,
+    "constant_clock": 0,
+    "pulse_width_clock": 0,
+    "unconstrained_internal_endpoints": 30,
+    "no_input_delay": 1,
+    "no_output_delay": 0,
+    "multiple_clock": 0,
+    "generated_clocks": 0,
+    "loops": 0,
+    "partial_input_delay": 0,
+    "partial_output_delay": 0,
+    "latch_loops": 0
+  },
+  "cdc_counts": {
+    "CDC-3": {
+      "severity": "Info",
+      "count": 77
+    },
+    "CDC-7": {
+      "severity": "Critical",
+      "count": 12
+    },
+    "CDC-8": {
+      "severity": "Warning",
+      "count": 1
+    },
+    "CDC-9": {
+      "severity": "Info",
+      "count": 22
+    },
+    "CDC-10": {
+      "severity": "Critical",
+      "count": 2
+    },
+    "CDC-11": {
+      "severity": "Critical",
+      "count": 16
+    },
+    "CDC-15": {
+      "severity": "Warning",
+      "count": 172
+    }
+  },
+  "route": {
+    "# of routable nets": 497497,
+    "# of fully routed nets": 497497,
+    "# of nets with routing errors": 0
+  },
+  "drc_error_or_critical": false,
+  "flat_utilization_source": null,
+  "evidence_sha256": {
+    "report/timing.txt": "42e03f2f3fd52dc5d5e21d606c48c8c4281bf3ebb4f853af2a00df908729fb88",
+    "report/utilization.txt": "915562e3bfc9e6d78afcb50fae57b129ee50f9fc96406050d50f90af6a2712ab",
+    "report/clocks.txt": "63b510efa7baf15525039845c6e6974889bfe8ffb9a12395b77f1038105205ee",
+    "report/route_status.txt": "2e478ce5e394123d45f4d6c4c9f71ca7f3f8ec30e859a6d5daf9c9601e5fa36b",
+    "report/drc.txt": "8416b50e2ef60aabda94cb5f5f4090517e90e2694ac77d79353645fb1f9a0687",
+    "audit/run_properties.txt": "35f94638719b7be692996590f883c66dc2cf470f2fa15c0eeb64322d092d4a87",
+    "audit/cdc.txt": "152a523e738c8d88c93381dee9681d860b25dd77ccdb8b371108016c6a6c3bdb",
+    "audit/check_timing.txt": "f75d94d8ec5a13a39c36a3e4d0ef8d6dccee57c600cd68dcce3f22b57416d909",
+    "audit/exceptions.txt": "a8e4bba2b782bdbb4c2defcd3e5fcfbce49255902f9dbaf82a58ee946a1351b3"
+  },
+  "scope": "Actual routed reports; does not declare CDC or board acceptance"
+}

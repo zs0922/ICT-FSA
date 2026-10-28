@@ -1,0 +1,19 @@
+{
+  "reviewer": "independent A70 reproduction agent",
+  "files": [
+    "README.md",
+    "reports/ICT_FSA_REPRODUCTION_20261028.md"
+  ],
+  "root": "/tmp/ict-fsa-reproduce-20261028/integration",
+  "reviewed_utc": "2026-10-28T07:20:50.224363+00:00",
+  "blocking_findings": [],
+  "observations": [
+    "Correctly separates original hardware commits, fixed candidate commits and main-branch documentation/tool commits.",
+    "A70 timing/resources, fixed regression counters, RTL equality and seq1024 actual evidence accurately reflected.",
+    "Modern physical validation remains pending, no board success claim."
+  ],
+  "suggestion": "Clarify 8 ports, 8 bytes per port per cycle (每路每拍) in memory topology paragraph.",
+  "second_review_utc": "2026-10-28T07:40:38.168443+00:00",
+  "physical_table_review": "All A70 values checked against own routed reports; A100 original/fixed against independent physical-evidence summaries; A110 original against original-physical-summary.json. Values agree.",
+  "cdc_boundary_review": "Correctly separates constrained STA, native gate, board_signoff and structural diagnostics. Suggested asynchronous assertion terminology to avoid internal CLR vs PRE ambiguity."
+}

@@ -1,0 +1,28 @@
+{
+  "probes_independently_executed": true,
+  "fixed_cdc_unique_pins": 332,
+  "fixed_CDC8_ASYNC_REG_empty": true,
+  "files": {
+    "cdc_endpoint_cones.txt": {
+      "original_sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341",
+      "fixed_sha256": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341",
+      "content_equal_excluding_checkpoint_line": true
+    },
+    "external_reset.txt": {
+      "original_sha256": "75b4eae9a6318b3a2e635a04612d381f96a860ab09b3b8e1155bfe4d68c68ae4",
+      "fixed_sha256": "75b4eae9a6318b3a2e635a04612d381f96a860ab09b3b8e1155bfe4d68c68ae4",
+      "content_equal_excluding_checkpoint_line": true
+    },
+    "exception_objects.txt": {
+      "original_sha256": "e01c397382f88864a38e3e6410a3fed43ba06c445c60b1a67f786784e103b351",
+      "fixed_sha256": "e01c397382f88864a38e3e6410a3fed43ba06c445c60b1a67f786784e103b351",
+      "content_equal_excluding_checkpoint_line": true
+    },
+    "unused_hbm_pins.txt": {
+      "original_sha256": "17e3608f9dba6d886b9ee681d9461bc7aa243b95e1a76aa7fe70ec4aec88a240",
+      "fixed_sha256": "a537ac96044bace801763616318eeef1271719e1d9945d61b1a55ad304f93de9",
+      "content_equal_excluding_checkpoint_line": true
+    }
+  },
+  "note": "Original independent peer review does not automatically transfer to fixed; fixed observations are separately DCP-bound."
+}

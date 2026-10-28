@@ -1,0 +1,1075 @@
+{
+  "profile": "A70-P3",
+  "source_commit": "8cc6b42536334892b88f6214f39d3afe5daa2504",
+  "source": "/tmp/ict-fsa-reproduce-20261028/a70/source-attempt02",
+  "output": "/tmp/ict-fsa-reproduce-20261028/a70/build-attempt02",
+  "updated_utc": "2026-10-28T07:40:38.168443+00:00",
+  "completed_stages": [
+    "doctor",
+    "deps",
+    "python_fsa",
+    "python_easyfloat",
+    "build",
+    "verify",
+    "sim4",
+    "sim16",
+    "elaborate",
+    "implement",
+    "sim-extra-seq1024"
+  ],
+  "implementation": "completed",
+  "actual_tool_environment": {
+    "profile": "A70-P3",
+    "checks": [
+      {
+        "tool": "java",
+        "path": "/home/zhangsi/tmp/FSA-m1/.conda-env/lib/jvm/bin/java",
+        "ok": true,
+        "expected": "20.0.2",
+        "version": "Picked up JAVA_TOOL_OPTIONS: -Dsbt.supershell=false -Dsbt.server.forcestart=false -Dsbt.server.autostart=false -Dsbt.ivy.home=/tmp/ict-fsa-reproduce-20261028/a70/cache/sbt/ivy2 -Dsbt.global.base=/tmp/ict-fsa-reproduce-20261028/a70/cache/sbt/global -Dsbt.boot.directory=/tmp/ict-fsa-reproduce-20261028/a70/cache/sbt/boot -Dsbt.supershell=false -Dsbt.server.forcestart=false\nopenjdk version \"20.0.2-internal\" 2023-07-18\nOpenJDK Runtime Environment (build 20.0.2-internal-adhoc..src)\nOpenJDK 64-Bit Server VM (build 20.0.2-internal-adhoc..src, mixed mode, sharing)\n"
+      },
+      {
+        "tool": "firtool",
+        "path": "/home/zhangsi/circt/bin/firtool",
+        "ok": true,
+        "expected": "firtool-1.75.0",
+        "version": "LLVM (http://llvm.org/):\n  LLVM version 19.0.0git\n  Optimized build.\nCIRCT firtool-1.75.0\n"
+      },
+      {
+        "tool": "verilator",
+        "path": "/home/zhangsi/tmp/FSA-m1/.conda-env/bin/verilator",
+        "ok": true,
+        "expected": "Verilator 5.022",
+        "version": "Verilator 5.022 2024-02-24 rev conda-forge build 1\n"
+      },
+      {
+        "tool": "vivado",
+        "path": "/opt/Xilinx_2020.2/Vivado/2020.2/bin/vivado",
+        "ok": true,
+        "expected": "2020.2_AR75986",
+        "version": "Vivado v2020.2_AR75986 (64-bit)\nSW Build 3064766 on Wed Nov 18 09:12:47 MST 2020\nIP Build 3064653 on Wed Nov 18 14:17:31 MST 2020\nCopyright 1986-2020 Xilinx, Inc. All Rights Reserved.\n"
+      },
+      {
+        "tool": "make",
+        "path": "/home/zhangsi/tmp/FSA-m1/.conda-env/bin/make",
+        "ok": true,
+        "expected": null,
+        "version": "GNU Make 4.4.1\nBuilt for x86_64-conda-linux-gnu\nCopyright (C) 1988-2023 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n"
+      },
+      {
+        "tool": "g++",
+        "path": "/tmp/ict-fsa-reproduce-20261028/a70/bin/g++",
+        "ok": true,
+        "expected": null,
+        "version": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      },
+      {
+        "tool": "RISCV/libfesvr.a",
+        "path": "/home/zhangsi/riscv/lib/libfesvr.a",
+        "ok": true,
+        "version": "library presence"
+      },
+      {
+        "tool": "RISCV/libriscv.so",
+        "path": "/home/zhangsi/riscv/lib/libriscv.so",
+        "ok": true,
+        "version": "library presence"
+      },
+      {
+        "tool": "CC",
+        "path": "/usr/bin/gcc",
+        "ok": true,
+        "version": "13.3.0",
+        "expected": "13.3.0"
+      },
+      {
+        "tool": "CXX",
+        "path": "/usr/bin/g++",
+        "ok": true,
+        "version": "13.3.0",
+        "expected": "13.3.0"
+      }
+    ],
+    "note": "Tool availability only. Vendor device/license support is checked by actual implementation; version requirements are in docs/reproduction/environment.md."
+  },
+  "fresh_generator_jar_sha256": "a126f6a625d357f23afd665747873e9834a4a45d2f1a01ee07f9d850213231ae",
+  "verification": {
+    "formal": {
+      "passed": true,
+      "exit_code": 0,
+      "stage": "complete",
+      "error": null,
+      "method": "Exact three-edge temporal cone expansion and unrestricted combinational SAT",
+      "top": "A70AccumulatorMiter",
+      "comparison_latency_cycles": 3,
+      "complete_after_pipeline_clocks": 3,
+      "scope": "All IEEE input bit patterns and MAC/EXP2 selections, at every output after three rising clocks; unmasked gate != delayed legacy oracle proven zero. No reciprocal or scheduling claim.",
+      "completeness": "The exact time-3 output cone has no initial-register leaves. Arbitrary start states therefore give the same zero-mismatch identity for every later three-clock window.",
+      "properties": {
+        "io_mismatch": 0,
+        "data_mismatch": 0
+      },
+      "depends_on_valid_mask": false,
+      "input_constraints": [],
+      "initial_state_constraints": [],
+      "reset_constraints": [],
+      "cutpoint_assumptions": [],
+      "unroll_audit": {
+        "time": 3,
+        "initial_state_leaves": [],
+        "free_input_groups": {
+          "io_a@t0": 32,
+          "io_b@t0": 32,
+          "io_c@t0": 32,
+          "io_exp2@t0": 1,
+          "reset@t0": 1,
+          "reset@t1": 1,
+          "reset@t2": 1
+        },
+        "input_constraints": [],
+        "reset_constraints": [],
+        "cutpoint_assumptions": [],
+        "cells": 473,
+        "inputs": 100,
+        "allowed_combinational_types": [
+          "$add",
+          "$alu",
+          "$and",
+          "$eq",
+          "$gt",
+          "$logic_not",
+          "$lt",
+          "$mul",
+          "$mux",
+          "$ne",
+          "$not",
+          "$or",
+          "$pmux",
+          "$reduce_and",
+          "$reduce_or",
+          "$shl",
+          "$shr",
+          "$sub",
+          "$xor"
+        ],
+        "actual_combinational_types": [
+          "$add",
+          "$and",
+          "$eq",
+          "$gt",
+          "$logic_not",
+          "$lt",
+          "$mul",
+          "$mux",
+          "$ne",
+          "$not",
+          "$or",
+          "$pmux",
+          "$reduce_and",
+          "$reduce_or",
+          "$shl",
+          "$shr",
+          "$sub",
+          "$xor"
+        ],
+        "clock_check": "All original DFF/SDFF CLK pins exactly match top clock, positive edge",
+        "scope": "Exact target outputs after the specified rising clocks from arbitrary state. Empty initial-state cone establishes the identity for every later window.",
+        "source_rtl_sha256": "ec356847bb5ae28dec9aa24e64155d92adbf3db6e18e987fa30bf5a96d29f9e8",
+        "source_json_sha256": "ecafa09305fb8e61c1bb97b57ec1c543ee34ad7a015389dca4db5a1b2720cee9"
+      },
+      "semantic_fixtures": {
+        "passed": true,
+        "cases": [
+          {
+            "name": "dff3",
+            "expected_equivalent": true,
+            "native": "PASS",
+            "expanded": "PASS"
+          },
+          {
+            "name": "wrong_latency",
+            "expected_equivalent": false,
+            "native": "EXPECTED_COUNTEREXAMPLE",
+            "expanded": "EXPECTED_COUNTEREXAMPLE"
+          },
+          {
+            "name": "wrong_value",
+            "expected_equivalent": false,
+            "native": "EXPECTED_COUNTEREXAMPLE",
+            "expanded": "EXPECTED_COUNTEREXAMPLE"
+          },
+          {
+            "name": "sdff_high",
+            "expected_equivalent": true,
+            "native": "PASS",
+            "expanded": "PASS"
+          },
+          {
+            "name": "sdff_low",
+            "expected_equivalent": true,
+            "native": "PASS",
+            "expanded": "PASS"
+          },
+          {
+            "name": "sdff_wrong_polarity",
+            "expected_equivalent": false,
+            "native": "EXPECTED_COUNTEREXAMPLE",
+            "expanded": "EXPECTED_COUNTEREXAMPLE"
+          },
+          {
+            "name": "multioutput_shared",
+            "expected_equivalent": true,
+            "native": "PASS",
+            "expanded": "PASS"
+          },
+          {
+            "name": "other_clock",
+            "rejected": true
+          },
+          {
+            "name": "negative_edge",
+            "rejected": true
+          },
+          {
+            "name": "unknown_cell",
+            "rejected": true
+          },
+          {
+            "name": "asynchronous_register",
+            "rejected": true
+          },
+          {
+            "name": "initial_state_dependency",
+            "rejected": true
+          }
+        ]
+      },
+      "rtl_sha256": {
+        "A70AccumulatorMiter.sv": "ec356847bb5ae28dec9aa24e64155d92adbf3db6e18e987fa30bf5a96d29f9e8"
+      },
+      "driver_sha256": "9ccf2208fc6ce1c449fa8c97bd20d517207f71da27732588e0fab597740fd800",
+      "expander_sha256": "a6010b9c535058f4d6f66c2be727edd10d4d7ec634a202a8073136ad18a9facc",
+      "artifact_sha256": {
+        "A70AccumulatorMiter.sv": "ec356847bb5ae28dec9aa24e64155d92adbf3db6e18e987fa30bf5a96d29f9e8",
+        "fixtures/dff3/expanded.json": "f332f8dbbb9c3ce2442142069a3abd06bb967bd00012ffe4f68e1d87f5656ed4",
+        "fixtures/dff3/expanded.log": "2ec7e7472c7530058a8d5a14ac8e54c05d590645ae6f53000b7f1f7b3b7f5df1",
+        "fixtures/dff3/expanded.ys": "ed1a81d9c711a5c37780b4852ce7aabde1e6b5b02a286d62aa1bd3b0fba618a6",
+        "fixtures/dff3/native.json": "893ad5b571f6a53b0626c5e45c338060f0a4bfb3b4c5ccb03b090c6d4fc3ffa8",
+        "fixtures/dff3/native.log": "53835e08bdc2136dbb50d6f444a22cbe2f75901b9a1b8a098aa6282fc2588caa",
+        "fixtures/dff3/native.ys": "f53fc857c046a532f9cd3579a4f9aaf4c429c6f5fee725c14dbbb361f2254413",
+        "fixtures/multioutput_shared/expanded.json": "f5cb4cb9fcbfc5dae92dc90feef4c14011de74663fe297d7c513f268be832c1b",
+        "fixtures/multioutput_shared/expanded.log": "132feed8128e206959eb793ea6cce8448962507860b199d2cad304d69fa5869b",
+        "fixtures/multioutput_shared/expanded.ys": "ed1a81d9c711a5c37780b4852ce7aabde1e6b5b02a286d62aa1bd3b0fba618a6",
+        "fixtures/multioutput_shared/native.json": "92d3d199fde622e04cac95a8b7ec511d0eac9e7355a5eb2e1cbbfc1256e8d40e",
+        "fixtures/multioutput_shared/native.log": "f91e569df936fe7aa84be42281f48b30f1c0cd5482b16c23c30598c406c7daa1",
+        "fixtures/multioutput_shared/native.ys": "f419780b6a3d148f0afebdb521387d32e7f5ce84fb545075f6717f76b8351fe0",
+        "fixtures/result.json": "1ea561e9370a29108e51c7f40afe4db2bbdf7d2796f96d20d113a0281e78a7bd",
+        "fixtures/sdff_high/expanded.json": "6dc4cb2b37ba79cfa0ae1763dc8ce433c3c909bddb0fd2e5d1514a28ffb18dce",
+        "fixtures/sdff_high/expanded.log": "54ba3605ec75e1061622d5055415753f14761e0bb268a16fe64d2949f8da28e1",
+        "fixtures/sdff_high/expanded.ys": "ed1a81d9c711a5c37780b4852ce7aabde1e6b5b02a286d62aa1bd3b0fba618a6",
+        "fixtures/sdff_high/native.json": "68ede8e73c13c2104b168a896ab0d5d8c55ac59cc6a6b8180d616dd9fe7eb989",
+        "fixtures/sdff_high/native.log": "b83c5dd826cac384c719fc4723398a07d486c4f3c65072145b92393cb5cfc653",
+        "fixtures/sdff_high/native.ys": "f45f0b1771258722818e05dca752a9a9438b640531cd63e43f3d3645de576e6c",
+        "fixtures/sdff_low/expanded.json": "54d3cef83c6d225e5740846304a21888471730260be99864f193700657b4a115",
+        "fixtures/sdff_low/expanded.log": "2a1e3c85f0dc7e88f80fc536334b53f6de02ea392ee9c9fcee60dff7d7cab6a7",
+        "fixtures/sdff_low/expanded.ys": "ed1a81d9c711a5c37780b4852ce7aabde1e6b5b02a286d62aa1bd3b0fba618a6",
+        "fixtures/sdff_low/native.json": "0adb6a912fdf21af10a1255df488feeabd8145fe35e1e6581f5dc3e3ec716667",
+        "fixtures/sdff_low/native.log": "b83c5dd826cac384c719fc4723398a07d486c4f3c65072145b92393cb5cfc653",
+        "fixtures/sdff_low/native.ys": "f45f0b1771258722818e05dca752a9a9438b640531cd63e43f3d3645de576e6c",
+        "fixtures/sdff_wrong_polarity/expanded.json": "8ce29d5a3a82fec14f9663093970c62e28daa4fdd3c49adb16b432723383530b",
+        "fixtures/sdff_wrong_polarity/expanded.log": "1d4a20d8d80b7fd473c4dc6a0a5a346b5c18601fbf3dd41b1eb80affbc0db27f",
+        "fixtures/sdff_wrong_polarity/expanded.ys": "ed1a81d9c711a5c37780b4852ce7aabde1e6b5b02a286d62aa1bd3b0fba618a6",
+        "fixtures/sdff_wrong_polarity/native.json": "17c5759831d16709054fb6748d866bad9e0c5343f8eaae588547236e920e93ed",
+        "fixtures/sdff_wrong_polarity/native.log": "c2cb7e4ce8c2847a47776a279195796c7a1bf7b8cde13100f5f32195ce4efeec",
+        "fixtures/sdff_wrong_polarity/native.ys": "f45f0b1771258722818e05dca752a9a9438b640531cd63e43f3d3645de576e6c",
+        "fixtures/wrong_latency/expanded.json": "136b949088fe735704f0bf23c3e5d9ac497b2d7ba8f3ffca892bd23285f33f56",
+        "fixtures/wrong_latency/expanded.log": "cbe7c774faede001afc91826737bd77a0f40f928f732ec95feb400fb40158d9d",
+        "fixtures/wrong_latency/expanded.ys": "ed1a81d9c711a5c37780b4852ce7aabde1e6b5b02a286d62aa1bd3b0fba618a6",
+        "fixtures/wrong_latency/native.json": "7cc8406b1c25f44d7ce0f60629978b4653477602794c414925b24abd229f3f3a",
+        "fixtures/wrong_latency/native.log": "b8fc5b63d74c9b191cffb55e1b5729eff1c807cdae666b7d1a97567bb77b7618",
+        "fixtures/wrong_latency/native.ys": "f53fc857c046a532f9cd3579a4f9aaf4c429c6f5fee725c14dbbb361f2254413",
+        "fixtures/wrong_value/expanded.json": "67d407e0646d78ca4ed10cacf801d2dd448f28a995c86603facc532cdc2b5ee2",
+        "fixtures/wrong_value/expanded.log": "8e2e4abefc5c198a44e54618f53ca91257e27af8bc220cb7442021ca8d7f0c7b",
+        "fixtures/wrong_value/expanded.ys": "ed1a81d9c711a5c37780b4852ce7aabde1e6b5b02a286d62aa1bd3b0fba618a6",
+        "fixtures/wrong_value/native.json": "bd59fb4f74280166d36c33e1a952d41649d026ccf45d297b89395655dc2b9f8f",
+        "fixtures/wrong_value/native.log": "d56c4233a402ffc1c041b19e42b294d0dbdc55d5760906b3e882ed1df7179ed9",
+        "fixtures/wrong_value/native.ys": "f53fc857c046a532f9cd3579a4f9aaf4c429c6f5fee725c14dbbb361f2254413",
+        "optimized.v": "fca28123be55a7c665350425a619a6569e74b5dd970e88d007b50971ad0ead7e",
+        "proof-notes.txt": "e4193144df03d214e59e416fdc0c6d933f3a607b0821b0c4189f5396f2c81450",
+        "prove-unrolled.ys": "18d0a7adeebee2d2ffd258436ac77ef8b669959be1b6574534baa2389aff35e1",
+        "run-proof.py": "9ccf2208fc6ce1c449fa8c97bd20d517207f71da27732588e0fab597740fd800",
+        "semantic-fixtures.log": "1ea561e9370a29108e51c7f40afe4db2bbdf7d2796f96d20d113a0281e78a7bd",
+        "semantic-fixtures.py": "50d06e6a3c1dd41e2ad6c5b561bd83799fbd1315b3cbd159330552b3d85af7c1",
+        "structure.json": "ecafa09305fb8e61c1bb97b57ec1c543ee34ad7a015389dca4db5a1b2720cee9",
+        "structure.log": "5f3bd0341bcd97f64a533b326534bf171a51cb6ae56d1939b729931ed2bc4919",
+        "structure.ys": "c2006a545d71e61a7c3c55cbcdf6ab9bad30f2c8a36d0b8b4dc4507c136615cd",
+        "unroll-audit.json": "8a2a1bfe8552ccdcc1fde675b3ba7c12487f77714bbcd511fcf28cbc7e28d00e",
+        "unroll.log": "8a2a1bfe8552ccdcc1fde675b3ba7c12487f77714bbcd511fcf28cbc7e28d00e",
+        "unroll.py": "a6010b9c535058f4d6f66c2be727edd10d4d7ec634a202a8073136ad18a9facc",
+        "unrolled-optimized.json": "e6d72e192afac9cf89dd6f28b557516385c3c50d5dd5f5a8bf19e29354a96cfa",
+        "unrolled-optimized.v": "3478bbaa0c980beed1e6d945ee8473f7f2435adc142b8abff06a0ae3461cd6f8",
+        "unrolled.json": "73069b41477b950e1ab8607a440ae8a66888eb60b8ee54378c09101125af9e94",
+        "yosys-version.txt": "48e5478b908ab72d8ad67bfef55c616b9b144058eda7750835122fdc4b4b0d93",
+        "yosys.log": "a1ccbf1991f85f90b375b56770482aa9c81b9a1f7b209a86d470609906829076"
+      },
+      "elapsed_seconds": 22.564751704994706,
+      "trusted_components": [
+        "Yosys RTL lowering, optimization and SAT",
+        "Included auditable exact temporal expansion unroll.py"
+      ]
+    },
+    "sim_extra": {
+      "bitwise_equal": true,
+      "shape": [
+        1024,
+        16
+      ],
+      "seed": 0,
+      "seq": 1024,
+      "array_rows": 16,
+      "binary_sha256": "94974108b585dbb9a5982c38c62c820c8a98460d565898a55d899d59fc221074",
+      "config_sha256": "247d40b749cee50e541acdbec7283f7deb5763952ac115b236378f021c664a2c",
+      "actual_sha256": "b7f9f8ec3d9d6efc5f38c1f79b58ce911bb65a00f0b03f1e28a54d8fb2e9f131",
+      "expected_sha256": "b7f9f8ec3d9d6efc5f38c1f79b58ce911bb65a00f0b03f1e28a54d8fb2e9f131",
+      "input_sha256": {
+        "q": "4e7c29f0a904a2b27845fa3f728262c128de24113508758a9e9e1fea4863171a",
+        "k": "ba84cf0e9e1eec5820db2dd0d4a6a1bb956d4dc601f41fd7ab72e26492ee6f5a",
+        "v": "897aa7ef8ca074481178090d84a6937db27a92bf9bf0e3694d5bfefbb1dcba14"
+      }
+    }
+  },
+  "issues": [
+    {
+      "id": "R002",
+      "scope": "sandbox environment",
+      "evidence": "build-attempt01.ict-state/build-0.log",
+      "resolution": "retained failed attempt; fresh source/output retry with local Unix socket allowed; no product change"
+    },
+    {
+      "scope": "temporary monitoring wrapper, not repository build tool",
+      "stage": "after completed native build",
+      "detail": "run-phase.sh edited while executing caused shell EOF after native CLI completed; wrapper exit2. Native build.json completed and COMPLETE: build output plus later JAR-bound verification/sim/implementation prove build success. No seal was changed.",
+      "evidence": [
+        "logs/attempt02-build-native.log",
+        "logs/build-attempt02-build-.log",
+        "receipts/build.json",
+        "commands.log"
+      ]
+    }
+  ],
+  "implementation_receipt": {
+    "commands": [
+      [
+        "python3",
+        "scripts/ict_history.py",
+        "implement",
+        "--out",
+        "/tmp/ict-fsa-reproduce-20261028/a70/build-attempt02"
+      ]
+    ],
+    "finished_utc": "2026-10-28T06:57:47.606281+00:00",
+    "logs": [
+      "/tmp/ict-fsa-reproduce-20261028/a70/build-attempt02.ict-state/implement-0.log"
+    ],
+    "routed_artifact_scope": "produced by this implementation attempt; backend completion/CDC acceptance remains separate",
+    "routed_artifacts": {
+      "A70/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.FSAConfig.json": "d8c3330d60ee335601401365e6fa4de774b53bb099dccc0afd464048b262a6ba",
+      "A70/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/post_route.dcp": "dcc05fd3cbcac572db83d743c3912a0747c59f530feb7512f72754557364215d"
+    },
+    "started_utc": "2026-10-28T05:39:34.752111+00:00",
+    "status": "completed"
+  },
+  "physical_comparison": {
+    "old": {
+      "obj": "/home/zhangsi/nm37-git-reproduce-fresh/a70-p3-build-java20-20261025-020151/A70/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj",
+      "dcp_sha256": "a6f02be1703015255da8e1861b453e93adae9ce9e0fdd453dcb288af0d6a4878",
+      "timing": {
+        "wns": 0.047,
+        "tns": 0.0,
+        "setup_failing_endpoints": 0.0,
+        "setup_total_endpoints": 192967.0,
+        "whs": 0.01,
+        "ths": 0.0,
+        "hold_failing_endpoints": 0.0,
+        "hold_total_endpoints": 192967.0,
+        "wpws": 0.0,
+        "tpws": 0.0,
+        "pulse_failing_endpoints": 0.0,
+        "pulse_total_endpoints": 81055.0
+      },
+      "dut": {
+        "part": "xcvu37p_CIV-fsvh2892-2L-e",
+        "dut_period": "14.286",
+        "dut_setup_wns": "0.419",
+        "dut_hold_whs": "0.010"
+      },
+      "resources": {
+        "CLB_LUT": {
+          "used": 378248,
+          "available": 1303680,
+          "percent": 29.01
+        },
+        "Logic_LUT": {
+          "used": 372342,
+          "available": 1303680,
+          "percent": 28.56
+        },
+        "LUTRAM": {
+          "used": 4958,
+          "available": null,
+          "percent": null
+        },
+        "SRL": {
+          "used": 948,
+          "available": null,
+          "percent": null
+        },
+        "FF": {
+          "used": 71330,
+          "available": 2607360,
+          "percent": 2.74
+        },
+        "DSP": {
+          "used": 288,
+          "available": 9024,
+          "percent": 3.19
+        },
+        "RAMB36": {
+          "used": 52,
+          "available": 2016,
+          "percent": 2.58
+        },
+        "RAMB18": {
+          "used": 0,
+          "available": 4032,
+          "percent": 0.0
+        }
+      },
+      "drc_counts": {
+        "DPIP-2": {
+          "severity": "Warning",
+          "count": 544
+        },
+        "DPOP-3": {
+          "severity": "Warning",
+          "count": 272
+        },
+        "DPOP-4": {
+          "severity": "Warning",
+          "count": 288
+        },
+        "REQP-1852": {
+          "severity": "Warning",
+          "count": 1
+        },
+        "RTSTAT-10": {
+          "severity": "Warning",
+          "count": 1
+        },
+        "CIVCHK-3": {
+          "severity": "Advisory",
+          "count": 1
+        },
+        "CIVCHK-4": {
+          "severity": "Advisory",
+          "count": 1
+        },
+        "REQP-1858": {
+          "severity": "Advisory",
+          "count": 22
+        }
+      },
+      "constraint_counts": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 30,
+        "no_input_delay": 1,
+        "no_output_delay": 0,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "unconstrained_endpoints": [
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/RREADY"
+      ],
+      "cdc_counts": {
+        "CDC-3": {
+          "severity": "Info",
+          "count": 77
+        },
+        "CDC-7": {
+          "severity": "Critical",
+          "count": 12
+        },
+        "CDC-8": {
+          "severity": "Warning",
+          "count": 1
+        },
+        "CDC-9": {
+          "severity": "Info",
+          "count": 22
+        },
+        "CDC-10": {
+          "severity": "Critical",
+          "count": 2
+        },
+        "CDC-11": {
+          "severity": "Critical",
+          "count": 16
+        },
+        "CDC-15": {
+          "severity": "Warning",
+          "count": 170
+        }
+      },
+      "route_summary": [
+        "# of logical nets.......................... :      838191 :",
+        "# of nets not needing routing.......... :      360589 :",
+        "# of internally routed nets........ :      314055 :",
+        "# of nets with no loads............ :       46534 :",
+        "# of routable nets..................... :      477602 :",
+        "# of fully routed nets............. :      477602 :",
+        "# of nets with routing errors.......... :           0 :"
+      ],
+      "exceptions_indications": {
+        "Invalid startpoint": 8,
+        "Non-existent path": 10
+      },
+      "report_hashes": {
+        "report/clocks.txt": "69eba1cba72781b355f44769a24d33f0f68f03190a60da7477a6da6f2920e502",
+        "report/complexity.txt": "b4b47ee3bfa24510d81362ef3e638ac1934abae68806983631c190b9f7c891e9",
+        "report/congestion.txt": "fc6ca464e51611ae343b7acd63ec3cce9891b3dc24d0b7919c1588c812594fd8",
+        "report/datasheet.txt": "b1db71a97afd8e3b4714ee2800d572787f9d4691d3d45e928aff698efc0af694",
+        "report/drc.txt": "d83b75cf781ab30071da0a32dbd89202b69bf28be964a3bf11c8dc6881753d5f",
+        "report/fanout.txt": "8e40cea00700d4db1f0101bf10d5c8204a9f594dee73f3e44b3cb58fe7420860",
+        "report/io.txt": "40ff0695d3620d7d4af9949722eb69ce88b689b45d914cbe657e1b97843b256f",
+        "report/power.txt": "84947c8f8bcef41ca744353e10dfc09db80fc9f5c0e545eae14bb08c679df4c3",
+        "report/route_status.txt": "a49c075a426771ad906542f7430ad4f7d88650dc6e7000a0e22c51b7b02429d2",
+        "report/timing.txt": "0ab182309713e9bbb212e4565aa4d925c880a60990d92921f9c16ab32fa91b26",
+        "report/utilization.txt": "e48bdfa9a3dd8f8f3b96118f87c69f34ebebd596fa03adaccbcfd534612f5952",
+        "report/utilization_flat.txt": "6d520a8dd9853fb3c820d45c190d1d63a476a09d3da5c093d128b8872f7b26ff",
+        "report/utilization_slr.txt": "bd24f76a6dede5cdf1397d28551d42f82c157ac0764f5dee263eaf2a37b2ed16",
+        "audit/bus_skew.txt": "9f019d102f20e10ac859a287c9b1fd8151c8724aa471f6a51704edbe2d7227e2",
+        "audit/cdc.txt": "82b9eefd67f535517409660799039d33555b9f6c5e8fcaa520d03352cfc60e84",
+        "audit/check_timing.txt": "24386483f441dd4b87e9e667291bd31211fab285f872f0d4011b133dfa11215a",
+        "audit/clock_interaction.txt": "54139f1baedca1a7cec6f2cbd76dc2ba35bb91935a5c6614dcd0ec96a012e4f1",
+        "audit/dsp_registers.tsv": "887032eeeadd78fc809af943647a6a2ace72f21cef8e17b79e20664cccf82b3c",
+        "audit/dut_hold_top100.txt": "7f73d97fdb1dc657b90f0244046b69fcebca4f0bbe3a0b203750394a232fac21",
+        "audit/dut_setup_top100.txt": "30c5e8bbd8fa78509c24e3e2a98b761d60f6cb5fe208cde71d034a3d39d10ff4",
+        "audit/exceptions.txt": "a5c45d2f59e01a25a79e7801a00f533f3c5ffaec106e3e574b4e8d63caadfb52",
+        "audit/fanout_top200.txt": "cdab7cbcfa9989bef588c61934fa4f9e689668abd3386a2c293c325c0d027a91",
+        "audit/post_synth_timing.txt": "19dec6ed539fb522c5328307c331e1faab6b5681a1415596963036f2b30e99fd",
+        "audit/post_synth_utilization.txt": "afa8c298557180463a1d31111b52e1a61f95c723966ce0a3bc1ef4e203b22921",
+        "audit/postroute_checkpoint.sha256": "ec8c62f00e73da5a2dbd5b7351b550dfb1cd57469c06d566c504e573955ec046",
+        "audit/run_properties.txt": "98922c071a042c5995ebb734710a66cd56ffd721c9f090c699682c7a100a46bd"
+      }
+    },
+    "new": {
+      "obj": "/tmp/ict-fsa-reproduce-20261028/a70/build-attempt02/A70/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj",
+      "dcp_sha256": "dcc05fd3cbcac572db83d743c3912a0747c59f530feb7512f72754557364215d",
+      "timing": {
+        "wns": 0.047,
+        "tns": 0.0,
+        "setup_failing_endpoints": 0.0,
+        "setup_total_endpoints": 192967.0,
+        "whs": 0.01,
+        "ths": 0.0,
+        "hold_failing_endpoints": 0.0,
+        "hold_total_endpoints": 192967.0,
+        "wpws": 0.0,
+        "tpws": 0.0,
+        "pulse_failing_endpoints": 0.0,
+        "pulse_total_endpoints": 81055.0
+      },
+      "dut": {
+        "part": "xcvu37p_CIV-fsvh2892-2L-e",
+        "dut_period": "14.286",
+        "dut_setup_wns": "0.419",
+        "dut_hold_whs": "0.010"
+      },
+      "resources": {
+        "CLB_LUT": {
+          "used": 378248,
+          "available": 1303680,
+          "percent": 29.01
+        },
+        "Logic_LUT": {
+          "used": 372342,
+          "available": 1303680,
+          "percent": 28.56
+        },
+        "LUTRAM": {
+          "used": 4958,
+          "available": null,
+          "percent": null
+        },
+        "SRL": {
+          "used": 948,
+          "available": null,
+          "percent": null
+        },
+        "FF": {
+          "used": 71330,
+          "available": 2607360,
+          "percent": 2.74
+        },
+        "DSP": {
+          "used": 288,
+          "available": 9024,
+          "percent": 3.19
+        },
+        "RAMB36": {
+          "used": 52,
+          "available": 2016,
+          "percent": 2.58
+        },
+        "RAMB18": {
+          "used": 0,
+          "available": 4032,
+          "percent": 0.0
+        }
+      },
+      "drc_counts": {
+        "DPIP-2": {
+          "severity": "Warning",
+          "count": 544
+        },
+        "DPOP-3": {
+          "severity": "Warning",
+          "count": 272
+        },
+        "DPOP-4": {
+          "severity": "Warning",
+          "count": 288
+        },
+        "REQP-1852": {
+          "severity": "Warning",
+          "count": 1
+        },
+        "RTSTAT-10": {
+          "severity": "Warning",
+          "count": 1
+        },
+        "CIVCHK-3": {
+          "severity": "Advisory",
+          "count": 1
+        },
+        "CIVCHK-4": {
+          "severity": "Advisory",
+          "count": 1
+        },
+        "REQP-1858": {
+          "severity": "Advisory",
+          "count": 22
+        }
+      },
+      "constraint_counts": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 30,
+        "no_input_delay": 1,
+        "no_output_delay": 0,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "unconstrained_endpoints": [
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/RREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/BREADY",
+        "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/RREADY"
+      ],
+      "cdc_counts": {
+        "CDC-3": {
+          "severity": "Info",
+          "count": 77
+        },
+        "CDC-7": {
+          "severity": "Critical",
+          "count": 12
+        },
+        "CDC-8": {
+          "severity": "Warning",
+          "count": 1
+        },
+        "CDC-9": {
+          "severity": "Info",
+          "count": 22
+        },
+        "CDC-10": {
+          "severity": "Critical",
+          "count": 2
+        },
+        "CDC-11": {
+          "severity": "Critical",
+          "count": 16
+        },
+        "CDC-15": {
+          "severity": "Warning",
+          "count": 170
+        }
+      },
+      "route_summary": [
+        "# of logical nets.......................... :      838191 :",
+        "# of nets not needing routing.......... :      360589 :",
+        "# of internally routed nets........ :      314055 :",
+        "# of nets with no loads............ :       46534 :",
+        "# of routable nets..................... :      477602 :",
+        "# of fully routed nets............. :      477602 :",
+        "# of nets with routing errors.......... :           0 :"
+      ],
+      "exceptions_indications": {
+        "Invalid startpoint": 8,
+        "Non-existent path": 10
+      },
+      "report_hashes": {
+        "report/clocks.txt": "78b67b152986c59b081835c94226ae3a9417a5ad1ed903eb72faba06a239892d",
+        "report/complexity.txt": "e3c34aaff718bc94d8c8f98b7e733c3c292a245ed9c8a7e247258be45a5dd63f",
+        "report/congestion.txt": "dafdcbb0497ae0147e14a309c8711c6d4c6dd36ed1e38d797efb6b4af6735cf4",
+        "report/datasheet.txt": "e5910efb84fe1966320ab6abc8a2513993fd57b5c9a3b823a76ac58995b72899",
+        "report/drc.txt": "a8a8d1b2e374e8670ad89a9264bd5e771e3d2cc557db4eaada0f50fb5caf70bf",
+        "report/fanout.txt": "6cf03b92e0184b117734cc10c29c4b435e49a1f69579c7894c5454a333473898",
+        "report/io.txt": "72cd10a108d2026e39968314e38c3b1c1d85e0f1aae279eb6381afdba96067f0",
+        "report/power.txt": "fa8bca925f04883c644301722fcda3db003c1a2bd3b90cca14a2b2f5fb182d4a",
+        "report/route_status.txt": "a49c075a426771ad906542f7430ad4f7d88650dc6e7000a0e22c51b7b02429d2",
+        "report/timing.txt": "343eebfc3eda4e91c7d4140083f16389582ff5ff33aa0f7d4d8b7a3f6169312b",
+        "report/utilization.txt": "671cff9e2d124ab7fe600df5c265ee5d3d5cf9799a787e1dcd0f15d798dd1490",
+        "report/utilization_flat.txt": "7ef3b466972f78cb1fdef6fce1fc04f915278ee65f6061c4940049e1f9767839",
+        "report/utilization_slr.txt": "7f41ef859b93f44a75617bef06172a0a775abe67bab4801223dc7eb3180e3b60",
+        "audit/bus_skew.txt": "3e05bdb64ceb7c8239adb4179a4a566f151c74ac415da673845b6cf77af5a660",
+        "audit/cdc.txt": "9f5c8ed90e38a4be9af845372ba92b4d762cff4247c749a0d04f95f22d081bb3",
+        "audit/check_timing.txt": "22253f4197344bab718a1484535a80db72ef5963ee9f53bbbb2f46bb72d9439e",
+        "audit/clock_interaction.txt": "b52945d95eaf34b124c345b10b52bfdbae7c270f0174ce866f2f99600845b013",
+        "audit/dsp_registers.tsv": "887032eeeadd78fc809af943647a6a2ace72f21cef8e17b79e20664cccf82b3c",
+        "audit/dut_hold_top100.txt": "dd2d2e98732a7a4b626e6f7e2796afaafa780f5811b89e810665baf7ef2707ff",
+        "audit/dut_setup_top100.txt": "733e63ddbe43321bd388781bfe261e7c6f9932894bd562626e08191abb2f8467",
+        "audit/exceptions.txt": "757ed9768010094b887cfe07f313e9a00a22dd6d0cc5b3da834984e5deabf2d3",
+        "audit/fanout_top200.txt": "ff39772aace4d3a2af248b6546e472802ebf5fd1121b960780f9794be9f168dc",
+        "audit/post_synth_timing.txt": "2fb7d6aa984886c4d460940cd304373e3c61265be05fb8e6117d77d37c3df4e0",
+        "audit/post_synth_utilization.txt": "378b887453bad29e4fa9c57e1863ef04ce588f62bd09ccc404f1bebefbd23d74",
+        "audit/postroute_checkpoint.sha256": "4dd9f9e651e12d26246146d97a9fa5217ce96c840c28193bf69d8148abd8ced7",
+        "audit/run_properties.txt": "98922c071a042c5995ebb734710a66cd56ffd721c9f090c699682c7a100a46bd"
+      }
+    },
+    "timing_deltas": {
+      "wns": 0.0,
+      "tns": 0.0,
+      "setup_failing_endpoints": 0.0,
+      "setup_total_endpoints": 0.0,
+      "whs": 0.0,
+      "ths": 0.0,
+      "hold_failing_endpoints": 0.0,
+      "hold_total_endpoints": 0.0,
+      "wpws": 0.0,
+      "tpws": 0.0,
+      "pulse_failing_endpoints": 0.0,
+      "pulse_total_endpoints": 0.0
+    },
+    "resource_deltas": {
+      "CLB_LUT": 0,
+      "Logic_LUT": 0,
+      "LUTRAM": 0,
+      "SRL": 0,
+      "FF": 0,
+      "DSP": 0,
+      "RAMB36": 0,
+      "RAMB18": 0
+    },
+    "constraint_counts_equal": true,
+    "unconstrained_endpoint_set_equal": true,
+    "cdc_counts_equal": true,
+    "exceptions_indication_counts_equal": true,
+    "scope": "Comparison of actual routed reports; identical counts alone do not constitute CDC/constraint acceptance."
+  },
+  "audit_body_comparison": {
+    "audit/cdc.txt": {
+      "body_equal": true,
+      "old_body_sha256": "e41c64536788ad3b62c3d557b82374fc282ae1727b053cd5e8beaa165807c85f",
+      "new_body_sha256": "e41c64536788ad3b62c3d557b82374fc282ae1727b053cd5e8beaa165807c85f"
+    },
+    "audit/check_timing.txt": {
+      "body_equal": true,
+      "old_body_sha256": "f1b10128c263cdf75958d2cdcc1eb7d825e8b53c8a54d8500781a851bf2c959d",
+      "new_body_sha256": "f1b10128c263cdf75958d2cdcc1eb7d825e8b53c8a54d8500781a851bf2c959d"
+    },
+    "audit/exceptions.txt": {
+      "body_equal": true,
+      "old_body_sha256": "c970ed396710398c0f370409d39527fb38a67e0e98076a607133107c8dbb0e1d",
+      "new_body_sha256": "c970ed396710398c0f370409d39527fb38a67e0e98076a607133107c8dbb0e1d"
+    },
+    "audit/bus_skew.txt": {
+      "body_equal": true,
+      "old_body_sha256": "509d4d1feeacba44bb9420ab8d18ab407014af61ef77416ac6421e9ccd1378d2",
+      "new_body_sha256": "509d4d1feeacba44bb9420ab8d18ab407014af61ef77416ac6421e9ccd1378d2"
+    }
+  },
+  "netlist_hbm_comparison": {
+    "hbm_endpoint_count": 30,
+    "hbm_structural_body_equal": true,
+    "hbm_ground_clock_net_count": 15,
+    "hbm_bready_fanin_bvalid_count": 15,
+    "hbm_rready_fanin_rvalid_count": 15,
+    "external_reset_body_equal": true,
+    "scope": "Completed attempt02 read-only diagnostics: 30 HBM endpoints, 15 grounded ACLKs, 182 CDC endpoints and CPLL selector objects. READY is not tied constant."
+  },
+  "additional_cdc_probe": {
+    "updated_utc": "2026-10-28T07:39:04.981217+00:00",
+    "dcp_sha256": "dcc05fd3cbcac572db83d743c3912a0747c59f530feb7512f72754557364215d",
+    "diagnostic_exit_code": 0,
+    "cdc_unique_endpoints": 182,
+    "all_requested_cdc_endpoints_observed": true,
+    "hbm": {
+      "endpoint_count": 30,
+      "ground_aclks": 15,
+      "bready_fanin_bvalid": 15,
+      "rready_fanin_rvalid": 15,
+      "body_equal_old": true
+    },
+    "external_reset_body_equal_old": true,
+    "cpll_selector_objects": {
+      "0": {
+        "start_count": 21,
+        "start_types": {
+          "FDCE": 18,
+          "CARRY8": 3
+        },
+        "end_count": 18,
+        "end_types": {
+          "FDRE": 18
+        }
+      },
+      "1": {
+        "start_count": 21,
+        "start_types": {
+          "FDCE": 18,
+          "CARRY8": 3
+        },
+        "end_count": 18,
+        "end_types": {
+          "FDRE": 18
+        }
+      },
+      "2": {
+        "start_count": 21,
+        "start_types": {
+          "FDCE": 18,
+          "CARRY8": 3
+        },
+        "end_count": 18,
+        "end_types": {
+          "FDRE": 18
+        }
+      },
+      "3": {
+        "start_count": 21,
+        "start_types": {
+          "FDCE": 18,
+          "CARRY8": 3
+        },
+        "end_count": 18,
+        "end_types": {
+          "FDRE": 18
+        }
+      },
+      "4": {
+        "start_count": 21,
+        "start_types": {
+          "FDCE": 18,
+          "CARRY8": 3
+        },
+        "end_count": 18,
+        "end_types": {
+          "FDRE": 18
+        }
+      },
+      "5": {
+        "start_count": 21,
+        "start_types": {
+          "FDCE": 18,
+          "CARRY8": 3
+        },
+        "end_count": 18,
+        "end_types": {
+          "FDRE": 18
+        }
+      },
+      "6": {
+        "start_count": 21,
+        "start_types": {
+          "FDCE": 18,
+          "CARRY8": 3
+        },
+        "end_count": 18,
+        "end_types": {
+          "FDRE": 18
+        }
+      },
+      "7": {
+        "start_count": 21,
+        "start_types": {
+          "FDCE": 18,
+          "CARRY8": 3
+        },
+        "end_count": 18,
+        "end_types": {
+          "FDRE": 18
+        }
+      }
+    },
+    "selected_endpoint_cell_attributes": {
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]/CLR": {
+        "cell_attributes": "1\n  object=pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]\n    REF_NAME=FDCE\n    ASYNC_REG=1\n    DONT_TOUCH=\n    LOC=SLICE_X218Y49\n    BEL=SLICEL.DFF2\n    INIT=1'b1"
+      },
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]/PRE": {
+        "cell_attributes": "1\n  object=pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]\n    REF_NAME=FDPE\n    ASYNC_REG=1\n    DONT_TOUCH=\n    LOC=SLICE_X223Y77\n    BEL=SLICEL.HFF2\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[0]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[0]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y95\n    BEL=SLICEL.DFF2\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[10]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[10]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y97\n    BEL=SLICEL.BFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[11]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[11]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y97\n    BEL=SLICEL.CFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[12]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[12]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y97\n    BEL=SLICEL.DFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[1]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[1]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.AFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[2]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[2]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.BFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[3]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[3]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.CFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[4]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[4]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.DFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[5]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[5]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.EFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[6]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[6]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.FFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[7]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[7]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.GFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[8]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[8]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.HFF\n    INIT=1'b0"
+      },
+      "wrangler/debounced_debounce/reg_0_reg[9]/CLR": {
+        "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[9]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y97\n    BEL=SLICEL.AFF\n    INIT=1'b0"
+      },
+      "wrangler/deglitched_deglitch/reg_0_reg/PRE": {
+        "cell_attributes": "1\n  object=wrangler/deglitched_deglitch/reg_0_reg\n    REF_NAME=FDPE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y95\n    BEL=SLICEL.EFF\n    INIT=1'b1"
+      },
+      "wrangler/nodeOut_reset_catcher_1/io_sync_reset_chain/output_chain/sync_2_reg/CLR": {
+        "cell_attributes": "1\n  object=wrangler/nodeOut_reset_catcher_1/io_sync_reset_chain/output_chain/sync_2_reg\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X187Y88\n    BEL=SLICEM.FFF\n    INIT=1'b0"
+      }
+    },
+    "files": {
+      "cdc_endpoint_cones.txt": "1ae7a83188ace2dfc1b099ce8ed90aeef72b005bcaa28b4cb105538132013539",
+      "exception_objects.txt": "156bef5d21c3028d7d9e6e1b480d08c76e1cef2545590079f84a3d3832974f4c",
+      "utilization_flat.txt": "1b9d095c0bd5c701ddb09a59b6ac496d0728ded450d4c9c5253c0cad3d6eb364",
+      "unused_hbm_pins.txt": "aec2a71cf84e6e9f29b7004ec0e1073557ec668f66c438c2ffe1338a03325684",
+      "context.txt": "f747a0c0d12809787ee7e66e539560a253ecd0d115603ee6d727b4d54d5d2ac5",
+      "external_reset.txt": "bc9ad2095d8bce6a2b1eee4773c0ed8396d57e13ec3aa927c9e0b58f309a7f90"
+    },
+    "scope": "Read-only structural diagnostics; all requested endpoints collected. No design/constraint mutation, no automatic CDC waiver, no bitstream or board test.",
+    "cpll_cdc_capture_rows": 144,
+    "cpll_cdc_capture_rows_false_path": 144
+  },
+  "board_tested": false,
+  "bitstream_exported": false,
+  "source_modified": false,
+  "source_final_state": {
+    "head": "8cc6b42536334892b88f6214f39d3afe5daa2504",
+    "porcelain": "",
+    "clean": true,
+    "status_stderr": "warning: unable to access 'behav/BramDwc/.gitignore': Too many levels of symbolic links\nwarning: unable to access 'synth/BramDwc/.gitignore': Too many levels of symbolic links\n",
+    "checked_utc": "2026-10-28T07:40:38.168443+00:00"
+  },
+  "execution_anomalies": [
+    {
+      "issue": "sandbox BootServerSocket rejected before Scala compilation",
+      "preserved": "source and build-attempt01",
+      "recovery": "new independent source-attempt02 and build-attempt02 under authorized execution permissions"
+    },
+    {
+      "issue": "temporary monitor wrapper EOF after native build success",
+      "native_build_completed_utc": "2026-10-28T05:34:19.385305+00:00",
+      "native_stage_receipt": "build-attempt02.ict-state/build.json",
+      "product_build_failed": false
+    },
+    {
+      "issue": "optional netlist diagnostic Vivado typed pin error",
+      "preserved": "netlist-review and logs/netlist-review.log",
+      "recovery": "new netlist-review-attempt02; exit0"
+    }
+  ]
+}

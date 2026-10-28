@@ -1,0 +1,121 @@
+{
+  "obj": "/tmp/ict-fsa-reproduce-20261028/a70/build-attempt02/A70/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj",
+  "checkpoint_sha256": "dcc05fd3cbcac572db83d743c3912a0747c59f530feb7512f72754557364215d",
+  "timing": {
+    "wns_ns": 0.047,
+    "tns_ns": 0.0,
+    "setup_failing": 0.0,
+    "setup_total": 192967.0,
+    "whs_ns": 0.01,
+    "ths_ns": 0.0,
+    "hold_failing": 0.0,
+    "hold_total": 192967.0,
+    "wpws_ns": 0.0,
+    "tpws_ns": 0.0,
+    "pulse_failing": 0.0,
+    "pulse_total": 81055.0
+  },
+  "dut": {
+    "part": "xcvu37p_CIV-fsvh2892-2L-e",
+    "dut_period": "14.286",
+    "dut_setup_wns": "0.419",
+    "dut_hold_whs": "0.010"
+  },
+  "resources": {
+    "Total LUTs": 378248,
+    "Logic LUTs": 372342,
+    "LUTRAMs": 4958,
+    "SRLs": 948,
+    "FFs": 71330,
+    "RAMB36": 52,
+    "RAMB18": 0,
+    "URAM": 0,
+    "DSP Blocks": 288
+  },
+  "utilization": {
+    "CLB LUTs": {
+      "used": 378248.0,
+      "available": 1303680.0,
+      "percent": 29.01
+    },
+    "CLB Registers": {
+      "used": 71330.0,
+      "available": 2607360.0,
+      "percent": 2.74
+    },
+    "Block RAM Tile": {
+      "used": 52.0,
+      "available": 2016.0,
+      "percent": 2.58
+    },
+    "DSPs": {
+      "used": 288.0,
+      "available": 9024.0,
+      "percent": 3.19
+    }
+  },
+  "constraint_coverage": {
+    "no_clock": 0,
+    "constant_clock": 0,
+    "pulse_width_clock": 0,
+    "unconstrained_internal_endpoints": 30,
+    "no_input_delay": 1,
+    "no_output_delay": 0,
+    "multiple_clock": 0,
+    "generated_clocks": 0,
+    "loops": 0,
+    "partial_input_delay": 0,
+    "partial_output_delay": 0,
+    "latch_loops": 0
+  },
+  "cdc_counts": {
+    "CDC-3": {
+      "severity": "Info",
+      "count": 77
+    },
+    "CDC-7": {
+      "severity": "Critical",
+      "count": 12
+    },
+    "CDC-8": {
+      "severity": "Warning",
+      "count": 1
+    },
+    "CDC-9": {
+      "severity": "Info",
+      "count": 22
+    },
+    "CDC-10": {
+      "severity": "Critical",
+      "count": 2
+    },
+    "CDC-11": {
+      "severity": "Critical",
+      "count": 16
+    },
+    "CDC-15": {
+      "severity": "Warning",
+      "count": 170
+    }
+  },
+  "route": {
+    "# of routable nets": 477602,
+    "# of fully routed nets": 477602,
+    "# of nets with routing errors": 0
+  },
+  "drc_error_or_critical": false,
+  "flat_utilization_source": "/tmp/ict-fsa-reproduce-20261028/a70/build-attempt02/A70/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/report/utilization_flat.txt",
+  "evidence_sha256": {
+    "report/timing.txt": "343eebfc3eda4e91c7d4140083f16389582ff5ff33aa0f7d4d8b7a3f6169312b",
+    "report/utilization.txt": "671cff9e2d124ab7fe600df5c265ee5d3d5cf9799a787e1dcd0f15d798dd1490",
+    "report/clocks.txt": "78b67b152986c59b081835c94226ae3a9417a5ad1ed903eb72faba06a239892d",
+    "report/route_status.txt": "a49c075a426771ad906542f7430ad4f7d88650dc6e7000a0e22c51b7b02429d2",
+    "report/drc.txt": "a8a8d1b2e374e8670ad89a9264bd5e771e3d2cc557db4eaada0f50fb5caf70bf",
+    "audit/run_properties.txt": "98922c071a042c5995ebb734710a66cd56ffd721c9f090c699682c7a100a46bd",
+    "audit/cdc.txt": "9f5c8ed90e38a4be9af845372ba92b4d762cff4247c749a0d04f95f22d081bb3",
+    "audit/check_timing.txt": "22253f4197344bab718a1484535a80db72ef5963ee9f53bbbb2f46bb72d9439e",
+    "audit/exceptions.txt": "757ed9768010094b887cfe07f313e9a00a22dd6d0cc5b3da834984e5deabf2d3",
+    "/tmp/ict-fsa-reproduce-20261028/a70/build-attempt02/A70/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/report/utilization_flat.txt": "7ef3b466972f78cb1fdef6fce1fc04f915278ee65f6061c4940049e1f9767839"
+  },
+  "scope": "Actual routed reports; does not declare CDC or board acceptance"
+}

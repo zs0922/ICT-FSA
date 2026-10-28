@@ -1,0 +1,23 @@
+[
+  {
+    "profile": "a70",
+    "obj": "/home/zhangsi/nm37-git-reproduce-fresh/a70-p3-build-java20-20261025-020151/A70/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj",
+    "reports_checked": 10,
+    "checkpoint_sha256": "a6f02be1703015255da8e1861b453e93adae9ce9e0fdd453dcb288af0d6a4878",
+    "unchanged": true
+  },
+  {
+    "profile": "a100",
+    "obj": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build/A100/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj",
+    "reports_checked": 9,
+    "checkpoint_sha256": "08698428f31fe5527a12775f12b2d8ed4ae6e9d166334227e05326be7d7a4165",
+    "unchanged": true
+  },
+  {
+    "profile": "a110",
+    "obj": "/home/zhangsi/nm37-git-reproduce-fresh/a110-build/A110/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj",
+    "reports_checked": 9,
+    "checkpoint_sha256": "f898b25717358b0e82cb6e7ea81a3c43cfcef12e53d194a505e5ce82fe7807b9",
+    "unchanged": true
+  }
+]

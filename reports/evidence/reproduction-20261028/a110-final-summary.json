@@ -1,0 +1,245 @@
+{
+  "profile": "A110/APB55",
+  "status": "full_reproduction_complete_with_unaccepted_CDC_findings",
+  "baseline_commit": "b595900e91bda33925f059ff585771ae5ecddfcd",
+  "fix_commit": "7deb8e3e9416f2f3d25df9d45a5f65fc38302cda",
+  "fix_author_repository": "/tmp/ict-fsa-reproduce-20261028/a110/fix-author",
+  "fix_branch": "codex/a110-reproduction-fix",
+  "fresh_builds": 2,
+  "functional_and_formal": "passed_both",
+  "six_fixed_regressions": "passed_both_bitwise_and_counters_equal_legacy_A110",
+  "extra_seq1024": {
+    "passed_both": true,
+    "execTime": 775904,
+    "mxBubble": 219217,
+    "mxActive": 601728,
+    "dmaActive": 141952,
+    "TestDriver_cycles": 7760097,
+    "scope": "magic memory simulator, not measured board runtime"
+  },
+  "board_RTL_original_fixed_byte_identical_files": 97,
+  "original_physical": {
+    "dut": {
+      "part": "xcvu37p_CIV-fsvh2892-2L-e",
+      "dut_period": "9.091",
+      "dut_setup_wns": "0.802",
+      "dut_hold_whs": "0.010"
+    },
+    "timing_summary": [
+      0.114,
+      0.0,
+      0.0,
+      265544.0,
+      0.01,
+      0.0,
+      0.0,
+      265544.0,
+      0.0,
+      0.0,
+      0.0,
+      148883.0
+    ],
+    "route": [
+      497569,
+      497569,
+      0
+    ],
+    "bus_skew_worst_ns": 2.596,
+    "reset_replication": {
+      "before_count": 2,
+      "replicated_count": 21,
+      "routed_count": 21,
+      "covered_endpoint_checks": 84,
+      "worst_endpoint_slack_ns": 0.259
+    },
+    "hbm_worst_timed_slack_ns": 0.066,
+    "check_timing": {
+      "no_clock": 0,
+      "constant_clock": 0,
+      "pulse_width_clock": 0,
+      "unconstrained_internal_endpoints": 30,
+      "no_input_delay": 1,
+      "no_output_delay": 0,
+      "multiple_clock": 0,
+      "generated_clocks": 0,
+      "loops": 0,
+      "partial_input_delay": 0,
+      "partial_output_delay": 0,
+      "latch_loops": 0
+    },
+    "source_commit": "b595900e91bda33925f059ff585771ae5ecddfcd",
+    "implementation_status": "complete_route_physical_gate_failed_pending_CDC_review",
+    "original_implement_failure_preserved": true,
+    "board_signoff": false,
+    "cdc": {
+      "critical_count": 25,
+      "warning_count": 171,
+      "new_findings_count": 36
+    },
+    "resources": {
+      "LUT": 355981,
+      "logic_LUT": 351247,
+      "LUTRAM": 3774,
+      "SRL": 960,
+      "FF": 140324,
+      "RAMB36": 60,
+      "RAMB18": 0,
+      "DSP": 288
+    },
+    "resource_percent": {
+      "LUT": 27.31,
+      "FF": 5.38,
+      "BRAM": 2.98,
+      "DSP": 3.19
+    },
+    "global_wns_type": "Recovery",
+    "global_wns_scope": "Vivado constrained maximum timing checks; positive recovery slack does not establish asynchronous-reset release safety",
+    "global_worst_max_paths": [
+      {
+        "slack": 0.114,
+        "source": "pcieResetControl/releaseSync/sync_reg[2]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg/PRE",
+        "path_type": "Recovery (Max at Slow Process Corner)",
+        "data_delay": "1.271ns  (logic 0.168ns (13.218%)  route 1.103ns (86.782%))",
+        "logic_levels": "2  (LUT2=1 LUT3=1)",
+        "path_group": "**async_default**"
+      },
+      {
+        "slack": 0.114,
+        "source": "pcieResetControl/releaseSync/sync_reg[2]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg/CLR",
+        "path_type": "Recovery (Max at Slow Process Corner)",
+        "data_delay": "1.272ns  (logic 0.168ns (13.208%)  route 1.104ns (86.792%))",
+        "logic_levels": "2  (LUT2=1 LUT3=1)",
+        "path_group": "**async_default**"
+      }
+    ]
+  },
+  "fixed_physical": {
+    "dut": {
+      "part": "xcvu37p_CIV-fsvh2892-2L-e",
+      "dut_period": "9.091",
+      "dut_setup_wns": "0.802",
+      "dut_hold_whs": "0.010"
+    },
+    "timing_summary": [
+      0.114,
+      0.0,
+      0.0,
+      265544.0,
+      0.01,
+      0.0,
+      0.0,
+      265544.0,
+      0.0,
+      0.0,
+      0.0,
+      148883.0
+    ],
+    "route": [
+      497569,
+      497569,
+      0
+    ],
+    "bus_skew_worst_ns": 2.596,
+    "reset_replication": {
+      "before_count": 2,
+      "replicated_count": 21,
+      "routed_count": 21,
+      "covered_endpoint_checks": 84,
+      "worst_endpoint_slack_ns": 0.259
+    },
+    "hbm_worst_timed_slack_ns": 0.066,
+    "check_timing": {
+      "no_clock": 0,
+      "constant_clock": 0,
+      "pulse_width_clock": 0,
+      "unconstrained_internal_endpoints": 30,
+      "no_input_delay": 1,
+      "no_output_delay": 0,
+      "multiple_clock": 0,
+      "generated_clocks": 0,
+      "loops": 0,
+      "partial_input_delay": 0,
+      "partial_output_delay": 0,
+      "latch_loops": 0
+    },
+    "source_commit": "7deb8e3e9416f2f3d25df9d45a5f65fc38302cda",
+    "implementation_status": "complete_route_physical_gate_failed_pending_CDC_review",
+    "original_implement_failure_preserved": true,
+    "board_signoff": false,
+    "cdc": {
+      "critical_count": 25,
+      "warning_count": 171,
+      "new_findings_count": 36
+    },
+    "resources": {
+      "LUT": 355981,
+      "logic_LUT": 351247,
+      "LUTRAM": 3774,
+      "SRL": 960,
+      "FF": 140324,
+      "RAMB36": 60,
+      "RAMB18": 0,
+      "DSP": 288
+    },
+    "resource_percent": {
+      "LUT": 27.31,
+      "FF": 5.38,
+      "BRAM": 2.98,
+      "DSP": 3.19
+    },
+    "global_wns_type": "Recovery",
+    "global_wns_scope": "Vivado constrained maximum timing checks; positive recovery slack does not establish asynchronous-reset release safety"
+  },
+  "native_implementation_acceptance": "failed_both_missing_accepted_CDC_review_preserved",
+  "original_reaudit": {
+    "vivado_exit": 0,
+    "report_files": 113,
+    "acceptance": "failed_initial_preserved"
+  },
+  "fixed_reaudit": "not_run_again_known_unresolved_CDC8; used separately bound native reports and read-only probe",
+  "probes": {
+    "original_exit": 0,
+    "fixed_exit": 0,
+    "pins_each": 332,
+    "original_DCP_sha256": "1d7cf7221b7785d45afb98ac49588efbeb0a1b2635d4590c4591d7e2db6e3268",
+    "fixed_DCP_sha256": "ee2a49e1a8b8a99e4d4028d43cc3ac3b6f90d75d0a19d1ac33f6f9a25e4fb794"
+  },
+  "CDC": {
+    "new_findings": 36,
+    "pending": 36,
+    "structural_explanations_only": 35,
+    "unresolved": "CDC-8 destination wrangler/nodeOut_reset_catcher_2/.../sync_2_reg has empty ASYNC_REG in both actual DCPs",
+    "original_independent_review": "/tmp/ict-fsa-reproduce-20261028/a70/a110-independent-review.json",
+    "peer_review_scope": "original only; fixed observations acquired separately, no automatic acceptance transfer"
+  },
+  "strict_CDC_accepted": false,
+  "board_signoff": false,
+  "bitstream_exported": false,
+  "pushed": false,
+  "source_status": {
+    "source-attempt02": {
+      "commit": "b595900e91bda33925f059ff585771ae5ecddfcd",
+      "tracked_status": "",
+      "tracked_clean": true,
+      "scope": "tracked worktree including gitlinks; full locked-input checks and stage seals separately recorded"
+    },
+    "source-fixed": {
+      "commit": "7deb8e3e9416f2f3d25df9d45a5f65fc38302cda",
+      "tracked_status": "",
+      "tracked_clean": true,
+      "scope": "tracked worktree including gitlinks; full locked-input checks and stage seals separately recorded"
+    }
+  },
+  "reports": [
+    "A110_REPRODUCTION.md",
+    "A110_CDC_CONSTRAINT_REVIEW.md"
+  ],
+  "evidence_roots": [
+    "evidence",
+    "netlist-original-review",
+    "netlist-fixed-review",
+    "reaudit-original-attempt01"
+  ]
+}

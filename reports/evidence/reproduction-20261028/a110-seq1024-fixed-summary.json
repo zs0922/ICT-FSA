@@ -1,0 +1,32 @@
+{
+  "bitwise_equal": true,
+  "shape": [
+    1024,
+    16
+  ],
+  "seed": 0,
+  "seq": 1024,
+  "array_rows": 16,
+  "binary_sha256": "03964e02f06d373908001b8ea4003946220f916b6a67c46b95aa135bdd4db9df",
+  "config_sha256": "3b77e28bea7f2f17713d60e3d048eb1c41174ab4f43e5f3780bd5755721ba013",
+  "actual_sha256": "b7f9f8ec3d9d6efc5f38c1f79b58ce911bb65a00f0b03f1e28a54d8fb2e9f131",
+  "expected_sha256": "b7f9f8ec3d9d6efc5f38c1f79b58ce911bb65a00f0b03f1e28a54d8fb2e9f131",
+  "input_sha256": {
+    "q": "4e7c29f0a904a2b27845fa3f728262c128de24113508758a9e9e1fea4863171a",
+    "k": "ba84cf0e9e1eec5820db2dd0d4a6a1bb956d4dc601f41fd7ab72e26492ee6f5a",
+    "v": "897aa7ef8ca074481178090d84a6937db27a92bf9bf0e3694d5bfefbb1dcba14"
+  },
+  "counters": {
+    "dmaActive": 141952,
+    "dmaInst": 8320,
+    "execTime": 775904,
+    "fence": 1,
+    "mxActive": 601728,
+    "mxBubble": 219217,
+    "mxInst": 12416,
+    "rawInst": 70529
+  },
+  "original_counter_match": true,
+  "original_output_match": true,
+  "scope": "Functional magic-memory simulation, not board timing"
+}

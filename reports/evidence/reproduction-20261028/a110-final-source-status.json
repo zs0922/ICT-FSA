@@ -1,0 +1,14 @@
+{
+  "source-attempt02": {
+    "commit": "b595900e91bda33925f059ff585771ae5ecddfcd",
+    "tracked_status": "",
+    "tracked_clean": true,
+    "scope": "tracked worktree including gitlinks; full locked-input checks and stage seals separately recorded"
+  },
+  "source-fixed": {
+    "commit": "7deb8e3e9416f2f3d25df9d45a5f65fc38302cda",
+    "tracked_status": "",
+    "tracked_clean": true,
+    "scope": "tracked worktree including gitlinks; full locked-input checks and stage seals separately recorded"
+  }
+}

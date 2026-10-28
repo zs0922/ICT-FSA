@@ -1,0 +1,16 @@
+{
+  "checkpoint_sha256": "ee2a49e1a8b8a99e4d4028d43cc3ac3b6f90d75d0a19d1ac33f6f9a25e4fb794",
+  "queried_unique_endpoints": 332,
+  "cdc8_endpoint": "wrangler/nodeOut_reset_catcher_2/io_sync_reset_chain/output_chain/sync_2_reg/CLR",
+  "cdc8_async_reg_empty": true,
+  "strict_cdc_accepted": false,
+  "files": {
+    "cdc_endpoint_cones.txt": "a65861959399968e047ad4ec3b67b8397d1496685913ed23656cb6ec31022341",
+    "exception_objects.txt": "e01c397382f88864a38e3e6410a3fed43ba06c445c60b1a67f786784e103b351",
+    "utilization_flat.txt": "1071beaf5cdae5d41d9f8cee8f2174a9dc5e8733110f148183998238d0a4225b",
+    "unused_hbm_pins.txt": "a537ac96044bace801763616318eeef1271719e1d9945d61b1a55ad304f93de9",
+    "context.txt": "586625d56c6297c96cd0bba3eac637516b9363380de56005225b4e83c41448bb",
+    "external_reset.txt": "75b4eae9a6318b3a2e635a04612d381f96a860ab09b3b8e1155bfe4d68c68ae4"
+  },
+  "scope": "Root independently checked fixed DCP identity, endpoint count and actual missing ASYNC_REG; not full CDC signoff"
+}

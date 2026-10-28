@@ -1,0 +1,936 @@
+{
+  "build": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01",
+  "probe": "/tmp/ict-fsa-reproduce-20261028/a100/netlist-review-fixed",
+  "probe_exit": 0,
+  "dcp_sha256": "1e1fc9f7fbf88035fae084cbf21c935c0f8d9b6d2be9bf36a1beeb8036f9592e",
+  "hbm": {
+    "endpoint_count": 30,
+    "ground_clock_count": 15,
+    "observed_endpoints_marker": true,
+    "endpoints": [
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/BREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      },
+      {
+        "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/RREADY",
+        "data_net_type": "SIGNAL",
+        "fanin_same_macro_valid_pipe": true
+      }
+    ]
+  },
+  "cdc": {
+    "CDC-8": [
+      {
+        "source": "wrangler/deglitched_deglitch/reg_0_reg/C",
+        "destination": "wrangler/nodeOut_reset_catcher_1/io_sync_reset_chain/output_chain/sync_2_reg/CLR",
+        "depth_reported": 3,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X157Y54",
+          "BEL": "SLICEM.FFF",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "_pcie_io_clocks_axi_aclk"
+        ],
+        "fanin_startpoints": [
+          "wrangler/deglitched_deglitch/reg_0_reg/C"
+        ]
+      }
+    ],
+    "CDC-7": [
+      {
+        "source": "prst_n",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg/PRE",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDPE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X220Y30",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b1"
+        },
+        "clocks": [
+          "_pcie_io_clocks_axi_aclk"
+        ],
+        "fanin_startpoints": [
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n",
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+        ]
+      },
+      {
+        "source": "prst_n",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg/CLR",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X217Y43",
+          "BEL": "SLICEM.EFF",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "_pcie_io_clocks_axi_aclk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK",
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n"
+        ]
+      },
+      {
+        "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg/PRE",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDPE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X220Y30",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b1"
+        },
+        "clocks": [
+          "_pcie_io_clocks_axi_aclk"
+        ],
+        "fanin_startpoints": [
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n",
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+        ]
+      },
+      {
+        "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg/CLR",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X217Y43",
+          "BEL": "SLICEM.EFF",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "_pcie_io_clocks_axi_aclk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK",
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "destination": "wrangler/deglitched_deglitch/reg_0_reg/PRE",
+        "depth_reported": 0,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDPE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X156Y53",
+          "BEL": "SLICEM.EFF",
+          "INIT": "1'b1"
+        },
+        "clocks": [
+          "clk_out1_harnessSysPLL"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "harnessSysPLL/inst/mmcme4_adv_inst/LOCKED"
+        ]
+      },
+      {
+        "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "destination": "wrangler/deglitched_deglitch/reg_0_reg/PRE",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDPE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X156Y53",
+          "BEL": "SLICEM.EFF",
+          "INIT": "1'b1"
+        },
+        "clocks": [
+          "clk_out1_harnessSysPLL"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "harnessSysPLL/inst/mmcme4_adv_inst/LOCKED"
+        ]
+      },
+      {
+        "source": "prst_n",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]/CLR",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X220Y32",
+          "BEL": "SLICEM.EFF",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "pipe_clk"
+        ],
+        "fanin_startpoints": [
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n",
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+        ]
+      },
+      {
+        "source": "prst_n",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]/CLR",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X220Y32",
+          "BEL": "SLICEM.EFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "pipe_clk"
+        ],
+        "fanin_startpoints": [
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n",
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+        ]
+      },
+      {
+        "source": "prst_n",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg/CLR",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X220Y32",
+          "BEL": "SLICEM.DFF",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "pipe_clk"
+        ],
+        "fanin_startpoints": [
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n",
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+        ]
+      },
+      {
+        "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]/CLR",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X220Y32",
+          "BEL": "SLICEM.EFF",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "pipe_clk"
+        ],
+        "fanin_startpoints": [
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n",
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+        ]
+      },
+      {
+        "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]/CLR",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X220Y32",
+          "BEL": "SLICEM.EFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "pipe_clk"
+        ],
+        "fanin_startpoints": [
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n",
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+        ]
+      },
+      {
+        "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg/CLR",
+        "depth_reported": 0,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X220Y32",
+          "BEL": "SLICEM.DFF",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "pipe_clk"
+        ],
+        "fanin_startpoints": [
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n",
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+        ]
+      }
+    ],
+    "CDC-10": [
+      {
+        "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]/CLR",
+        "depth_reported": 3,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X217Y43",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b1"
+        },
+        "clocks": [
+          "_pcie_io_clocks_axi_aclk"
+        ],
+        "fanin_startpoints": [
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n",
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+        ]
+      },
+      {
+        "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]/PRE",
+        "depth_reported": 3,
+        "exception": "False Path",
+        "cell": {
+          "REF_NAME": "FDPE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X206Y42",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "_pcie_io_clocks_axi_aclk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK",
+          "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+          "prst_n"
+        ]
+      }
+    ],
+    "CDC-11": [
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[0].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X230Y230",
+          "BEL": "SLICEM.HFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[0].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X227Y202",
+          "BEL": "SLICEM.HFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[1].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X230Y230",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[1].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X229Y202",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[2].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X228Y198",
+          "BEL": "SLICEL.HFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[2].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X228Y200",
+          "BEL": "SLICEL.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[3].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X228Y198",
+          "BEL": "SLICEL.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[3].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X232Y193",
+          "BEL": "SLICEM.GFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[4].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X232Y156",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[4].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X231Y202",
+          "BEL": "SLICEL.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[5].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X232Y145",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[5].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X229Y148",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[6].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X230Y131",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[6].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X229Y134",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[7].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X231Y129",
+          "BEL": "SLICEL.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+        ]
+      },
+      {
+        "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+        "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[7].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+        "depth_reported": 4,
+        "exception": "Asynch Clock Groups",
+        "cell": {
+          "REF_NAME": "FDRE",
+          "ASYNC_REG": "1",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X232Y122",
+          "BEL": "SLICEM.DFF2",
+          "INIT": "1'b0"
+        },
+        "clocks": [
+          "xdma_ref_clk"
+        ],
+        "fanin_startpoints": [
+          "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+        ]
+      }
+    ]
+  },
+  "cdc_selected_endpoint_count": 170,
+  "cpll_exception_objects": [
+    {
+      "lane": 0,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    {
+      "lane": 1,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    {
+      "lane": 2,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    {
+      "lane": 3,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    {
+      "lane": 4,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    {
+      "lane": 5,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    {
+      "lane": 6,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    {
+      "lane": 7,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_types": {
+        "FDRE": 18
+      }
+    }
+  ],
+  "obsolete_addr_target_count": 0,
+  "actual_addr_cell_count": 10,
+  "prst_n": {
+    "endpoint_count": 16,
+    "endpoints": [
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[1]",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_ff_reg",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_ff1_reg",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[1]",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_reg",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_i_reg[2]",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_i_reg[1]",
+      "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_i_reg[0]"
+    ]
+  },
+  "scope": "structural evidence only; no implicit full CDC or board signoff",
+  "files_sha256": {
+    "cdc_endpoint_cones.txt": "a5390c74f2f0bcac6e89c0a7b773120dc277ef91d3422e7d3f43c6ded2deb9db",
+    "exception_objects.txt": "3a39f49ef884293ea1fb226847898e4e2acef1d6495575048acae5bd64ab762c",
+    "utilization_flat.txt": "a7d065f0dc0e8856a28babef57125b4602dfaf1015d56c3a76b1885c429de077",
+    "unused_hbm_pins.txt": "a1561ba9c8588a798881877babe1053163fc52c534d12865bedcfec844acd415",
+    "context.txt": "93a5fac41ae8fdd7914216dbaef1b9392343e9ae2b4476eafa20ebd6c8c7b4a2",
+    "external_reset.txt": "bc9ad2095d8bce6a2b1eee4773c0ed8396d57e13ec3aa927c9e0b58f309a7f90"
+  }
+}

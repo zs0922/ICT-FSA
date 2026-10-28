@@ -1,0 +1,10 @@
+{
+  "reaudit": "/tmp/ict-fsa-reproduce-20261028/a110/reaudit-original-attempt01",
+  "checkpoint_sha256": "1d7cf7221b7785d45afb98ac49588efbeb0a1b2635d4590c4591d7e2db6e3268",
+  "report_count": 113,
+  "original_report_count": 118,
+  "execution_exit_code": 0,
+  "original_artifacts_preserved": true,
+  "strict_cdc_accepted": false,
+  "scope": "Recomputed report/input/DCP hashes; independent read-only report generation, not CDC acceptance"
+}

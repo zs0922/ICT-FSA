@@ -1,0 +1,7 @@
+{
+  "partial_log_check": false,
+  "log": "/tmp/ict-fsa-reproduce-20261028/a110/build-fixed-attempt01/A110/implementation.log",
+  "log_sha256": "ebc67658dfe49a8d778ab29472e9b79d46b70cf3a8ca8a8681dc198e1e4b7249",
+  "Common17_55_count": 0,
+  "fixed_original_CDC_pin_sets_equal": true
+}

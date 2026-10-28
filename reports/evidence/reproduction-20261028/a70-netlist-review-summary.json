@@ -1,0 +1,169 @@
+{
+  "updated_utc": "2026-10-28T07:39:04.981217+00:00",
+  "dcp_sha256": "dcc05fd3cbcac572db83d743c3912a0747c59f530feb7512f72754557364215d",
+  "diagnostic_exit_code": 0,
+  "cdc_unique_endpoints": 182,
+  "all_requested_cdc_endpoints_observed": true,
+  "hbm": {
+    "endpoint_count": 30,
+    "ground_aclks": 15,
+    "bready_fanin_bvalid": 15,
+    "rready_fanin_rvalid": 15,
+    "body_equal_old": true
+  },
+  "external_reset_body_equal_old": true,
+  "cpll_selector_objects": {
+    "0": {
+      "start_count": 21,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_count": 18,
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    "1": {
+      "start_count": 21,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_count": 18,
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    "2": {
+      "start_count": 21,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_count": 18,
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    "3": {
+      "start_count": 21,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_count": 18,
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    "4": {
+      "start_count": 21,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_count": 18,
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    "5": {
+      "start_count": 21,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_count": 18,
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    "6": {
+      "start_count": 21,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_count": 18,
+      "end_types": {
+        "FDRE": 18
+      }
+    },
+    "7": {
+      "start_count": 21,
+      "start_types": {
+        "FDCE": 18,
+        "CARRY8": 3
+      },
+      "end_count": 18,
+      "end_types": {
+        "FDRE": 18
+      }
+    }
+  },
+  "selected_endpoint_cell_attributes": {
+    "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]/CLR": {
+      "cell_attributes": "1\n  object=pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]\n    REF_NAME=FDCE\n    ASYNC_REG=1\n    DONT_TOUCH=\n    LOC=SLICE_X218Y49\n    BEL=SLICEL.DFF2\n    INIT=1'b1"
+    },
+    "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]/PRE": {
+      "cell_attributes": "1\n  object=pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]\n    REF_NAME=FDPE\n    ASYNC_REG=1\n    DONT_TOUCH=\n    LOC=SLICE_X223Y77\n    BEL=SLICEL.HFF2\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[0]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[0]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y95\n    BEL=SLICEL.DFF2\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[10]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[10]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y97\n    BEL=SLICEL.BFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[11]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[11]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y97\n    BEL=SLICEL.CFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[12]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[12]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y97\n    BEL=SLICEL.DFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[1]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[1]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.AFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[2]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[2]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.BFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[3]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[3]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.CFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[4]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[4]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.DFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[5]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[5]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.EFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[6]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[6]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.FFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[7]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[7]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.GFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[8]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[8]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y96\n    BEL=SLICEL.HFF\n    INIT=1'b0"
+    },
+    "wrangler/debounced_debounce/reg_0_reg[9]/CLR": {
+      "cell_attributes": "1\n  object=wrangler/debounced_debounce/reg_0_reg[9]\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y97\n    BEL=SLICEL.AFF\n    INIT=1'b0"
+    },
+    "wrangler/deglitched_deglitch/reg_0_reg/PRE": {
+      "cell_attributes": "1\n  object=wrangler/deglitched_deglitch/reg_0_reg\n    REF_NAME=FDPE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X185Y95\n    BEL=SLICEL.EFF\n    INIT=1'b1"
+    },
+    "wrangler/nodeOut_reset_catcher_1/io_sync_reset_chain/output_chain/sync_2_reg/CLR": {
+      "cell_attributes": "1\n  object=wrangler/nodeOut_reset_catcher_1/io_sync_reset_chain/output_chain/sync_2_reg\n    REF_NAME=FDCE\n    ASYNC_REG=\n    DONT_TOUCH=\n    LOC=SLICE_X187Y88\n    BEL=SLICEM.FFF\n    INIT=1'b0"
+    }
+  },
+  "files": {
+    "cdc_endpoint_cones.txt": "1ae7a83188ace2dfc1b099ce8ed90aeef72b005bcaa28b4cb105538132013539",
+    "exception_objects.txt": "156bef5d21c3028d7d9e6e1b480d08c76e1cef2545590079f84a3d3832974f4c",
+    "utilization_flat.txt": "1b9d095c0bd5c701ddb09a59b6ac496d0728ded450d4c9c5253c0cad3d6eb364",
+    "unused_hbm_pins.txt": "aec2a71cf84e6e9f29b7004ec0e1073557ec668f66c438c2ffe1338a03325684",
+    "context.txt": "f747a0c0d12809787ee7e66e539560a253ecd0d115603ee6d727b4d54d5d2ac5",
+    "external_reset.txt": "bc9ad2095d8bce6a2b1eee4773c0ed8396d57e13ec3aa927c9e0b58f309a7f90"
+  },
+  "scope": "Read-only structural diagnostics; all requested endpoints collected. No design/constraint mutation, no automatic CDC waiver, no bitstream or board test.",
+  "cpll_cdc_capture_rows": 144,
+  "cpll_cdc_capture_rows_false_path": 144
+}

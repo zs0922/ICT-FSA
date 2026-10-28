@@ -1,0 +1,3845 @@
+{
+  "profile": "A100",
+  "updated_utc": "2026-10-28T07:45:26.995279+00:00",
+  "scope": "independent source compilation, unit/formal checks, RTL simulation, full routed constrained STA and structural CDC review; no board test",
+  "board_signoff": false,
+  "bitstream_exported": false,
+  "pushed": false,
+  "runs": {
+    "original": {
+      "source_commit": "f8650f9576bf681bfae38a2ab40718fc2ace4262",
+      "source": "/tmp/ict-fsa-reproduce-20261028/a100/source-attempt02",
+      "build": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02",
+      "build_record_sha256": "4d9f3903a6b30100f2bb4b8e0ccad6cac1920e6e792e9cb696fc4b6f3ebdf869",
+      "input_lock_sha256": "0b23fd8831ed0aad3d54c3a3709cfc1bfacf13330248b00476d077fabee8fed9",
+      "generator_sha256": "fecfdcacc52afccdbaa6ad04fa302113ff3e1be578a39acef7ead4112612c22b",
+      "tracked_source_clean": true,
+      "phases": {
+        "sim16": {
+          "artifacts": {
+            "sim16/generated-src/chipyard.harness.TestHarness.AXI4FSA16X16Fp16Config/chipyard.harness.TestHarness.AXI4FSA16X16Fp16Config.FSAConfig.json": "3b77e28bea7f2f17713d60e3d048eb1c41174ab4f43e5f3780bd5755721ba013",
+            "sim16/simulator": "aac238be995f0c4cc622f029faa9067e3217a56f2b5896eabf91c7d7ad7f5281"
+          },
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "sim",
+              "16"
+            ]
+          ],
+          "finished_utc": "2026-10-28T05:51:33.686995+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02.ict-state/sim16-0.log"
+          ],
+          "started_utc": "2026-10-28T05:49:12.710198+00:00",
+          "status": "completed"
+        },
+        "build": {
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "prepare"
+            ]
+          ],
+          "finished_utc": "2026-10-28T05:41:25.940531+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02.ict-state/build-0.log"
+          ],
+          "started_utc": "2026-10-28T05:37:03.061645+00:00",
+          "status": "completed"
+        },
+        "source": {
+          "commit": "f8650f9576bf681bfae38a2ab40718fc2ace4262",
+          "profile": "A100",
+          "profile_sha256": "0f1812822975da59a228b9e5d9ca41f08a2be4b369b3dc698026adb1b1f9bee0"
+        },
+        "implement": {
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "implement"
+            ]
+          ],
+          "finished_utc": "2026-10-28T07:04:36.809507+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02.ict-state/implement-0.log"
+          ],
+          "routed_artifact_scope": "produced by this implementation attempt; backend completion/CDC acceptance remains separate",
+          "routed_artifacts": {
+            "A100/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.FSAConfig.json": "d8c3330d60ee335601401365e6fa4de774b53bb099dccc0afd464048b262a6ba",
+            "A100/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/post_route.dcp": "5420a3f09a23b726ad749f158d8b138440884022b3d3709b4b17aff59ff3874d"
+          },
+          "started_utc": "2026-10-28T05:53:47.884364+00:00",
+          "status": "completed"
+        },
+        "elaborate": {
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "elaborate"
+            ]
+          ],
+          "finished_utc": "2026-10-28T05:53:22.664595+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02.ict-state/elaborate-0.log"
+          ],
+          "started_utc": "2026-10-28T05:52:06.392185+00:00",
+          "status": "completed"
+        },
+        "sim8": {
+          "artifacts": {
+            "sim8/generated-src/chipyard.harness.TestHarness.AXI4FSA8X8Fp16Config/chipyard.harness.TestHarness.AXI4FSA8X8Fp16Config.FSAConfig.json": "ab9ca0fc111826d2d8f8ef7c4109feca6a5c27e7cf774d434faad85ef47aed21",
+            "sim8/simulator": "5f73c8d7316ccde0388aeba32448891e96803ece8c7310b91db0670fe4c8715f"
+          },
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "sim",
+              "8"
+            ]
+          ],
+          "finished_utc": "2026-10-28T05:49:00.166622+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02.ict-state/sim8-0.log"
+          ],
+          "started_utc": "2026-10-28T05:47:29.555236+00:00",
+          "status": "completed"
+        },
+        "verify": {
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "units"
+            ],
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "formal"
+            ]
+          ],
+          "finished_utc": "2026-10-28T05:45:17.337399+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02.ict-state/verify-0.log",
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02.ict-state/verify-1.log"
+          ],
+          "started_utc": "2026-10-28T05:41:44.836505+00:00",
+          "status": "completed"
+        },
+        "sim4": {
+          "artifacts": {
+            "sim4/generated-src/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config.FSAConfig.json": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+            "sim4/simulator": "1cee285288b6f4a7c5aaa35a0b04981527a2dea26f2339ce6dc7c22a29f5c105"
+          },
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "sim",
+              "4"
+            ]
+          ],
+          "finished_utc": "2026-10-28T05:47:10.595000+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02.ict-state/sim4-0.log"
+          ],
+          "started_utc": "2026-10-28T05:45:40.067991+00:00",
+          "status": "completed"
+        }
+      },
+      "formal_proofs": [
+        {
+          "proof_type": "cmpeq",
+          "top": "PipelineCmpMaxMiter",
+          "all_inputs_equivalent": true,
+          "exit_code": 0,
+          "scope": "all combinational input bit patterns",
+          "method": "combinational SAT",
+          "input_constraints": [],
+          "initial_state_constraints": [],
+          "sat_command": "sat -verify -prove io_mismatch 0 -show-inputs -show-outputs -dump_json counterexample.json -dump_vcd counterexample.vcd",
+          "elapsed_seconds": 0.3038478360103909,
+          "proof_script_sha256": "23f5525a493723b38c653792ce05e8299fefa4e570389b8ac149117ce43287a1",
+          "proof_log_sha256": "1e27193ef4e9944e7a0eee2af7867e6c4c7767abe611363ea2b790e99ce2acae",
+          "driver_sha256": "829c07ab12e05d45b3cf5fa9a138ade1a1de7c51138b148b5843a1d83a27affc",
+          "proof_input_directory": "formal/proof-inputs/cmpmax",
+          "rtl_sha256": {
+            "PipelineCmpMaxMiter.sv": "7574bb0c661b09c0d03188ac7b6060bd71d93047609d2a4ab13d85ff6341803b"
+          },
+          "gold": "afterAdd=false",
+          "gate": "afterAdd=true"
+        },
+        {
+          "proof_type": "cmpseq",
+          "top": "PipelineCmpMiter",
+          "all_inputs_equivalent": true,
+          "exit_code": 0,
+          "scope": "all cycles after one pipeline transition",
+          "method": "temporal induction from unconstrained initial state",
+          "input_constraints": [],
+          "initial_state_constraints": [],
+          "sat_command": "sat -verify -prove io_mismatch 0 -show-inputs -show-outputs -seq 1 -tempinduct -maxsteps 4 -dump_json counterexample.json -dump_vcd counterexample.vcd",
+          "elapsed_seconds": 2.934061206993647,
+          "proof_script_sha256": "bdc4056415379e23dd08d8c76fb0f8d82cd5beeaf87304325c7a8062db10ead5",
+          "proof_log_sha256": "ba19fd030ac594996d9cb2c50ef7629519e448e3ac95fabc89847260bd0fe851",
+          "driver_sha256": "829c07ab12e05d45b3cf5fa9a138ade1a1de7c51138b148b5843a1d83a27affc",
+          "proof_input_directory": "formal/proof-inputs/cmp",
+          "rtl_sha256": {
+            "PipelineCmpMiter.sv": "dc77116140c550eefd2de0c7308c7e85fed3366da8f8ac8e26ade93359ce49e7"
+          },
+          "gold": "afterAdd=false",
+          "gate": "afterAdd=true"
+        },
+        {
+          "proof_type": "macseq",
+          "top": "PipelineMacMiter",
+          "all_inputs_equivalent": true,
+          "exit_code": 0,
+          "scope": "all cycles after one pipeline transition",
+          "method": "temporal induction from unconstrained initial state",
+          "input_constraints": [],
+          "initial_state_constraints": [],
+          "sat_command": "sat -verify -prove io_mismatch 0 -show-inputs -show-outputs -seq 1 -tempinduct -maxsteps 4 -dump_json counterexample.json -dump_vcd counterexample.vcd",
+          "elapsed_seconds": 3.2437440159992548,
+          "proof_script_sha256": "a55263f230b13cfc33e1719f5535348d51c81d1dfa0a95afdb0b8c44c4d661b3",
+          "proof_log_sha256": "2b3a57eeb33334d6f8cd5bb36e09cc0ab6c0e2f1c1b1a34e47561dae963c1885",
+          "driver_sha256": "829c07ab12e05d45b3cf5fa9a138ade1a1de7c51138b148b5843a1d83a27affc",
+          "proof_input_directory": "formal/proof-inputs/mac",
+          "rtl_sha256": {
+            "PipelineMacMiter.sv": "72d0b28dec1252776fb438f5ed9fe017823e39fa4a24e7337189175258090545"
+          },
+          "gold": "afterAdd=false",
+          "gate": "afterAdd=true"
+        }
+      ],
+      "simulations": [
+        {
+          "bitwise_equal": true,
+          "shape": [
+            4,
+            4
+          ],
+          "actual_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+          "expected_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+          "seed": 0,
+          "seq": 4,
+          "array": 4,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim4/seq4/result.json",
+          "result_sha256": "4cad03bdd8fa7b8f99f6602dfade32a1ff92c7339ddd627a31b7bdfa1c8808fe",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim4/seq4/test.log",
+          "counter_log_sha256": "9e51114c53526a618e09b1b4c9900d8ecd92e53ab64b5fdba56cebbfb4312fe0",
+          "counters": {
+            "dmaActive": 16,
+            "dmaInst": 4,
+            "execTime": 368,
+            "fence": 1,
+            "mxActive": 162,
+            "mxBubble": 153,
+            "mxInst": 5,
+            "rawInst": 32
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            8,
+            4
+          ],
+          "actual_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+          "expected_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+          "seed": 0,
+          "seq": 8,
+          "array": 4,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim4/seq8/result.json",
+          "result_sha256": "767204762b5c2ee3702bbedc63159518e3b875a7373de6e90a5ee34fcb5e9385",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim4/seq8/test.log",
+          "counter_log_sha256": "bef169588edf97b0819308f23961ca7b5d6cb1d2fa36712525c6d294d2c30a9f",
+          "counters": {
+            "dmaActive": 48,
+            "dmaInst": 12,
+            "execTime": 1083,
+            "fence": 1,
+            "mxActive": 464,
+            "mxBubble": 646,
+            "mxInst": 16,
+            "rawInst": 97
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            8,
+            8
+          ],
+          "actual_sha256": "3153831639ec49f9fdbee68e9f8f0d06b3b34d7ad83d29f5f7776a0c5d051162",
+          "expected_sha256": "3153831639ec49f9fdbee68e9f8f0d06b3b34d7ad83d29f5f7776a0c5d051162",
+          "seed": 0,
+          "seq": 8,
+          "array": 8,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim8/seq8/result.json",
+          "result_sha256": "7724fa427c7647a07c55b5819bc85709cd9f09a46a9d1118ad51a3c52db031e8",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim8/seq8/test.log",
+          "counter_log_sha256": "eb5e50b97809e03a6214633bbad5a933e5c66943de00e111d8f196c979044e1b",
+          "counters": {
+            "dmaActive": 40,
+            "dmaInst": 4,
+            "execTime": 385,
+            "fence": 1,
+            "mxActive": 210,
+            "mxBubble": 134,
+            "mxInst": 5,
+            "rawInst": 32
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            16,
+            8
+          ],
+          "actual_sha256": "b1ec74fcd3ba3977be92ada2a5751f826838aec5b6bf5d95a191636110396b92",
+          "expected_sha256": "b1ec74fcd3ba3977be92ada2a5751f826838aec5b6bf5d95a191636110396b92",
+          "seed": 0,
+          "seq": 16,
+          "array": 8,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim8/seq16/result.json",
+          "result_sha256": "52cd2d4c537a2bb4254e5a1cc4b51e23c33dbab1a36b95efb911cfb4f94d6c5d",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim8/seq16/test.log",
+          "counter_log_sha256": "06fbb0fda80dcd9755e988aaeaf7e6820794c619a459c2243c4d92770484f5a0",
+          "counters": {
+            "dmaActive": 116,
+            "dmaInst": 12,
+            "execTime": 1100,
+            "fence": 1,
+            "mxActive": 642,
+            "mxBubble": 535,
+            "mxInst": 16,
+            "rawInst": 97
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            16,
+            16
+          ],
+          "actual_sha256": "8301342a7ede27a230080c6aa86ec4f393e99b421cab234ac64436dd17488e0d",
+          "expected_sha256": "8301342a7ede27a230080c6aa86ec4f393e99b421cab234ac64436dd17488e0d",
+          "seed": 0,
+          "seq": 16,
+          "array": 16,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim16/seq16/result.json",
+          "result_sha256": "c1c44bf8ecfeab08d68bd942439a5d019e0583f646704f49db82b3dfc9997845",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim16/seq16/test.log",
+          "counter_log_sha256": "0e8e595c9c8900ee2ea1488800fa0e3ad378277fb13563dde764d3510b615a78",
+          "counters": {
+            "dmaActive": 76,
+            "dmaInst": 4,
+            "execTime": 437,
+            "fence": 1,
+            "mxActive": 267,
+            "mxBubble": 103,
+            "mxInst": 5,
+            "rawInst": 32
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            32,
+            16
+          ],
+          "actual_sha256": "4cbe4b2e2c63af6ba4c8a28086b07503164c29ee900817c5f61d991f7f204cb3",
+          "expected_sha256": "4cbe4b2e2c63af6ba4c8a28086b07503164c29ee900817c5f61d991f7f204cb3",
+          "seed": 0,
+          "seq": 32,
+          "array": 16,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim16/seq32/result.json",
+          "result_sha256": "7060437ffa272c1ef753c6c3531ff2a096a393b5abfb1326fa726b5afa604868",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim16/seq32/test.log",
+          "counter_log_sha256": "49e2f7df19116b9214d985b8256872d56f0abaa2c644b71fddc7470fcc46136e",
+          "counters": {
+            "dmaActive": 220,
+            "dmaInst": 12,
+            "execTime": 1152,
+            "fence": 1,
+            "mxActive": 824,
+            "mxBubble": 295,
+            "mxInst": 16,
+            "rawInst": 97
+          }
+        }
+      ],
+      "extra_1024": {
+        "bitwise_equal": true,
+        "shape": [
+          1024,
+          16
+        ],
+        "seed": 0,
+        "seq": 1024,
+        "array_rows": 16,
+        "binary_sha256": "aac238be995f0c4cc622f029faa9067e3217a56f2b5896eabf91c7d7ad7f5281",
+        "config_sha256": "3b77e28bea7f2f17713d60e3d048eb1c41174ab4f43e5f3780bd5755721ba013",
+        "actual_sha256": "b7f9f8ec3d9d6efc5f38c1f79b58ce911bb65a00f0b03f1e28a54d8fb2e9f131",
+        "expected_sha256": "b7f9f8ec3d9d6efc5f38c1f79b58ce911bb65a00f0b03f1e28a54d8fb2e9f131",
+        "input_sha256": {
+          "q": "4e7c29f0a904a2b27845fa3f728262c128de24113508758a9e9e1fea4863171a",
+          "k": "ba84cf0e9e1eec5820db2dd0d4a6a1bb956d4dc601f41fd7ab72e26492ee6f5a",
+          "v": "897aa7ef8ca074481178090d84a6937db27a92bf9bf0e3694d5bfefbb1dcba14"
+        },
+        "counters": {
+          "dmaActive": 141952,
+          "dmaInst": 8320,
+          "execTime": 775904,
+          "fence": 1,
+          "mxActive": 601728,
+          "mxBubble": 219217,
+          "mxInst": 12416,
+          "rawInst": 70529
+        },
+        "log_sha256": "0c037815bf42e60e863663ff047e6f701b72f27d2e9b0662b5b631a9e4e427ac",
+        "log": "/tmp/ict-fsa-reproduce-20261028/a100/logs/sim-extra-1024.log",
+        "scope": "8x64-bit Verilator memory topology; not board performance"
+      },
+      "physical": {
+        "constrained_sta_passed": true,
+        "board_signoff": false,
+        "cdc_review_required": true,
+        "dut": {
+          "part": "xcvu37p_CIV-fsvh2892-2L-e",
+          "dut_period": "10.000",
+          "dut_setup_wns": "0.534",
+          "dut_hold_whs": "0.010"
+        },
+        "timing_summary": [
+          0.049,
+          0.0,
+          0.0,
+          265381.0,
+          0.01,
+          0.0,
+          0.0,
+          265381.0,
+          0.0,
+          0.0,
+          0.0,
+          148820.0
+        ],
+        "route": [
+          497497,
+          497497,
+          0
+        ],
+        "bus_skew_worst_ns": 3.142,
+        "checkpoint_sha256": "5420a3f09a23b726ad749f158d8b138440884022b3d3709b4b17aff59ff3874d"
+      },
+      "resources": {
+        "Total LUTs": 355692,
+        "Logic LUTs": 350958,
+        "LUTRAMs": 3774,
+        "SRLs": 960,
+        "FFs": 140263,
+        "RAMB36": 60,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 288
+      },
+      "cdc_counts": [
+        {
+          "id": "CDC-3",
+          "severity": "Info",
+          "count": 77
+        },
+        {
+          "id": "CDC-7",
+          "severity": "Critical",
+          "count": 12
+        },
+        {
+          "id": "CDC-8",
+          "severity": "Warning",
+          "count": 1
+        },
+        {
+          "id": "CDC-9",
+          "severity": "Info",
+          "count": 22
+        },
+        {
+          "id": "CDC-10",
+          "severity": "Critical",
+          "count": 2
+        },
+        {
+          "id": "CDC-11",
+          "severity": "Critical",
+          "count": 16
+        },
+        {
+          "id": "CDC-15",
+          "severity": "Warning",
+          "count": 172
+        }
+      ],
+      "constraints": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 30,
+        "no_input_delay": 1,
+        "no_output_delay": 0,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "exceptions": {
+        "Invalid startpoint": 8,
+        "Invalid endpoint": 0,
+        "Non-existent path": 10,
+        "Invalid throughpoint": 0
+      },
+      "netlist_review_summary": {
+        "build": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02",
+        "probe": "/tmp/ict-fsa-reproduce-20261028/a100/netlist-review-original-attempt02",
+        "probe_exit": 0,
+        "dcp_sha256": "5420a3f09a23b726ad749f158d8b138440884022b3d3709b4b17aff59ff3874d",
+        "hbm": {
+          "endpoint_count": 30,
+          "ground_clock_count": 15,
+          "observed_endpoints_marker": true,
+          "endpoints": [
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            }
+          ]
+        },
+        "cdc": {
+          "CDC-8": [
+            {
+              "source": "wrangler/deglitched_deglitch/reg_0_reg/C",
+              "destination": "wrangler/nodeOut_reset_catcher_1/io_sync_reset_chain/output_chain/sync_2_reg/CLR",
+              "depth_reported": 3,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X162Y63",
+                "BEL": "SLICEM.FFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "wrangler/deglitched_deglitch/reg_0_reg/C"
+              ]
+            }
+          ],
+          "CDC-7": [
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg/PRE",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y30",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X210Y41",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg/PRE",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y30",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X210Y41",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+              "destination": "wrangler/deglitched_deglitch/reg_0_reg/PRE",
+              "depth_reported": 0,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X162Y71",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "clk_out1_harnessSysPLL"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "harnessSysPLL/inst/mmcme4_adv_inst/LOCKED"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "wrangler/deglitched_deglitch/reg_0_reg/PRE",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X162Y71",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "clk_out1_harnessSysPLL"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "harnessSysPLL/inst/mmcme4_adv_inst/LOCKED"
+              ]
+            },
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X222Y34",
+                "BEL": "SLICEM.FFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X222Y34",
+                "BEL": "SLICEM.FFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X222Y34",
+                "BEL": "SLICEM.DFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X222Y34",
+                "BEL": "SLICEM.FFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X222Y34",
+                "BEL": "SLICEM.FFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X222Y34",
+                "BEL": "SLICEM.DFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            }
+          ],
+          "CDC-10": [
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]/CLR",
+              "depth_reported": 3,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X210Y41",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]/PRE",
+              "depth_reported": 3,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X209Y24",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n"
+              ]
+            }
+          ],
+          "CDC-11": [
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[0].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X231Y219",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[0].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X230Y214",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[1].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X231Y223",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[1].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X231Y214",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[2].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X232Y199",
+                "BEL": "SLICEM.HFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[2].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X232Y201",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[3].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X230Y195",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[3].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X232Y190",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[4].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X230Y168",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[4].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X231Y171",
+                "BEL": "SLICEL.HFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[5].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X230Y166",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[5].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X230Y162",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[6].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X231Y144",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[6].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X232Y146",
+                "BEL": "SLICEM.HFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[7].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X232Y132",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[7].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X231Y125",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            }
+          ]
+        },
+        "cdc_selected_endpoint_count": 170,
+        "cpll_exception_objects": [
+          {
+            "lane": 0,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 1,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 2,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 3,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 4,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 5,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 6,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 7,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          }
+        ],
+        "obsolete_addr_target_count": 0,
+        "actual_addr_cell_count": 10,
+        "prst_n": {
+          "endpoint_count": 16,
+          "endpoints": [
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[1]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_ff_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_ff1_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[1]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_i_reg[2]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_i_reg[1]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_i_reg[0]"
+          ]
+        },
+        "scope": "structural evidence only; no implicit full CDC or board signoff",
+        "files_sha256": {
+          "cdc_endpoint_cones.txt": "adb009d0bb8f8ea56f31f62fb64f4e1b24527be22a61f20ba4b920f1fa308f85",
+          "exception_objects.txt": "ddb42c7569f629dbbcbd3e49f42aa62e2c23afe024e41aa6a3bbac94471b29ff",
+          "utilization_flat.txt": "070d53a76357b4af5cd23b8e13bcb4f0a0c1dde387b746e9ea5d85b352485964",
+          "unused_hbm_pins.txt": "08064f395cf3a75da52b3752ae51b737babb3dc5dab5bd2ea592684591710582",
+          "context.txt": "38d0d79660c9c41c0ef7a9cf27d5dc60d51a6e79989e5504fbe36521f63b5112",
+          "external_reset.txt": "bc9ad2095d8bce6a2b1eee4773c0ed8396d57e13ec3aa927c9e0b58f309a7f90"
+        }
+      },
+      "netlist_probe": {
+        "path": "/tmp/ict-fsa-reproduce-20261028/a100/netlist-review-original-attempt02",
+        "exit_code": 0,
+        "files": {
+          "cdc_endpoint_cones.txt": "adb009d0bb8f8ea56f31f62fb64f4e1b24527be22a61f20ba4b920f1fa308f85",
+          "context.txt": "38d0d79660c9c41c0ef7a9cf27d5dc60d51a6e79989e5504fbe36521f63b5112",
+          "exception_objects.txt": "ddb42c7569f629dbbcbd3e49f42aa62e2c23afe024e41aa6a3bbac94471b29ff",
+          "external_reset.txt": "bc9ad2095d8bce6a2b1eee4773c0ed8396d57e13ec3aa927c9e0b58f309a7f90",
+          "unused_hbm_pins.txt": "08064f395cf3a75da52b3752ae51b737babb3dc5dab5bd2ea592684591710582",
+          "utilization_flat.txt": "070d53a76357b4af5cd23b8e13bcb4f0a0c1dde387b746e9ea5d85b352485964"
+        }
+      },
+      "reports_manifest": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02-physical-evidence/summary.json"
+    },
+    "fixed": {
+      "source_commit": "9b8911f4e9e5c6af49fe6b6287e9c88ee1031352",
+      "source": "/tmp/ict-fsa-reproduce-20261028/a100/source-fixed",
+      "build": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01",
+      "build_record_sha256": "fddc7cb9a9c311e2d7a7daeda4990878b15e3ed6f599db88c075f42ed9b2a4b1",
+      "input_lock_sha256": "3f0a807a1588dcbeb7dcdc0e567f0861c92da5092d8b8594e2ff515e1b268d23",
+      "generator_sha256": "bc8f41d0a1ca829a21fc4462e25b0927185f762d7e1ef416edf7555dd13f4575",
+      "tracked_source_clean": true,
+      "phases": {
+        "sim16": {
+          "artifacts": {
+            "sim16/generated-src/chipyard.harness.TestHarness.AXI4FSA16X16Fp16Config/chipyard.harness.TestHarness.AXI4FSA16X16Fp16Config.FSAConfig.json": "3b77e28bea7f2f17713d60e3d048eb1c41174ab4f43e5f3780bd5755721ba013",
+            "sim16/simulator": "a266affe30b04838c82703b8e7e95975a43aa75884b32621de339837e029d77b"
+          },
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "sim",
+              "16"
+            ]
+          ],
+          "finished_utc": "2026-10-28T06:22:39.052542+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01.ict-state/sim16-0.log"
+          ],
+          "started_utc": "2026-10-28T06:20:23.497643+00:00",
+          "status": "completed"
+        },
+        "build": {
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "prepare"
+            ]
+          ],
+          "finished_utc": "2026-10-28T06:12:40.142071+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01.ict-state/build-0.log"
+          ],
+          "started_utc": "2026-10-28T06:07:54.847081+00:00",
+          "status": "completed"
+        },
+        "source": {
+          "commit": "9b8911f4e9e5c6af49fe6b6287e9c88ee1031352",
+          "profile": "A100",
+          "profile_sha256": "0f1812822975da59a228b9e5d9ca41f08a2be4b369b3dc698026adb1b1f9bee0"
+        },
+        "implement": {
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "implement"
+            ]
+          ],
+          "finished_utc": "2026-10-28T07:33:00.182094+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01.ict-state/implement-0.log"
+          ],
+          "routed_artifact_scope": "produced by this implementation attempt; backend completion/CDC acceptance remains separate",
+          "routed_artifacts": {
+            "A100/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.FSAConfig.json": "d8c3330d60ee335601401365e6fa4de774b53bb099dccc0afd464048b262a6ba",
+            "A100/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/post_route.dcp": "1e1fc9f7fbf88035fae084cbf21c935c0f8d9b6d2be9bf36a1beeb8036f9592e"
+          },
+          "started_utc": "2026-10-28T06:24:16.121524+00:00",
+          "status": "completed"
+        },
+        "elaborate": {
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "elaborate"
+            ]
+          ],
+          "finished_utc": "2026-10-28T06:23:45.092615+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01.ict-state/elaborate-0.log"
+          ],
+          "started_utc": "2026-10-28T06:22:40.741454+00:00",
+          "status": "completed"
+        },
+        "sim8": {
+          "artifacts": {
+            "sim8/generated-src/chipyard.harness.TestHarness.AXI4FSA8X8Fp16Config/chipyard.harness.TestHarness.AXI4FSA8X8Fp16Config.FSAConfig.json": "ab9ca0fc111826d2d8f8ef7c4109feca6a5c27e7cf774d434faad85ef47aed21",
+            "sim8/simulator": "64e31884a61074d7e043afb81d961a1226471c67a5f01ceb058f3f923d1c001d"
+          },
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "sim",
+              "8"
+            ]
+          ],
+          "finished_utc": "2026-10-28T06:20:21.845811+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01.ict-state/sim8-0.log"
+          ],
+          "started_utc": "2026-10-28T06:18:59.438342+00:00",
+          "status": "completed"
+        },
+        "verify": {
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "units"
+            ],
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "formal"
+            ]
+          ],
+          "finished_utc": "2026-10-28T06:16:21.502681+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01.ict-state/verify-0.log",
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01.ict-state/verify-1.log"
+          ],
+          "started_utc": "2026-10-28T06:13:15.535349+00:00",
+          "status": "completed"
+        },
+        "sim4": {
+          "artifacts": {
+            "sim4/generated-src/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config.FSAConfig.json": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+            "sim4/simulator": "eb4510195ef8d30813edcf847c561246098490fc1eb878050109132856fedc46"
+          },
+          "commands": [
+            [
+              "bash",
+              "scripts/nm37-a100/run.sh",
+              "sim",
+              "4"
+            ]
+          ],
+          "finished_utc": "2026-10-28T06:18:22.722673+00:00",
+          "logs": [
+            "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01.ict-state/sim4-0.log"
+          ],
+          "started_utc": "2026-10-28T06:16:52.729851+00:00",
+          "status": "completed"
+        }
+      },
+      "formal_proofs": [
+        {
+          "proof_type": "cmpeq",
+          "top": "PipelineCmpMaxMiter",
+          "all_inputs_equivalent": true,
+          "exit_code": 0,
+          "scope": "all combinational input bit patterns",
+          "method": "combinational SAT",
+          "input_constraints": [],
+          "initial_state_constraints": [],
+          "sat_command": "sat -verify -prove io_mismatch 0 -show-inputs -show-outputs -dump_json counterexample.json -dump_vcd counterexample.vcd",
+          "elapsed_seconds": 0.3070265980059048,
+          "proof_script_sha256": "23f5525a493723b38c653792ce05e8299fefa4e570389b8ac149117ce43287a1",
+          "proof_log_sha256": "1e27193ef4e9944e7a0eee2af7867e6c4c7767abe611363ea2b790e99ce2acae",
+          "driver_sha256": "829c07ab12e05d45b3cf5fa9a138ade1a1de7c51138b148b5843a1d83a27affc",
+          "proof_input_directory": "formal/proof-inputs/cmpmax",
+          "rtl_sha256": {
+            "PipelineCmpMaxMiter.sv": "7574bb0c661b09c0d03188ac7b6060bd71d93047609d2a4ab13d85ff6341803b"
+          },
+          "gold": "afterAdd=false",
+          "gate": "afterAdd=true"
+        },
+        {
+          "proof_type": "cmpseq",
+          "top": "PipelineCmpMiter",
+          "all_inputs_equivalent": true,
+          "exit_code": 0,
+          "scope": "all cycles after one pipeline transition",
+          "method": "temporal induction from unconstrained initial state",
+          "input_constraints": [],
+          "initial_state_constraints": [],
+          "sat_command": "sat -verify -prove io_mismatch 0 -show-inputs -show-outputs -seq 1 -tempinduct -maxsteps 4 -dump_json counterexample.json -dump_vcd counterexample.vcd",
+          "elapsed_seconds": 3.0705140009958996,
+          "proof_script_sha256": "bdc4056415379e23dd08d8c76fb0f8d82cd5beeaf87304325c7a8062db10ead5",
+          "proof_log_sha256": "5a6b4e32c1ad8ac4615cd88608f1398aebf8b4d721fbe4d27813c2752bd1d2c4",
+          "driver_sha256": "829c07ab12e05d45b3cf5fa9a138ade1a1de7c51138b148b5843a1d83a27affc",
+          "proof_input_directory": "formal/proof-inputs/cmp",
+          "rtl_sha256": {
+            "PipelineCmpMiter.sv": "dc77116140c550eefd2de0c7308c7e85fed3366da8f8ac8e26ade93359ce49e7"
+          },
+          "gold": "afterAdd=false",
+          "gate": "afterAdd=true"
+        },
+        {
+          "proof_type": "macseq",
+          "top": "PipelineMacMiter",
+          "all_inputs_equivalent": true,
+          "exit_code": 0,
+          "scope": "all cycles after one pipeline transition",
+          "method": "temporal induction from unconstrained initial state",
+          "input_constraints": [],
+          "initial_state_constraints": [],
+          "sat_command": "sat -verify -prove io_mismatch 0 -show-inputs -show-outputs -seq 1 -tempinduct -maxsteps 4 -dump_json counterexample.json -dump_vcd counterexample.vcd",
+          "elapsed_seconds": 3.6210294000047725,
+          "proof_script_sha256": "a55263f230b13cfc33e1719f5535348d51c81d1dfa0a95afdb0b8c44c4d661b3",
+          "proof_log_sha256": "a0d25752d9359898ca3f647b8a7097db013b7e61132957e1ff7f2f801c80920b",
+          "driver_sha256": "829c07ab12e05d45b3cf5fa9a138ade1a1de7c51138b148b5843a1d83a27affc",
+          "proof_input_directory": "formal/proof-inputs/mac",
+          "rtl_sha256": {
+            "PipelineMacMiter.sv": "72d0b28dec1252776fb438f5ed9fe017823e39fa4a24e7337189175258090545"
+          },
+          "gold": "afterAdd=false",
+          "gate": "afterAdd=true"
+        }
+      ],
+      "simulations": [
+        {
+          "bitwise_equal": true,
+          "shape": [
+            4,
+            4
+          ],
+          "actual_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+          "expected_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+          "seed": 0,
+          "seq": 4,
+          "array": 4,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim4/seq4/result.json",
+          "result_sha256": "4cad03bdd8fa7b8f99f6602dfade32a1ff92c7339ddd627a31b7bdfa1c8808fe",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim4/seq4/test.log",
+          "counter_log_sha256": "d10d9558e7e1939fac99b0c5014c9f03a33c93243ef32bc6c3be7db901dcba99",
+          "counters": {
+            "dmaActive": 16,
+            "dmaInst": 4,
+            "execTime": 368,
+            "fence": 1,
+            "mxActive": 162,
+            "mxBubble": 153,
+            "mxInst": 5,
+            "rawInst": 32
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            8,
+            4
+          ],
+          "actual_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+          "expected_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+          "seed": 0,
+          "seq": 8,
+          "array": 4,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim4/seq8/result.json",
+          "result_sha256": "767204762b5c2ee3702bbedc63159518e3b875a7373de6e90a5ee34fcb5e9385",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim4/seq8/test.log",
+          "counter_log_sha256": "5b81236f9ebd38a6f9641198395bd2be30c429e3ff40103f56dcb7d1dd880ae5",
+          "counters": {
+            "dmaActive": 48,
+            "dmaInst": 12,
+            "execTime": 1083,
+            "fence": 1,
+            "mxActive": 464,
+            "mxBubble": 646,
+            "mxInst": 16,
+            "rawInst": 97
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            8,
+            8
+          ],
+          "actual_sha256": "3153831639ec49f9fdbee68e9f8f0d06b3b34d7ad83d29f5f7776a0c5d051162",
+          "expected_sha256": "3153831639ec49f9fdbee68e9f8f0d06b3b34d7ad83d29f5f7776a0c5d051162",
+          "seed": 0,
+          "seq": 8,
+          "array": 8,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim8/seq8/result.json",
+          "result_sha256": "7724fa427c7647a07c55b5819bc85709cd9f09a46a9d1118ad51a3c52db031e8",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim8/seq8/test.log",
+          "counter_log_sha256": "652ef302b33301798d0190571eb0e8b7227e985800897a377c1fb4132afde6d3",
+          "counters": {
+            "dmaActive": 40,
+            "dmaInst": 4,
+            "execTime": 385,
+            "fence": 1,
+            "mxActive": 210,
+            "mxBubble": 134,
+            "mxInst": 5,
+            "rawInst": 32
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            16,
+            8
+          ],
+          "actual_sha256": "b1ec74fcd3ba3977be92ada2a5751f826838aec5b6bf5d95a191636110396b92",
+          "expected_sha256": "b1ec74fcd3ba3977be92ada2a5751f826838aec5b6bf5d95a191636110396b92",
+          "seed": 0,
+          "seq": 16,
+          "array": 8,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim8/seq16/result.json",
+          "result_sha256": "52cd2d4c537a2bb4254e5a1cc4b51e23c33dbab1a36b95efb911cfb4f94d6c5d",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim8/seq16/test.log",
+          "counter_log_sha256": "287ea6d46f1fb0de84e8df0001bb45f8d8385302bdb248e10257f28795f084bf",
+          "counters": {
+            "dmaActive": 116,
+            "dmaInst": 12,
+            "execTime": 1100,
+            "fence": 1,
+            "mxActive": 642,
+            "mxBubble": 535,
+            "mxInst": 16,
+            "rawInst": 97
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            16,
+            16
+          ],
+          "actual_sha256": "8301342a7ede27a230080c6aa86ec4f393e99b421cab234ac64436dd17488e0d",
+          "expected_sha256": "8301342a7ede27a230080c6aa86ec4f393e99b421cab234ac64436dd17488e0d",
+          "seed": 0,
+          "seq": 16,
+          "array": 16,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim16/seq16/result.json",
+          "result_sha256": "c1c44bf8ecfeab08d68bd942439a5d019e0583f646704f49db82b3dfc9997845",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim16/seq16/test.log",
+          "counter_log_sha256": "886b2d30bf3915acbfdb20d41afc6839925629d836dcf3f16e92c8c831397e85",
+          "counters": {
+            "dmaActive": 76,
+            "dmaInst": 4,
+            "execTime": 437,
+            "fence": 1,
+            "mxActive": 267,
+            "mxBubble": 103,
+            "mxInst": 5,
+            "rawInst": 32
+          }
+        },
+        {
+          "bitwise_equal": true,
+          "shape": [
+            32,
+            16
+          ],
+          "actual_sha256": "4cbe4b2e2c63af6ba4c8a28086b07503164c29ee900817c5f61d991f7f204cb3",
+          "expected_sha256": "4cbe4b2e2c63af6ba4c8a28086b07503164c29ee900817c5f61d991f7f204cb3",
+          "seed": 0,
+          "seq": 32,
+          "array": 16,
+          "result_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim16/seq32/result.json",
+          "result_sha256": "7060437ffa272c1ef753c6c3531ff2a096a393b5abfb1326fa726b5afa604868",
+          "counter_source": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01/sim16/seq32/test.log",
+          "counter_log_sha256": "8400739175d4b17b653a2723b0bb012d4a11a2a985e89f43718ede629a034281",
+          "counters": {
+            "dmaActive": 220,
+            "dmaInst": 12,
+            "execTime": 1152,
+            "fence": 1,
+            "mxActive": 824,
+            "mxBubble": 295,
+            "mxInst": 16,
+            "rawInst": 97
+          }
+        }
+      ],
+      "extra_1024": {
+        "bitwise_equal": true,
+        "shape": [
+          1024,
+          16
+        ],
+        "seed": 0,
+        "seq": 1024,
+        "array_rows": 16,
+        "binary_sha256": "a266affe30b04838c82703b8e7e95975a43aa75884b32621de339837e029d77b",
+        "config_sha256": "3b77e28bea7f2f17713d60e3d048eb1c41174ab4f43e5f3780bd5755721ba013",
+        "actual_sha256": "b7f9f8ec3d9d6efc5f38c1f79b58ce911bb65a00f0b03f1e28a54d8fb2e9f131",
+        "expected_sha256": "b7f9f8ec3d9d6efc5f38c1f79b58ce911bb65a00f0b03f1e28a54d8fb2e9f131",
+        "input_sha256": {
+          "q": "4e7c29f0a904a2b27845fa3f728262c128de24113508758a9e9e1fea4863171a",
+          "k": "ba84cf0e9e1eec5820db2dd0d4a6a1bb956d4dc601f41fd7ab72e26492ee6f5a",
+          "v": "897aa7ef8ca074481178090d84a6937db27a92bf9bf0e3694d5bfefbb1dcba14"
+        },
+        "counters": {
+          "dmaActive": 141952,
+          "dmaInst": 8320,
+          "execTime": 775904,
+          "fence": 1,
+          "mxActive": 601728,
+          "mxBubble": 219217,
+          "mxInst": 12416,
+          "rawInst": 70529
+        },
+        "log_sha256": "529596c9ba685ee55d288161bfae7ef7d8816907f04c9f32bd54dd910329684b",
+        "matches_original_run": true
+      },
+      "physical": {
+        "constrained_sta_passed": true,
+        "board_signoff": false,
+        "cdc_review_required": true,
+        "dut": {
+          "part": "xcvu37p_CIV-fsvh2892-2L-e",
+          "dut_period": "10.000",
+          "dut_setup_wns": "0.642",
+          "dut_hold_whs": "0.010"
+        },
+        "timing_summary": [
+          0.073,
+          0.0,
+          0.0,
+          265416.0,
+          0.01,
+          0.0,
+          0.0,
+          265416.0,
+          0.0,
+          0.0,
+          0.0,
+          148814.0
+        ],
+        "route": [
+          497468,
+          497468,
+          0
+        ],
+        "bus_skew_worst_ns": 3.284,
+        "checkpoint_sha256": "1e1fc9f7fbf88035fae084cbf21c935c0f8d9b6d2be9bf36a1beeb8036f9592e"
+      },
+      "resources": {
+        "Total LUTs": 355683,
+        "Logic LUTs": 350949,
+        "LUTRAMs": 3774,
+        "SRLs": 960,
+        "FFs": 140257,
+        "RAMB36": 60,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 288
+      },
+      "cdc_counts": [
+        {
+          "id": "CDC-3",
+          "severity": "Info",
+          "count": 77
+        },
+        {
+          "id": "CDC-7",
+          "severity": "Critical",
+          "count": 12
+        },
+        {
+          "id": "CDC-8",
+          "severity": "Warning",
+          "count": 1
+        },
+        {
+          "id": "CDC-9",
+          "severity": "Info",
+          "count": 22
+        },
+        {
+          "id": "CDC-10",
+          "severity": "Critical",
+          "count": 2
+        },
+        {
+          "id": "CDC-11",
+          "severity": "Critical",
+          "count": 16
+        },
+        {
+          "id": "CDC-15",
+          "severity": "Warning",
+          "count": 172
+        }
+      ],
+      "constraints": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 30,
+        "no_input_delay": 1,
+        "no_output_delay": 0,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "exceptions": {
+        "Invalid startpoint": 8,
+        "Invalid endpoint": 0,
+        "Non-existent path": 10,
+        "Invalid throughpoint": 0
+      },
+      "netlist_review_summary": {
+        "build": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01",
+        "probe": "/tmp/ict-fsa-reproduce-20261028/a100/netlist-review-fixed",
+        "probe_exit": 0,
+        "dcp_sha256": "1e1fc9f7fbf88035fae084cbf21c935c0f8d9b6d2be9bf36a1beeb8036f9592e",
+        "hbm": {
+          "endpoint_count": 30,
+          "ground_clock_count": 15,
+          "observed_endpoints_marker": true,
+          "endpoints": [
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<1>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<2>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<3>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<4>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<5>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<6>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<7>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<8>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<9>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<10>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<11>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<12>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<13>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<14>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/BREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            },
+            {
+              "endpoint": "dutDomain/ram_hbm/inst/ONE_STACK.u_hbm_top/ONE_STACK_HBM.hbm_one_stack_intf/HBM_SNGLBLI_INTF_AXI<15>_INST/RREADY",
+              "data_net_type": "SIGNAL",
+              "fanin_same_macro_valid_pipe": true
+            }
+          ]
+        },
+        "cdc": {
+          "CDC-8": [
+            {
+              "source": "wrangler/deglitched_deglitch/reg_0_reg/C",
+              "destination": "wrangler/nodeOut_reset_catcher_1/io_sync_reset_chain/output_chain/sync_2_reg/CLR",
+              "depth_reported": 3,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X157Y54",
+                "BEL": "SLICEM.FFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "wrangler/deglitched_deglitch/reg_0_reg/C"
+              ]
+            }
+          ],
+          "CDC-7": [
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg/PRE",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y30",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X217Y43",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg/PRE",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y30",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X217Y43",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+              "destination": "wrangler/deglitched_deglitch/reg_0_reg/PRE",
+              "depth_reported": 0,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X156Y53",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "clk_out1_harnessSysPLL"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "harnessSysPLL/inst/mmcme4_adv_inst/LOCKED"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "wrangler/deglitched_deglitch/reg_0_reg/PRE",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X156Y53",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "clk_out1_harnessSysPLL"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "harnessSysPLL/inst/mmcme4_adv_inst/LOCKED"
+              ]
+            },
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y32",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y32",
+                "BEL": "SLICEM.EFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "prst_n",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y32",
+                "BEL": "SLICEM.DFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y32",
+                "BEL": "SLICEM.EFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y32",
+                "BEL": "SLICEM.EFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg/CLR",
+              "depth_reported": 0,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X220Y32",
+                "BEL": "SLICEM.DFF",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "pipe_clk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            }
+          ],
+          "CDC-10": [
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]/CLR",
+              "depth_reported": 3,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDCE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X217Y43",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b1"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n",
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK"
+              ]
+            },
+            {
+              "source": "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]/PRE",
+              "depth_reported": 3,
+              "exception": "False Path",
+              "cell": {
+                "REF_NAME": "FDPE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X206Y42",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "_pcie_io_clocks_axi_aclk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_pcie_4_0_pipe_inst/pcie_4_c_e4_inst/CORECLK",
+                "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+                "prst_n"
+              ]
+            }
+          ],
+          "CDC-11": [
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[0].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X230Y230",
+                "BEL": "SLICEM.HFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[0].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X227Y202",
+                "BEL": "SLICEM.HFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[1].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X230Y230",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[1].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X229Y202",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[2].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X228Y198",
+                "BEL": "SLICEL.HFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[2].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X228Y200",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[3].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X228Y198",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[3].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X232Y193",
+                "BEL": "SLICEM.GFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[4].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X232Y156",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[4].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X231Y202",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[5].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X232Y145",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[5].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X229Y148",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[6].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X230Y131",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[6].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X229Y134",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[7].cdr_ctrl_on_eidle_i/sync_gen34/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X231Y129",
+                "BEL": "SLICEL.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/phy_rate_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][1]/C"
+              ]
+            },
+            {
+              "source": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C",
+              "destination": "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_lane[7].receiver_detect_termination_i/sync_mac_in_detect/sync_vec[0].sync_cell_i/sync_reg[0]/D",
+              "depth_reported": 4,
+              "exception": "Asynch Clock Groups",
+              "cell": {
+                "REF_NAME": "FDRE",
+                "ASYNC_REG": "1",
+                "DONT_TOUCH": "",
+                "LOC": "SLICE_X232Y122",
+                "BEL": "SLICEM.DFF2",
+                "INIT": "1'b0"
+              },
+              "clocks": [
+                "xdma_ref_clk"
+              ],
+              "fanin_startpoints": [
+                "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/phy_pipeline/as_mac_in_detect_chain/with_ff_chain.ff_chain_gen[0].sync_rst.ff_chain_reg[1][0]/C"
+              ]
+            }
+          ]
+        },
+        "cdc_selected_endpoint_count": 170,
+        "cpll_exception_objects": [
+          {
+            "lane": 0,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 1,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 2,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 3,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 4,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 5,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 6,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          },
+          {
+            "lane": 7,
+            "start_types": {
+              "FDCE": 18,
+              "CARRY8": 3
+            },
+            "end_types": {
+              "FDRE": 18
+            }
+          }
+        ],
+        "obsolete_addr_target_count": 0,
+        "actual_addr_cell_count": 10,
+        "prst_n": {
+          "endpoint_count": 16,
+          "endpoints": [
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[1]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_cdc/arststages_ff_reg[0]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_user_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_ff_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/as_mac_in_detect_ff1_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/speed_change_in_progress_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[1]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/pipe_tx_rate_ff_reg[0]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[1]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_cdc/arststages_ff_reg[0]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/user_lnk_up_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_reg",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_i_reg[2]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_i_reg[1]",
+            "pcie/blackbox/inst/pcie4c_ip_i/inst/nm37_xdma_pcie4c_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_rst_i/rst_n_internal_i_reg[0]"
+          ]
+        },
+        "scope": "structural evidence only; no implicit full CDC or board signoff",
+        "files_sha256": {
+          "cdc_endpoint_cones.txt": "a5390c74f2f0bcac6e89c0a7b773120dc277ef91d3422e7d3f43c6ded2deb9db",
+          "exception_objects.txt": "3a39f49ef884293ea1fb226847898e4e2acef1d6495575048acae5bd64ab762c",
+          "utilization_flat.txt": "a7d065f0dc0e8856a28babef57125b4602dfaf1015d56c3a76b1885c429de077",
+          "unused_hbm_pins.txt": "a1561ba9c8588a798881877babe1053163fc52c534d12865bedcfec844acd415",
+          "context.txt": "93a5fac41ae8fdd7914216dbaef1b9392343e9ae2b4476eafa20ebd6c8c7b4a2",
+          "external_reset.txt": "bc9ad2095d8bce6a2b1eee4773c0ed8396d57e13ec3aa927c9e0b58f309a7f90"
+        }
+      },
+      "netlist_probe": {
+        "path": "/tmp/ict-fsa-reproduce-20261028/a100/netlist-review-fixed",
+        "exit_code": 0,
+        "files": {
+          "cdc_endpoint_cones.txt": "a5390c74f2f0bcac6e89c0a7b773120dc277ef91d3422e7d3f43c6ded2deb9db",
+          "context.txt": "93a5fac41ae8fdd7914216dbaef1b9392343e9ae2b4476eafa20ebd6c8c7b4a2",
+          "exception_objects.txt": "3a39f49ef884293ea1fb226847898e4e2acef1d6495575048acae5bd64ab762c",
+          "external_reset.txt": "bc9ad2095d8bce6a2b1eee4773c0ed8396d57e13ec3aa927c9e0b58f309a7f90",
+          "unused_hbm_pins.txt": "a1561ba9c8588a798881877babe1053163fc52c534d12865bedcfec844acd415",
+          "utilization_flat.txt": "a7d065f0dc0e8856a28babef57125b4602dfaf1015d56c3a76b1885c429de077"
+        }
+      },
+      "reports_manifest": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01-physical-evidence/summary.json"
+    }
+  },
+  "fix_commit": "9b8911f4e9e5c6af49fe6b6287e9c88ee1031352",
+  "fix_repository": "/tmp/ict-fsa-reproduce-20261028/a100/fix-repo",
+  "fixed_branch": "codex/a100-reproduction-fix",
+  "artifact_policy": "No legacy JAR, generated RTL, simulator or DCP reused. Download caches and immutable Git dependency objects only.",
+  "comparisons": {
+    "rtl_fixed_original": {
+      "original_commit": "f8650f9576bf681bfae38a2ab40718fc2ace4262",
+      "fixed_commit": "9b8911f4e9e5c6af49fe6b6287e9c88ee1031352",
+      "board_rtl_files": 92,
+      "board_rtl_bytes_equal": true,
+      "simulation_cases": [
+        {
+          "array": 4,
+          "seq": 4,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "counter_equal": true,
+          "counters": {
+            "dmaActive": 16,
+            "dmaInst": 4,
+            "execTime": 368,
+            "fence": 1,
+            "mxActive": 162,
+            "mxBubble": 153,
+            "mxInst": 5,
+            "rawInst": 32
+          }
+        },
+        {
+          "array": 4,
+          "seq": 8,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "counter_equal": true,
+          "counters": {
+            "dmaActive": 48,
+            "dmaInst": 12,
+            "execTime": 1083,
+            "fence": 1,
+            "mxActive": 464,
+            "mxBubble": 646,
+            "mxInst": 16,
+            "rawInst": 97
+          }
+        },
+        {
+          "array": 8,
+          "seq": 8,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "counter_equal": true,
+          "counters": {
+            "dmaActive": 40,
+            "dmaInst": 4,
+            "execTime": 385,
+            "fence": 1,
+            "mxActive": 210,
+            "mxBubble": 134,
+            "mxInst": 5,
+            "rawInst": 32
+          }
+        },
+        {
+          "array": 8,
+          "seq": 16,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "counter_equal": true,
+          "counters": {
+            "dmaActive": 116,
+            "dmaInst": 12,
+            "execTime": 1100,
+            "fence": 1,
+            "mxActive": 642,
+            "mxBubble": 535,
+            "mxInst": 16,
+            "rawInst": 97
+          }
+        },
+        {
+          "array": 16,
+          "seq": 16,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "counter_equal": true,
+          "counters": {
+            "dmaActive": 76,
+            "dmaInst": 4,
+            "execTime": 437,
+            "fence": 1,
+            "mxActive": 267,
+            "mxBubble": 103,
+            "mxInst": 5,
+            "rawInst": 32
+          }
+        },
+        {
+          "array": 16,
+          "seq": 32,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "counter_equal": true,
+          "counters": {
+            "dmaActive": 220,
+            "dmaInst": 12,
+            "execTime": 1152,
+            "fence": 1,
+            "mxActive": 824,
+            "mxBubble": 295,
+            "mxInst": 16,
+            "rawInst": 97
+          }
+        }
+      ],
+      "source_change": "delete ineffective MAX_FANOUT command and stale explanatory comment; refresh same XDC two hashes; add rationale documentation",
+      "physical_comparison": {
+        "status": "both_full_implement_exit0_constrained_sta_passed",
+        "path": "physical-comparison.json",
+        "original": {
+          "constrained_sta_passed": true,
+          "board_signoff": false,
+          "cdc_review_required": true,
+          "dut": {
+            "part": "xcvu37p_CIV-fsvh2892-2L-e",
+            "dut_period": "10.000",
+            "dut_setup_wns": "0.534",
+            "dut_hold_whs": "0.010"
+          },
+          "timing_summary": [
+            0.049,
+            0.0,
+            0.0,
+            265381.0,
+            0.01,
+            0.0,
+            0.0,
+            265381.0,
+            0.0,
+            0.0,
+            0.0,
+            148820.0
+          ],
+          "route": [
+            497497,
+            497497,
+            0
+          ],
+          "bus_skew_worst_ns": 3.142,
+          "checkpoint_sha256": "5420a3f09a23b726ad749f158d8b138440884022b3d3709b4b17aff59ff3874d"
+        },
+        "fixed": {
+          "constrained_sta_passed": true,
+          "board_signoff": false,
+          "cdc_review_required": true,
+          "dut": {
+            "part": "xcvu37p_CIV-fsvh2892-2L-e",
+            "dut_period": "10.000",
+            "dut_setup_wns": "0.642",
+            "dut_hold_whs": "0.010"
+          },
+          "timing_summary": [
+            0.073,
+            0.0,
+            0.0,
+            265416.0,
+            0.01,
+            0.0,
+            0.0,
+            265416.0,
+            0.0,
+            0.0,
+            0.0,
+            148814.0
+          ],
+          "route": [
+            497468,
+            497468,
+            0
+          ],
+          "bus_skew_worst_ns": 3.284,
+          "checkpoint_sha256": "1e1fc9f7fbf88035fae084cbf21c935c0f8d9b6d2be9bf36a1beeb8036f9592e"
+        },
+        "limitation": "Not a board or complete dynamic CDC signoff."
+      }
+    },
+    "rtl_original_legacy": {
+      "comparison": "raw generated board RTL bytes versus existing A100 build; paths and source-attributed comments are included",
+      "old_path": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build/A100/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/gen-collateral",
+      "new_path": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/A100/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/gen-collateral",
+      "old_count": 92,
+      "new_count": 92,
+      "same": [
+        "AXI4Buffer.sv",
+        "AXI4FSA.sv",
+        "AXI4Fragmenter.sv",
+        "AXI4Fragmenter_1.sv",
+        "AXI4UserYanker.sv",
+        "AXI4Xbar.sv",
+        "AccumulationSRAM.sv",
+        "Accumulator.sv",
+        "AsyncResetReg.sv",
+        "AsyncResetRegVec_w14_i0.sv",
+        "AsyncResetSynchronizerPrimitiveShiftReg_d3_i0.sv",
+        "AsyncResetSynchronizerShiftReg_w1_d3_i0.sv",
+        "CMP.sv",
+        "ClockSinkDomain.sv",
+        "CustomXDMA.sv",
+        "DMA.sv",
+        "Decoder.sv",
+        "Ehr.sv",
+        "EmptyChipTop.sv",
+        "FMA.sv",
+        "FPAccUnit.sv",
+        "FPCmpUnit.sv",
+        "FPMacUnit.sv",
+        "FSA.sv",
+        "FixedClockBroadcast_2.sv",
+        "FixedClockBroadcast_5.sv",
+        "InputDelayer.sv",
+        "InputDelayer_1.sv",
+        "InstructionMerger.sv",
+        "InstructionMerger_1.sv",
+        "LazyAXI4ClockConverter.sv",
+        "LazyAXI4ClockConverter_1.sv",
+        "LoadQueue.sv",
+        "MatrixControlFSM.sv",
+        "MatrixEngineController.sv",
+        "NM37FPGATestHarness.sv",
+        "OutputDelayer.sv",
+        "PE.sv",
+        "PowerOnResetFPGAOnly.v",
+        "Queue1_AXI4BundleAR.sv",
+        "Queue1_AXI4BundleAR_1.sv",
+        "Queue1_AXI4BundleAW.sv",
+        "Queue1_AXI4BundleAW_1.sv",
+        "Queue1_AXI4BundleW.sv",
+        "Queue1_AXI4BundleW_1.sv",
+        "Queue256_UInt32.sv",
+        "Queue2_AXI4BundleAR.sv",
+        "Queue2_AXI4BundleAW.sv",
+        "Queue2_AXI4BundleB.sv",
+        "Queue2_AXI4BundleR.sv",
+        "Queue2_AXI4BundleW.sv",
+        "Queue2_DMAInstruction.sv",
+        "Queue2_RegMapperOutput.sv",
+        "Queue2_UInt2.sv",
+        "Queue2_UInt256.sv",
+        "Queue8_BundleMap.sv",
+        "Queue8_MatrixInstruction.sv",
+        "RawFloat_FMA.sv",
+        "RawFloat_FMA_16.sv",
+        "RawFloat_FMA_17.sv",
+        "RawFloat_MulAddExp2.sv",
+        "RawFloat_MulAddExp2_1.sv",
+        "RawFloat_SplitIF.sv",
+        "RawFloat_SplitIF_1.sv",
+        "Reciprocal.sv",
+        "RequestPartitioner.sv",
+        "ResetCatchAndSync_d3.sv",
+        "ResetWrangler.sv",
+        "ScratchPadSRAM.sv",
+        "Semaphores.sv",
+        "ShiftRightJam.sv",
+        "ShiftRightJam_16.sv",
+        "StoreQueue.sv",
+        "SystolicArray.sv",
+        "banks_subBanks_sram_mem.sv",
+        "banks_subBanks_sram_mem_0.sv",
+        "banks_subBanks_sram_mem_1.sv",
+        "banks_subBanks_sram_mem_1_0.sv",
+        "banks_subBanks_sram_mem_2.sv",
+        "banks_subBanks_sram_mem_3.sv",
+        "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.model.mems.v",
+        "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.top.mems.v",
+        "extern_modules.sv",
+        "ram_256x32.sv",
+        "ram_2x103.sv",
+        "ram_2x2.sv",
+        "ram_2x256.sv",
+        "ram_2x35.sv",
+        "ram_2x37.sv",
+        "ram_2x42.sv",
+        "ram_8x45.sv",
+        "ram_real_last_8x1.sv"
+      ],
+      "changed": [],
+      "only_old": [],
+      "only_new": []
+    },
+    "sim_original_legacy": {
+      "scope": "identical fixed simulation topology for each array; compare legacy A100 versus newly rebuilt ICT-FSA A100",
+      "all_match": true,
+      "cases": [
+        {
+          "array": 4,
+          "seq": 4,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "expected_equal": true,
+          "counter_equal": true,
+          "old_counters": {
+            "dmaActive": 16,
+            "dmaInst": 4,
+            "execTime": 368,
+            "fence": 1,
+            "mxActive": 162,
+            "mxBubble": 153,
+            "mxInst": 5,
+            "rawInst": 32
+          },
+          "new_counters": {
+            "dmaActive": 16,
+            "dmaInst": 4,
+            "execTime": 368,
+            "fence": 1,
+            "mxActive": 162,
+            "mxBubble": 153,
+            "mxInst": 5,
+            "rawInst": 32
+          },
+          "old_result": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build/sim4/seq4/result.json",
+          "new_result": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim4/seq4/result.json"
+        },
+        {
+          "array": 4,
+          "seq": 8,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "expected_equal": true,
+          "counter_equal": true,
+          "old_counters": {
+            "dmaActive": 48,
+            "dmaInst": 12,
+            "execTime": 1083,
+            "fence": 1,
+            "mxActive": 464,
+            "mxBubble": 646,
+            "mxInst": 16,
+            "rawInst": 97
+          },
+          "new_counters": {
+            "dmaActive": 48,
+            "dmaInst": 12,
+            "execTime": 1083,
+            "fence": 1,
+            "mxActive": 464,
+            "mxBubble": 646,
+            "mxInst": 16,
+            "rawInst": 97
+          },
+          "old_result": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build/sim4/seq8/result.json",
+          "new_result": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim4/seq8/result.json"
+        },
+        {
+          "array": 8,
+          "seq": 8,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "expected_equal": true,
+          "counter_equal": true,
+          "old_counters": {
+            "dmaActive": 40,
+            "dmaInst": 4,
+            "execTime": 385,
+            "fence": 1,
+            "mxActive": 210,
+            "mxBubble": 134,
+            "mxInst": 5,
+            "rawInst": 32
+          },
+          "new_counters": {
+            "dmaActive": 40,
+            "dmaInst": 4,
+            "execTime": 385,
+            "fence": 1,
+            "mxActive": 210,
+            "mxBubble": 134,
+            "mxInst": 5,
+            "rawInst": 32
+          },
+          "old_result": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build/sim8/seq8/result.json",
+          "new_result": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim8/seq8/result.json"
+        },
+        {
+          "array": 8,
+          "seq": 16,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "expected_equal": true,
+          "counter_equal": true,
+          "old_counters": {
+            "dmaActive": 116,
+            "dmaInst": 12,
+            "execTime": 1100,
+            "fence": 1,
+            "mxActive": 642,
+            "mxBubble": 535,
+            "mxInst": 16,
+            "rawInst": 97
+          },
+          "new_counters": {
+            "dmaActive": 116,
+            "dmaInst": 12,
+            "execTime": 1100,
+            "fence": 1,
+            "mxActive": 642,
+            "mxBubble": 535,
+            "mxInst": 16,
+            "rawInst": 97
+          },
+          "old_result": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build/sim8/seq16/result.json",
+          "new_result": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim8/seq16/result.json"
+        },
+        {
+          "array": 16,
+          "seq": 16,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "expected_equal": true,
+          "counter_equal": true,
+          "old_counters": {
+            "dmaActive": 76,
+            "dmaInst": 4,
+            "execTime": 437,
+            "fence": 1,
+            "mxActive": 267,
+            "mxBubble": 103,
+            "mxInst": 5,
+            "rawInst": 32
+          },
+          "new_counters": {
+            "dmaActive": 76,
+            "dmaInst": 4,
+            "execTime": 437,
+            "fence": 1,
+            "mxActive": 267,
+            "mxBubble": 103,
+            "mxInst": 5,
+            "rawInst": 32
+          },
+          "old_result": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build/sim16/seq16/result.json",
+          "new_result": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim16/seq16/result.json"
+        },
+        {
+          "array": 16,
+          "seq": 32,
+          "bitwise_both": true,
+          "actual_equal": true,
+          "expected_equal": true,
+          "counter_equal": true,
+          "old_counters": {
+            "dmaActive": 220,
+            "dmaInst": 12,
+            "execTime": 1152,
+            "fence": 1,
+            "mxActive": 824,
+            "mxBubble": 295,
+            "mxInst": 16,
+            "rawInst": 97
+          },
+          "new_counters": {
+            "dmaActive": 220,
+            "dmaInst": 12,
+            "execTime": 1152,
+            "fence": 1,
+            "mxActive": 824,
+            "mxBubble": 295,
+            "mxInst": 16,
+            "rawInst": 97
+          },
+          "old_result": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build/sim16/seq32/result.json",
+          "new_result": "/tmp/ict-fsa-reproduce-20261028/a100/build-attempt02/sim16/seq32/result.json"
+        }
+      ]
+    },
+    "physical": {
+      "scope": "independent report comparison; equality does not waive CDC",
+      "legacy_build": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build",
+      "runs": {
+        "build-attempt02": {
+          "physical": {
+            "constrained_sta_passed": true,
+            "board_signoff": false,
+            "cdc_review_required": true,
+            "dut": {
+              "part": "xcvu37p_CIV-fsvh2892-2L-e",
+              "dut_period": "10.000",
+              "dut_setup_wns": "0.534",
+              "dut_hold_whs": "0.010"
+            },
+            "timing_summary": [
+              0.049,
+              0.0,
+              0.0,
+              265381.0,
+              0.01,
+              0.0,
+              0.0,
+              265381.0,
+              0.0,
+              0.0,
+              0.0,
+              148820.0
+            ],
+            "route": [
+              497497,
+              497497,
+              0
+            ],
+            "bus_skew_worst_ns": 3.142,
+            "checkpoint_sha256": "5420a3f09a23b726ad749f158d8b138440884022b3d3709b4b17aff59ff3874d"
+          },
+          "metric_matches_legacy": {
+            "dut": true,
+            "timing_summary": true,
+            "route": true,
+            "bus_skew_worst_ns": true
+          },
+          "cdc_detail_row_count": 302,
+          "cdc_detail_rows_equal_legacy": true,
+          "cdc_rows_added": [],
+          "cdc_rows_removed": [],
+          "exception_invalid_or_nonexistent_rows_equal_legacy": true
+        },
+        "build-fixed-attempt01": {
+          "physical": {
+            "constrained_sta_passed": true,
+            "board_signoff": false,
+            "cdc_review_required": true,
+            "dut": {
+              "part": "xcvu37p_CIV-fsvh2892-2L-e",
+              "dut_period": "10.000",
+              "dut_setup_wns": "0.642",
+              "dut_hold_whs": "0.010"
+            },
+            "timing_summary": [
+              0.073,
+              0.0,
+              0.0,
+              265416.0,
+              0.01,
+              0.0,
+              0.0,
+              265416.0,
+              0.0,
+              0.0,
+              0.0,
+              148814.0
+            ],
+            "route": [
+              497468,
+              497468,
+              0
+            ],
+            "bus_skew_worst_ns": 3.284,
+            "checkpoint_sha256": "1e1fc9f7fbf88035fae084cbf21c935c0f8d9b6d2be9bf36a1beeb8036f9592e"
+          },
+          "metric_matches_legacy": {
+            "dut": false,
+            "timing_summary": false,
+            "route": false,
+            "bus_skew_worst_ns": false
+          },
+          "cdc_detail_row_count": 302,
+          "cdc_detail_rows_equal_legacy": true,
+          "cdc_rows_added": [],
+          "cdc_rows_removed": [],
+          "exception_invalid_or_nonexistent_rows_equal_legacy": true
+        }
+      }
+    },
+    "constraints": {
+      "scope": "input timing/clock intent and generated constraint files; no claim of bit-identical physical placement",
+      "generated_constraints": [
+        {
+          "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.harnessSysPLL.vivado.tcl",
+          "original_sha256": "707b8b5db789439e17cc42e93d15291cf68fbc01491857f3f28a8e954bab01b8",
+          "fixed_sha256": "707b8b5db789439e17cc42e93d15291cf68fbc01491857f3f28a8e954bab01b8",
+          "equal": true
+        },
+        {
+          "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.nm37_xdma.vivado.tcl",
+          "original_sha256": "d03dd4d1868d54e71c3297b48c37e1cdd2bf94772319335a5f13c1f113b4de4d",
+          "fixed_sha256": "d03dd4d1868d54e71c3297b48c37e1cdd2bf94772319335a5f13c1f113b4de4d",
+          "equal": true
+        },
+        {
+          "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.shell.sdc",
+          "original_sha256": "7449a627171a06931e558777ce7ce30ecf644bbf129f06a1957f6a925c7e2a3f",
+          "fixed_sha256": "7449a627171a06931e558777ce7ce30ecf644bbf129f06a1957f6a925c7e2a3f",
+          "equal": true
+        },
+        {
+          "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.shell.vivado.tcl",
+          "original_sha256": "2523542e19fb8b963af43d54131bf5edd04720a6e04a3a0e25151388e8daac06",
+          "fixed_sha256": "2523542e19fb8b963af43d54131bf5edd04720a6e04a3a0e25151388e8daac06",
+          "equal": true
+        },
+        {
+          "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.shell.xdc",
+          "original_sha256": "a632015b5f10be4d729760e61a32f287304e77f234209e09281f6af89fc4d2cf",
+          "fixed_sha256": "a632015b5f10be4d729760e61a32f287304e77f234209e09281f6af89fc4d2cf",
+          "equal": true
+        },
+        {
+          "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.testxilinx_hbm.vivado.tcl",
+          "original_sha256": "ac8d8df574a74b9c409e167fab583860d7e5dca4e7bce919af2b6d521fd0ae41",
+          "fixed_sha256": "ac8d8df574a74b9c409e167fab583860d7e5dca4e7bce919af2b6d521fd0ae41",
+          "equal": true
+        },
+        {
+          "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.xdma_master_axi_clock_converter_0.vivado.tcl",
+          "original_sha256": "ec95f97e582b44d21ce78d1bd3585ce9b5e9b20d8c42d00495dbb7de0760b0ca",
+          "fixed_sha256": "ec95f97e582b44d21ce78d1bd3585ce9b5e9b20d8c42d00495dbb7de0760b0ca",
+          "equal": true
+        },
+        {
+          "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.xdma_master_lite_axi_clock_converter_0.vivado.tcl",
+          "original_sha256": "ff9b122114c0b658963af449f4ea55d4b99810e9d96b6affba810765d88598fa",
+          "fixed_sha256": "ff9b122114c0b658963af449f4ea55d4b99810e9d96b6affba810765d88598fa",
+          "equal": true
+        }
+      ],
+      "configuration_equal": true,
+      "source_hashes_changed": [
+        "fpga/fpga-shells/xilinx/nm37/constraints/nm37-config.xdc"
+      ],
+      "shell_hashes_changed": [
+        "xilinx/nm37/constraints/nm37-config.xdc"
+      ],
+      "original_routed_obsolete_target_count": 0,
+      "original_target_evidence": "netlist-review-original-attempt02/exception_objects.txt:1585",
+      "change_semantics": "Remove a MAX_FANOUT command whose cell selector matches zero objects; no replacement constraint applied."
+    },
+    "netlist": {
+      "hbm_equal": true,
+      "cdc_structure_without_LOC_BEL_equal": true,
+      "cpll_exception_objects_equal": true,
+      "prst_n_same_endpoint_set": true,
+      "obsolete_target_counts": {
+        "original": 0,
+        "fixed": 0
+      },
+      "fixed_cdc8_cells": [
+        {
+          "REF_NAME": "FDCE",
+          "ASYNC_REG": "",
+          "DONT_TOUCH": "",
+          "LOC": "SLICE_X157Y54",
+          "BEL": "SLICEM.FFF",
+          "INIT": "1'b0"
+        }
+      ],
+      "scope": "actual final DCP structural attributes compared; physical LOC/BEL allowed to differ, no full board signoff"
+    }
+  },
+  "legacy_reference": {
+    "legacy_a70": {
+      "path": "/home/zhangsi/nm37-git-reproduce-fresh/a70-p3-build-java20-20261025-020151",
+      "physical": {
+        "constrained_sta_passed": true,
+        "board_tested": false,
+        "cdc_review_required": true,
+        "constraint_review_required": true,
+        "constraint_counts": {
+          "no_clock": 0,
+          "constant_clock": 0,
+          "pulse_width_clock": 0,
+          "unconstrained_internal_endpoints": 30,
+          "no_input_delay": 1,
+          "no_output_delay": 0,
+          "multiple_clock": 0,
+          "generated_clocks": 0,
+          "loops": 0,
+          "partial_input_delay": 0,
+          "partial_output_delay": 0,
+          "latch_loops": 0
+        },
+        "dut": {
+          "part": "xcvu37p_CIV-fsvh2892-2L-e",
+          "dut_period": "14.286",
+          "dut_setup_wns": "0.419",
+          "dut_hold_whs": "0.010"
+        },
+        "timing_summary": [
+          0.047,
+          0.0,
+          0.0,
+          192967.0,
+          0.01,
+          0.0,
+          0.0,
+          192967.0,
+          0.0,
+          0.0,
+          0.0,
+          81055.0
+        ],
+        "route": [
+          477602,
+          477602,
+          0
+        ],
+        "bus_skew_worst_ns": 2.579,
+        "checkpoint_sha256": "a6f02be1703015255da8e1861b453e93adae9ce9e0fdd453dcb288af0d6a4878",
+        "report_hashes": {
+          "report/clocks.txt": "69eba1cba72781b355f44769a24d33f0f68f03190a60da7477a6da6f2920e502",
+          "report/complexity.txt": "b4b47ee3bfa24510d81362ef3e638ac1934abae68806983631c190b9f7c891e9",
+          "report/congestion.txt": "fc6ca464e51611ae343b7acd63ec3cce9891b3dc24d0b7919c1588c812594fd8",
+          "report/datasheet.txt": "b1db71a97afd8e3b4714ee2800d572787f9d4691d3d45e928aff698efc0af694",
+          "report/drc.txt": "d83b75cf781ab30071da0a32dbd89202b69bf28be964a3bf11c8dc6881753d5f",
+          "report/fanout.txt": "8e40cea00700d4db1f0101bf10d5c8204a9f594dee73f3e44b3cb58fe7420860",
+          "report/io.txt": "40ff0695d3620d7d4af9949722eb69ce88b689b45d914cbe657e1b97843b256f",
+          "report/power.txt": "84947c8f8bcef41ca744353e10dfc09db80fc9f5c0e545eae14bb08c679df4c3",
+          "report/route_status.txt": "a49c075a426771ad906542f7430ad4f7d88650dc6e7000a0e22c51b7b02429d2",
+          "report/timing.txt": "0ab182309713e9bbb212e4565aa4d925c880a60990d92921f9c16ab32fa91b26",
+          "report/utilization.txt": "e48bdfa9a3dd8f8f3b96118f87c69f34ebebd596fa03adaccbcfd534612f5952",
+          "report/utilization_flat.txt": "6d520a8dd9853fb3c820d45c190d1d63a476a09d3da5c093d128b8872f7b26ff",
+          "report/utilization_slr.txt": "bd24f76a6dede5cdf1397d28551d42f82c157ac0764f5dee263eaf2a37b2ed16",
+          "audit/bus_skew.txt": "9f019d102f20e10ac859a287c9b1fd8151c8724aa471f6a51704edbe2d7227e2",
+          "audit/cdc.txt": "82b9eefd67f535517409660799039d33555b9f6c5e8fcaa520d03352cfc60e84",
+          "audit/check_timing.txt": "24386483f441dd4b87e9e667291bd31211fab285f872f0d4011b133dfa11215a",
+          "audit/clock_interaction.txt": "54139f1baedca1a7cec6f2cbd76dc2ba35bb91935a5c6614dcd0ec96a012e4f1",
+          "audit/dsp_registers.tsv": "887032eeeadd78fc809af943647a6a2ace72f21cef8e17b79e20664cccf82b3c",
+          "audit/dut_hold_top100.txt": "7f73d97fdb1dc657b90f0244046b69fcebca4f0bbe3a0b203750394a232fac21",
+          "audit/dut_setup_top100.txt": "30c5e8bbd8fa78509c24e3e2a98b761d60f6cb5fe208cde71d034a3d39d10ff4",
+          "audit/exceptions.txt": "a5c45d2f59e01a25a79e7801a00f533f3c5ffaec106e3e574b4e8d63caadfb52",
+          "audit/fanout_top200.txt": "cdab7cbcfa9989bef588c61934fa4f9e689668abd3386a2c293c325c0d027a91",
+          "audit/post_synth_timing.txt": "19dec6ed539fb522c5328307c331e1faab6b5681a1415596963036f2b30e99fd",
+          "audit/post_synth_utilization.txt": "afa8c298557180463a1d31111b52e1a61f95c723966ce0a3bc1ef4e203b22921",
+          "audit/postroute_checkpoint.sha256": "ec8c62f00e73da5a2dbd5b7351b550dfb1cd57469c06d566c504e573955ec046",
+          "audit/run_properties.txt": "98922c071a042c5995ebb734710a66cd56ffd721c9f090c699682c7a100a46bd"
+        }
+      },
+      "sim16": {
+        "seq16": {
+          "bitwise_equal": true,
+          "shape": [
+            16,
+            16
+          ],
+          "seed": 0,
+          "seq": 16,
+          "array_rows": 16,
+          "binary_sha256": "981341facefbd6a2fd4ce1f2c1a8bd215e3659caf7b782d91cb31e39c4448ee6",
+          "config_sha256": "247d40b749cee50e541acdbec7283f7deb5763952ac115b236378f021c664a2c",
+          "actual_sha256": "8301342a7ede27a230080c6aa86ec4f393e99b421cab234ac64436dd17488e0d",
+          "expected_sha256": "8301342a7ede27a230080c6aa86ec4f393e99b421cab234ac64436dd17488e0d",
+          "input_sha256": {
+            "q": "99d8dc89dfe81120c7057c6abcf55efeafd3dced5ccfc53ddac24be487ac7ff2",
+            "k": "a9c44bec009a848ef115730e7ec045ddf78597cb6260a2a613eacd7d8e98edd7",
+            "v": "6680dbcdc2574a2c63c60de2f7009a141e43ce360cb62ceaa51c07e8a0b7ae64"
+          }
+        },
+        "seq32": {
+          "bitwise_equal": true,
+          "shape": [
+            32,
+            16
+          ],
+          "seed": 0,
+          "seq": 32,
+          "array_rows": 16,
+          "binary_sha256": "981341facefbd6a2fd4ce1f2c1a8bd215e3659caf7b782d91cb31e39c4448ee6",
+          "config_sha256": "247d40b749cee50e541acdbec7283f7deb5763952ac115b236378f021c664a2c",
+          "actual_sha256": "4cbe4b2e2c63af6ba4c8a28086b07503164c29ee900817c5f61d991f7f204cb3",
+          "expected_sha256": "4cbe4b2e2c63af6ba4c8a28086b07503164c29ee900817c5f61d991f7f204cb3",
+          "input_sha256": {
+            "q": "4c2713892b923f089dbd9d57863dffd8e4495941e9f06fc6cea2a9b533fdefe7",
+            "k": "59d43f7c7b44fb146d59d3eb224086e80c40cbb96beb6cd4ebe8d21fe0e552a0",
+            "v": "83fa4d1c41d6e3de0b87d11a7dcf6be9c542fb3e431e276f6f366f661c168c99"
+          }
+        }
+      },
+      "resources": {
+        "Total LUTs": 378248,
+        "Logic LUTs": 372342,
+        "LUTRAMs": 4958,
+        "SRLs": 948,
+        "FFs": 71330,
+        "RAMB36": 52,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 288
+      }
+    },
+    "legacy_a100": {
+      "path": "/home/zhangsi/nm37-git-reproduce-fresh/a100-build",
+      "physical": {
+        "constrained_sta_passed": true,
+        "board_signoff": false,
+        "cdc_review_required": true,
+        "dut": {
+          "part": "xcvu37p_CIV-fsvh2892-2L-e",
+          "dut_period": "10.000",
+          "dut_setup_wns": "0.534",
+          "dut_hold_whs": "0.010"
+        },
+        "timing_summary": [
+          0.049,
+          0.0,
+          0.0,
+          265381.0,
+          0.01,
+          0.0,
+          0.0,
+          265381.0,
+          0.0,
+          0.0,
+          0.0,
+          148820.0
+        ],
+        "route": [
+          497497,
+          497497,
+          0
+        ],
+        "bus_skew_worst_ns": 3.142,
+        "checkpoint_sha256": "08698428f31fe5527a12775f12b2d8ed4ae6e9d166334227e05326be7d7a4165"
+      },
+      "sim16": {
+        "seq16": {
+          "bitwise_equal": true,
+          "shape": [
+            16,
+            16
+          ],
+          "actual_sha256": "8301342a7ede27a230080c6aa86ec4f393e99b421cab234ac64436dd17488e0d",
+          "expected_sha256": "8301342a7ede27a230080c6aa86ec4f393e99b421cab234ac64436dd17488e0d",
+          "seed": 0,
+          "seq": 16
+        },
+        "seq32": {
+          "bitwise_equal": true,
+          "shape": [
+            32,
+            16
+          ],
+          "actual_sha256": "4cbe4b2e2c63af6ba4c8a28086b07503164c29ee900817c5f61d991f7f204cb3",
+          "expected_sha256": "4cbe4b2e2c63af6ba4c8a28086b07503164c29ee900817c5f61d991f7f204cb3",
+          "seed": 0,
+          "seq": 32
+        }
+      },
+      "resources": {
+        "Total LUTs": 355692,
+        "Logic LUTs": 350958,
+        "LUTRAMs": 3774,
+        "SRLs": 960,
+        "FFs": 140263,
+        "RAMB36": 60,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 288
+      }
+    }
+  },
+  "physical_reference_available_resources": {
+    "LUT": 1303680,
+    "FF": 2607360,
+    "RAMB36": 2016,
+    "DSP": 9024
+  },
+  "review_limits": [
+    "A100 fixed regression simulator uses 8x64-bit DMA, whereas A70 legacy sim16 uses 1x256-bit. Cross-profile simulation cycle ratios are not isolated frequency/pipeline speedups. Board A100 is 1x256-bit.",
+    "Existing ResetWrangler CDC-8 first-stage ASYNC_REG property is empty. Three-stage release structure is identified but full dynamic reset/MTBF closure was not performed.",
+    "Vendor PCIe CDC7/10/11 and CPLL capture structures were inspected on fresh DCPs and compared, without claiming all asynchronous reset sequences and multi-lane behavior are independently proven.",
+    "Unused HBM AXI1..15 clocks are GROUND; BREADY/RREADY are SIGNAL feedback from same-macro VALID_PIPE, not GND data ties.",
+    "No bitstream export, programming, board cold-start or attention test was performed."
+  ],
+  "retained_failure_evidence": [
+    "build-attempt01/logs/assembly.log",
+    "logs/python-formal.log",
+    "netlist-review-original",
+    "logs/netlist-review-original.log"
+  ],
+  "report_files": {
+    "A100_REPRODUCTION.md": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/A100_REPRODUCTION.md",
+      "sha256": "7e31540e716290e8e160b0965d76aa1d0ade3cef76e996b393fc49e725ba3345"
+    },
+    "CDC_CONSTRAINT_REVIEW.md": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/CDC_CONSTRAINT_REVIEW.md",
+      "sha256": "c21166a751cd2ad3781f42225c6cb1e3fb31e8bbc01dd7c3810e56e26fdda470"
+    },
+    "commands.txt": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/commands.txt",
+      "sha256": "5632144e342a490dedf95db32718a40c044a7f84880400202171460d551f21ac"
+    },
+    "env.sh": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/env.sh",
+      "sha256": "47aa7e975a463ec0ab15a660d280f3d5f6e061afb4b70627c5f224c37a3245a5"
+    },
+    "env-fixed.sh": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/env-fixed.sh",
+      "sha256": "ebae687ddaedb5ec70ab55c4a9ed68c368467cd02676111b483c656b82049658"
+    },
+    "constraints-comparison.json": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/constraints-comparison.json",
+      "sha256": "df56bfe1a50a3d17d63db1c25937ea047bd1344286980272e3e9e0c679076c98"
+    },
+    "physical-comparison.json": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/physical-comparison.json",
+      "sha256": "357c525804f7bf81651c64a23d74423fe7224723f5d590712ec57941bf3b1e98"
+    },
+    "cdc-structural-summary-original.json": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/cdc-structural-summary-original.json",
+      "sha256": "88be287dbae14ce8e76744410cc573c067de252675700e88e5ccd063562d240d"
+    },
+    "hbm-original-summary.json": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/hbm-original-summary.json",
+      "sha256": "7410c0f6bb61c6599bd298bf349b0f71172c8703e1ea824e5616214658e6e1ce"
+    },
+    "board-rtl-evidence.json": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/board-rtl-evidence.json",
+      "sha256": "3682694fdc33c2e4381125725af4266e0838f979fc916d85b670f880473a9332"
+    },
+    "sim16-topology-evidence.json": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/sim16-topology-evidence.json",
+      "sha256": "031d397f55a6f7175596b452180e3e89fe1eb96461c9b7c7f633fa015598896f"
+    },
+    "netlist_review_fixed_api.tcl": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/netlist_review_fixed_api.tcl",
+      "sha256": "f90664ec85421d692b44bed7136d30887573213da071e0c107c1e030d04c280c"
+    },
+    "netlist-review-summary-original.json": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/netlist-review-summary-original.json",
+      "sha256": "cb780e32a4f9ba93cd0c4fb181b64c00a92af91fd6d2262ab338d759f06713a5"
+    },
+    "netlist-review-summary-fixed.json": {
+      "path": "/tmp/ict-fsa-reproduce-20261028/a100/netlist-review-summary-fixed.json",
+      "sha256": "df4708b56abfb059c5419401a48f81d11114f34d50b36db825241cf7c474c7bc"
+    }
+  }
+}

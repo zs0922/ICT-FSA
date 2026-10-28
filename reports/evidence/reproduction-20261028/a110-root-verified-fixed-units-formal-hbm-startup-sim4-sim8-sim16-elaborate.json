@@ -1,0 +1,36 @@
+{
+  "checked_utc": "2026-10-28T06:28:17.995230+00:00",
+  "build_sha256": "0b158929c7328e8ebdde3d27840b0acd8ccbd917a7a50aec2ba0b73de5faacf9",
+  "root": "/tmp/ict-fsa-reproduce-20261028/a110/build-fixed-attempt01",
+  "stages": {
+    "units": {
+      "seal_sha256": "da16a4821e33253c177bef6c9aa04f626dcdc81fefc1f682f8b61f75dec8321c",
+      "verified_files": 6
+    },
+    "formal": {
+      "seal_sha256": "1d4320356408cd7b940031d946b79a9837b128716b594179eac50e46b91d5dda",
+      "verified_files": 19
+    },
+    "hbm-startup": {
+      "seal_sha256": "e9071cea5a0e6fcdf5427314ddd84101112c497c7fd864cc3f8645702558f4a3",
+      "verified_files": 38
+    },
+    "sim4": {
+      "seal_sha256": "db3b1f645a75f35b2d5b583fe9c3def7dba7536bc5b797a490a2f434e7ec10d8",
+      "verified_files": 245
+    },
+    "sim8": {
+      "seal_sha256": "bf9f62c9462bde0828cb8f4c0d25c085fa5e078dd27f8290d85d69db4cb1a832",
+      "verified_files": 251
+    },
+    "sim16": {
+      "seal_sha256": "deaeda20934e606ea723563669082b582166d5808a38fddfd767ec8efab10ead",
+      "verified_files": 263
+    },
+    "elaborate": {
+      "seal_sha256": "f88bc6f7fe0ea30adc41b1e13f1dec3a609242e1851ac3c4b2d1754422481ca0",
+      "verified_files": 132
+    }
+  },
+  "passed": true
+}

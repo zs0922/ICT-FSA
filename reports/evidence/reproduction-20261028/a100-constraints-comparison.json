@@ -1,0 +1,63 @@
+{
+  "scope": "input timing/clock intent and generated constraint files; no claim of bit-identical physical placement",
+  "generated_constraints": [
+    {
+      "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.harnessSysPLL.vivado.tcl",
+      "original_sha256": "707b8b5db789439e17cc42e93d15291cf68fbc01491857f3f28a8e954bab01b8",
+      "fixed_sha256": "707b8b5db789439e17cc42e93d15291cf68fbc01491857f3f28a8e954bab01b8",
+      "equal": true
+    },
+    {
+      "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.nm37_xdma.vivado.tcl",
+      "original_sha256": "d03dd4d1868d54e71c3297b48c37e1cdd2bf94772319335a5f13c1f113b4de4d",
+      "fixed_sha256": "d03dd4d1868d54e71c3297b48c37e1cdd2bf94772319335a5f13c1f113b4de4d",
+      "equal": true
+    },
+    {
+      "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.shell.sdc",
+      "original_sha256": "7449a627171a06931e558777ce7ce30ecf644bbf129f06a1957f6a925c7e2a3f",
+      "fixed_sha256": "7449a627171a06931e558777ce7ce30ecf644bbf129f06a1957f6a925c7e2a3f",
+      "equal": true
+    },
+    {
+      "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.shell.vivado.tcl",
+      "original_sha256": "2523542e19fb8b963af43d54131bf5edd04720a6e04a3a0e25151388e8daac06",
+      "fixed_sha256": "2523542e19fb8b963af43d54131bf5edd04720a6e04a3a0e25151388e8daac06",
+      "equal": true
+    },
+    {
+      "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.shell.xdc",
+      "original_sha256": "a632015b5f10be4d729760e61a32f287304e77f234209e09281f6af89fc4d2cf",
+      "fixed_sha256": "a632015b5f10be4d729760e61a32f287304e77f234209e09281f6af89fc4d2cf",
+      "equal": true
+    },
+    {
+      "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.testxilinx_hbm.vivado.tcl",
+      "original_sha256": "ac8d8df574a74b9c409e167fab583860d7e5dca4e7bce919af2b6d521fd0ae41",
+      "fixed_sha256": "ac8d8df574a74b9c409e167fab583860d7e5dca4e7bce919af2b6d521fd0ae41",
+      "equal": true
+    },
+    {
+      "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.xdma_master_axi_clock_converter_0.vivado.tcl",
+      "original_sha256": "ec95f97e582b44d21ce78d1bd3585ce9b5e9b20d8c42d00495dbb7de0760b0ca",
+      "fixed_sha256": "ec95f97e582b44d21ce78d1bd3585ce9b5e9b20d8c42d00495dbb7de0760b0ca",
+      "equal": true
+    },
+    {
+      "file": "chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.xdma_master_lite_axi_clock_converter_0.vivado.tcl",
+      "original_sha256": "ff9b122114c0b658963af449f4ea55d4b99810e9d96b6affba810765d88598fa",
+      "fixed_sha256": "ff9b122114c0b658963af449f4ea55d4b99810e9d96b6affba810765d88598fa",
+      "equal": true
+    }
+  ],
+  "configuration_equal": true,
+  "source_hashes_changed": [
+    "fpga/fpga-shells/xilinx/nm37/constraints/nm37-config.xdc"
+  ],
+  "shell_hashes_changed": [
+    "xilinx/nm37/constraints/nm37-config.xdc"
+  ],
+  "original_routed_obsolete_target_count": 0,
+  "original_target_evidence": "netlist-review-original-attempt02/exception_objects.txt:1585",
+  "change_semantics": "Remove a MAX_FANOUT command whose cell selector matches zero objects; no replacement constraint applied."
+}

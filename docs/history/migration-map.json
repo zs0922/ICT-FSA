@@ -42,5 +42,42 @@
       "legacy_root_commit": "25673838e66ddef9031748ca40f7220c65acedaf",
       "acceptance": "local_source_candidate; no release tag"
     }
-  ]
+  ],
+  "reproduction_20261028": {
+    "report": "reports/ICT_FSA_REPRODUCTION_20261028.md",
+    "original_milestones_preserved": true,
+    "board_tested_in_this_run": false,
+    "release_tags_created": false,
+    "candidates": [
+      {
+        "stage": "A70-P3",
+        "commit": "8cc6b42536334892b88f6214f39d3afe5daa2504",
+        "branch": "codex/nm37-a70-p3",
+        "functional_verification": "passed including fixed regression and seq1024",
+        "constrained_sta": "passed at profile target frequency",
+        "strict_board_signoff": false,
+        "cdc_scope": "structural evidence reviewed; inherited limitations retained"
+      },
+      {
+        "stage": "A100",
+        "commit": "9b8911f4e9e5c6af49fe6b6287e9c88ee1031352",
+        "branch": "codex/a100-reproduction-fix",
+        "change": "remove ineffective MAX_FANOUT constraint; refresh source/shell fingerprints",
+        "functional_verification": "passed including fixed regression and seq1024",
+        "constrained_sta": "passed at profile target frequency",
+        "strict_board_signoff": false,
+        "cdc_scope": "structural evidence reviewed; inherited limitations retained"
+      },
+      {
+        "stage": "A110-APB55",
+        "commit": "7deb8e3e9416f2f3d25df9d45a5f65fc38302cda",
+        "branch": "codex/a110-reproduction-fix",
+        "change": "remove ineffective MAX_FANOUT constraint; refresh source/shell fingerprints",
+        "functional_verification": "passed including fixed regression and seq1024",
+        "constrained_sta": "passed at profile target frequency",
+        "strict_board_signoff": false,
+        "cdc_scope": "native CDC gate not accepted; actual ASYNC_REG gap and reset dynamic limits remain"
+      }
+    ]
+  }
 }

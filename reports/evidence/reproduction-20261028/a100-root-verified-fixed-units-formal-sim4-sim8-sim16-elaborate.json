@@ -1,0 +1,32 @@
+{
+  "checked_utc": "2026-10-28T06:25:03.155674+00:00",
+  "build_sha256": "fddc7cb9a9c311e2d7a7daeda4990878b15e3ed6f599db88c075f42ed9b2a4b1",
+  "root": "/tmp/ict-fsa-reproduce-20261028/a100/build-fixed-attempt01",
+  "stages": {
+    "units": {
+      "seal_sha256": "eeeaed209327c4a554207fdefecad125ae1ceb688311e512df5a235e94c1f3ad",
+      "verified_files": 6
+    },
+    "formal": {
+      "seal_sha256": "8232b4183cbf623add20e0fc9056121758278863aada6c0075d5169b835d58d0",
+      "verified_files": 19
+    },
+    "sim4": {
+      "seal_sha256": "4a1db1a22045d87f69f15f88c8dce8f060ad8ebffb08e6d36d3bfff0dad2b6b1",
+      "verified_files": 245
+    },
+    "sim8": {
+      "seal_sha256": "a912fbd79549587857ca5400ae4a8084c5ea92eb8621115353e1b90a7757d0f1",
+      "verified_files": 251
+    },
+    "sim16": {
+      "seal_sha256": "ef82d99c6f4d1c8459410f4f4bf76248ba242513d3ac7c09198405dc0f47a685",
+      "verified_files": 263
+    },
+    "elaborate": {
+      "seal_sha256": "6aa8643a1d4189e4d3f1c5768dea332908db7a9ac2de7517731af68a6b64762c",
+      "verified_files": 127
+    }
+  },
+  "passed": true
+}

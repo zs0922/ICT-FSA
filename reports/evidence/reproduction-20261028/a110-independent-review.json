@@ -1,0 +1,62 @@
+{
+  "reviewer": "Independent A70 reproduction agent",
+  "reviewed_utc": "2026-10-28T07:52:17.174786+00:00",
+  "draft_path": "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-review.original.draft.json",
+  "draft_sha256": "20aaf5282ad78658d104168f69c170fc15768ed4d7f9246b3dee8d90d7adf3ca",
+  "checkpoint_sha256": "1d7cf7221b7785d45afb98ac49588efbeb0a1b2635d4590c4591d7e2db6e3268",
+  "scope": "Read-only review of original A110 CDC classification draft and linked actual source/netlist evidence; no hardware or tool execution, no gate waiver.",
+  "findings_count": 36,
+  "required_findings_exactly_covered": true,
+  "dispositions": {
+    "pending": 36
+  },
+  "groups": {
+    "G2_vendor_xpm_async_reset": 2,
+    "G1_wrangler_reset_qualification": 28,
+    "G3_vendor_reset_sinks": 5,
+    "G4_missing_async_reg": 1
+  },
+  "all_evidence_hashes_match": true,
+  "evidence_checks": {
+    "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/context.txt": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/netlist-original-review/cdc_endpoint_cones.txt": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/evidence/cdc-source-provenance.json": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/physical.failed.json": true
+  },
+  "all_source_provenance_hashes_match": true,
+  "source_checks": {
+    "/tmp/ict-fsa-reproduce-20261028/a110/source-attempt02/fpga/src/main/scala/u280/HBMStartup.scala": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/source-attempt02/generators/rocket-chip/src/main/scala/prci/ResetWrangler.scala": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/A110/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/ip/nm37_xdma/ip_0/source/nm37_xdma_pcie4c_ip_pcie4c_uscale_core_top.v": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/A110/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/ip/nm37_xdma/ip_0/ip_0/hdl/gtwizard_ultrascale_v1_7_gtye4_cal_freqcnt.v": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/A110/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/ip/nm37_xdma/ip_0/source/nm37_xdma_pcie4c_ip_gt_cdr_ctrl_on_eidle.v": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/A110/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/ip/nm37_xdma/ip_0/source/nm37_xdma_pcie4c_ip_gt_receiver_detect_rxterm.v": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/A110/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/ip/nm37_xdma/ip_0/source/nm37_xdma_pcie4c_ip_sync.v": true,
+    "/tmp/ict-fsa-reproduce-20261028/a110/build-attempt02/A110/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/ip/nm37_xdma/ip_0/source/nm37_xdma_pcie4c_ip_sync_cell.v": true
+  },
+  "conclusions": [
+    "The CDC-8 destination is actual routed FDCE sync_2_reg with empty ASYNC_REG and PCIe AXI clock period 4ns; generated three-stage reset logic does not remove this missing physical attribute.",
+    "Vendor user_lnk_up_cdc and user_reset_cdc are actual ASYNC_REG-marked XPM reset chains; generated source DEST_SYNC_FF=2 is consistent with downstream register and CDC depth observations.",
+    "ResetWrangler threshold of 5500 slow-clock ticks is a 55MHz qualification counter followed by deglitch and per-domain reset chains, not an asynchronous release/MTBF proof.",
+    "All 36 findings remain pending. The 35 structural explanations are proposed classifications only; strict CDC acceptance and board signoff remain false.",
+    "Positive recovery slack cannot substitute for asynchronous reset protocol or metastability evidence."
+  ],
+  "requested_wording_clarifications": [
+    "G1 is a combined asynchronous reset qualification chain, including runtime PCIe user_reset causes, rather than exclusively cold-reset initialization.",
+    "G3 sys_or_hot_rst includes cfg_hot_reset_out and user_lnk_up_int depends on PHY link status. The 10000-cycle upstream fundamental reset qualification does not cover every vendor-internal reset event."
+  ],
+  "author_response": "A110 agent agreed to clarify G1/G3 and retain every pending disposition, with no additional hardware run.",
+  "strict_cdc_accepted_by_this_review": false,
+  "board_signoff": false,
+  "final_draft_sha256": "20aaf5282ad78658d104168f69c170fc15768ed4d7f9246b3dee8d90d7adf3ca",
+  "final_reviewed_utc": "2026-10-28T07:52:44.017269+00:00",
+  "final_groups": {
+    "G2_vendor_xpm_async_reset": 2,
+    "G1_wrangler_reset_qualification": 28,
+    "G3_vendor_reset_sinks": 5,
+    "G4_missing_async_reg": 1
+  },
+  "wording_clarifications_resolved": true,
+  "unique_cdc_source_destination_pins": 332,
+  "final_assessment": "Draft accurately records the actual observations and limits. All 36 pending dispositions and false strict_cdc_acceptance/board_signoff retained. The 35 structural suggestions are not approval or acceptance."
+}
