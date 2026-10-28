@@ -29,11 +29,12 @@ vivado -version
 
 还需要 GNU make、C/C++ 编译器、Git、uv、器件支持/许可证、已安装的 XDMA 驱动（仅板测）以及证明工具。A70-P3 默认使用 `yowasp-yosys`，可以通过 `YOSYS=/absolute/path/to/yowasp-yosys` 指定；A100/A110 对照各自 `scripts/nm37-a100`、`scripts/nm37-a110` 验证器的实际需求。
 
-用于定向形式验证的工具采用固定 Python 包版本；仓库含完整 requirements：
+用于定向形式验证的工具采用固定 Python 包版本和 Python 3.13；仓库含完整 requirements。不要用未指定版本的 `python3 -m venv`：Chipyard conda 环境可能提供 Python 3.10，与这些固定包的 Python 要求不兼容。创建独立环境：
 
 ```bash
-python3 -m venv "$WORK/formal-env"
-"$WORK/formal-env/bin/pip" install -r "$SRC/scripts/ict/formal-requirements.txt"
+uv venv --python 3.13 "$WORK/formal-env"
+uv pip install --python "$WORK/formal-env/bin/python" \
+  -r "$SRC/scripts/ict/formal-requirements.txt"
 export YOSYS="$WORK/formal-env/bin/yowasp-yosys"
 "$YOSYS" -V
 ```
