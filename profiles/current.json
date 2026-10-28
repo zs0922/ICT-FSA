@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "id": "U280",
+  "board": "U280",
+  "dut_mhz": 70,
+  "apb_mhz": 70,
+  "array_sizes": [
+    4
+  ],
+  "default_array_size": 4,
+  "build_label": "U280",
+  "validation_status": "organized_local_candidate_not_rebuilt_or_board_accepted",
+  "expected_tools": {
+    "java": "20.0.2",
+    "firtool": "firtool-1.75.0",
+    "verilator": "Verilator 5.022",
+    "vivado": "2020.2_AR75986"
+  },
+  "driver": {
+    "output_env": "ICT_BUILD_OUT",
+    "commands": {
+      "build": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "build",
+          "--out",
+          "{out}"
+        ]
+      ],
+      "sim": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "sim",
+          "--out",
+          "{out}",
+          "--array-size",
+          "{array_size}"
+        ]
+      ],
+      "elaborate": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "elaborate",
+          "--out",
+          "{out}"
+        ]
+      ],
+      "implement": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "implement",
+          "--out",
+          "{out}"
+        ]
+      ]
+    }
+  }
+}
