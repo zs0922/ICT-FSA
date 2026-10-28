@@ -101,6 +101,9 @@ trait HasMultiCycleIO { this: Module =>
 }
 
 trait HasArithmeticParams {
+  def peLatency: Int = 0
+  def cmpLatency: Int = 0
+  def spadLatency: Int = 1
   val reciprocalLatency: Int
   val exp2PwlPieces: Int
   // extra latency (cycles) of the accumulator FMA caused by pipelining;

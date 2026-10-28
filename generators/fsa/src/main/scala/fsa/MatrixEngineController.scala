@@ -17,6 +17,21 @@ object SpadConstIdx {
   def Exp2Slopes = 2
 }
 
+object FanoutSplit {
+  // A/B experiment switch for the M1 §4.0 fanout split.
+  //   false = exact pre-split (p3) behavior: single compute/accum timer +
+  //           single acc_ctrl pipe register fanning out to all lanes
+  //   true  = replicated timer banks + per-lane acc_ctrl pipe registers
+  // Used to bisect an unexpected mxBubble delta (91 -> 122) between the
+  // two behaviors; both must be bit-identical, any counter delta is a bug.
+  // Elaboration-only switch: one compiled generator serves both A/B variants.
+  val enabled: Boolean = sys.props.get("fsa.fanoutSplit") match {
+    case None | Some("true") => true
+    case Some("false") => false
+    case Some(value) => throw new IllegalArgumentException(s"Invalid fsa.fanoutSplit=$value")
+  }
+}
+
 object AccConstIdx {
   def width = 1
   def ZERO = 0
@@ -47,7 +62,11 @@ class MatrixControllerIO(implicit p: Parameters) extends FSABundle {
   val acc_read = Valid(new AccRead())
   val cmp_ctrl = Valid(new CmpControl)
   val pe_ctrl = Vec(SA_ROWS, Valid(new PECtrl))
-  val acc_ctrl = Valid(new AccumulatorControl)
+  // Fanout split (M1 §4.0): the accumulator control is decoded by every
+  // accumulator lane, so it is provided per lane.  Each element is driven by
+  // its OWN pipeline-register copy (see below), all copies loaded with the
+  // same value on the same cycle -- delay-neutral, no schedule change.
+  val acc_ctrl = Vec(SA_COLS, Valid(new AccumulatorControl))
   val sem_release = Valid(new Semaphore)
   val busy = Output(Bool())
 }
@@ -72,15 +91,40 @@ class MatrixControlFSM
   val computeValid = Cat(computeFlags).orR
   val accumValid = Cat(accumFlags).orR
 
-  val computeTimer = RegInit(0.U(executionPlans.map(_.computeMaxCycle).max.U.getWidth.W))
-  // use a separate timer for accumulation to reduce comparision latency
-  val accumTimer = RegInit(0.U(executionPlans.map(plan =>
-    plan.accumulateMaxCycle - plan.accStartCycle
-  ).max.U.getWidth.W))
+  val nPlans = executionPlans.length
 
-  // PE Control
-  computeFlags.zip(executionPlans).map{ case (flag, plan) =>
-    plan.genPECtrl(computeTimer, flag)
+  // Timer banks (M1 §4.0 fanout split): k physically independent register
+  // copies holding the SAME value, updated by identical logic every cycle.
+  // Purely delay-neutral: each consumer group reads its own copy, so the
+  // ~1000-load decode cone of a single timer register disappears.
+  // dontTouch is essential: without it synthesis collapses the equivalent
+  // copies back into one register and the split is lost.
+  def timerBank(k: Int, width: Int): Seq[UInt] = {
+    val n = if (FanoutSplit.enabled) k else 1
+    val ts = Seq.fill(n)(RegInit(0.U(width.W)))
+    if (FanoutSplit.enabled) ts.foreach(t => dontTouch(t))
+    ts
+  }
+
+  // bank access through the switch: index 0 in the disabled case makes the
+  // single physical copy behave exactly like the original single timer
+  def bankGet(bank: Seq[UInt], i: Int): UInt = if (FanoutSplit.enabled) bank(i) else bank(0)
+
+  // compute timer: one copy per execution plan (genPECtrl + done compare)
+  // plus dedicated copies for the sp_read and cmp_ctrl select() calls
+  val computeTimerBank = timerBank(nPlans + 2,
+    executionPlans.map(_.computeMaxCycle).max.U.getWidth)
+  // accumulate timer: one copy per execution plan (done/conflictFree compare)
+  // plus dedicated copies for acc_read / acc_ctrl / sem_release
+  // (a separate timer from compute to reduce comparison latency)
+  val accumTimerBank = timerBank(nPlans + 3,
+    executionPlans.map(plan =>
+      plan.accumulateMaxCycle - plan.accStartCycle
+    ).max.U.getWidth)
+
+  // PE Control (each plan reads its own compute-timer copy)
+  computeFlags.zip(executionPlans).zipWithIndex.map{ case ((flag, plan), i) =>
+    plan.genPECtrl(bankGet(computeTimerBank, i), flag)
   }.transpose.map(row =>
     row.map(ctrl => ctrl.asUInt).reduce(_|_).asTypeOf(new PECtrl)
   ).zip(io.pe_ctrl).foreach{ case (generated, pe_ctrl) =>
@@ -107,42 +151,45 @@ class MatrixControlFSM
     out
   }
 
-  // Scratchpad read
-  io.sp_read := select(computeTimer, computeFlags, executionPlans.map(_.sp_read))
+  // Scratchpad read (dedicated compute-timer copy)
+  io.sp_read := select(bankGet(computeTimerBank, nPlans), computeFlags, executionPlans.map(_.sp_read))
   when(io.sp_read.fire) {
     // next row
     rs1.addr := (rs1.addr.zext + rs1.stride).asUInt
   }
 
-  // Accum RAM read
-  io.acc_read := select(accumTimer, accumFlags, executionPlans.map(_.acc_read), Some(executionPlans.map(_.accStartCycle)))
+  // Accum RAM read (dedicated accum-timer copy)
+  io.acc_read := select(bankGet(accumTimerBank, nPlans), accumFlags, executionPlans.map(_.acc_read), Some(executionPlans.map(_.accStartCycle)))
   when(io.acc_read.fire) {
     rs2.addr := (rs2.addr.zext + rs2.stride).asUInt
   }
 
-  // CMP Control
-  io.cmp_ctrl := select(computeTimer, computeFlags, executionPlans.map(_.cmp_ctrl))
+  // CMP Control (dedicated compute-timer copy)
+  io.cmp_ctrl := select(bankGet(computeTimerBank, nPlans + 1), computeFlags, executionPlans.map(_.cmp_ctrl))
 
-  // ACCUMULATOR Control
-  io.acc_ctrl := select(accumTimer, accumFlags, executionPlans.map(_.acc_ctrl), Some(executionPlans.map(_.accStartCycle)))
+  // ACCUMULATOR Control (dedicated accum-timer copy); the per-lane Vec
+  // elements all get the same value here -- the true fanout split happens
+  // in MatrixEngineController where each element gets its own register copy
+  val acc_ctrl_sel = select(bankGet(accumTimerBank, nPlans + 1), accumFlags, executionPlans.map(_.acc_ctrl), Some(executionPlans.map(_.accStartCycle)))
+  io.acc_ctrl.foreach(_ := acc_ctrl_sel)
 
-  // Release Semaphore
-  io.sem_release.valid := Cat(computeFlags.zip(accumFlags).zip(executionPlans).map{ case ((cf, af), plan) =>
+  // Release Semaphore (dedicated accum-timer copy for the release compares)
+  io.sem_release.valid := Cat(computeFlags.zip(accumFlags).zip(executionPlans).zipWithIndex.map{ case (((cf, af), plan), i) =>
     (plan.sem_write.cycle > 0).B && (if (plan.useAccTimer(plan.sem_write.cycle)) {
-      af && plan.sem_write.valid(accumTimer, base = plan.accStartCycle) && header.releaseValid
+      af && plan.sem_write.valid(bankGet(accumTimerBank, nPlans + 2), base = plan.accStartCycle) && header.releaseValid
     } else {
-      cf && plan.sem_write.valid(computeTimer) && header.releaseValid
+      cf && plan.sem_write.valid(bankGet(computeTimerBank, i)) && header.releaseValid
     })
   }).orR
   io.sem_release.bits.id := header.semId
   io.sem_release.bits.value := header.releaseSemValue
 
-  // Update flags / timers
-  val (computeDone, conflictFree, accumDone) = computeFlags.zip(accumFlags).zip(executionPlans).map{ case ((cf, af), plan) =>
-    val cDone = cf && plan.computeDone(computeTimer)
-    val aDone = af && plan.accumDone(accumTimer)
+  // Update flags / timers (per-plan timer copies for the comparisons)
+  val (computeDone, conflictFree, accumDone) = computeFlags.zip(accumFlags).zip(executionPlans).zipWithIndex.map{ case (((cf, af), plan), i) =>
+    val cDone = cf && plan.computeDone(bankGet(computeTimerBank, i))
+    val aDone = af && plan.accumDone(bankGet(accumTimerBank, i))
     val aStart = cf && {
-      if (plan.accStartCycle > 0){ computeTimer === (plan.accStartCycle - 1).U }
+      if (plan.accStartCycle > 0){ bankGet(computeTimerBank, i) === (plan.accStartCycle - 1).U }
       else false.B
     }
     when(cDone) {
@@ -153,23 +200,29 @@ class MatrixControlFSM
     }
     when(aDone) { af := false.B }
     val conflictFree = if (plan.useAccTimer(plan.conflict_free.cycle)) {
-      af && plan.conflict_free.valid(accumTimer, base = plan.accStartCycle)
+      af && plan.conflict_free.valid(bankGet(accumTimerBank, i), base = plan.accStartCycle)
     } else {
-      cf && plan.conflict_free.valid(computeTimer)
+      cf && plan.conflict_free.valid(bankGet(computeTimerBank, i))
     }
     (cDone, conflictFree, aDone)
   }.unzip3
 
-  when(Cat(computeDone).orR) {
-    computeTimer := 0.U
-  }.elsewhen(Cat(computeFlags).orR){
-    computeTimer := computeTimer + 1.U
+  // identical update logic applied to every copy of the bank, so all
+  // copies stay value-locked (this is what keeps the split delay-neutral)
+  computeTimerBank.foreach { t =>
+    when(Cat(computeDone).orR) {
+      t := 0.U
+    }.elsewhen(Cat(computeFlags).orR){
+      t := t + 1.U
+    }
   }
 
-  when(Cat(accumDone).orR) {
-    accumTimer := 0.U
-  }.elsewhen(Cat(accumFlags).orR) {
-    accumTimer := accumTimer + 1.U
+  accumTimerBank.foreach { t =>
+    when(Cat(accumDone).orR) {
+      t := 0.U
+    }.elsewhen(Cat(accumFlags).orR) {
+      t := t + 1.U
+    }
   }
 
   when(Cat(conflictFree).orR) {
@@ -227,15 +280,19 @@ class MatrixEngineController[E <: Data : Arithmetic, A <: Data : Arithmetic](
   val sp_read_all = Wire(chiselTypeOf(io.sp_read))
   val acc_read_all = Wire(chiselTypeOf(io.acc_read))
   val cmp_ctrl_all = Wire(chiselTypeOf(io.cmp_ctrl))
-  val acc_ctrl_all = Wire(chiselTypeOf(io.acc_ctrl))
   val sem_release_all = Wire(chiselTypeOf(io.sem_release))
   val pe_ctrl_all = Wire(chiselTypeOf(io.pe_ctrl))
 
   Mux1HValidIO(fsm_io.map(_.sp_read), sp_read_all)
   Mux1HValidIO(fsm_io.map(_.acc_read), acc_read_all)
   Mux1HValidIO(fsm_io.map(_.cmp_ctrl), cmp_ctrl_all)
-  Mux1HValidIO(fsm_io.map(_.acc_ctrl), acc_ctrl_all)
   Mux1HValidIO(fsm_io.map(_.sem_release), sem_release_all)
+  // accumulator control is muxed PER LANE: each lane's decode cone reads
+  // its own copy downstream instead of sharing one broadcast net
+  val acc_ctrl_mux = Seq.fill(SA_COLS)(Wire(Valid(new AccumulatorControl)))
+  for (j <- 0 until SA_COLS) {
+    Mux1HValidIO(fsm_io.map(_.acc_ctrl(j)), acc_ctrl_mux(j))
+  }
   pe_ctrl_all.zipWithIndex.foreach { case (out, idx) =>
     out.valid := Cat(fsm_io.map(_.pe_ctrl(idx).valid)).orR
     out.bits := fsm_io.map(_.pe_ctrl(idx).bits.asUInt).reduce(_ | _).asTypeOf(out.bits)
@@ -252,7 +309,24 @@ class MatrixEngineController[E <: Data : Arithmetic, A <: Data : Arithmetic](
   io.sp_read := Pipe(sp_read_all)
   io.acc_read := Pipe(acc_read_all)
   io.cmp_ctrl := Pipe(cmp_ctrl_all)
-  io.acc_ctrl := Pipe(acc_ctrl_all)
+  // Fanout split for the accumulator-control broadcast (M1 §4.0): SA_COLS
+  // independent pipe registers, ALL loaded with the same value on the same
+  // cycle (delay-neutral -- same +1 latency as the other piped outputs, so
+  // schedule alignment is unchanged).  Each lane's ~63 decode points read
+  // their own register instead of one register/LUT feeding ~1000 loads.
+  // dontTouch prevents synthesis from merging the equivalent copies back
+  // into a single register (which would recreate the 1007-fanout net).
+  if (FanoutSplit.enabled) {
+    io.acc_ctrl.zip(acc_ctrl_mux).foreach { case (out, m) =>
+      val rep = Pipe(m)
+      dontTouch(rep)
+      out := rep
+    }
+  } else {
+    // single shared pipe register fanning to all lanes (p3-equivalent)
+    val rep = Pipe(acc_ctrl_mux.head)
+    io.acc_ctrl.foreach(_ := rep)
+  }
   io.sem_release := Pipe(sem_release_all)
   io.pe_ctrl := VecInit(pe_ctrl_all.map(Pipe(_)))
 
@@ -262,7 +336,17 @@ class MatrixEngineController[E <: Data : Arithmetic, A <: Data : Arithmetic](
     enq_ptr := deq_ptr
   }
 
-  val canEnq = Mux(io.in.bits.header.waitPrevAcc,
+  // Only trust io.in.bits.header.waitPrevAcc when an instruction is actually
+  // being presented (io.in.valid): the mxInst queue's bits registers have no
+  // reset value, so reading them while the queue is EMPTY samples
+  // uninitialized state.  That garbage fed this mux select and made
+  // io.in.ready (and thus the mxBubble perf counter) depend on simulator
+  // random-init draws -- i.e. on build structure, not on design logic.
+  // Functionally benign (nothing enqueues while valid=0), but it made
+  // delay-neutral RTL changes look like behavior changes.
+  // Debug mode serializes the changed wavefront through accumulator drain.
+  // The default candidate uses the verified row/column overlap boundaries.
+  val canEnq = if (impl.peLatency > 0 && PipelineSchedule.conservative) !io.busy else Mux(io.in.valid && io.in.bits.header.waitPrevAcc,
     !io.busy,
     !fsm_io(deq_ptr).busy || fsm_io(deq_ptr).conflictFree
   )

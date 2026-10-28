@@ -66,16 +66,18 @@ class CMP[E <: Data : Arithmetic, A <: Data : Arithmetic](ev: ArithmeticImpl[E, 
   }
 
   val downCastDIn = ev.viewEasA(ev.cvtAtoE(io.d_input.bits))
-  io.d_output.bits := Mux(prop_zero,
-    zero,
-    Mux(prop_exp2_intercepts,
-      exp2_intercepts(exp2_counter.value),
-      Mux(update_new_max,
-        downCastDIn,
-        cmpUnit.io.out_diff
-      )
-    )
-  )
-  io.d_output.valid := io.in_ctrl.valid && !do_reset
+  val bypass = Mux(prop_zero, zero,
+    Mux(prop_exp2_intercepts, exp2_intercepts(exp2_counter.value), downCastDIn))
+  require(ev.cmpLatency == 0 || ev.cmpLatency == 1)
+  if (ev.cmpLatency == 1) {
+    val bypassD = RegNext(bypass)
+    val useBypassD = RegNext(prop_zero || prop_exp2_intercepts || update_new_max)
+    io.d_output.bits := Mux(useBypassD, bypassD, cmpUnit.io.out_diff)
+    io.d_output.valid := RegNext(io.in_ctrl.valid && !do_reset, false.B)
+  } else {
+    io.d_output.bits := Mux(prop_zero || prop_exp2_intercepts || update_new_max,
+      bypass, cmpUnit.io.out_diff)
+    io.d_output.valid := io.in_ctrl.valid && !do_reset
+  }
   io.out_ctrl := io.in_ctrl
 }

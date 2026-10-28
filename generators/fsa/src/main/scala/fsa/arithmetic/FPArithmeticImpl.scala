@@ -15,11 +15,12 @@ object FloatPoint {
   def apply(ew: Int, mw: Int): FloatPoint = new FloatPoint(ew, mw)
 }
 
-class FPMacUnit(mulEW: Int, mulMW: Int, addEW: Int, addMW: Int, pwlPieces: Int) extends
+class FPMacUnit(mulEW: Int, mulMW: Int, addEW: Int, addMW: Int, pwlPieces: Int,
+  afterAdd: Boolean = false) extends
   MacUnit[FloatPoint, FloatPoint](FloatPoint(mulEW, mulMW), FloatPoint(addEW, addMW))
 {
   val mulAddExp2 = Module(new RawFloat_MulAddExp2(
-    1 + mulEW, 1 + mulMW, 1 + addEW, 1 + addMW, Right(pwlPieces)
+    1 + mulEW, 1 + mulMW, 1 + addEW, 1 + addMW, Right(pwlPieces), afterAdd = afterAdd
   ))
   mulAddExp2.io.in_a.fromIEEE(io.in_a.asUInt, mulEW, mulMW)
   mulAddExp2.io.in_b.fromIEEE(io.in_b.asUInt, mulEW, mulMW)
@@ -36,7 +37,8 @@ class FPMacUnit(mulEW: Int, mulMW: Int, addEW: Int, addMW: Int, pwlPieces: Int) 
 
   io.out_accType := Rounding.round(mulAddExp2.io.out, RoundingMode.RNE, addEW, addMW).asTypeOf(accType)
   io.out_elemType := Rounding.round(mulAddExp2.io.out, RoundingMode.RNE, mulEW, mulMW).asTypeOf(elemType)
-  io.out_exp2 := mulAddExp2.io.in_exp2 && pwlIndex === mulAddExp2.io.exp2_frac_msb
+  val exp2Hit = mulAddExp2.io.in_exp2 && pwlIndex === mulAddExp2.io.exp2_frac_msb
+  io.out_exp2 := (if (afterAdd) RegNext(exp2Hit, false.B) else exp2Hit)
 }
 
 
@@ -86,23 +88,50 @@ object FPAccUnit {
   def latency: Int = 3
 }
 
-class FPCmpUnit(ew: Int, mw: Int) extends CmpUnit(FloatPoint(ew, mw)) {
-  val fma = Module(new FMA(ew, mw, ew, mw))
+class FPCmpUnit(ew: Int, mw: Int, afterAdd: Boolean = false) extends CmpUnit(FloatPoint(ew, mw)) {
+  val fma = Module(new FMA(ew, mw, ew, mw, afterAdd = afterAdd))
   val negB = WireInit(io.in_b)
   negB.sign := !io.in_b.sign
   // always compute a - b = a * 1.0 + -b
   fma.io.a := io.in_a.asUInt
   fma.io.b := accType.one.asUInt
   fma.io.c := negB.asUInt
-  val max = Mux(fma.io.out.asTypeOf(accType).sign,
-    io.in_b, // a - b < 0, max = b
-    io.in_a  // a - b > 0, max = a
-  )
+  // The feedback recurrence must remain combinational when diff is pipelined.
+  // Match the rounded subtraction sign, including FTZ and canonical positive NaN.
+  val max = if (afterAdd) {
+    val aNaN = io.in_a.exp.andR && io.in_a.mantissa.orR
+    val bNaN = io.in_b.exp.andR && io.in_b.mantissa.orR
+    val aInf = io.in_a.exp.andR && !io.in_a.mantissa.orR
+    val bInf = io.in_b.exp.andR && !io.in_b.mantissa.orR
+    val aZero = io.in_a.exp === 0.U
+    val bZero = io.in_b.exp === 0.U
+    val aMagnitude = Mux(aZero, 0.U, io.in_a.exp ## io.in_a.mantissa)
+    val bMagnitude = Mux(bZero, 0.U, io.in_b.exp ## io.in_b.mantissa)
+    val finiteLess = Mux(io.in_a.sign =/= io.in_b.sign,
+      io.in_a.sign,
+      Mux(io.in_a.sign, aMagnitude > bMagnitude, aMagnitude < bMagnitude))
+    val bothZeroSign = io.in_a.sign && !io.in_b.sign
+    val diffNegative = Mux(aNaN || bNaN || (aInf && bInf && io.in_a.sign === io.in_b.sign),
+      false.B,
+      Mux(aZero && bZero, bothZeroSign, finiteLess))
+    Mux(diffNegative, io.in_b, io.in_a)
+  } else {
+    Mux(fma.io.out.asTypeOf(accType).sign, io.in_b, io.in_a)
+  }
   io.out_max := max
   io.out_diff := fma.io.out.asTypeOf(accType)
 }
 
-class FPArithmeticImpl(mulEW: Int, mulMW: Int, addEW: Int, addMW: Int, pwlPieces: Int = 8)
+object FPArithmeticImpl {
+  def pePipelineEnabled: Boolean = sys.props.get("fsa.pePipeline") match {
+    case None | Some("false") => false
+    case Some("true") => true
+    case Some(value) => throw new IllegalArgumentException(s"fsa.pePipeline must be true or false, got $value")
+  }
+}
+
+class FPArithmeticImpl(mulEW: Int, mulMW: Int, addEW: Int, addMW: Int, pwlPieces: Int = 8,
+  pePipeline: Boolean = FPArithmeticImpl.pePipelineEnabled)
   extends ArithmeticImpl[FloatPoint, FloatPoint]
 {
 
@@ -114,11 +143,15 @@ class FPArithmeticImpl(mulEW: Int, mulMW: Int, addEW: Int, addMW: Int, pwlPieces
 
   override def accType: FloatPoint = FloatPoint(addEW, addMW)
 
-  override def peMac: MacUnit[FloatPoint, FloatPoint] = new FPMacUnit(mulEW, mulMW, addEW, addMW, pwlPieces)
+  override def peMac: MacUnit[FloatPoint, FloatPoint] = new FPMacUnit(mulEW, mulMW, addEW, addMW, pwlPieces, afterAdd = pePipeline)
 
   override def accUnit: MacUnit[FloatPoint, FloatPoint] with HasMultiCycleIO = new FPAccUnit(addEW, addMW, pwlPieces)
 
-  override def accCmp: CmpUnit[FloatPoint] = new FPCmpUnit(addEW, addMW)
+  override def accCmp: CmpUnit[FloatPoint] = new FPCmpUnit(addEW, addMW, afterAdd = pePipeline)
+
+  override val peLatency: Int = if (pePipeline) 1 else 0
+  override val cmpLatency: Int = if (pePipeline) 1 else 0
+  override val spadLatency: Int = if (pePipeline) 2 else 1
 
   override val reciprocalLatency: Int = Reciprocal.nCycles(addMW, FPAccUnit.latency)
   override val accLatency: Int = FPAccUnit.latency

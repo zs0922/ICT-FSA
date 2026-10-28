@@ -28,7 +28,7 @@ case class FSAParams(
   nMemPorts: Int = 1,
   supportedExecutionPlans: (Int, Int, HasArithmeticParams) => Seq[(UInt, ExecutionPlan)] = {
     (rows, cols, ap) => Seq(
-      ISA.MxFunc.LOAD_STATIONARY -> new LoadStationary(rows, cols),
+      ISA.MxFunc.LOAD_STATIONARY -> new LoadStationary(rows, cols, ap.spadLatency),
       ISA.MxFunc.ATTENTION_SCORE_COMPUTE -> new AttentionScoreExecPlan(rows, cols, ap),
       ISA.MxFunc.ATTENTION_VALUE_COMPUTE -> new AttentionValueExecPlan(rows, cols, ap),
       ISA.MxFunc.ATTENTION_LSE_NORM_SCALE -> new AttentionLseNormScale(rows, cols, ap),
@@ -84,7 +84,7 @@ class FSA[E <: Data : Arithmetic, A <: Data : Arithmetic]
   })
 
   val mxControl = Module(new MatrixEngineController(ev))
-  val inputDelayer = Module(new InputDelayer(SA_ROWS, arithmeticImpl.elemType))
+  val inputDelayer = Module(new InputDelayer(SA_ROWS, arithmeticImpl.elemType, 1 + ev.peLatency))
   val outputDelayer = Module(new OutputDelayer(SA_COLS, arithmeticImpl.accType))
   val sa = Module(new SystolicArray[E, A](SA_ROWS, SA_COLS))
   val accumulator = Module(new Accumulator[A](SA_ROWS, SA_COLS, ev.accType, ev.accUnit _, ev.accLatency))
@@ -168,7 +168,8 @@ class FSA[E <: Data : Arithmetic, A <: Data : Arithmetic]
   inputDelayer.io.in.bits.delay_output := RegNext(mxControl.io.sp_read.bits.delay_sram_out)
   inputDelayer.io.in.bits.rev_output := RegNext(mxControl.io.sp_read.bits.rev_delayer_out)
 
-  sa.io.pe_data := inputDelayer.io.out
+  require(ev.spadLatency >= 1)
+  sa.io.pe_data := ShiftRegister(inputDelayer.io.out, ev.spadLatency - 1)
   sa.io.cmp_ctrl := mxControl.io.cmp_ctrl
   sa.io.pe_ctrl := mxControl.io.pe_ctrl
 

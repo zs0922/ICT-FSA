@@ -10,6 +10,7 @@ import chisel3.util._
   * in => shift | collect sticky bit => {in_shifted, sticky}
   */
 class ShiftRightJam(val len: Int) extends Module {
+  require(len > 0)
   val max_shift_width = log2Up(len + 1)
   val io = IO(new Bundle() {
     val in = Input(UInt(len.W))
@@ -18,11 +19,19 @@ class ShiftRightJam(val len: Int) extends Module {
     val sticky = Output(Bool())
   })
   val exceed_max_shift = io.shamt > len.U
-  val shamt = io.shamt(max_shift_width - 1, 0)
-  val sticky_mask =
-    ((1.U << shamt).asUInt - 1.U)(len - 1, 0) | Fill(len, exceed_max_shift)
-  io.out := Mux(exceed_max_shift, 0.U, io.in >> io.shamt)
-  io.sticky := (io.in & sticky_mask).orR
+  // Each combinational barrel stage collects exactly the bits it discards.
+  // Avoid constructing a variable mask with a wide subtract-by-one chain.
+  var shifted: UInt = io.in
+  var sticky: Bool = false.B
+  for (stage <- 0 until max_shift_width) {
+    val distance = 1 << stage
+    val discarded = shifted(math.min(distance, len) - 1, 0).orR
+    sticky = sticky || (io.shamt(stage) && discarded)
+    shifted = Mux(io.shamt(stage), shifted >> distance, shifted)
+  }
+  // Check the full shift amount: high bits must not wrap the barrel shift.
+  io.out := Mux(exceed_max_shift, 0.U, shifted)
+  io.sticky := Mux(exceed_max_shift, io.in.orR, sticky)
 }
 
 object ShiftRightJam {

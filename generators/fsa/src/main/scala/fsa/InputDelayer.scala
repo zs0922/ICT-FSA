@@ -10,7 +10,8 @@ import fsa.arithmetic.Arithmetic
     x1 -> r -> x1
     x2 -> r -> r  -> x2
 */
-class InputDelayer[E <: Data : Arithmetic](rows: Int, elemType: E) extends Module {
+class InputDelayer[E <: Data : Arithmetic](rows: Int, elemType: E, rowStride: Int = 1) extends Module {
+  require(rowStride >= 1)
   val io = IO(new Bundle {
     val in = Flipped(Valid(new Bundle {
       val data = Vec(rows, elemType)
@@ -30,7 +31,7 @@ class InputDelayer[E <: Data : Arithmetic](rows: Int, elemType: E) extends Modul
   val in_data = Mux(io.in.bits.rev_input, VecInit(io.in.bits.data.reverse), io.in.bits.data)
 
   val out_delay = VecInit(in_data.zipWithIndex.map { case (d, i) =>
-    if (i == 0) d else ShiftRegister(d, i)
+    if (i == 0) d else ShiftRegister(d, i * rowStride)
   })
 
   val out = Mux(delay, out_delay, in_data)

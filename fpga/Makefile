@@ -142,7 +142,7 @@ ifeq ($(SUB_PROJECT),nm37)
 	FPGA_BRAND        ?= xilinx
 endif
 
-# ICT-FSA vendors the complete patched source; no build-time source mutations.
+# ICT-FSA vendors the reviewed board/core sources; builds never apply patches.
 export USE_CHISEL6=1
 
 include $(base_dir)/variables.mk

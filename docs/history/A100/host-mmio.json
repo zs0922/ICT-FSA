@@ -1,0 +1,13 @@
+{
+  "file": "generators/fsa/python/fsa/xdma_mmio.py",
+  "historical_source_profile": "A70-P3",
+  "modern_source_profiles": [
+    "A100",
+    "A110-APB55"
+  ],
+  "old_sha256": "7e0936c28b07955c64c0e6491c1a10dd48366092b341ca5e21f6de5cbf6f0a6c",
+  "new_sha256": "a729841731a3d7e9c66636aaee816e096b0b990a2ea027dfeea0850d6cf8934b",
+  "only_changed_fsa_python_file": true,
+  "patch": "host-fsa_xdma_mmio.py.patch",
+  "change": "Per-access mmap/munmap replaced with cached page mappings and direct queue stores; no hardware or clock change."
+}

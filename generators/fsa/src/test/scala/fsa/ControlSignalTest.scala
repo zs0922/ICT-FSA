@@ -4,6 +4,7 @@ import chisel3._
 import chisel3.simulator.{EphemeralSimulator, PeekPokeAPI}
 import chisel3.util._
 import org.scalatest.flatspec.AnyFlatSpec
+import fsa.arithmetic.HasArithmeticParams
 
 class ControlGenWrapper(dim: Int, gen: ControlGen) extends Module {
 
@@ -57,6 +58,11 @@ class ControlGenWrapper(dim: Int, gen: ControlGen) extends Module {
 }
 
 class ControlSignalTest extends AnyFlatSpec with PeekPokeAPI {
+  private val legacyArithmetic = new HasArithmeticParams {
+    val reciprocalLatency = 2
+    val exp2PwlPieces = 8
+    val accLatency = 3
+  }
 
   def test(dim: Int, gen: ControlGen): Unit = {
     EphemeralSimulator.simulate(new ControlGenWrapper(dim, gen)) { c =>
@@ -107,7 +113,7 @@ class ControlSignalTest extends AnyFlatSpec with PeekPokeAPI {
 
   it should "optimize execution for attention score with small dim" in {
     val dim = 3
-    val score = new AttentionScoreExecPlan(dim, dim)
+    val score = new AttentionScoreExecPlan(dim, dim, legacyArithmetic)
     for (gen <- score.pe_signals.filter(_.maxCycle > 0)) {
       test(dim, gen)
     }
@@ -115,7 +121,7 @@ class ControlSignalTest extends AnyFlatSpec with PeekPokeAPI {
 
   it should "optimize execution for attention score with medium dim" in {
     val dim = 8
-    val score = new AttentionScoreExecPlan(dim, dim)
+    val score = new AttentionScoreExecPlan(dim, dim, legacyArithmetic)
     for (gen <- score.pe_signals.filter(_.maxCycle > 0)) {
       test(dim, gen)
     }
@@ -123,7 +129,7 @@ class ControlSignalTest extends AnyFlatSpec with PeekPokeAPI {
 
   it should "optimize execution for attention score with large dim" in {
     val dim = 16
-    val score = new AttentionScoreExecPlan(dim, dim)
+    val score = new AttentionScoreExecPlan(dim, dim, legacyArithmetic)
     for (gen <- score.pe_signals.filter(_.maxCycle > 0)) {
       test(dim, gen)
     }
@@ -131,10 +137,24 @@ class ControlSignalTest extends AnyFlatSpec with PeekPokeAPI {
 
   it should "optimize execution for attention score with huge dim" in {
     val dim = 64
-    val score = new AttentionScoreExecPlan(dim, dim)
+    val score = new AttentionScoreExecPlan(dim, dim, legacyArithmetic)
     for (gen <- score.pe_signals.filter(_.maxCycle > 0)) {
       test(dim, gen)
     }
+  }
+
+  it should "preserve two-cycle and arbitrary row offsets in generated hardware" in {
+    val gen = ControlGen(4)
+    gen.flow_up(1, 3, rowStride = 2)
+    gen.flow_down(12, 2, rowStride = 2)
+    gen.at_rows(24, 1, Seq(Some(3), None, Some(0), Some(7)))
+    test(4, gen)
+  }
+
+  it should "generate the pipelined score row wavefronts" in {
+    val dim = 4
+    val score = new AttentionScoreExecPlan(dim, dim, PipelinedScheduleVerification.ap)
+    for (gen <- score.pe_signals.filter(_.maxCycle > 0)) test(dim, gen)
   }
 
 }

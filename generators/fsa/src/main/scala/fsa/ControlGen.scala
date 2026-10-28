@@ -17,23 +17,23 @@ class ControlGen(rows: Int) {
   case object Downward extends FlowDirection
 
   // [start, end)
-  case class FlowRange(direction: FlowDirection, effStart: Int, repeat: Int) {
-    val effEnd = direction match {
-      case Parallel => effStart + repeat
-      case _ => effStart + repeat + rows - 1
-    }
+  case class FlowRange(direction: FlowDirection, effStart: Int, repeat: Int,
+                       rowStride: Int = 1, explicitOffsets: Option[Seq[Option[Int]]] = None) {
+    require(effStart >= 0 && repeat > 0 && rowStride >= 0)
+    explicitOffsets.foreach(o => require(o.length == rows && o.flatten.forall(_ >= 0)))
+    val offsets: Seq[Option[Int]] = explicitOffsets.getOrElse((0 until rows).map { row =>
+      Some(direction match {
+        case Parallel => 0
+        case Upward => (rows - row - 1) * rowStride
+        case Downward => row * rowStride
+      })
+    })
+    val effEnd = effStart + repeat + offsets.flatten.maxOption.getOrElse(0)
 
     def update(array: Array[Array[Boolean]], value: Boolean = true): Unit = {
       for (re <- 0 until repeat) {
         for (row <- 0 until rows) {
-          direction match {
-            case Parallel =>
-              array(row)(effStart + re) = value
-            case Upward =>
-              array(row)(effStart + re + rows - row - 1) = value
-            case Downward =>
-              array(row)(effStart + re + row) = value
-          }
+          offsets(row).foreach(offset => array(row)(effStart + re + offset) = value)
         }
       }
     }
@@ -50,18 +50,29 @@ class ControlGen(rows: Int) {
     flows += FlowRange(Parallel, start, repeat)
   }
 
-  def flow_up(start: Int, repeat: Int): Unit = {
+  def flow_up(start: Int, repeat: Int, rowStride: Int = 1): Unit = {
     require(!finalized)
-    flows += FlowRange(Upward, start, repeat)
+    flows += FlowRange(Upward, start, repeat, rowStride)
   }
 
-  def flow_down(start: Int, repeat: Int): Unit = {
+  def flow_down(start: Int, repeat: Int, rowStride: Int = 1): Unit = {
     require(!finalized)
-    flows += FlowRange(Downward, start, repeat)
+    flows += FlowRange(Downward, start, repeat, rowStride)
+  }
+
+  // Each row may have its own offset; None leaves that row inactive.
+  def at_rows(start: Int, repeat: Int, offsets: Seq[Option[Int]]): Unit = {
+    require(!finalized)
+    flows += FlowRange(Parallel, start, repeat, explicitOffsets = Some(offsets))
+  }
+
+  def at_row(row: Int, start: Int, repeat: Int): Unit = {
+    require(row >= 0 && row < rows)
+    at_rows(start, repeat, (0 until rows).map(r => if (r == row) Some(0) else None))
   }
 
   def execution_plan(flow_list: ListBuffer[FlowRange]): Array[Array[Boolean]] = {
-    val maxCycle = flow_list.map(_.effEnd).max
+    val maxCycle = flow_list.map(_.effEnd).maxOption.getOrElse(0)
     val array = Array.fill(rows, maxCycle)(false)
     flow_list.foreach(_.update(array))
     array
@@ -72,6 +83,11 @@ class ControlGen(rows: Int) {
   def opt_execution_plan = execution_plan(optimizedFlows)
 
   def optimize(): ListBuffer[FlowRange] = {
+    // The historical optimizer recognizes unit-stride diagonals only. Keep
+    // general wavefronts exact rather than trying to infer their geometry.
+    if (flows.exists(f => f.rowStride != 1 || f.explicitOffsets.nonEmpty)) {
+      return ListBuffer.from(flows)
+    }
     val array = execution_plan(flows)
     val tr = array.transpose
     val maxCycle = tr.length
@@ -154,7 +170,13 @@ class ControlGen(rows: Int) {
     //    println(optimizedFlows)
     VecInit(optimizedFlows.map { f =>
       val x0 = valid && timer.between(f.effStart, f.effStart + f.repeat)
-      f.direction match {
+      if (f.rowStride != 1 || f.explicitOffsets.nonEmpty) {
+        VecInit(f.offsets.map {
+          case None => false.B
+          case Some(0) => x0
+          case Some(offset) => ShiftRegister(x0, offset, false.B, true.B)
+        })
+      } else f.direction match {
         case Parallel => VecInit(Seq.fill(rows) {
           x0
         })

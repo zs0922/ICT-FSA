@@ -29,6 +29,26 @@ trait ExecutionPlan {
   // pipelined accumulator FMA latency; plans that touch the accumulator must
   // account for it so that drain/writeback stays inside the busy window
   def accLatency: Int = 0
+
+  // ===================== Wavefront geometry landmarks (M0 §3.1, Phase A) =====================
+  // PURE RENAME refactor: every landmark below evaluates to exactly the
+  // historical hand-tuned literal.  All values verified against VCD
+  // archaeology on 4x4/8x8/16x16 (execTime baselines 368/381/420; bracketed
+  // [a/b/c] numbers are the observed plan-cycles at R=4/8/16).
+  // The decomposition separates hop-count terms (rows/cols multiples -- the
+  // terms M1 §4.1 rescales when the PE MAC gets pipelined) from fixed
+  // pipeline gaps (the bare +1s).  Terms marked PROVISIONAL have a verified
+  // total but an unverified per-hop split; PE-level archaeology pending.
+
+  // per-hop latencies through the mesh (all 1 today: PE MAC is combinational
+  // and every inter-PE link has exactly one pipe register, SystolicArray.pipe_no_reset)
+  def hopLR: Int = 1  // K stream / ctrl chains, left -> right
+  def hopUD: Int = 1  // partial-sum chain, up <-> down
+
+  // K row i enters the mesh at cycle 1 + i (one spad row read per cycle)
+  def kInject(i: Int): Int = 1 + i * hopLR
+  def kInjectDone: Int = kInject(rows - 1)                            // = rows
+
   // PE control signals are more complex than spad/acc/cmp control, use a dedicate `ControlGen` to optimize them
   val pe_signals = (0 until 9).map(_ => ControlGen(rows)).toList
   val mac :: acc_ui :: load_reg_li :: load_reg_ui :: flow_lr :: flow_ud :: flow_du :: update_reg :: exp2 :: Nil = pe_signals
@@ -183,13 +203,13 @@ trait ExecutionPlan {
 
 }
 
-class LoadStationary(val rows: Int, val cols: Int) extends ExecutionPlan {
+class LoadStationary(val rows: Int, val cols: Int, spadLatency: Int = 1) extends ExecutionPlan {
   // read Q from spad
   readScratchPad(0, cols, None)
   // release the semaphore immediately at the last cycle of reading sram
   releaseSemaphore(cols - 1)
   // load into systolic array
-  load_reg_li.parallel(1, cols)
+  load_reg_li.parallel(spadLatency, cols)
   /*
     Although we would occupy pe control signals until cycle `cols`,
     the next instruction should always read sram first (with 1 cycle
@@ -200,108 +220,143 @@ class LoadStationary(val rows: Int, val cols: Int) extends ExecutionPlan {
 
 class AttentionScoreExecPlan(val rows: Int, val cols: Int, ap: HasArithmeticParams) extends ExecutionPlan {
   override val accLatency: Int = ap.accLatency
+  override def hopUD: Int = 1 + ap.peLatency
+
+  if (ap.peLatency > 0) {
+    PipelinedAttentionSchedule.score(this, ap)
+  } else {
+
+  // ---- landmark chain (sums of hop terms + fixed pipe gaps; see trait doc) ----
+  // S drain (partial sums to the CMP row) starts right after the wavefront head
+  val scoreUpdate = kInjectDone + hopUD                        // = R+1    [5/9/17]
+  // row-max propagation: the UPDATE burst staggers across rows-1 (ControlGen
+  // Downward skew), then one fixed pipe gap before phase 1
+  val scorePhase1 = scoreUpdate + (rows - 1) * hopUD + 1       // = 2R+1   [9/17/33]
+  val scorePhase2 = scorePhase1 + 1                            // = 2R+2   [10/18/34]
+  val scorePhase3 = scorePhase2 + 1                            // = 2R+3   [11/19/35]
+  val exp2Start = scorePhase3 + 1                              // = 2R+4
+  val exp2Cycles = ap.exp2PwlPieces
+  val exp2End = exp2Start + exp2Cycles - 1                     //          [19/27/43]
+  // EXP_S1: the old_max-new_max diff reaches the accumulator lanes.
+  // Composition: phase-1 wavefront + diagonal drain (rows+cols) + one pipe
+  // gap (= 3R+C+2).  PROVISIONAL split of the (rows+cols) term.
+  val expS1 = scorePhase1 + rows + cols + 1                    //          [18/34/66]
+  val expS2 = expS1 + 1 + ap.accLatency                        //          [22/38/70]
+  // old-sum read for the online-rescale ACC_SA: diagonal drain after exp2 end
+  val rowSumRead = exp2End + rows + cols - 1
+  val accSa = rowSumRead + 1                                   //          [27/43/75]
+  // zero flow (bottom-up) pre-positions 0 partials for the exp-sum phase
+  val zeroFlow = scoreUpdate + 3                               // = R+4
+
   /****** S = Q @ K ******/
-  // read K from spad
+  // read K from spad (row i enters the mesh at kInject(i) = 1+i)
   readScratchPad(0, rows, None)
   // release the semaphore immediately at the last cycle of reading sram
   releaseSemaphore(rows - 1)
   // stream in K, multiply with Q from bottom left of the SA
-  mac.flow_up(1, rows)
-  flow_lr.flow_up(1, rows)
+  mac.flow_up(kInject(0), rows)
+  flow_lr.flow_up(kInject(0), rows)
 
   /****** Put S back to systolic array ******/
   // the operations above takes `rows` cycles (the first element of
   // S = Q @ Kt reaches the upper left of the SA),
   // so we need to wait for `rows` cycles before we can read S from the SA
-  flow_ud.flow_down(rows + 1, rows)
+  flow_ud.flow_down(scoreUpdate, rows)
   // meanwhile, update the row max
-  setComparator(rows + 1, rows, CmpControlCmd.UPDATE)
+  setComparator(scoreUpdate, rows, CmpControlCmd.UPDATE)
 
   /****** Flow zero bottom-up for later exp sum ******/
-  flow_du.flow_up(rows + 4, rows)
+  flow_du.flow_up(zeroFlow, rows)
 
   // prepare input for next cycle
-  load_reg_ui.parallel(2 * rows + 1, 1)
-  setComparator(2 * rows + 1, 1, CmpControlCmd.PROP_MAX)
+  load_reg_ui.parallel(scorePhase1, 1)
+  setComparator(scorePhase1, 1, CmpControlCmd.PROP_MAX)
   readScratchPad(
-    2 * rows + 1, 1,
+    scorePhase1, 1,
     Some(ConstRead(SpadConstIdx.ONE, revIn = false, revOut = false, delay = true))
   )
   /****** Staring from the first column, do element-wise ops ******/
   // s = s * 1 + (-m)
-  update_reg.flow_down(2 * rows + 2, 1)
-  acc_ui.flow_down(2 * rows + 2, 1)
-  flow_ud.flow_down(2 * rows + 2, 1)
-  flow_lr.flow_down(2 * rows + 2, 1)
+  update_reg.flow_down(scorePhase2, 1)
+  acc_ui.flow_down(scorePhase2, 1)
+  flow_ud.flow_down(scorePhase2, 1)
+  flow_lr.flow_down(scorePhase2, 1)
 
   // prepare input for next cycle
-  setComparator(2 * rows + 2, 1, CmpControlCmd.PROP_MAX_DIFF)
+  setComparator(scorePhase2, 1, CmpControlCmd.PROP_MAX_DIFF)
   readScratchPad(
-    2 * rows + 2, 1,
+    scorePhase2, 1,
     Some(ConstRead(SpadConstIdx.AttentionScale, revIn = false, revOut = false, delay = true))
   )
   // pass down delta_m; compute (s-m) * log2e in place
-  flow_ud.flow_down(2 * rows + 3, 1)
-  update_reg.flow_down(2 * rows + 3, 1)
-  flow_lr.flow_down(2 * rows + 3, 1)
+  flow_ud.flow_down(scorePhase3, 1)
+  update_reg.flow_down(scorePhase3, 1)
+  flow_lr.flow_down(scorePhase3, 1)
 
-  val exp2_start = 2 * rows + 4
-  val exp2_cycles = ap.exp2PwlPieces
-  val exp2_end = exp2_start + exp2_cycles - 1
-
-  setComparator(exp2_start - 1, exp2_cycles, CmpControlCmd.PROP_EXP2_INTERCEPTS)
+  setComparator(exp2Start - 1, exp2Cycles, CmpControlCmd.PROP_EXP2_INTERCEPTS)
   readScratchPad(
-    exp2_start - 1, exp2_cycles,
+    exp2Start - 1, exp2Cycles,
     Some(ConstRead(SpadConstIdx.Exp2Slopes, revIn = false, revOut = false, delay = true))
   )
   // use pow2 to generate exp
-  flow_ud.flow_down(exp2_start, exp2_cycles)
-  flow_lr.flow_down(exp2_start, exp2_cycles)
-  acc_ui.flow_down(exp2_start, exp2_cycles)
-  exp2.flow_down(exp2_start, exp2_cycles)
+  flow_ud.flow_down(exp2Start, exp2Cycles)
+  flow_lr.flow_down(exp2Start, exp2Cycles)
+  acc_ui.flow_down(exp2Start, exp2Cycles)
+  exp2.flow_down(exp2Start, exp2Cycles)
 
   // prepare input for next cycle
-  setComparator(exp2_end, 1, CmpControlCmd.PROP_ZERO)
+  setComparator(exp2End, 1, CmpControlCmd.PROP_ZERO)
   readScratchPad(
-    exp2_end, 1,
+    exp2End, 1,
     Some(ConstRead(SpadConstIdx.ONE, revIn = false, revOut = false, delay = true))
   )
   // use mac to compute the sum of exp
-  mac.flow_down(exp2_end + 1, 1)
-  acc_ui.flow_down(exp2_end + 1, 1)
-  flow_lr.flow_down(exp2_end + 1, 1)
+  mac.flow_down(exp2End + 1, 1)
+  acc_ui.flow_down(exp2End + 1, 1)
+  flow_lr.flow_down(exp2End + 1, 1)
 
   /*
     The next instruction should always be `S @ V`,
-    start it at cycle exp2_end + 1 so that the sram read
+    start it at cycle exp2End so that the sram read
     of the next instruction can overlap with the last compute
     of the current instruction
   */
-  setConflictFree(exp2_end)
+  setConflictFree(exp2End)
 
   // collect diff = row_max(i-1) - row_max(i), and compute exp(diff)
-  setAccumulator(2 * rows + rows + cols + 2, 1, AccumulatorCmd.EXP_S1)
-  // scale is written back accLatency cycles after EXP_S1's inputs are
-  // consumed, so EXP_S2 (which reads scale) must wait that long
-  setAccumulator(2 * rows + rows + cols + 3 + ap.accLatency, 1, AccumulatorCmd.EXP_S2)
+  setAccumulator(expS1, 1, AccumulatorCmd.EXP_S1)
+  setAccumulator(expS2, 1, AccumulatorCmd.EXP_S2)
   // update exp sum
-  // readAccRAM(2 * rows + rows + cols + 3, 1, None)
-  readAccRAM(exp2_end + rows + cols - 1, 1, None)
-  // setAccumulator(2 * rows + rows + cols + 4, 1, AccumulatorCmd.ACC_SA)
-  setAccumulator(exp2_end + rows + cols, 1, AccumulatorCmd.ACC_SA)
+  readAccRAM(rowSumRead, 1, None)
+  setAccumulator(accSa, 1, AccumulatorCmd.ACC_SA)
+  }
 }
 
 class AttentionValueExecPlan(val rows: Int, val cols: Int, ap: HasArithmeticParams) extends ExecutionPlan {
   override val accLatency: Int = ap.accLatency
+  override def hopUD: Int = 1 + ap.peLatency
+
+  if (ap.peLatency > 0) {
+    PipelinedAttentionSchedule.value(this, ap)
+  } else {
+
+  // ---- landmark chain (see trait doc; R+C terms are the DIAGONAL wavefront,
+  // ---- distinct from the 2R drain terms -- do not conflate when rescaling hops)
+  // old-O read: the O drain diagonal completes its last beat (NOT 2R-2: verified
+  // [7/15/31] = R+C-1, distinguishable from 2R-2 only with R != C or VCD)
+  val accReadOld = rows + cols - 1                             //          [7/15/31]
+  val accCmd = accReadOld + 1                                  // = R+C    [9/17/33]
+  val conflictFreeAt = 2 * rows - 2                            // compute drain done
+
   /****** O = P @ V ******/
-  // read V from spad
+  // read V from spad (row i enters the mesh at kInject(i) = 1+i)
   readScratchPad(0, rows, None)
   // release the semaphore immediately at the last cycle of reading sram
   releaseSemaphore(rows - 1)
   // V enters the SA from upper left
-  mac.flow_down(1, rows)
-  acc_ui.flow_down(1, rows)
-  flow_lr.flow_down(1, rows)
+  mac.flow_down(kInject(0), rows)
+  acc_ui.flow_down(kInject(0), rows)
+  flow_lr.flow_down(kInject(0), rows)
 
   /*
     If the next instruction is load stationary (next inner loop start),
@@ -309,12 +364,132 @@ class AttentionValueExecPlan(val rows: Int, val cols: Int, ap: HasArithmeticPara
     we release at `2*rows - 2` to allow the sram read of the next instruction
     overlap with current compute
   */
-  setConflictFree(2 * rows - 1 - 1)
+  setConflictFree(conflictFreeAt)
 
   // read old O out from accumulator sram
-  readAccRAM(rows + cols - 1, rows, None)
+  readAccRAM(accReadOld, rows, None)
   // accumulate, update O
-  setAccumulator(rows + cols, rows, AccumulatorCmd.ACC_SA)
+  setAccumulator(accCmd, rows, AccumulatorCmd.ACC_SA)
+  }
+}
+
+/** Plan-cycle geometry excludes the common controller output register.
+  * Horizontal control/data advance one column per cycle. The vertical PE
+  * result (including bypass) advances by d cycles. CMP still accepts a score
+  * every cycle, so loading its stream requires a different row slope.
+  */
+object PipelineSchedule {
+  // A debug comparison mode: whole-array phase barriers and no FSM overlap.
+  val conservative: Boolean = sys.props.get("fsa.pipelineConservative") match {
+    case None | Some("false") => false
+    case Some("true") => true
+    case Some(value) => throw new IllegalArgumentException(s"Invalid fsa.pipelineConservative=$value")
+  }
+}
+
+case class PipelinedScoreTiming(rows: Int, cols: Int, ap: HasArithmeticParams,
+                               conservative: Boolean = PipelineSchedule.conservative) {
+  val d = 1 + ap.peLatency
+  val dc = 1 + ap.cmpLatency
+  val ls = ap.spadLatency
+  val commitGap = ap.peLatency + 1
+  val scoreUpdate = ls + rows * d
+  def scoreLoad(row: Int): Int = scoreUpdate + rows - 1 + dc + row * (d - 1)
+  // CMP max is committed after its last UPDATE. The first row's score load
+  // and every later load are also complete before this downward wave reaches
+  // them: load(r) has slope d-1, whereas subtract(r) has slope d.
+  val sub = if (conservative) scoreLoad(rows - 1) + 1 + dc
+            else math.max(scoreLoad(0) + 1, scoreUpdate + rows + dc)
+  val phaseBarrier = if (conservative) (rows - 1) * d else 0
+  val scale = sub + phaseBarrier + commitGap
+  val exp = scale + phaseBarrier + commitGap
+  val expLast = exp + (rows - 1) * d + ap.exp2PwlPieces - 1
+  val sum = exp + phaseBarrier + ap.exp2PwlPieces - 1 + commitGap
+  val zeroFlow = if (conservative) scoreUpdate + rows else ls + rows
+  // OutputDelayer cancels the horizontal skew by adding cols-1-column.
+  val diffAtAccumulator = scale + rows * d + cols - 1
+  val sumAtAccumulator = sum + rows * d + cols - 1
+}
+
+object PipelinedAttentionSchedule {
+  def score(plan: ExecutionPlan, ap: HasArithmeticParams): Unit = {
+    val t = PipelinedScoreTiming(plan.rows, plan.cols, ap)
+    import plan._
+    readScratchPad(0, rows, None)
+    releaseSemaphore(rows - 1)
+    mac.flow_up(t.ls, rows, t.d)
+    flow_lr.flow_up(t.ls, rows, t.d)
+    setComparator(t.scoreUpdate, rows, CmpControlCmd.UPDATE)
+
+    // Score beat j is emitted at U+j. Row r must retain j=R-1-r:
+    // U+(R-1-r)+Dc+r*d, rather than a parallel row load.
+    for (r <- 0 until rows) {
+      val beatsToForward = rows - 1 - r
+      if (beatsToForward > 0) {
+        flow_ud.at_row(r, t.scoreUpdate + t.dc + r * t.d, beatsToForward)
+      }
+      load_reg_ui.at_row(r, t.scoreLoad(r), 1)
+    }
+    // Follow each row's final upward MAC by one cycle. Zero reaches CMP
+    // after its UPDATE burst and is resident before scale reads d_input.
+    flow_du.flow_up(t.zeroFlow, 1, t.d)
+
+    def constant(at: Int, idx: Int, repeat: Int = 1): Unit =
+      readScratchPad(at - t.ls, repeat,
+        Some(ConstRead(idx, revIn = false, revOut = false, delay = true)))
+
+    setComparator(t.sub - t.dc, 1, CmpControlCmd.PROP_MAX)
+    constant(t.sub, SpadConstIdx.ONE)
+    update_reg.flow_down(t.sub, 1, t.d)
+    acc_ui.flow_down(t.sub, 1, t.d)
+    flow_ud.flow_down(t.sub, 1, t.d)
+    flow_lr.flow_down(t.sub, 1, t.d)
+
+    setComparator(t.scale - t.dc, 1, CmpControlCmd.PROP_MAX_DIFF)
+    constant(t.scale, SpadConstIdx.AttentionScale)
+    flow_ud.flow_down(t.scale, 1, t.d)
+    update_reg.flow_down(t.scale, 1, t.d)
+    flow_lr.flow_down(t.scale, 1, t.d)
+
+    setComparator(t.exp - t.dc, ap.exp2PwlPieces, CmpControlCmd.PROP_EXP2_INTERCEPTS)
+    constant(t.exp, SpadConstIdx.Exp2Slopes, ap.exp2PwlPieces)
+    flow_ud.flow_down(t.exp, ap.exp2PwlPieces, t.d)
+    flow_lr.flow_down(t.exp, ap.exp2PwlPieces, t.d)
+    acc_ui.flow_down(t.exp, ap.exp2PwlPieces, t.d)
+    exp2.flow_down(t.exp, ap.exp2PwlPieces, t.d)
+
+    setComparator(t.sum - t.dc, 1, CmpControlCmd.PROP_ZERO)
+    constant(t.sum, SpadConstIdx.ONE)
+    mac.flow_down(t.sum, 1, t.d)
+    acc_ui.flow_down(t.sum, 1, t.d)
+    flow_lr.flow_down(t.sum, 1, t.d)
+
+    setAccumulator(t.diffAtAccumulator, 1, AccumulatorCmd.EXP_S1)
+    setAccumulator(t.diffAtAccumulator + 1 + ap.accLatency, 1, AccumulatorCmd.EXP_S2)
+    readAccRAM(t.sumAtAccumulator - 1, 1, None)
+    setAccumulator(t.sumAtAccumulator, 1, AccumulatorCmd.ACC_SA)
+    // The next value wave begins after the sum wave, at the same row/column
+    // skew. Its first accumulator command follows this sum command by >=2
+    // cycles, and EXP_S2 has committed before either ACC_SA command.
+    setConflictFree(if (t.conservative) accumulateMaxCycle - 1 else t.sum - 1)
+  }
+
+  def value(plan: ExecutionPlan, ap: HasArithmeticParams): Unit = {
+    import plan._
+    val d = 1 + ap.peLatency
+    val firstAccumulator = ap.spadLatency + rows * d + cols - 1
+    readScratchPad(0, rows, None)
+    releaseSemaphore(rows - 1)
+    mac.flow_down(ap.spadLatency, rows, d)
+    acc_ui.flow_down(ap.spadLatency, rows, d)
+    flow_lr.flow_down(ap.spadLatency, rows, d)
+    readAccRAM(firstAccumulator - 1, rows, None)
+    setAccumulator(firstAccumulator, rows, AccumulatorCmd.ACC_SA)
+    // A following stationary load arrives after the bottom row's last MAC;
+    // both controls retain the same one-cycle horizontal column skew.
+    setConflictFree(if (PipelineSchedule.conservative) accumulateMaxCycle - 1
+      else ap.spadLatency + (rows - 1) * d + rows - 1 - ap.spadLatency)
+  }
 }
 
 // load one row from AccRAM to accumulator and get the reciprocal

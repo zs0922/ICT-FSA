@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+"""Maintainer-only lock refresh after a reviewed source change.
+
+This writes input identities, never test/implementation success. First stage
+all intended input files in Git; commit the resulting lock in the same change.
+Build/test commands only verify the lock and never regenerate it.
+"""
+import argparse
+import importlib.util
+import json
+from pathlib import Path
+import subprocess
+
+p = argparse.ArgumentParser(description=__doc__)
+p.add_argument('--profile', required=True, choices=['A100', 'A110-APB55'])
+p.add_argument('--write', action='store_true', help='Explicitly rewrite the reviewed source input lock')
+a = p.parse_args()
+root = Path(__file__).resolve().parents[1]
+short = 'a100' if a.profile == 'A100' else 'a110'
+path = root / ('scripts/nm37-' + short + '/check.py')
+spec = importlib.util.spec_from_file_location('stagecheck', path)
+check = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(check)
+modes = check.source_modes()
+lock_path = root / ('fpga/baselines/nm37-' + short + '/source-lock.json')
+lock = json.loads(lock_path.read_text())
+lock['source_modes'] = modes
+lock['source_hashes'] = {name: check.sha(root / name) for name in modes}
+lock.pop('historical_generator_sha256', None)
+lock['input_policy'] = 'ICT-FSA reviewed tracked inputs; shell is vendored; no runtime patching. Input lock is not a verification pass.'
+if a.write:
+    lock_path.write_text(json.dumps(lock, indent=2, sort_keys=True) + '\n')
+    print('Updated source input lock (not a test PASS):', lock_path)
+else:
+    assert lock == json.loads(lock_path.read_text()), 'Source lock stale; review the diff before an explicit --write'
+    print('Source lock matches the Git index and working tree; dependency initialization was not checked.')

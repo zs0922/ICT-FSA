@@ -68,14 +68,16 @@ class RawFloat_MulAddExp2
   mulExpWidth: Int, mulMantissaWidth: Int,
   addExpWidth: Int, addMantissaWidth: Int,
   pwlConst: Either[Seq[(BigInt, BigInt)], Int],
-  pipeline: Boolean = false
+  pipeline: Boolean = false,
+  afterAdd: Boolean = false
 ) extends Module {
 
   val fma = Module(new RawFloat_FMA(
     aEW = mulExpWidth, aMW = mulMantissaWidth,
     bEW = mulExpWidth, bMW = mulMantissaWidth,
     cEW = addExpWidth, cMW = addMantissaWidth,
-    nStages = if (pipeline) 2 else 0
+    nStages = if (pipeline) 2 else 0,
+    afterAdd = afterAdd
   ))
 
   val io = IO(new Bundle {
@@ -150,11 +152,13 @@ class RawFloat_MulAddExp2
     fma.io.b := fb
     fma.io.c := fc
     io.out := fma.io.out
-    when(io.in_exp2) {
+    val inExp2D = if (afterAdd) RegNext(io.in_exp2, false.B) else io.in_exp2
+    val outIntD = if (afterAdd) RegNext(split.io.outInt) else split.io.outInt
+    when(inExp2D) {
       io.out.sign := false.B
       io.out.isInf := false.B
       io.out.isZero := fma.io.out.isInf
-      io.out.exp := split.io.outInt + fma.io.out.exp
+      io.out.exp := outIntD + fma.io.out.exp
     }
   }
 }

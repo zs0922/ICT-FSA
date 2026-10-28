@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "profile": "A70-P3",
+  "profile": "A100",
   "root_gitlinks": {
     "generators/ara": "0c4fd8813fa33d6a35a8d9cb27aa48302919d17f",
     "generators/bar-fetchers": "bd02692fe6cb5197df90dc39051d31369ef61fcd",

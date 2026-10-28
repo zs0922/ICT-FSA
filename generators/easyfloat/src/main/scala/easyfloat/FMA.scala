@@ -8,7 +8,8 @@ class RawFloat_FMA(
   aEW: Int, aMW: Int,
   bEW: Int, bMW: Int,
   cEW: Int, cMW: Int,
-  nStages: Int = 0
+  nStages: Int = 0,
+  afterAdd: Boolean = false
 ) extends Module {
 
   /* TODO: this can be optimized if
@@ -16,6 +17,7 @@ class RawFloat_FMA(
       so we can detect overflow/underflow earlier.
   */
   require(nStages == 0 || nStages == 2, "RawFloat_FMA supports 0 or 2 pipeline stages")
+  require(!afterAdd || nStages == 0, "afterAdd is the independent one-stage pipeline")
 
   val outEW = Seq(aEW + 2, bEW + 2, cEW).max
 
@@ -100,12 +102,12 @@ class RawFloat_FMA(
   val cGtProd = pMinusC.head(1).asBool
   val adderOutAbs_s1 = Mux(cGtProd, cMinusP.tail(1), pMinusC.tail(1))
 
-  // second pipeline cut: after the adders (so nStages == 2 really means
-  // mult | add | normalize, i.e. 2 internal registers)
-  val adderOutAbs = stageReg(adderOutAbs_s1)
-  private def stageReg2[T <: Data](x: T): T = if (pipelined) {
+  // Independent after-add cut. nStages == 2 uses both cuts; afterAdd uses
+  // only this cut, leaving multiply/alignment/add ahead of one register.
+  private def stageReg2[T <: Data](x: T): T = if (pipelined || afterAdd) {
     val r = Reg(chiselTypeOf(x)); r := x; r
   } else x
+  val adderOutAbs = stageReg2(adderOutAbs_s1)
   val cGtProd2 = stageReg2(cGtProd)
   val expDiff2 = stageReg2(expDiff)
   val alignShiftAmt2 = stageReg2(alignShiftAmt)
@@ -175,7 +177,8 @@ class RawFloat_FMA(
 class FMA
 (
   mulExpWidth: Int, mulMantissaWidth: Int,
-  addExpWidth: Int, addMantissaWidth: Int
+  addExpWidth: Int, addMantissaWidth: Int,
+  afterAdd: Boolean = false
 ) extends Module {
 
   val io = IO(new Bundle {
@@ -188,7 +191,8 @@ class FMA
   val rawFMA = Module(new RawFloat_FMA(
     1 + mulExpWidth, 1 + mulMantissaWidth,
     1 + mulExpWidth, 1 + mulMantissaWidth,
-    1 + addExpWidth, 1 + addMantissaWidth
+    1 + addExpWidth, 1 + addMantissaWidth,
+    afterAdd = afterAdd
   ))
 
   rawFMA.io.a.fromIEEE(io.a, mulExpWidth, mulMantissaWidth)
