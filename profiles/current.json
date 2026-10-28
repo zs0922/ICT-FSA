@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "id": "U280",
-  "board": "U280",
+  "id": "NM37",
+  "board": "NM37",
   "dut_mhz": 70,
   "apb_mhz": 70,
   "array_sizes": [
     4
   ],
   "default_array_size": 4,
-  "build_label": "U280",
+  "build_label": "NM37",
   "validation_status": "organized_local_candidate_not_rebuilt_or_board_accepted",
   "expected_tools": {
     "java": "20.0.2",

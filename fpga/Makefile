@@ -128,6 +128,20 @@ ifeq ($(SUB_PROJECT),u280)
 	FPGA_BRAND        ?= xilinx
 endif
 
+ifeq ($(SUB_PROJECT),nm37)
+	SBT_PROJECT       ?= chipyard_fpga
+	MODEL             ?= NM37FPGATestHarness
+	VLOG_MODEL        ?= NM37FPGATestHarness
+	MODEL_PACKAGE     ?= chipyard.fpga.nm37
+	CONFIG            ?= EmptyNM37Config
+	CONFIG_PACKAGE    ?= chipyard.fpga.nm37
+	GENERATOR_PACKAGE ?= chipyard
+	TB                ?= none # unused
+	TOP               ?= EmptyChipTop
+	BOARD             ?= nm37
+	FPGA_BRAND        ?= xilinx
+endif
+
 # ICT-FSA vendors the complete patched source; no build-time source mutations.
 export USE_CHISEL6=1
 

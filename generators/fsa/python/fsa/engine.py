@@ -12,14 +12,13 @@ from .dtype import to_numpy_dtype
 from .xdma import dev_read, dev_write
 from .xdma_mmio import MMIO
 
-def detect_fsa_devices(vendor_id: int = 0x10ee, device_id: int = 0x9038) -> tuple[str, str, str]:
+def detect_all_fsa_devices(vendor_id: int = 0x10ee, device_ids: tuple[int, ...] = (0x9038, 0x903f)) -> list[tuple[str, int, str, str, str]]:
     """
-    Locate the FSA FPGA PCI device (default: Xilinx 0x9038, the U280) and map it to its
-    /dev/xdma<N>_* device nodes. Returns (control_dev, mem_read_dev, mem_write_dev).
+    Scan the PCI tree for Xilinx XDMA cards matching any of the given device IDs
+    (0x9038: XDMA default, U280/FSA images; 0x903f: NM37 Xiangshan shell image)
+    and map each to its /dev/xdma<N>_* device nodes.
 
-    The xdma index is not stable: other Xilinx cards bound by an xdma driver (e.g. an
-    NM37 at 0x903f) can shift the U280's index to xdma1. This resolves the index from the
-    PCI bus/device/function instead of assuming xdma0.
+    Returns a list of (bdf, device_id, control_dev, mem_read_dev, mem_write_dev).
     """
     sysfs_pci = '/sys/bus/pci/devices'
     if not os.path.isdir(sysfs_pci):
@@ -38,20 +37,21 @@ def detect_fsa_devices(vendor_id: int = 0x10ee, device_id: int = 0x9038) -> tupl
                 d = int(f.read().strip(), 16)
         except (ValueError, OSError):
             continue
-        if v == vendor_id and d == device_id:
-            bdfs.append(bdf)
+        if v == vendor_id and d in device_ids:
+            bdfs.append((bdf, d))
 
     if not bdfs:
+        ids = ', '.join(f"0x{d:04x}" for d in device_ids)
         raise RuntimeError(
-            f"No PCI device with vendor=0x{vendor_id:04x} device=0x{device_id:04x} "
-            f"(FSA U280) found in {sysfs_pci}"
+            f"No PCI device with vendor=0x{vendor_id:04x} device in ({ids}) found in {sysfs_pci}"
         )
 
     class_dir = '/sys/class/xdma'
     if not os.path.isdir(class_dir):
         raise RuntimeError(f"xdma device class not found: {class_dir}")
 
-    for bdf in bdfs:
+    found = []
+    for bdf, d in bdfs:
         for node in os.listdir(class_dir):
             if not (node.startswith('xdma') and node.endswith('_user')):
                 continue
@@ -66,11 +66,26 @@ def detect_fsa_devices(vendor_id: int = 0x10ee, device_id: int = 0x9038) -> tupl
                 missing = [p for p in (control, mem_read, mem_write) if not os.path.exists(p)]
                 if missing:
                     raise RuntimeError(f"xdma device nodes missing for {bdf}: {missing}")
-                return control, mem_read, mem_write
+                found.append((bdf, d, control, mem_read, mem_write))
 
-    raise RuntimeError(
-        f"Found PCI device(s) {bdfs} but none has an xdma user device node under {class_dir}"
-    )
+    if not found:
+        raise RuntimeError(
+            f"Found PCI device(s) {bdfs} but none has an xdma user device node under {class_dir}"
+        )
+    return found
+
+def detect_fsa_devices(vendor_id: int = 0x10ee, device_id: int = 0x9038) -> tuple[str, str, str]:
+    """
+    Locate the FSA FPGA PCI device (default: Xilinx 0x9038, the U280) and map it to its
+    /dev/xdma<N>_* device nodes. Returns (control_dev, mem_read_dev, mem_write_dev).
+
+    The xdma index is not stable: other Xilinx cards bound by an xdma driver (e.g. an
+    NM37 at 0x903f) can shift the U280's index to xdma1. This resolves the index from the
+    PCI bus/device/function instead of assuming xdma0.
+    """
+    found = detect_all_fsa_devices(vendor_id, (device_id,))
+    # exactly-one is enforced by the single device_id; still prefer an unambiguous pick
+    return found[0][2], found[0][3], found[0][4]
 
 class BaseEngine(ABC):
     @abstractmethod

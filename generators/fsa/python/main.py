@@ -192,6 +192,8 @@ if __name__ == "__main__":
             build_dir = args.build_dir
         if 'U280' in args.config or 'u280' in args.config.lower():
             long_name = 'chipyard.fpga.u280.U280FPGATestHarness.' + args.config
+        elif 'nm37' in args.config.lower():
+            long_name = 'chipyard.fpga.nm37.NM37FPGATestHarness.' + args.config
         else:
             long_name = 'chipyard.fpga.u55c.U55CFPGATestHarness.' + args.config
         config_file = os.path.join(
@@ -203,6 +205,21 @@ if __name__ == "__main__":
             mem_read_dev = f"/dev/{args.fpga_dev}_c2h_0"
             mem_write_dev = f"/dev/{args.fpga_dev}_h2c_0"
             print(f"Using FPGA devices (forced): control={control_dev} read={mem_read_dev} write={mem_write_dev}")
+            engine = F.FPGA(control_dev=control_dev, mem_read_dev=mem_read_dev, mem_write_dev=mem_write_dev)
+        elif 'nm37' in args.config.lower():
+            # The NM37 FSA image uses the XDMA default device id (0x9038), the
+            # stock Xiangshan shell image on the same board shows 0x903f. If an
+            # FSA U280 is also plugged in, both match 0x9038 and the pick is
+            # ambiguous: require an explicit --fpga_dev then.
+            candidates = F.engine.detect_all_fsa_devices(0x10ee, (0x903f, 0x9038))
+            if len(candidates) > 1:
+                pretty = '\n'.join(f"  {bdf} (device 0x{d:04x}) -> {c}" for bdf, d, c, r, w in candidates)
+                raise RuntimeError(
+                    f"Multiple candidate FSA FPGA devices found:\n{pretty}\n"
+                    f"Disambiguate with --fpga_dev <xdmaN>."
+                )
+            bdf, d, control_dev, mem_read_dev, mem_write_dev = candidates[0]
+            print(f"Detected FSA FPGA devices: control={control_dev} read={mem_read_dev} write={mem_write_dev}")
             engine = F.FPGA(control_dev=control_dev, mem_read_dev=mem_read_dev, mem_write_dev=mem_write_dev)
         else:
             control_dev, mem_read_dev, mem_write_dev = F.engine.detect_fsa_devices()
