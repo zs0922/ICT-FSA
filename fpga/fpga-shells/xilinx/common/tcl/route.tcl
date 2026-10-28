@@ -4,7 +4,7 @@
 route_design -directive Explore
 
 # Optimize the current design post routing
-phys_opt_design -directive Explore
+phys_opt_design -directive AlternateFlowWithRetiming
 
 # Checkpoint the current design
 write_checkpoint -force [file join $wrkdir post_route]

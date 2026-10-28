@@ -7,13 +7,16 @@ import chisel3.util._
 class RawFloat_FMA(
   aEW: Int, aMW: Int,
   bEW: Int, bMW: Int,
-  cEW: Int, cMW: Int
+  cEW: Int, cMW: Int,
+  nStages: Int = 0
 ) extends Module {
 
   /* TODO: this can be optimized if
       we are sure that the output raw float will be directly rounded,
       so we can detect overflow/underflow earlier.
   */
+  require(nStages == 0 || nStages == 2, "RawFloat_FMA supports 0 or 2 pipeline stages")
+
   val outEW = Seq(aEW + 2, bEW + 2, cEW).max
 
   val io = IO(new Bundle {
@@ -32,26 +35,62 @@ class RawFloat_FMA(
 
      000000000000000000000000000100000111001010100000100011111001100100000000001
      1111111111111111111111110000000000000000000000000000000000000000000000000000
-    */
+  */
+  // ---------------- Stage A (combinational): multiplier + exponent diff + C alignment ----------------
   val prodPadBits = (cMW + 1) - (aMW + bMW - 2)
-  val prodMantissa = if (prodPadBits > 0) {
+  val prodMantissa_s1 = if (prodPadBits > 0) {
     Cat(a.mantissa * b.mantissa, 0.U(prodPadBits.W))
   } else {
     a.mantissa * b.mantissa
   }
-  val adderWidth = cMW + 2 + prodMantissa.getWidth + 1
-  val prodExp = a.exp +& b.exp
-  val prodSign = a.sign ^ b.sign
-  val prodIsZero = a.isZero || b.isZero
-  val doSub = prodSign ^ c.sign
+  val adderWidth = cMW + 2 + prodMantissa_s1.getWidth + 1
+  val prodExp_s1 = a.exp +& b.exp
+  val prodSign_s1 = a.sign ^ b.sign
+  val prodIsZero_s1 = a.isZero || b.isZero
 
   val initialExpDiff = cMW + 3
-  val expDiff = prodExp +& initialExpDiff.S -& c.exp
+  val expDiff_s1 = prodExp_s1 +& initialExpDiff.S -& c.exp
 
-  val initialCMantissa = Cat(Mux(c.isZero, 0.U(cMW.W), c.mantissa), 0.U(2.W), 0.U(prodMantissa.getWidth.W))
-  val keepC = expDiff < 0.S || prodIsZero
-  val alignShiftAmt = Mux(keepC, 0.U, expDiff.tail(1))
-  val (cShift, cSticky) = ShiftRightJam(initialCMantissa, alignShiftAmt)
+  val initialCMantissa = Cat(Mux(c.isZero, 0.U(cMW.W), c.mantissa), 0.U(2.W), 0.U(prodMantissa_s1.getWidth.W))
+  val keepC_s1 = expDiff_s1 < 0.S || prodIsZero_s1
+  val alignShiftAmt_s1 = Mux(keepC_s1, 0.U, expDiff_s1.tail(1))
+  val (cShift_s1, cSticky_s1) = ShiftRightJam(initialCMantissa, alignShiftAmt_s1)
+
+  // pipeline registers between stage A and stage B
+  private val pipelined = nStages > 0
+  // NOTE: must materialize the register with the cloned (statically-widthed)
+  // type of x -- a bare RegNext(x) has inferred width, which breaks the
+  // .tail/.take width computation downstream in Chisel 6
+  def stageReg[T <: Data](x: T): T = {
+    if (!pipelined) {
+      x
+    } else {
+      val r = Reg(chiselTypeOf(x))
+      r := x
+      r
+    }
+  }
+
+  val prodMantissa = stageReg(prodMantissa_s1)
+  val prodExp = stageReg(prodExp_s1)
+  val prodSign = stageReg(prodSign_s1)
+  val prodIsZero = stageReg(prodIsZero_s1)
+  val expDiff = stageReg(expDiff_s1)
+  val alignShiftAmt = stageReg(alignShiftAmt_s1)
+  val cShift = stageReg(cShift_s1)
+  val cSticky = stageReg(cSticky_s1)
+  val cSign = stageReg(c.sign)
+  val cExp = stageReg(c.exp)
+  val cIsZero = stageReg(c.isZero)
+  val cIsInf = stageReg(c.isInf)
+  val cIsNaN = stageReg(c.isNaN)
+  val aIsNaN = stageReg(a.isNaN)
+  val bIsNaN = stageReg(b.isNaN)
+  val aIsInf = stageReg(a.isInf)
+  val bIsInf = stageReg(b.isInf)
+
+  // ---------------- Stage B1 (combinational): adders ----------------
+  val doSub = prodSign ^ cSign
 
   val addProd = Mux(prodIsZero, 0.U(adderWidth.W), prodMantissa ## 0.U(1.W)).zext
   val addC = (cShift ## cSticky).zext
@@ -59,11 +98,34 @@ class RawFloat_FMA(
   val pMinusC = Mux(doSub, -addC, addC) + addProd
 
   val cGtProd = pMinusC.head(1).asBool
-  val adderOutAbs = Mux(cGtProd, cMinusP.tail(1), pMinusC.tail(1))
+  val adderOutAbs_s1 = Mux(cGtProd, cMinusP.tail(1), pMinusC.tail(1))
 
+  // second pipeline cut: after the adders (so nStages == 2 really means
+  // mult | add | normalize, i.e. 2 internal registers)
+  val adderOutAbs = stageReg(adderOutAbs_s1)
+  private def stageReg2[T <: Data](x: T): T = if (pipelined) {
+    val r = Reg(chiselTypeOf(x)); r := x; r
+  } else x
+  val cGtProd2 = stageReg2(cGtProd)
+  val expDiff2 = stageReg2(expDiff)
+  val alignShiftAmt2 = stageReg2(alignShiftAmt)
+  val cSign2 = stageReg2(cSign)
+  val cExp2 = stageReg2(cExp)
+  val cIsZero2 = stageReg2(cIsZero)
+  val cIsInf2 = stageReg2(cIsInf)
+  val cIsNaN2 = stageReg2(cIsNaN)
+  val prodSign2 = stageReg2(prodSign)
+  val prodIsZero2 = stageReg2(prodIsZero)
+  val prodExp2 = stageReg2(prodExp)
+  val hasNaN2 = stageReg2(aIsNaN || bIsNaN || cIsNaN)
+  val prodHasInf2 = stageReg2(aIsInf || bIsInf)
+  val addInfInvalid2 = stageReg2(cIsInf && (aIsInf || bIsInf) && (cSign ^ prodSign))
+  val mulInfInvalid2 = stageReg2(prodIsZero && (aIsInf || bIsInf))
+
+  // ---------------- Stage B2 (combinational): normalization + special cases ----------------
   // addend-anchored
-  val cAnchored = (!c.isZero && expDiff <= cMW.S) || prodIsZero
-  val cAnchoredMantissa = (adderOutAbs << alignShiftAmt).take(adderWidth + 1)
+  val cAnchored = (!cIsZero2 && expDiff2 <= cMW.S) || prodIsZero2
+  val cAnchoredMantissa = (adderOutAbs << alignShiftAmt2).take(adderWidth + 1)
   val cAnchoredMantissaMSBs = cAnchoredMantissa.head(2)
   val cAnchoredNormMantissa = Mux(cAnchoredMantissaMSBs(1).asBool,
     cAnchoredMantissa,
@@ -73,8 +135,8 @@ class RawFloat_FMA(
     )
   )
   val cAnchoredExp = Mux(cAnchoredMantissaMSBs(1).asBool,
-    c.exp + 1.S,
-    Mux(cAnchoredMantissaMSBs(0), c.exp, c.exp - 1.S)
+    cExp2 + 1.S,
+    Mux(cAnchoredMantissaMSBs(0), cExp2, cExp2 - 1.S)
   )
 
 
@@ -82,26 +144,19 @@ class RawFloat_FMA(
   val pAnchoredMantissa = adderOutAbs.tail(cMW)
   val pAnchoredIsZero = pAnchoredMantissa === 0.U
   val lzc = PriorityEncoder(pAnchoredMantissa.asBools.reverse)
-  val pAnchoredExp = (prodExp +& 3.S) - lzc.zext
+  val pAnchoredExp = (prodExp2 +& 3.S) - lzc.zext
   val pAnchoredNormMantissa = (pAnchoredMantissa << lzc).take(adderWidth - cMW)
 
-  val hasNaN = a.isNaN || b.isNaN || c.isNaN
-  val prodHasInf = a.isInf || b.isInf
-  // +/-Inf + -/+ Inf is invalid
-  val addInfInvalid = c.isInf && prodHasInf && (c.sign ^ prodSign)
-  // 0 * Inf is invalid
-  val mulInfInvalid = prodIsZero && prodHasInf
-
-  io.out.sign := Mux(c.isInf,
-    c.sign,
-    Mux(prodHasInf,
-      prodSign,
-      Mux(c.isZero && prodIsZero,
-        c.sign && prodSign,
+  io.out.sign := Mux(cIsInf2,
+    cSign2,
+    Mux(prodHasInf2,
+      prodSign2,
+      Mux(cIsZero2 && prodIsZero2,
+        cSign2 && prodSign2,
         // (c.sign && prodSign) || ((c.sign | prodSign) && RM==RDN),
         Mux(!cAnchored && pAnchoredIsZero,
           false.B,
-          Mux(cGtProd, c.sign, prodSign)
+          Mux(cGtProd2, cSign2, prodSign2)
         )
       )
     )
@@ -111,9 +166,9 @@ class RawFloat_FMA(
     cAnchoredNormMantissa.head(cMW + 1) ## cAnchoredNormMantissa.tail(cMW + 1).orR,
     pAnchoredNormMantissa.head(cMW + 1) ## pAnchoredNormMantissa.tail(cMW + 1).orR
   )
-  io.out.isZero := (c.isZero && prodIsZero) || (!cAnchored && pAnchoredIsZero)
-  io.out.isInf := !io.out.isNaN && (c.isInf || prodHasInf)
-  io.out.isNaN := hasNaN || addInfInvalid || mulInfInvalid
+  io.out.isZero := (cIsZero2 && prodIsZero2) || (!cAnchored && pAnchoredIsZero)
+  io.out.isInf := !io.out.isNaN && (cIsInf2 || prodHasInf2)
+  io.out.isNaN := hasNaN2 || addInfInvalid2 || mulInfInvalid2
 }
 
 // a * b + c

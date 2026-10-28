@@ -30,9 +30,9 @@ case class FSAParams(
     (rows, cols, ap) => Seq(
       ISA.MxFunc.LOAD_STATIONARY -> new LoadStationary(rows, cols),
       ISA.MxFunc.ATTENTION_SCORE_COMPUTE -> new AttentionScoreExecPlan(rows, cols, ap),
-      ISA.MxFunc.ATTENTION_VALUE_COMPUTE -> new AttentionValueExecPlan(rows, cols),
+      ISA.MxFunc.ATTENTION_VALUE_COMPUTE -> new AttentionValueExecPlan(rows, cols, ap),
       ISA.MxFunc.ATTENTION_LSE_NORM_SCALE -> new AttentionLseNormScale(rows, cols, ap),
-      ISA.MxFunc.ATTENTION_LSE_NORM -> new AttentionLseNorm(rows, cols)
+      ISA.MxFunc.ATTENTION_LSE_NORM -> new AttentionLseNorm(rows, cols, ap)
     )
   },
   unitTestBuild: Boolean = false
@@ -87,7 +87,7 @@ class FSA[E <: Data : Arithmetic, A <: Data : Arithmetic]
   val inputDelayer = Module(new InputDelayer(SA_ROWS, arithmeticImpl.elemType))
   val outputDelayer = Module(new OutputDelayer(SA_COLS, arithmeticImpl.accType))
   val sa = Module(new SystolicArray[E, A](SA_ROWS, SA_COLS))
-  val accumulator = Module(new Accumulator[A](SA_ROWS, SA_COLS, ev.accType, ev.accUnit _))
+  val accumulator = Module(new Accumulator[A](SA_ROWS, SA_COLS, ev.accType, ev.accUnit _, ev.accLatency))
 
   val spRAM = {
     val sram = Module(new BankedSRAM(
@@ -181,8 +181,16 @@ class FSA[E <: Data : Arithmetic, A <: Data : Arithmetic]
   )
   accumulator.io.ctrl_in := mxControl.io.acc_ctrl
 
-  accRAM.fullWrite.head.valid := RegNext(mxControl.io.acc_read.valid && mxControl.io.acc_read.bits.rmw, false.B)
-  accRAM.fullWrite.head.addr := RegNext(mxControl.io.acc_read.bits.addr)
+  // the accumulator FMA is pipelined (ev.accLatency cycles): the write
+  // data (accumulator.io.sram_out) is valid at read_cycle + 1 + accLatency,
+  // so valid/addr must be delayed by the same amount to stay aligned
+  accRAM.fullWrite.head.valid := ShiftRegister(
+    mxControl.io.acc_read.valid && mxControl.io.acc_read.bits.rmw,
+    ev.accLatency + 1, false.B, true.B
+  )
+  accRAM.fullWrite.head.addr := ShiftRegister(
+    mxControl.io.acc_read.bits.addr, ev.accLatency + 1
+  )
   accRAM.fullWrite.head.data := accumulator.io.sram_out.asTypeOf(accRAM.fullWrite.head.data)
   accRAM.fullWrite.head.setFullMask()
 }

@@ -50,14 +50,15 @@ class FPAccUnit(addEW: Int, addMW: Int, pwlPieces: Int) extends
   val intercepts = PyFPConst.intercepts(addEW, addMW, projectDir = "generators/easyfloat", pieces = pwlPieces)
   val pwlConst = slopes.zip(intercepts)
   val mulAddExp2 = Module(new RawFloat_MulAddExp2(
-    1 + addEW, 1 + addMW, 1 + addEW, 1 + addMW, Left(pwlConst)
+    1 + addEW, 1 + addMW, 1 + addEW, 1 + addMW, Left(pwlConst),
+    pipeline = true
   ))
   mulAddExp2.io.in_a.fromIEEE(io.in_a.asUInt, addEW, addMW)
   mulAddExp2.io.in_b.fromIEEE(io.in_b.asUInt, addEW, addMW)
   mulAddExp2.io.in_c.fromIEEE(io.in_c.asUInt, addEW, addMW)
   mulAddExp2.io.in_exp2 := io.in_cmd === MacCMD.EXP2
 
-  val reciprocal = Module(new Reciprocal(addEW, addMW))
+  val reciprocal = Module(new Reciprocal(addEW, addMW, fmaLatency = FPAccUnit.latency))
   reciprocal.io.in := io.in_a.asUInt
   reciprocal.io.in_valid := multiCycleIO.reciprocal_in_valid
   reciprocal.io.fma_rounded_result := io.out_accType.asUInt
@@ -69,9 +70,20 @@ class FPAccUnit(addEW: Int, addMW: Int, pwlPieces: Int) extends
   }
   multiCycleIO.reciprocal_out_valid := reciprocal.io.out.valid
 
+  // output: rounding is the combinational tail of the pipeline;
+  // total in->out latency = FPAccUnit.latency
   io.out_accType := Rounding.round(mulAddExp2.io.out, RoundingMode.RNE, addEW, addMW).asTypeOf(accType)
   io.out_elemType := io.out_accType
   io.out_exp2 := mulAddExp2.io.in_exp2
+}
+
+object FPAccUnit {
+  // pipeline depth of the accumulator datapath:
+  //   1 (operand register in RawFloat_MulAddExp2)
+  // + 2 (internal stages of RawFloat_FMA)
+  // NOTE: constrained to 3 by AttentionScore's fixed wavefront budget
+  // (EXP_S1 -> [2L+1] -> ACC_SA must fit in 8 cycles)
+  def latency: Int = 3
 }
 
 class FPCmpUnit(ew: Int, mw: Int) extends CmpUnit(FloatPoint(ew, mw)) {
@@ -108,7 +120,8 @@ class FPArithmeticImpl(mulEW: Int, mulMW: Int, addEW: Int, addMW: Int, pwlPieces
 
   override def accCmp: CmpUnit[FloatPoint] = new FPCmpUnit(addEW, addMW)
 
-  override val reciprocalLatency: Int = Reciprocal.nCycles(addMW)
+  override val reciprocalLatency: Int = Reciprocal.nCycles(addMW, FPAccUnit.latency)
+  override val accLatency: Int = FPAccUnit.latency
 
   override val exp2PwlPieces: Int = pwlPieces
 

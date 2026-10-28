@@ -26,6 +26,9 @@ trait HasEffRange {
 trait ExecutionPlan {
   val rows: Int
   val cols: Int
+  // pipelined accumulator FMA latency; plans that touch the accumulator must
+  // account for it so that drain/writeback stays inside the busy window
+  def accLatency: Int = 0
   // PE control signals are more complex than spad/acc/cmp control, use a dedicate `ControlGen` to optimize them
   val pe_signals = (0 until 9).map(_ => ControlGen(rows)).toList
   val mac :: acc_ui :: load_reg_li :: load_reg_ui :: flow_lr :: flow_ud :: flow_du :: update_reg :: exp2 :: Nil = pe_signals
@@ -162,7 +165,11 @@ trait ExecutionPlan {
     }.getOrElse(-1)
   }
 
-  def accumulateMaxCycle = Seq(acc_read, acc_ctrl).map(x => maxCycle(x.toSeq)).max
+  // inclusive; + accLatency keeps the FSM busy until pipelined writebacks drain
+  def accumulateMaxCycle = {
+    val m = Seq(acc_read, acc_ctrl).map(x => maxCycle(x.toSeq)).max
+    if (m > 0) m + accLatency else m
+  }
 
   def computeDone(timer: UInt) = if (computeMaxCycle == 0) true.B else timer === (computeMaxCycle - 1).U
 
@@ -192,6 +199,7 @@ class LoadStationary(val rows: Int, val cols: Int) extends ExecutionPlan {
 }
 
 class AttentionScoreExecPlan(val rows: Int, val cols: Int, ap: HasArithmeticParams) extends ExecutionPlan {
+  override val accLatency: Int = ap.accLatency
   /****** S = Q @ K ******/
   // read K from spad
   readScratchPad(0, rows, None)
@@ -273,7 +281,9 @@ class AttentionScoreExecPlan(val rows: Int, val cols: Int, ap: HasArithmeticPara
 
   // collect diff = row_max(i-1) - row_max(i), and compute exp(diff)
   setAccumulator(2 * rows + rows + cols + 2, 1, AccumulatorCmd.EXP_S1)
-  setAccumulator(2 * rows + rows + cols + 3, 1, AccumulatorCmd.EXP_S2)
+  // scale is written back accLatency cycles after EXP_S1's inputs are
+  // consumed, so EXP_S2 (which reads scale) must wait that long
+  setAccumulator(2 * rows + rows + cols + 3 + ap.accLatency, 1, AccumulatorCmd.EXP_S2)
   // update exp sum
   // readAccRAM(2 * rows + rows + cols + 3, 1, None)
   readAccRAM(exp2_end + rows + cols - 1, 1, None)
@@ -281,7 +291,8 @@ class AttentionScoreExecPlan(val rows: Int, val cols: Int, ap: HasArithmeticPara
   setAccumulator(exp2_end + rows + cols, 1, AccumulatorCmd.ACC_SA)
 }
 
-class AttentionValueExecPlan(val rows: Int, val cols: Int) extends ExecutionPlan {
+class AttentionValueExecPlan(val rows: Int, val cols: Int, ap: HasArithmeticParams) extends ExecutionPlan {
+  override val accLatency: Int = ap.accLatency
   /****** O = P @ V ******/
   // read V from spad
   readScratchPad(0, rows, None)
@@ -313,20 +324,25 @@ class AttentionLseNormScale
   val cols: Int,
   ap: HasArithmeticParams
 ) extends ExecutionPlan {
+  override val accLatency: Int = ap.accLatency
   readAccRAM(0, 1, None, rmw = false)
   setAccumulator(1, 1, AccumulatorCmd.SET_SCALE)
-  setAccumulator(2, ap.reciprocalLatency, AccumulatorCmd.RECIPROCAL)
-  releaseSemaphore(2 + ap.reciprocalLatency - 1)
+  // scale is registered accLatency cycles after SET_SCALE consumes sram_in,
+  // so the reciprocal (which reads scale) must start accLatency cycles later
+  setAccumulator(2 + ap.accLatency, ap.reciprocalLatency, AccumulatorCmd.RECIPROCAL)
+  releaseSemaphore(2 + ap.accLatency + ap.reciprocalLatency - 1)
   // This is a blocking instruction
-  setConflictFree(2 + ap.reciprocalLatency - 1)
+  setConflictFree(2 + ap.accLatency + ap.reciprocalLatency - 1)
 }
 
 // perform the final lse norm after each flash attention inner loop
-class AttentionLseNorm(val rows: Int, val cols: Int) extends ExecutionPlan {
+class AttentionLseNorm(val rows: Int, val cols: Int, ap: HasArithmeticParams) extends ExecutionPlan {
+  override val accLatency: Int = ap.accLatency
   setComparator(0, 1, CmpControlCmd.RESET)
   readAccRAM(0, rows, None)
   setAccumulator(1, rows, AccumulatorCmd.ACC)
-  releaseSemaphore(rows)
+  // pipelined writebacks land rows + accLatency cycles later
+  releaseSemaphore(rows + ap.accLatency)
   // This is a blocking instruction
-  setConflictFree(rows)
+  setConflictFree(rows + ap.accLatency)
 }

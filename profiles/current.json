@@ -1,20 +1,25 @@
 {
   "schema_version": 1,
-  "id": "NM37",
+  "id": "A70-P3",
   "board": "NM37",
   "dut_mhz": 70,
   "apb_mhz": 70,
   "array_sizes": [
-    4
+    4,
+    16
   ],
-  "default_array_size": 4,
-  "build_label": "NM37",
+  "default_array_size": 16,
+  "build_label": "A70",
   "validation_status": "organized_local_candidate_not_rebuilt_or_board_accepted",
   "expected_tools": {
     "java": "20.0.2",
     "firtool": "firtool-1.75.0",
     "verilator": "Verilator 5.022",
     "vivado": "2020.2_AR75986"
+  },
+  "sim_configs": {
+    "4": "AXI4FSA4X4Fp16Config",
+    "16": "A70SinglePort16X16Fp16Config"
   },
   "driver": {
     "output_env": "ICT_BUILD_OUT",
@@ -53,6 +58,15 @@
           "python3",
           "scripts/ict_history.py",
           "implement",
+          "--out",
+          "{out}"
+        ]
+      ],
+      "verify": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "verify",
           "--out",
           "{out}"
         ]

@@ -67,13 +67,15 @@ class RawFloat_MulAddExp2
 (
   mulExpWidth: Int, mulMantissaWidth: Int,
   addExpWidth: Int, addMantissaWidth: Int,
-  pwlConst: Either[Seq[(BigInt, BigInt)], Int]
+  pwlConst: Either[Seq[(BigInt, BigInt)], Int],
+  pipeline: Boolean = false
 ) extends Module {
 
   val fma = Module(new RawFloat_FMA(
     aEW = mulExpWidth, aMW = mulMantissaWidth,
     bEW = mulExpWidth, bMW = mulMantissaWidth,
-    cEW = addExpWidth, cMW = addMantissaWidth
+    cEW = addExpWidth, cMW = addMantissaWidth,
+    nStages = if (pipeline) 2 else 0
   ))
 
   val io = IO(new Bundle {
@@ -96,17 +98,16 @@ class RawFloat_MulAddExp2
   }
 
   split.io.in := io.in_a
-  fma.io.a := io.in_a
-  fma.io.b := io.in_b
-  fma.io.c := io.in_c
-  io.out := fma.io.out
-  io.exp2_frac_msb := split.io.outFracMSBs
+
+  // FMA operands after exp2 piecewise-linear overrides (stage-0 combinational)
+  val fa = Wire(chiselTypeOf(io.in_a))
+  val fb = Wire(chiselTypeOf(io.in_b))
+  val fc = Wire(chiselTypeOf(io.in_c))
+  fa := io.in_a
+  fb := io.in_b
+  fc := io.in_c
   when(io.in_exp2) {
-    fma.io.a := split.io.outRawFloat
-    io.out.sign := false.B
-    io.out.isInf := false.B
-    io.out.isZero := fma.io.out.isInf
-    io.out.exp := split.io.outInt + fma.io.out.exp
+    fa := split.io.outRawFloat
   }
   pwlConst match {
     case Left(seq) =>
@@ -116,11 +117,45 @@ class RawFloat_MulAddExp2
       val fSlopes = VecInit(slopes.map(_.U(mulIEEEWidth.W)).reverse)
       val fIntercepts = VecInit(intercepts.map(_.U(addIEEEWidth.W)).reverse)
       when(io.in_exp2) {
-        fma.io.b.fromIEEE(fSlopes(split.io.outFracMSBs), mulExpWidth - 1, mulMantissaWidth - 1)
-        fma.io.c.fromIEEE(fIntercepts(split.io.outFracMSBs), addExpWidth - 1, addMantissaWidth - 1)
+        fb.fromIEEE(fSlopes(split.io.outFracMSBs), mulExpWidth - 1, mulMantissaWidth - 1)
+        fc.fromIEEE(fIntercepts(split.io.outFracMSBs), addExpWidth - 1, addMantissaWidth - 1)
       }
     case Right(n) =>
       // slopes and intercepts are provided outside
+  }
+
+  io.exp2_frac_msb := split.io.outFracMSBs
+
+  if (pipeline) {
+    // entry pipeline register (1 cycle) in front of the (also pipelined) FMA
+    val faR = Reg(chiselTypeOf(fa)); faR := fa
+    val fbR = Reg(chiselTypeOf(fb)); fbR := fb
+    val fcR = Reg(chiselTypeOf(fc)); fcR := fc
+    fma.io.a := faR
+    fma.io.b := fbR
+    fma.io.c := fcR
+    // delay-match the split integer part to the FMA output:
+    // total latency = 1 (entry reg) + 2 (FMA internal regs) = 3
+    val inExp2D = ShiftRegister(io.in_exp2, 3)
+    val outIntD = ShiftRegister(split.io.outInt, 3)
+    io.out := fma.io.out
+    when(inExp2D) {
+      io.out.sign := false.B
+      io.out.isInf := false.B
+      io.out.isZero := fma.io.out.isInf
+      io.out.exp := outIntD + fma.io.out.exp
+    }
+  } else {
+    fma.io.a := fa
+    fma.io.b := fb
+    fma.io.c := fc
+    io.out := fma.io.out
+    when(io.in_exp2) {
+      io.out.sign := false.B
+      io.out.isInf := false.B
+      io.out.isZero := fma.io.out.isInf
+      io.out.exp := split.io.outInt + fma.io.out.exp
+    }
   }
 }
 

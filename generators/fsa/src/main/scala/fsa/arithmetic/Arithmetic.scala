@@ -103,6 +103,9 @@ trait HasMultiCycleIO { this: Module =>
 trait HasArithmeticParams {
   val reciprocalLatency: Int
   val exp2PwlPieces: Int
+  // extra latency (cycles) of the accumulator FMA caused by pipelining;
+  // execution plans use it to keep schedules aligned with the datapath
+  val accLatency: Int
 }
 
 abstract class ArithmeticImpl[E <: Data : Arithmetic, A <: Data : Arithmetic] extends HasArithmeticParams {

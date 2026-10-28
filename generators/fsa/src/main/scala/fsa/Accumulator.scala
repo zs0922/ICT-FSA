@@ -30,7 +30,8 @@ class Accumulator[A <: Data : Arithmetic]
 (
   rows: Int, cols: Int,
   accType: A,
-  accGen: () => MacUnit[A, A] with HasMultiCycleIO
+  accGen: () => MacUnit[A, A] with HasMultiCycleIO,
+  accLatency: Int = 0
 ) extends Module {
 
   val io = IO(new Bundle {
@@ -62,17 +63,33 @@ class Accumulator[A <: Data : Arithmetic]
     * set: scale <- sram_in
   */
 
-  for (((((s, acc), sa_in), sram_in), sram_out) <- scale.zip(accUnit).zip(io.sa_in).zip(io.sram_in).zip(io.sram_out)) {
+  // The accUnit datapath is pipelined (accLatency cycles from inputs to
+  // out_accType).  Operands are consumed combinationally at the command
+  // cycle, but everything that acts on the RESULT (scale writeback, and the
+  // sram_in captured for SET_SCALE) must be delayed by accLatency to line
+  // up with out_accType.
+  val validD = ShiftRegister(valid, accLatency, false.B, true.B)
+  val expS1D = ShiftRegister(exp_s1, accLatency, false.B, true.B)
+  val expS2D = ShiftRegister(exp_s2, accLatency, false.B, true.B)
+  val setD = ShiftRegister(set, accLatency, false.B, true.B)
+  val sramInD = ShiftRegister(io.sram_in, accLatency)
+
+  for (i <- 0 until cols) {
+    val s = scale(i)
+    val acc = accUnit(i)
+    val sa_in = io.sa_in(i)
+    val sram_in = io.sram_in(i)
+    val sram_out = io.sram_out(i)
     acc.io.in_a := Mux(exp_s1, sa_in, s)
     acc.io.in_b := Mux(exp_s1, accType.attentionScale(rows), sram_in)
     acc.io.in_c := Mux(acc_sa, sa_in, accType.zero)
     acc.io.in_cmd := Mux(exp_s2, MacCMD.EXP2, MacCMD.MAC)
     acc.multiCycleIO.reciprocal_in_valid := valid && reciprocal
-    when(valid) {
-      when(exp_s1 || exp_s2 || acc.multiCycleIO.reciprocal_out_valid) {
+    when(validD) {
+      when(expS1D || expS2D || acc.multiCycleIO.reciprocal_out_valid) {
         s := acc.io.out_accType
-      }.elsewhen(set) {
-        s := sram_in
+      }.elsewhen(setD) {
+        s := sramInD(i)
       }
     }
     sram_out := acc.io.out_accType

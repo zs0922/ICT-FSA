@@ -17,9 +17,12 @@ R[j+1] = R[j](2 - R[j]d)
 Important!!!
 1. The module itself doesn't hold io.in!!!
     io.in must remain unchanged from in_valid to out.valid
-2. The module is not pipelined
+2. The module is not pipelined (one Newton-Raphson op in flight at a time),
+   but it tolerates a pipelined host FMA: with fmaLatency = L, each FMA
+   result arrives L cycles after its operands are presented, so dependent
+   ops are issued every (L + 1) cycles.
 */
-class Reciprocal(expWidth: Int, mantissaWidth: Int) extends Module {
+class Reciprocal(expWidth: Int, mantissaWidth: Int, fmaLatency: Int = 0) extends Module {
 
   val io = IO(new Bundle {
     val in = Input(UInt((1 + expWidth + mantissaWidth).W))
@@ -34,7 +37,7 @@ class Reciprocal(expWidth: Int, mantissaWidth: Int) extends Module {
   /* x = 1.xxx * 2^exp = (1.xxx * 2^0) * (1.0 * 2^exp)
      xm = 1.xxx * 2^0
      xe = 1.0 * 2^exp
-  */
+   */
   val xRaw = Wire(new RawFloat(1 + expWidth, 1 + mantissaWidth))
   val xm = WireInit(xRaw)
   val xe = WireInit(xRaw)
@@ -49,14 +52,25 @@ class Reciprocal(expWidth: Int, mantissaWidth: Int) extends Module {
   xe.isInf := xRaw.isZero
   xe.isZero := xRaw.isInf
 
-  val nCycles = Reciprocal.nCycles(mantissaWidth)
-  val cnt = RegInit(0.U(log2Up(nCycles).W))
-  val done = cnt === (nCycles - 1).U
+  val nCycles = Reciprocal.nCycles(mantissaWidth, fmaLatency)
+  // cnt = index of the FMA op currently presented (0 .. nOps, inclusive)
+  val nOps = 2 * Reciprocal.nIterations(mantissaWidth)
+  val cnt = RegInit(0.U((log2Up(nOps + 1)).W))
+  // age = cycles elapsed since the current op was presented
+  val age = RegInit(0.U((log2Up(fmaLatency + 1)).W))
+  val resultHere = age === fmaLatency.U
+  val done = cnt === nOps.U && resultHere
 
-  when(io.in_valid && !done) {
-    cnt := cnt + 1.U
-  }.elsewhen(done) {
+  when(done) {
     cnt := 0.U
+    age := 0.U
+  }.elsewhen(io.in_valid && resultHere) {
+    // the result of op `cnt` is on fma_rounded_result this cycle:
+    // consume it (below) and present the next op
+    cnt := cnt + 1.U
+    age := 0.U
+  }.elsewhen(io.in_valid) {
+    age := age + 1.U
   }
 
   // r0 = 1.0 TODO: improve r0
@@ -80,13 +94,15 @@ class Reciprocal(expWidth: Int, mantissaWidth: Int) extends Module {
   zero := 0.U.asTypeOf(zero)
   zero.isZero := true.B
 
-  val reg_r =  RegInit(r0)
+  val reg_r = RegInit(r0)
   val reg_p = Reg(chiselTypeOf(r0))
 
-  when(done) {
-    reg_r := r0
-  }.elsewhen(io.in_valid) {
-    when(cnt(0)) {
+  when(io.in_valid && resultHere) {
+    when(cnt === nOps.U) {
+      // final result (R * 2^-exp) is on fma_rounded_result;
+      // reset the iteration state for the next reciprocal
+      reg_r := r0
+    }.elsewhen(cnt(0)) {
       // R[j+1] = R[j] * P[j]
       reg_r.fromIEEE(io.fma_rounded_result, expWidth, mantissaWidth)
     }.otherwise({
@@ -96,7 +112,7 @@ class Reciprocal(expWidth: Int, mantissaWidth: Int) extends Module {
   }
 
   io.fma_rawA := reg_r
-  when(done) {
+  when(cnt === nOps.U) {
     io.fma_rawB := xe
     io.fma_rawC := zero
   }.elsewhen(cnt(0)) {
@@ -115,6 +131,12 @@ class Reciprocal(expWidth: Int, mantissaWidth: Int) extends Module {
 object Reciprocal {
   // TODO: 4 is an empirical value to fix the round-off error
   def nIterations(ieeeMantissaWidth: Int) = log2Up(ieeeMantissaWidth + 1) + 4
-  // 2 fma per iteration + last fma
-  def nCycles(ieeeMantissaWidth: Int) = 2 * nIterations(ieeeMantissaWidth) + 1
+  /*
+     2 fma per iteration + last fma. With a pipelined host FMA (fmaLatency = L)
+     each dependent FMA op occupies L + 1 cycles: op k is presented at cycle
+     k * (L + 1) and its result is available at k * (L + 1) + L, so the whole
+     sequence spans (nOps + 1) * (L + 1) cycles = 2*nIterations*(L+1) + L + 1.
+   */
+  def nCycles(ieeeMantissaWidth: Int, fmaLatency: Int = 0) =
+    2 * nIterations(ieeeMantissaWidth) * (fmaLatency + 1) + fmaLatency + 1
 }

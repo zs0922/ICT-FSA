@@ -11,7 +11,7 @@ if {[file exists $fixup_file]} {
 }
 
 # Synthesize the design
-synth_design -top $top -flatten_hierarchy rebuilt
+synth_design -top $top -flatten_hierarchy rebuilt -directive PerformanceOptimized -retiming
 
 # Checkpoint the current design
 write_checkpoint -force [file join $wrkdir post_synth]
