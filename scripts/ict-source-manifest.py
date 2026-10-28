@@ -26,6 +26,17 @@ lock_path = root / ('fpga/baselines/nm37-' + short + '/source-lock.json')
 lock = json.loads(lock_path.read_text())
 lock['source_modes'] = modes
 lock['source_hashes'] = {name: check.sha(root / name) for name in modes}
+shell_prefix = 'fpga/fpga-shells/'
+# The NM37 runtime snapshot contains the Xilinx shell subtree. Scala and
+# other vendors remain covered by source_hashes, but are not copied into OUT/shell.
+shell_paths = [name for name in modes if name.startswith(shell_prefix + 'xilinx/')]
+if not shell_paths:
+    raise RuntimeError('No tracked Xilinx shell inputs; stage the intended shell files first')
+# The backend checks both the source tree and its frozen shell snapshot.
+# Derive both identities from the same reviewed Git file set, including adds/removals.
+lock['shell_hashes'] = {
+    name[len(shell_prefix):]: lock['source_hashes'][name] for name in shell_paths
+}
 lock.pop('historical_generator_sha256', None)
 lock['input_policy'] = 'ICT-FSA reviewed tracked inputs; shell is vendored; no runtime patching. Input lock is not a verification pass.'
 if a.write:

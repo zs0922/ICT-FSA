@@ -651,7 +651,7 @@
     "scripts/gen-tags.sh": "bc8aa368093d83b47b920e0eb09f18e75725bf72c59c4ce00e5fba56271d5275",
     "scripts/generate-ckpt.sh": "bc7648a3a753a835eb5933bdbe203b988bcbbd4da20b5e10f7691736fa34cc55",
     "scripts/generate-conda-lockfiles.sh": "a4b74cd8e5203715475893ac24b813936a038e520d321b6d20516d5b494c6ee2",
-    "scripts/ict-source-manifest.py": "15ce33c4cdc076f63a4f9b48bdfd4dccca43380d1c27e16fb36cc45e69a53758",
+    "scripts/ict-source-manifest.py": "64405b23d612602c25bbe5e7daec46607d17c201f5dc1890f777a7fc64be02e7",
     "scripts/ict/a70_verify/verify_sim.py": "816e6474cf17cde0fc281d8e04a6e6dc700b1dc5693395ac511eff616e480100",
     "scripts/ict/a70_verify/window_proof/proof-notes.txt": "e4193144df03d214e59e416fdc0c6d933f3a607b0821b0c4189f5396f2c81450",
     "scripts/ict/a70_verify/window_proof/run-proof.py": "9ccf2208fc6ce1c449fa8c97bd20d517207f71da27732588e0fab597740fd800",
