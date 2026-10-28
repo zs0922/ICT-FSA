@@ -41,6 +41,19 @@ class NM37FPGATestHarness(implicit p: Parameters) extends NM37ShellBasicOverlays
   dutFixedClockNode := wrangler.node := dutClockGroup := harnessSysPLL
   dutClockNode := dutFixedClockNode
 
+  // Keep APB at 55 MHz: the A110 candidate has a 2:1 AXI/APB clock ratio.
+  // Both PLL outputs deliberately belong to the same ClockGroup: PLLFactory
+  // must preserve their related generated-clock timing, not cut it as async.
+  val hbmAPBFrequencyMHz = 55.0
+  // Keep the board sink first: the ordinary broadcast forwards its 55 MHz /
+  // 230 ps contract. The fixed-frequency variant creates a fresh sink with
+  // the library default 200 ps, discarding the declared jitter requirement.
+  // The HBM controller also declares take=55 MHz, so no frequency is missing.
+  val hbmAPBFixedClockNode = FixedClockBroadcast()
+  val hbmAPBClockNode = ClockSinkNode(freqMHz = hbmAPBFrequencyMHz, jitterPS = 230)
+  hbmAPBFixedClockNode := wrangler.node := dutClockGroup
+  hbmAPBClockNode := hbmAPBFixedClockNode
+
   val placedXDMA = dp(chipyard.fpga.u280.CustomXDMAOverlayKey).head.place(
     chipyard.fpga.u280.CustomXDMADesignInput(wrangler.node, dutFixedClockNode)
   )
@@ -53,7 +66,8 @@ class NM37FPGATestHarness(implicit p: Parameters) extends NM37ShellBasicOverlays
     // exactly as on the U280. Its AXI_00 port is 256-bit, matching both the
     // XDMA M_AXI (256-bit) and the FSA 16x16 DMA (32-byte spad rows), so no
     // width conversion is needed anywhere.
-    val ram = LazyModule(new chipyard.fpga.u280.LazyXilinxHBMController("test"))
+    val ram = LazyModule(new chipyard.fpga.u280.LazyXilinxHBMController(
+      "test", apbFrequencyMHz = hbmAPBFrequencyMHz))
 
     val xbar = LazyModule(new AXI4Xbar())
 
@@ -67,6 +81,7 @@ class NM37FPGATestHarness(implicit p: Parameters) extends NM37ShellBasicOverlays
 
     // HBM AXI interface clock: the dut clock domain (as on the U280)
     ram.slaveClockNodes(0) := dutFixedClockNode
+    ram.apbClockNode := hbmAPBFixedClockNode
     // HBM PHY reference clock: 100MHz from the board oscillator (IBUFDS path)
     ram.HBMRefClockNode := sysClkBroadcast
 
@@ -94,7 +109,6 @@ class NM37TestHarnessImpl(outer: NM37FPGATestHarness) extends LazyRawModuleImp(o
   val pcie_rst_n_ibuff = Module(new IBUF)
   pcie_rst_n_ibuff.suggestName("pcie_rst_n_ibuff")
   pcie_rst_n_ibuff.io.I := prst_n
-  outer.pcie_rst_n := pcie_rst_n_ibuff.io.O
 
   val sysclk: Clock = outer.sysClkNode.out.head._1.clock
 
@@ -102,6 +116,16 @@ class NM37TestHarnessImpl(outer: NM37FPGATestHarness) extends LazyRawModuleImp(o
   outer.sdc.addAsyncPath(Seq(powerOnReset))
 
   outer.pllReset := powerOnReset
+
+  // The DUT PLL is independent of PCIe. Use its raw reset (unlocked or POR),
+  // not the wrangled reset that also waits for XDMA, to avoid a startup loop.
+  // A runtime loss of lock cold-resets XDMA before fabric/HBM can restart;
+  // software must reinitialize PCIe and reload memory after this event.
+  val pcieResetControl = Module(new chipyard.fpga.u280.HBMPLLResetControl(stableCycles = 10000))
+  pcieResetControl.io.monitorClock := sysclk
+  pcieResetControl.io.rawPllReset := outer.harnessSysPLL.out.head._1.member.data.head.reset.asBool
+  pcieResetControl.io.externalReset := !pcie_rst_n_ibuff.io.O
+  outer.pcie_rst_n := pcieResetControl.io.pcieResetN
 
   val hReset = Wire(Reset())
   hReset := outer.dutClockNode.in.head._1.reset

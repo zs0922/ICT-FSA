@@ -84,7 +84,7 @@ class U280FPGATestHarness(implicit p: Parameters) extends U280ShellBasicOverlays
 
   val (ram, fsa) = dutDomain {
     val ram = LazyModule(new LazyXilinxHBMController(
-      "test", is16GB = false
+      "test", is16GB = false, apbFrequencyMHz = dutFreqMHz
     ))
 
     val xbar = LazyModule(new AXI4Xbar())
@@ -93,6 +93,7 @@ class U280FPGATestHarness(implicit p: Parameters) extends U280ShellBasicOverlays
 
     ram.node(0) := AXI4UserYanker(capMaxFlight = Some(8)) := xbar.node := AXI4Fragmenter() := placedXDMA.overlayOutput.master
     ram.slaveClockNodes(0) := dutFixedClockNode
+    ram.apbClockNode := dutFixedClockNode
     ram.HBMRefClockNode := hbmClkNode
 
     xbar.node := fsa.memNode

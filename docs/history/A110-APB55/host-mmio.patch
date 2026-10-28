@@ -1,0 +1,141 @@
+--- a/generators/fsa/python/fsa/xdma_mmio.py
++++ b/generators/fsa/python/fsa/xdma_mmio.py
+@@ -94,6 +94,29 @@
+         self.access_width_map = {'b': 1, 'h': 2, 'w': 4}
+         self.ctype_map = {'b': ctypes.c_uint8, 'h': ctypes.c_uint16, 'w': ctypes.c_uint32}
+ 
++        # Persistent page mappings (page base -> mmap pointer), created on
++        # demand and released in close().  Reusing one mapping across all
++        # accesses removes the mmap/munmap syscall pair that used to run for
++        # EVERY single 32-bit queue word on the host instruction-feed path
++        # (~3.2us/word measured on the board).
++        self._maps: dict[int, int] = {}
++
++    def _map_page(self, addr: int) -> tuple[int, int]:
++        """Return (cached mmap pointer, offset within page) for the page
++        containing addr.  The mapping is created once and kept until close()."""
++        base_addr = addr & (~(self.page_size - 1))
++        offset = addr & (self.page_size - 1)
++        map_ptr = self._maps.get(base_addr)
++        if map_ptr is None:
++            map_ptr = libc.mmap(None, self.page_size, PROT_READ | PROT_WRITE,
++                                MAP_SHARED, self.fd, base_addr)
++            # c_void_p restype: MAP_FAILED comes back as 0xffff...ffff, NULL as None
++            if map_ptr is None or map_ptr == ctypes.c_void_p(-1).value:
++                err = ctypes.get_errno()
++                raise IOError(f"mmap failed for address 0x{base_addr:x}: {os.strerror(err)}")
++            self._maps[base_addr] = map_ptr
++        return map_ptr, offset
++
+     def _access(self, addr: int, access_type: str = 'w', write_val: int = None):
+         """Internal method to handle both read and write operations."""
+         access_type = access_type.lower()
+@@ -102,42 +125,29 @@
+ 
+         width = self.access_width_map[access_type]
+         ctype = self.ctype_map[access_type]
+-        
+-        # Align address to page size
++
+         offset = addr & (self.page_size - 1)
+-        base_addr = addr & (~(self.page_size - 1))
+-        map_size = offset + width
+-
+-        # Map memory region
+-        map_ptr = libc.mmap(None, map_size, PROT_READ | PROT_WRITE, MAP_SHARED, self.fd, base_addr)
+-        if map_ptr == -1:
+-            err = ctypes.get_errno()
+-            raise IOError(f"mmap failed for address 0x{base_addr:x}: {os.strerror(err)}")
+-
+-        try:
+-            # Calculate the final pointer to the target data
+-            data_ptr = ctypes.cast(map_ptr + offset, ctypes.POINTER(ctype))
+-            
+-            if write_val is not None:
+-                # Write operation
+-                val_to_write = write_val
+-                if access_type == 'h': val_to_write = htols(write_val)
+-                if access_type == 'w': val_to_write = htoll(write_val)
+-                data_ptr.contents.value = val_to_write
+-                return None
+-            else:
+-                # Read operation
+-                raw_val = data_ptr.contents.value
+-                read_val = raw_val
+-                if access_type == 'h': read_val = ltohs(raw_val)
+-                if access_type == 'w': read_val = ltohl(raw_val)
+-                return read_val
+-        finally:
+-            # Ensure memory is always unmapped
+-            if libc.munmap(map_ptr, map_size) == -1:
+-                err = ctypes.get_errno()
+-                # We raise a warning here instead of an error because the primary I/O might have succeeded
+-                print(f"Warning: munmap failed for address 0x{map_ptr:x}: {os.strerror(err)}", file=sys.stderr)
++        if offset + width > self.page_size:
++            raise ValueError(f"access at 0x{addr:x} crosses a page boundary")
++
++        map_ptr, _ = self._map_page(addr)
++        # Calculate the final pointer to the target data
++        data_ptr = ctypes.cast(map_ptr + offset, ctypes.POINTER(ctype))
++
++        if write_val is not None:
++            # Write operation
++            val_to_write = write_val
++            if access_type == 'h': val_to_write = htols(write_val)
++            if access_type == 'w': val_to_write = htoll(write_val)
++            data_ptr.contents.value = val_to_write
++            return None
++        else:
++            # Read operation
++            raw_val = data_ptr.contents.value
++            read_val = raw_val
++            if access_type == 'h': read_val = ltohs(raw_val)
++            if access_type == 'w': read_val = ltohl(raw_val)
++            return read_val
+ 
+     def dev_mmio_read(self, addr: int, access_type: str = 'w') -> int:
+         """
+@@ -164,15 +174,40 @@
+         """
+         Writes a list of 32-bit integers to the same address as a queue-style write.
+         Each write is 4 bytes, like queueing commands or data to a FIFO.
++
++        The page mapping is created once (cached) and the loop performs plain
++        32-bit stores only: no mmap/munmap syscall per word.  The hardware
++        write port is a Decoupled FIFO push, so one store == one enqueued word,
++        and a full queue backpressures the store itself (lossless).
+         Args:
+             write_addr: The base address to write to.
+             data_array: A list of 32-bit integers to write.
+         """
+-        for data in data_array:
+-            self.dev_mmio_write(write_addr, data, 'w')
++        if not data_array:
++            return
++        offset = write_addr & (self.page_size - 1)
++        if offset + 4 > self.page_size:
++            raise ValueError(f"queue write at 0x{write_addr:x} crosses a page boundary")
++        map_ptr, _ = self._map_page(write_addr)
++        ptr = ctypes.cast(map_ptr + offset, ctypes.POINTER(ctypes.c_uint32))
++        if sys.byteorder == 'little':
++            # identity transform: skip the per-word lambda call, the Python
++            # loop overhead is what bounds the feed rate now (~0.3us/word)
++            for data in data_array:
++                ptr[0] = data
++        else:
++            for data in data_array:
++                ptr[0] = htoll(data)
+ 
+     def close(self):
+-        """Closes the device file descriptor."""
++        """Unmaps all cached pages, then closes the device file descriptor."""
++        for base_addr, map_ptr in self._maps.items():
++            if libc.munmap(map_ptr, self.page_size) == -1:
++                err = ctypes.get_errno()
++                # We raise a warning here instead of an error because the
++                # device fd close below still releases the mappings
++                print(f"Warning: munmap failed for address 0x{base_addr:x}: {os.strerror(err)}", file=sys.stderr)
++        self._maps.clear()
+         if self.fd != -1:
+             libc.close(self.fd)
+             self.fd = -1
