@@ -1,0 +1,49 @@
+test_all_original_inspect_assertions_are_unchanged (test_physical_audit_context.ContextTests.test_all_original_inspect_assertions_are_unchanged) ... ok
+test_atomic_template_does_not_write_through_hard_link (test_physical_audit_context.ContextTests.test_atomic_template_does_not_write_through_hard_link) ... ok
+test_changed_or_escaped_review_evidence_rejected (test_physical_audit_context.ContextTests.test_changed_or_escaped_review_evidence_rejected) ... ok
+test_context_rejects_overlap_and_wrong_original_checkpoint (test_physical_audit_context.ContextTests.test_context_rejects_overlap_and_wrong_original_checkpoint) ... ok
+test_context_rejects_symlinked_reports_or_output_escape (test_physical_audit_context.ContextTests.test_context_rejects_symlinked_reports_or_output_escape) ... ok
+test_default_inspect_signature_remains_compatible (test_physical_audit_context.ContextTests.test_default_inspect_signature_remains_compatible) ... ok
+test_each_original_physical_gate_still_rejects_failures (test_physical_audit_context.ContextTests.test_each_original_physical_gate_still_rejects_failures) ... ok
+test_full_inspect_reads_old_inputs_writes_only_new_tree (test_physical_audit_context.ContextTests.test_full_inspect_reads_old_inputs_writes_only_new_tree) ... ok
+test_missing_hbm_endpoint_is_rejected (test_physical_audit_context.ContextTests.test_missing_hbm_endpoint_is_rejected) ... ok
+test_missing_review_produces_bound_template_only_in_new_root (test_physical_audit_context.ContextTests.test_missing_review_produces_bound_template_only_in_new_root) ... ok
+test_original_ip_settings_are_not_replaced_by_local_reaudit_copies (test_physical_audit_context.ContextTests.test_original_ip_settings_are_not_replaced_by_local_reaudit_copies) ... ok
+test_review_cannot_waive_real_critical_or_use_missing_evidence (test_physical_audit_context.ContextTests.test_review_cannot_waive_real_critical_or_use_missing_evidence) ... ok
+test_review_must_bind_build_checkpoint_and_new_cdc_report (test_physical_audit_context.ContextTests.test_review_must_bind_build_checkpoint_and_new_cdc_report) ... ok
+test_review_must_cover_each_finding_once (test_physical_audit_context.ContextTests.test_review_must_cover_each_finding_once) ... ok
+test_acceptance_attempt_cannot_overwrite (test_reaudit.Fixture.test_acceptance_attempt_cannot_overwrite) ... ok
+test_all_seven_payloads_checked (test_reaudit.Fixture.test_all_seven_payloads_checked) ... ok
+test_allowed_auditor_change_uses_original_git_bytes (test_reaudit.Fixture.test_allowed_auditor_change_uses_original_git_bytes) ... ok
+test_allowlisted_document_must_not_be_symlink (test_reaudit.Fixture.test_allowlisted_document_must_not_be_symlink) ... ok
+test_complete_original_bindings_and_immutable_original (test_reaudit.Fixture.test_complete_original_bindings_and_immutable_original) ... ok
+test_dcp_and_original_reports_immutable_after_prepare (test_reaudit.Fixture.test_dcp_and_original_reports_immutable_after_prepare) ... ok
+test_dirty_submodule_worktree_is_separate_from_gitlink_change (test_reaudit.Fixture.test_dirty_submodule_worktree_is_separate_from_gitlink_change) ... ok
+test_entry_keeps_original_physical_gate_and_separate_reaudit (test_reaudit.Fixture.test_entry_keeps_original_physical_gate_and_separate_reaudit) ... ok
+test_execution_report_log_and_cdc_bindings (test_reaudit.Fixture.test_execution_report_log_and_cdc_bindings) ... ok
+test_export_calls_only_original_tcl_same_dcp (test_reaudit.Fixture.test_export_calls_only_original_tcl_same_dcp) ... ok
+test_export_requires_verified_pass_and_new_destination (test_reaudit.Fixture.test_export_requires_verified_pass_and_new_destination) ... ok
+test_failed_process_can_preserve_partial_report_manifest (test_reaudit.Fixture.test_failed_process_can_preserve_partial_report_manifest) ... ok
+test_failure_is_retained_without_original_mutation (test_reaudit.Fixture.test_failure_is_retained_without_original_mutation) ... ok
+test_fake_pass_cannot_override_real_physical_failure (test_reaudit.Fixture.test_fake_pass_cannot_override_real_physical_failure) ... ok
+test_generated_ip_content_and_set_are_bound (test_reaudit.Fixture.test_generated_ip_content_and_set_are_bound) ... ok
+test_git_driver_snapshot_must_match_manifest (test_reaudit.Fixture.test_git_driver_snapshot_must_match_manifest) ... ok
+test_mutation_commands_and_changed_baseline_rejected (test_reaudit.Fixture.test_mutation_commands_and_changed_baseline_rejected) ... ok
+test_only_exact_final_documents_and_evidence_are_allowed (test_reaudit.Fixture.test_only_exact_final_documents_and_evidence_are_allowed) ... ok
+test_original_source_checker_executes (test_reaudit.Fixture.test_original_source_checker_executes) ... ok
+test_output_refuses_existing_and_overlap (test_reaudit.Fixture.test_output_refuses_existing_and_overlap) ... ok
+test_output_symlink_parent_rejected (test_reaudit.Fixture.test_output_symlink_parent_rejected) ... ok
+test_pass_is_separate_and_recomputed (test_reaudit.Fixture.test_pass_is_separate_and_recomputed) ... ok
+test_pass_numbers_and_deleted_review_map_rejected (test_reaudit.Fixture.test_pass_numbers_and_deleted_review_map_rejected) ... ok
+test_physical_entry_rejects_stale_driver_without_rewriting_failure (test_reaudit.Fixture.test_physical_entry_rejects_stale_driver_without_rewriting_failure) ... ok
+test_product_change_rejected (test_reaudit.Fixture.test_product_change_rejected) ... ok
+test_reset_implementation_change_rejected (test_reaudit.Fixture.test_reset_implementation_change_rejected) ... ok
+test_revised_tool_and_original_driver_tampering (test_reaudit.Fixture.test_revised_tool_and_original_driver_tampering) ... ok
+test_stage_path_escapes_and_symlink_rejected (test_reaudit.Fixture.test_stage_path_escapes_and_symlink_rejected) ... ok
+test_stage_wrong_build_rejected (test_reaudit.Fixture.test_stage_wrong_build_rejected) ... ok
+test_vivado_version_cannot_change_with_rehashed_native_log (test_reaudit.Fixture.test_vivado_version_cannot_change_with_rehashed_native_log) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 5.454s
+
+OK

@@ -1,0 +1,843 @@
+[
+  {
+    "profile": "U280",
+    "commit": "3d1714de26aeaad172461bd96e6c8fc26e63109a",
+    "checks": [
+      {
+        "command": [
+          "git",
+          "clone",
+          "--no-hardlinks",
+          "--no-checkout",
+          "/tmp/ict-fsa-migration-20261028/integration/ICT-FSA",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-logs/clone.log"
+      },
+      {
+        "command": [
+          "git",
+          "checkout",
+          "--detach",
+          "3d1714de26aeaad172461bd96e6c8fc26e63109a"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-logs/checkout.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_ict*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-logs/tests.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "deps",
+          "--plan"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-logs/deps-plan.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "--help"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-logs/help.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "build",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-logs/build-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "elaborate",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-logs/elaborate-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "4",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/U280-logs/sim4-dry-run.log"
+      }
+    ],
+    "history_scope": {
+      "actual_stage_directories": [
+        "U280"
+      ],
+      "expected_stage_directories": [
+        "U280"
+      ],
+      "passed": true
+    },
+    "repository": {
+      "vendor_modes": [
+        "040000 tree 8c6bae8d374e1caea0dfb6db585058c7f5cf374b\tfpga/fpga-shells",
+        "040000 tree 73a3999be1c3723deba7bcf54cb89f60202d48d0\tgenerators/easyfloat",
+        "040000 tree fdf45de085d418f9198eb981a015f0242a952c2b\tgenerators/fsa"
+      ],
+      "root_gitlink_count": 54,
+      "alternates": false,
+      "remotes": [
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (fetch)",
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (push)"
+      ],
+      "clean_before": true
+    },
+    "historical_source": {
+      "schema_version": 1,
+      "profile": "U280",
+      "original_commit": "50344530d2fa83f4a507789bf6d6508a3d494806",
+      "manifest_sha256": "eec059f79f3b5863a01c0bbc815ddf551c19cde04d967bd69822fa6a191a0c66",
+      "matching_source_files": 846,
+      "accepted_migration_changes": [
+        {
+          "path": ".gitignore",
+          "difference": "sha256",
+          "reason": "Unified generated-output ignore rules"
+        },
+        {
+          "path": "README.md",
+          "difference": "sha256",
+          "reason": "Unified reproduction README; original retained under docs/history"
+        }
+      ],
+      "unexpected_changes": [],
+      "status": "source_fingerprints_match",
+      "scope": "Recorded historical input bytes, symlink kind and Git executable mode; checkout umask/group permissions do not change Git source identity. Added unified tools/docs are validated separately. No build or hardware acceptance claim."
+    },
+    "hardware_source": {
+      "matching_file_count": 440,
+      "unexpected_changes": [],
+      "scope": [
+        "generators/fsa",
+        "generators/easyfloat",
+        "fpga/fpga-shells",
+        "fpga/src",
+        "generators/chipyard"
+      ]
+    },
+    "clean_after": true,
+    "test_count": 25,
+    "passed": true
+  },
+  {
+    "profile": "NM37",
+    "commit": "00e021c635cd31d013cf00fd24cba687dc0b4be5",
+    "checks": [
+      {
+        "command": [
+          "git",
+          "clone",
+          "--no-hardlinks",
+          "--no-checkout",
+          "/tmp/ict-fsa-migration-20261028/integration/ICT-FSA",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-logs/clone.log"
+      },
+      {
+        "command": [
+          "git",
+          "checkout",
+          "--detach",
+          "00e021c635cd31d013cf00fd24cba687dc0b4be5"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-logs/checkout.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_ict*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-logs/tests.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "deps",
+          "--plan"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-logs/deps-plan.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "--help"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-logs/help.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "build",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-logs/build-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "elaborate",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-logs/elaborate-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "4",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/NM37-logs/sim4-dry-run.log"
+      }
+    ],
+    "history_scope": {
+      "actual_stage_directories": [
+        "NM37",
+        "U280"
+      ],
+      "expected_stage_directories": [
+        "NM37",
+        "U280"
+      ],
+      "passed": true
+    },
+    "repository": {
+      "vendor_modes": [
+        "040000 tree 7139726c6beb61f8c420a9055321a88d588a46b4\tfpga/fpga-shells",
+        "040000 tree 73a3999be1c3723deba7bcf54cb89f60202d48d0\tgenerators/easyfloat",
+        "040000 tree 1cf4162cd376cef434734807572c462cbb63048d\tgenerators/fsa"
+      ],
+      "root_gitlink_count": 54,
+      "alternates": false,
+      "remotes": [
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (fetch)",
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (push)"
+      ],
+      "clean_before": true
+    },
+    "historical_source": {
+      "schema_version": 1,
+      "profile": "NM37",
+      "original_commit": "57344208e4b88e4eed87e3bf4e9dd9a790d06e84",
+      "manifest_sha256": "ea931bc31cef8beadc978d2a1cac835f768daf60079148c72289f22c56f52936",
+      "matching_source_files": 858,
+      "accepted_migration_changes": [
+        {
+          "path": ".gitignore",
+          "difference": "sha256",
+          "reason": "Unified generated-output ignore rules"
+        },
+        {
+          "path": "README.md",
+          "difference": "sha256",
+          "reason": "Unified reproduction README; original retained under docs/history"
+        }
+      ],
+      "unexpected_changes": [],
+      "status": "source_fingerprints_match",
+      "scope": "Recorded historical input bytes, symlink kind and Git executable mode; checkout umask/group permissions do not change Git source identity. Added unified tools/docs are validated separately. No build or hardware acceptance claim."
+    },
+    "hardware_source": {
+      "matching_file_count": 449,
+      "unexpected_changes": [],
+      "scope": [
+        "generators/fsa",
+        "generators/easyfloat",
+        "fpga/fpga-shells",
+        "fpga/src",
+        "generators/chipyard"
+      ]
+    },
+    "clean_after": true,
+    "test_count": 25,
+    "passed": true
+  },
+  {
+    "profile": "A70-P3",
+    "commit": "8cc6b42536334892b88f6214f39d3afe5daa2504",
+    "checks": [
+      {
+        "command": [
+          "git",
+          "clone",
+          "--no-hardlinks",
+          "--no-checkout",
+          "/tmp/ict-fsa-migration-20261028/integration/ICT-FSA",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-logs/clone.log"
+      },
+      {
+        "command": [
+          "git",
+          "checkout",
+          "--detach",
+          "8cc6b42536334892b88f6214f39d3afe5daa2504"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-logs/checkout.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_ict*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-logs/tests.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "deps",
+          "--plan"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-logs/deps-plan.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "--help"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-logs/help.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "build",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-logs/build-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "elaborate",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-logs/elaborate-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "4",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-logs/sim4-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "16",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A70-P3-logs/sim16-dry-run.log"
+      }
+    ],
+    "history_scope": {
+      "actual_stage_directories": [
+        "A70-P3",
+        "NM37",
+        "U280"
+      ],
+      "expected_stage_directories": [
+        "A70-P3",
+        "NM37",
+        "U280"
+      ],
+      "passed": true
+    },
+    "repository": {
+      "vendor_modes": [
+        "040000 tree 4b3662bcb7c4b9f58ff214f35aa0e8823b86c72e\tfpga/fpga-shells",
+        "040000 tree b085c650bfacbc92034173c6aad08c9aedb930b1\tgenerators/easyfloat",
+        "040000 tree 46d84afbd91c21b2d1b35ecad39c58e81cf361f5\tgenerators/fsa"
+      ],
+      "root_gitlink_count": 54,
+      "alternates": false,
+      "remotes": [
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (fetch)",
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (push)"
+      ],
+      "clean_before": true
+    },
+    "historical_source": {
+      "schema_version": 1,
+      "profile": "A70-P3",
+      "original_commit": "45d859c1c1bdbd282d0c4ac1e465c0fa0b4e296b",
+      "manifest_sha256": "52fcb129dacc1b34ed27cef3b8fee9d20f83f7344b3169ce376d79169e9024ed",
+      "matching_source_files": 870,
+      "accepted_migration_changes": [
+        {
+          "path": ".gitignore",
+          "difference": "sha256",
+          "reason": "Unified generated-output ignore rules"
+        },
+        {
+          "path": "README.md",
+          "difference": "sha256",
+          "reason": "Unified reproduction README; original retained under docs/history"
+        }
+      ],
+      "unexpected_changes": [],
+      "status": "source_fingerprints_match",
+      "scope": "Recorded historical input bytes, symlink kind and Git executable mode; checkout umask/group permissions do not change Git source identity. Added unified tools/docs are validated separately. No build or hardware acceptance claim."
+    },
+    "hardware_source": {
+      "matching_file_count": 455,
+      "unexpected_changes": [],
+      "scope": [
+        "generators/fsa",
+        "generators/easyfloat",
+        "fpga/fpga-shells",
+        "fpga/src",
+        "generators/chipyard"
+      ]
+    },
+    "clean_after": true,
+    "test_count": 25,
+    "passed": true
+  },
+  {
+    "profile": "A100",
+    "commit": "f8650f9576bf681bfae38a2ab40718fc2ace4262",
+    "checks": [
+      {
+        "command": [
+          "git",
+          "clone",
+          "--no-hardlinks",
+          "--no-checkout",
+          "/tmp/ict-fsa-migration-20261028/integration/ICT-FSA",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/clone.log"
+      },
+      {
+        "command": [
+          "git",
+          "checkout",
+          "--detach",
+          "f8650f9576bf681bfae38a2ab40718fc2ace4262"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/checkout.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_ict*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/tests.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "deps",
+          "--plan"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/deps-plan.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "--help"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/help.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "build",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/build-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "elaborate",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/elaborate-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "4",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/sim4-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "8",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/sim8-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "16",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A100-logs/sim16-dry-run.log"
+      }
+    ],
+    "history_scope": {
+      "actual_stage_directories": [
+        "A100",
+        "A70-P3",
+        "NM37",
+        "U280"
+      ],
+      "expected_stage_directories": [
+        "A100",
+        "A70-P3",
+        "NM37",
+        "U280"
+      ],
+      "passed": true
+    },
+    "repository": {
+      "vendor_modes": [
+        "040000 tree de4bf13d7705dd5005096ad13e14e4bb6424747b\tfpga/fpga-shells",
+        "040000 tree b1e4a09eb845343540b8d2b9237365e6e2537235\tgenerators/easyfloat",
+        "040000 tree 1a3e6d0ca9acace50162e0a787bfcc77496daf03\tgenerators/fsa"
+      ],
+      "root_gitlink_count": 54,
+      "alternates": false,
+      "remotes": [
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (fetch)",
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (push)"
+      ],
+      "clean_before": true
+    },
+    "hardware_source": {
+      "matching_file_count": 452,
+      "unexpected_changes": [],
+      "scope": [
+        "generators/fsa",
+        "generators/easyfloat",
+        "fpga/fpga-shells",
+        "fpga/src",
+        "generators/chipyard"
+      ]
+    },
+    "clean_after": true,
+    "test_count": 25,
+    "passed": true
+  },
+  {
+    "profile": "A110-APB55",
+    "commit": "b595900e91bda33925f059ff585771ae5ecddfcd",
+    "checks": [
+      {
+        "command": [
+          "git",
+          "clone",
+          "--no-hardlinks",
+          "--no-checkout",
+          "/tmp/ict-fsa-migration-20261028/integration/ICT-FSA",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/clone.log"
+      },
+      {
+        "command": [
+          "git",
+          "checkout",
+          "--detach",
+          "b595900e91bda33925f059ff585771ae5ecddfcd"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/checkout.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_ict*.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/tests.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "deps",
+          "--plan"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/deps-plan.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "--help"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/help.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "build",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/build-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "elaborate",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/elaborate-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "4",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/sim4-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "8",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/sim8-dry-run.log"
+      },
+      {
+        "command": [
+          "/home/zhangsi/miniconda3/bin/python3",
+          "scripts/fsa.py",
+          "sim",
+          "--array-size",
+          "16",
+          "--out",
+          "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-build",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "log": "/tmp/ict-fsa-migration-20261028/history/checkout-validation-attempt03/A110-APB55-logs/sim16-dry-run.log"
+      }
+    ],
+    "history_scope": {
+      "actual_stage_directories": [
+        "A100",
+        "A110-APB55",
+        "A70-P3",
+        "NM37",
+        "U280"
+      ],
+      "expected_stage_directories": [
+        "A100",
+        "A110-APB55",
+        "A70-P3",
+        "NM37",
+        "U280"
+      ],
+      "passed": true
+    },
+    "repository": {
+      "vendor_modes": [
+        "040000 tree de4bf13d7705dd5005096ad13e14e4bb6424747b\tfpga/fpga-shells",
+        "040000 tree b1e4a09eb845343540b8d2b9237365e6e2537235\tgenerators/easyfloat",
+        "040000 tree 1a3e6d0ca9acace50162e0a787bfcc77496daf03\tgenerators/fsa"
+      ],
+      "root_gitlink_count": 54,
+      "alternates": false,
+      "remotes": [
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (fetch)",
+        "origin\t/tmp/ict-fsa-migration-20261028/integration/ICT-FSA (push)"
+      ],
+      "clean_before": true
+    },
+    "hardware_source": {
+      "matching_file_count": 454,
+      "unexpected_changes": [],
+      "scope": [
+        "generators/fsa",
+        "generators/easyfloat",
+        "fpga/fpga-shells",
+        "fpga/src",
+        "generators/chipyard"
+      ]
+    },
+    "clean_after": true,
+    "test_count": 25,
+    "passed": true
+  }
+]

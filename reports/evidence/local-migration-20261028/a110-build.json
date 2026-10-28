@@ -1,0 +1,15 @@
+{
+  "commands": [
+    [
+      "bash",
+      "scripts/nm37-a110/run.sh",
+      "prepare"
+    ]
+  ],
+  "finished_utc": "2026-10-28T04:59:38.598933+00:00",
+  "logs": [
+    "/tmp/ict-fsa-migration-20261028/validation/a110-build-attempt02.ict-state/build-0.log"
+  ],
+  "started_utc": "2026-10-28T04:56:00.562444+00:00",
+  "status": "completed"
+}

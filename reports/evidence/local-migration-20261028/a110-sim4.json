@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "sim4/generated-src/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config.FSAConfig.json": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+    "sim4/simulator": "2ad31855a3d4c1c6e04a3e8d5aebc1139f44ac8979d06b47991c0257107b16d4"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/nm37-a110/run.sh",
+      "sim",
+      "4"
+    ]
+  ],
+  "finished_utc": "2026-10-28T05:08:23.391862+00:00",
+  "logs": [
+    "/tmp/ict-fsa-migration-20261028/validation/a110-build-attempt03.ict-state/sim4-0.log"
+  ],
+  "started_utc": "2026-10-28T05:06:58.648507+00:00",
+  "status": "completed"
+}

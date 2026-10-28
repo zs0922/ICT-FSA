@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "milestones": [
+    {
+      "stage": "U280",
+      "commit": "3d1714de26aeaad172461bd96e6c8fc26e63109a",
+      "branch": "codex/u280-port",
+      "legacy_root_commit": "50344530d2fa83f4a507789bf6d6508a3d494806",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "NM37",
+      "commit": "00e021c635cd31d013cf00fd24cba687dc0b4be5",
+      "branch": "codex/nm37-port",
+      "legacy_root_commit": "57344208e4b88e4eed87e3bf4e9dd9a790d06e84",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "A70-P3",
+      "commit": "8cc6b42536334892b88f6214f39d3afe5daa2504",
+      "branch": "codex/nm37-a70-p3",
+      "legacy_root_commit": "45d859c1c1bdbd282d0c4ac1e465c0fa0b4e296b",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "host-mmio",
+      "commit": "2cf6d2da1cbd1fc143f7218d58bc588babc3eb17",
+      "legacy_root_commit": "0a3a2656df66043ea513a45bab8275c1be0ba76c",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "A100",
+      "commit": "f8650f9576bf681bfae38a2ab40718fc2ace4262",
+      "branch": "codex/nm37-a100",
+      "legacy_root_commit": "0a3a2656df66043ea513a45bab8275c1be0ba76c",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "A110-APB55",
+      "commit": "b595900e91bda33925f059ff585771ae5ecddfcd",
+      "branch": "codex/nm37-a110-apb55",
+      "legacy_root_commit": "25673838e66ddef9031748ca40f7220c65acedaf",
+      "acceptance": "local_source_candidate; no release tag"
+    }
+  ]
+}

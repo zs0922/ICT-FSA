@@ -1,0 +1,78 @@
+warning: unable to access 'behav/BramDwc/.gitignore': Too many levels of symbolic links
+warning: unable to access 'synth/BramDwc/.gitignore': Too many levels of symbolic links
+{
+  "profile": "A110-APB55",
+  "checks": [
+    {
+      "tool": "java",
+      "path": "/home/zhangsi/tmp/FSA-m1/.conda-env/lib/jvm/bin/java",
+      "ok": true,
+      "expected": "20.0.2",
+      "version": "Picked up JAVA_TOOL_OPTIONS: -Dsbt.supershell=false -Dsbt.server.forcestart=false -Dsbt.server.autostart=false -Dsbt.boot.directory=/tmp/ict-fsa-migration-20261028/validation/cache/sbt/boot -Dsbt.ivy.home=/tmp/ict-fsa-migration-20261028/validation/cache/ivy2 -Dsbt.global.base=/tmp/ict-fsa-migration-20261028/validation/cache/sbt\nopenjdk version \"20.0.2-internal\" 2023-07-18\nOpenJDK Runtime Environment (build 20.0.2-internal-adhoc..src)\nOpenJDK 64-Bit Server VM (build 20.0.2-internal-adhoc..src, mixed mode, sharing)\n"
+    },
+    {
+      "tool": "firtool",
+      "path": "/home/zhangsi/circt/bin/firtool",
+      "ok": true,
+      "expected": "firtool-1.75.0",
+      "version": "LLVM (http://llvm.org/):\n  LLVM version 19.0.0git\n  Optimized build.\nCIRCT firtool-1.75.0\n"
+    },
+    {
+      "tool": "verilator",
+      "path": "/home/zhangsi/tmp/FSA-m1/.conda-env/bin/verilator",
+      "ok": true,
+      "expected": "Verilator 5.022",
+      "version": "Verilator 5.022 2024-02-24 rev conda-forge build 1\n"
+    },
+    {
+      "tool": "vivado",
+      "path": "/opt/Xilinx_2020.2/Vivado/2020.2/bin/vivado",
+      "ok": true,
+      "expected": "2020.2_AR75986",
+      "version": "Vivado v2020.2_AR75986 (64-bit)\nSW Build 3064766 on Wed Nov 18 09:12:47 MST 2020\nIP Build 3064653 on Wed Nov 18 14:17:31 MST 2020\nCopyright 1986-2020 Xilinx, Inc. All Rights Reserved.\n"
+    },
+    {
+      "tool": "make",
+      "path": "/home/zhangsi/tmp/FSA-m1/.conda-env/bin/make",
+      "ok": true,
+      "expected": null,
+      "version": "GNU Make 4.4.1\nBuilt for x86_64-conda-linux-gnu\nCopyright (C) 1988-2023 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n"
+    },
+    {
+      "tool": "g++",
+      "path": "/tmp/ict-fsa-migration-20261028/validation/bin/g++",
+      "ok": true,
+      "expected": null,
+      "version": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+    },
+    {
+      "tool": "RISCV/libfesvr.a",
+      "path": "/home/zhangsi/riscv/lib/libfesvr.a",
+      "ok": true,
+      "version": "library presence"
+    },
+    {
+      "tool": "RISCV/libriscv.so",
+      "path": "/home/zhangsi/riscv/lib/libriscv.so",
+      "ok": true,
+      "version": "library presence"
+    },
+    {
+      "tool": "CC",
+      "path": "/usr/bin/gcc",
+      "ok": true,
+      "version": "13.3.0",
+      "expected": "13.3.0"
+    },
+    {
+      "tool": "CXX",
+      "path": "/usr/bin/g++",
+      "ok": true,
+      "version": "13.3.0",
+      "expected": "13.3.0"
+    }
+  ],
+  "note": "Tool availability only. Vendor device/license support is checked by actual implementation; version requirements are in docs/reproduction/environment.md."
+}
+START: build; source checks are prerequisites, not phase completion. Log: /tmp/ict-fsa-migration-20261028/validation/a110-build-attempt02.ict-state/build-0.log
+COMPLETE: build

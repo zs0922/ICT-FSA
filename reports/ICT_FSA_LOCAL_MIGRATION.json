@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "scope": "local source migration acceptance, not board release",
+  "milestones": [
+    {
+      "stage": "U280",
+      "commit": "3d1714de26aeaad172461bd96e6c8fc26e63109a",
+      "branch": "codex/u280-port",
+      "legacy_root_commit": "50344530d2fa83f4a507789bf6d6508a3d494806",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "NM37",
+      "commit": "00e021c635cd31d013cf00fd24cba687dc0b4be5",
+      "branch": "codex/nm37-port",
+      "legacy_root_commit": "57344208e4b88e4eed87e3bf4e9dd9a790d06e84",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "A70-P3",
+      "commit": "8cc6b42536334892b88f6214f39d3afe5daa2504",
+      "branch": "codex/nm37-a70-p3",
+      "legacy_root_commit": "45d859c1c1bdbd282d0c4ac1e465c0fa0b4e296b",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "host-mmio",
+      "commit": "2cf6d2da1cbd1fc143f7218d58bc588babc3eb17",
+      "legacy_root_commit": "0a3a2656df66043ea513a45bab8275c1be0ba76c",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "A100",
+      "commit": "f8650f9576bf681bfae38a2ab40718fc2ace4262",
+      "branch": "codex/nm37-a100",
+      "legacy_root_commit": "0a3a2656df66043ea513a45bab8275c1be0ba76c",
+      "acceptance": "local_source_candidate; no release tag"
+    },
+    {
+      "stage": "A110-APB55",
+      "commit": "b595900e91bda33925f059ff585771ae5ecddfcd",
+      "branch": "codex/nm37-a110-apb55",
+      "legacy_root_commit": "25673838e66ddef9031748ca40f7220c65acedaf",
+      "acceptance": "local_source_candidate; no release tag"
+    }
+  ],
+  "five_stage_checkouts": "passed",
+  "workflow_tests_per_stage": 25,
+  "a110_audit_tool_tests": 44,
+  "a110_actual_build_commit": "b595900e91bda33925f059ff585771ae5ecddfcd",
+  "a110_actual_assembly": "passed",
+  "a110_sim4": {
+    "seq4": "bitwise_equal",
+    "seq8": "bitwise_equal"
+  },
+  "not_run": [
+    "all five full fresh P&R",
+    "board-level RTL generation from new repository",
+    "sim8",
+    "sim16",
+    "full formal verification in new repository",
+    "bitstream export",
+    "new board tests"
+  ],
+  "remote_created": false,
+  "pushed": false,
+  "release_tags": [],
+  "old_repositories": [
+    {
+      "repository": "/home/zhangsi/tmp/FSA-m1",
+      "head": "3249193dda78386f640cd57ea2d863458181e00e",
+      "head_unchanged": true,
+      "status_unchanged": true,
+      "before_status_sha256": "21f4709a0c191a9dd0dcd5cb1e655349bd6b6769204874e3e49029eb30ff26a8",
+      "after_status_sha256": "21f4709a0c191a9dd0dcd5cb1e655349bd6b6769204874e3e49029eb30ff26a8",
+      "status_format": "git status --porcelain=v1 (same as initial snapshot)"
+    },
+    {
+      "repository": "/home/zhangsi/tmp/FSA-m1/nm37-a70-rebuild-20261022/src",
+      "head": "3d2327f1cd9eddac31f67be93f9a028d57cbe855",
+      "head_unchanged": true,
+      "status_unchanged": true,
+      "before_status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after_status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

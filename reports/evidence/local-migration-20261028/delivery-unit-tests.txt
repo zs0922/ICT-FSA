@@ -1,0 +1,51 @@
+test_bad_offline_hash_prevents_clone (test_ict_deps.Dependencies.test_bad_offline_hash_prevents_clone) ... Initializing lib @ 2ab07d7d5071e3a819af694b920fd94010266494
+ok
+test_dependency_symlink_rejected (test_ict_deps.Dependencies.test_dependency_symlink_rejected) ... ok
+test_dirty_dependency_preserved (test_ict_deps.Dependencies.test_dirty_dependency_preserved) ... Initializing lib @ 2ab07d7d5071e3a819af694b920fd94010266494
+Cloning into '/tmp/tmp5fg1rvwy/new/lib'...
+done.
+HEAD is now at 2ab07d7 fixture
+ok
+test_explicit_recursive_exclusion_is_preserved (test_ict_deps.Dependencies.test_explicit_recursive_exclusion_is_preserved) ... Initializing lib @ cf329c0db6995a8335e0146e91325aa454474164
+Cloning into '/tmp/tmp09x3ip2e/new/lib'...
+done.
+HEAD is now at cf329c0 nested gitlink
+ok
+test_local_independent_and_reusable (test_ict_deps.Dependencies.test_local_independent_and_reusable) ... Initializing lib @ 2ab07d7d5071e3a819af694b920fd94010266494
+Cloning into '/tmp/tmp2x8ii5b1/new/lib'...
+done.
+HEAD is now at 2ab07d7 fixture
+ok
+test_missing_offline_record_is_explicit (test_ict_deps.Dependencies.test_missing_offline_record_is_explicit) ... Initializing lib @ c4932a6db2da59295afa70feb318c6e27e165577
+ok
+test_nonempty_failed_clone_preserved (test_ict_deps.Dependencies.test_nonempty_failed_clone_preserved) ... ok
+test_plan_no_mutation (test_ict_deps.Dependencies.test_plan_no_mutation) ... ok
+test_real_offline_bundle_independent_and_active (test_ict_deps.Dependencies.test_real_offline_bundle_independent_and_active) ... Initializing lib @ c4932a6db2da59295afa70feb318c6e27e165577
+Cloning into '/tmp/tmp1iyc2qj2/new/lib'...
+HEAD is now at c4932a6 fixture
+ok
+test_recursive_unclassified_gitlink_fails (test_ict_deps.Dependencies.test_recursive_unclassified_gitlink_fails) ... Initializing lib @ 2d9f5b4b67b4395458168a86f9097fec7b2d66fa
+Cloning into '/tmp/tmp8d7g5x2y/new/lib'...
+done.
+HEAD is now at 2d9f5b4 nested gitlink
+ok
+test_unsafe_path (test_ict_deps.Dependencies.test_unsafe_path) ... ok
+test_wrong_root_pin (test_ict_deps.Dependencies.test_wrong_root_pin) ... ok
+test_array1024_is_rejected_before_state (test_ict_workflow.WorkflowTests.test_array1024_is_rejected_before_state) ... ok
+test_completed_stage_does_not_overwrite (test_ict_workflow.WorkflowTests.test_completed_stage_does_not_overwrite) ... ok
+test_dirty_source_rejected (test_ict_workflow.WorkflowTests.test_dirty_source_rejected) ... ok
+test_dryrun_does_not_create_output (test_ict_workflow.WorkflowTests.test_dryrun_does_not_create_output) ... ok
+test_export_files_hash_checked (test_ict_workflow.WorkflowTests.test_export_files_hash_checked) ... ok
+test_export_routed_hash_binding_even_after_cdc_failure (test_ict_workflow.WorkflowTests.test_export_routed_hash_binding_even_after_cdc_failure) ... ok
+test_extra_sequence_wrong_command_explained (test_ict_workflow.WorkflowTests.test_extra_sequence_wrong_command_explained) ... ok
+test_failed_stage_records_and_preserves (test_ict_workflow.WorkflowTests.test_failed_stage_records_and_preserves) ... ok
+test_ignored_untracked_scala_rejected (test_ict_workflow.WorkflowTests.test_ignored_untracked_scala_rejected) ... ok
+test_missing_prerequisite (test_ict_workflow.WorkflowTests.test_missing_prerequisite) ... ok
+test_output_inside_source_rejected (test_ict_workflow.WorkflowTests.test_output_inside_source_rejected) ... ok
+test_receipt_profile_and_hash_required (test_ict_workflow.WorkflowTests.test_receipt_profile_and_hash_required) ... ok
+test_sim_extra_requires_completed_and_unchanged_binary (test_ict_workflow.WorkflowTests.test_sim_extra_requires_completed_and_unchanged_binary) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 2.056s
+
+OK

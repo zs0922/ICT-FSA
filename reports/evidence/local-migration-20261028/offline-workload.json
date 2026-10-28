@@ -1,0 +1,37 @@
+{
+  "inputs": {
+    "Q": {
+      "shape": [
+        16,
+        16
+      ],
+      "dtype": "<f2",
+      "sha256_raw_c_order": "99d8dc89dfe81120c7057c6abcf55efeafd3dced5ccfc53ddac24be487ac7ff2"
+    },
+    "K": {
+      "shape": [
+        16,
+        16
+      ],
+      "dtype": "<f2",
+      "sha256_raw_c_order": "a9c44bec009a848ef115730e7ec045ddf78597cb6260a2a613eacd7d8e98edd7"
+    },
+    "V": {
+      "shape": [
+        16,
+        16
+      ],
+      "dtype": "<f2",
+      "sha256_raw_c_order": "6680dbcdc2574a2c63c60de2f7009a141e43ce360cb62ceaa51c07e8a0b7ae64"
+    }
+  },
+  "runtime_versions": {
+    "numpy": "2.2.5",
+    "torch": "2.6.0",
+    "pyeasyfloat": "0.1.4"
+  },
+  "instructions_sha256": "d6d9a94584e79f4ada157f2b42d7fa94e331477805cd437d39600ea1454e983c",
+  "instruction_words": 32,
+  "reference_sha256": "eee88ccea17e805440e1939d675d81297653a45e4ba5ec89330ab9ce3ecdccea",
+  "scope": "offline workload and software reference only; no new hardware validation; reference configuration copied from old A110"
+}

@@ -2,9 +2,11 @@
 
 这是整理后的源码候选仓库。每个里程碑提交包含自己的硬件、主机软件、依赖锁和工具入口；旧 FSA 仓库和既有构建保持独立。**整理及脚本测试通过不表示这个新提交已经完成 Vivado 重建、CDC 验收或实板验收。** 查看本提交 `profiles/current.json`、`docs/history/` 和 `reports/` 了解实际验证范围。当前不需要另一个 integration-tools checkout。
 
-阶段为 U280 → NM37 初始迁移 → NM37 A70-P3 → NM37 A100 → NM37 A110/APB55。具体 commit 见迁移记录；候选提交可切换，验收标签要等对应复现通过后再创建。下面命令在 Bash/tmux 中逐条执行；**不要在交互终端执行 `set -euo pipefail`**。
+阶段为 U280 → NM37 初始迁移 → NM37 A70-P3 → NM37 A100 → NM37 A110/APB55。具体 commit 与已验证范围见 [本地迁移记录](reports/ICT_FSA_LOCAL_MIGRATION.md)（完整映射：`docs/history/migration-map.json`）；候选提交可切换，验收标签要等对应复现通过后再创建。下面命令在 Bash/tmux 中逐条执行；**不要在交互终端执行 `set -euo pipefail`**。
 
 ## 1. 获取指定版本（固定输入）
+
+本手册是交付主分支 `codex/ict-fsa-integration` 的最新操作说明。切到固定里程碑后，源码里的历史 README 可能缺少本轮新增的离线环境预热说明；请继续参照本手册执行，命令仍使用各源码版本自己的脚本。
 
 新远程仓库尚未创建或推送时，从本地整理仓库 clone；发布后只替换仓库地址。`COMMIT` 使用交付记录中的完整新 commit，不使用旧 FSA 的 hash。
 
@@ -25,13 +27,15 @@ export BUILD_OUT="$WORK/build-$COMMIT-attempt01"
 
 ## 2. 准备工具、固定依赖和 Python（不编译硬件）
 
-先完整执行 [环境说明](docs/reproduction/environment.md)中的 JDK20、firtool、Verilator、Vivado、GCC/G++13.3、RISCV/FESVR 库和固定形式验证工具安装步骤，再运行：
+先安装 [环境说明](docs/reproduction/environment.md)要求的 JDK20、firtool、Verilator、Vivado、GCC/G++13.3、RISCV/FESVR 库，按其中步骤配置路径和形式验证环境，再运行：
 
 ```bash
 python3 scripts/fsa.py doctor
 python3 scripts/fsa.py deps --plan
 python3 scripts/fsa.py deps --report "$WORK/deps-$COMMIT.json"
 uv sync --frozen --python 3.13 --project "$SRC/generators/fsa/python"
+# Chisel 展开会调用 EasyFloat 的 Python 常量生成器，它有独立环境。
+uv sync --frozen --python 3.13 --project "$SRC/generators/easyfloat"
 export FSA_PYTHON="$SRC/generators/fsa/python/.venv/bin/python"
 "$FSA_PYTHON" -c 'import numpy, torch, pyeasyfloat; print("Python dependencies imported")'
 ```

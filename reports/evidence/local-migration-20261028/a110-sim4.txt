@@ -1,0 +1,4 @@
+warning: unable to access 'behav/BramDwc/.gitignore': Too many levels of symbolic links
+warning: unable to access 'synth/BramDwc/.gitignore': Too many levels of symbolic links
+START: sim4; source checks are prerequisites, not phase completion. Log: /tmp/ict-fsa-migration-20261028/validation/a110-build-attempt03.ict-state/sim4-0.log
+COMPLETE: sim4

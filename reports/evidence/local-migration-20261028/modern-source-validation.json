@@ -1,0 +1,25 @@
+{
+  "scope": "Local packaging validation only; no generator build, Verilator, formal proof, Vivado, bit export or board run in this agent task.",
+  "stages": {
+    "A100": {
+      "source_lock_refresh": true,
+      "tracked_input_modes_and_hashes": true,
+      "changed_hardware_rejected": true,
+      "vendored_shell_fingerprints": true,
+      "driver_bash_syntax": true,
+      "driver_python_syntax": true
+    },
+    "A110-APB55": {
+      "source_lock_refresh": true,
+      "tracked_input_modes_and_hashes": true,
+      "changed_hardware_rejected": true,
+      "vendored_shell_fingerprints": true,
+      "driver_bash_syntax": true,
+      "driver_python_syntax": true
+    }
+  },
+  "a110_auditor_unit_tests": {
+    "count": 44,
+    "passed": 44
+  }
+}

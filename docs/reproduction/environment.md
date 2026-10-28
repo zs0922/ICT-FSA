@@ -43,3 +43,18 @@ export YOSYS="$WORK/formal-env/bin/yowasp-yosys"
 `doctor` 检查可执行文件、四个主要工具版本、GCC/G++13.3、RISCV 库和遗留 JVM 参数；它不能提前证明板卡连接、Vivado 器件授权、硬件功能、许可证余量或完整布局布线可用。实际阶段产生的日志才是对应验收证据。
 
 下载缓存可共用：Coursier/Ivy/Maven、uv 和 Git bundle。生成 JAR、RTL、仿真器及 DCP 不能直接从别的版本复制来冒充本次构建。首次下载失败应修复网络后重试，不要以清空所有缓存作为默认处理。
+
+## sbt 下载缓存的位置
+
+`variables.mk` 默认用当前源码内的 `.sbt`、`.sbt/boot` 和 `.ivy2`。只在 `JAVA_TOOL_OPTIONS` 中指定共享目录可能被 make 后面的 `SBT_OPTS` 覆盖；日志中应核对实际命令。需要跨独立 checkout 共用下载缓存时，在首次 build 前明确设置：
+
+```bash
+export ICT_SBT_CACHE="$WORK/download-cache/sbt"
+mkdir -p "$ICT_SBT_CACHE/boot" "$ICT_SBT_CACHE/global" "$ICT_SBT_CACHE/ivy2"
+# 缓存路径避免空格；仅复用下载缓存，不复制 target、生成器 JAR 或 RTL。
+export SBT_OPTS="-Dsbt.ivy.home=$ICT_SBT_CACHE/ivy2 -Dsbt.global.base=$ICT_SBT_CACHE/global -Dsbt.boot.directory=$ICT_SBT_CACHE/boot -Dsbt.supershell=false -Dsbt.server.forcestart=false"
+# verify 的部分定向测试直接执行 java，不经过 make，也需同样的缓存路径。
+export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS $SBT_OPTS"
+```
+
+并发构建尽量使用各自缓存副本，避免旧 sbt 缓存锁相互等待。首次联网下载仍是必需的，除非已有对应版本的完整缓存。

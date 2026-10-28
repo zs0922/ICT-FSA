@@ -1,0 +1,38 @@
+{
+  "reviewer": "ict_modern independent source review",
+  "scope": "Unified workflow identity, experimental routed export, programming receipts, legacy A110 packaging compatibility",
+  "checks": {
+    "workflow_unit_tests": {
+      "passed": 13,
+      "total": 13
+    },
+    "a110_physical_auditor_unit_tests": {
+      "passed": 44,
+      "total": 44
+    },
+    "modern_stage_packaging_only": true
+  },
+  "findings": [
+    {
+      "issue": "Historical untracked ignored build sources could be compiled under clean Git identity",
+      "status": "fixed and regression-tested by tools agent; independently verified"
+    },
+    {
+      "issue": "Experimental export did not bind DCP/config to implementation attempt output",
+      "status": "fixed with routed_artifacts recorded even on CDC review failure; independently verified"
+    }
+  ],
+  "remaining_scope_limits": [
+    "No Vivado, JTAG programming or board run in this review",
+    "Programming receipt proves an operation, not hardware ID readback or current image after external reprogramming",
+    "CDC pending remains separate from experimental export; new routed STA/DRC are still checked"
+  ],
+  "reviewed_files_sha256": {
+    "scripts/ict_cli.py": "d520c864505acec0d46327ec0338b00d8e4e5510099fde95514953a55e898af4",
+    "scripts/ict_history.py": "9b0f3c93a3fa832a73acbe4aef53d79a77b46fed603948ba5d9c19d925d515f2",
+    "scripts/ict/board.py": "4beebd7651f9e9c758b51bbd7f193ac988060a2ed9a021fd6c1c92253ec8f368",
+    "scripts/ict/export.tcl": "8842c494d75405c3f8bd9d7519d31aef50cc44f298c9dd515354dc122d3844c8",
+    "scripts/ict/program.tcl": "16eaaacec113a2998ea198866cbf1add633cab0c9be1b759b5fbf7b6a160a3da",
+    "tests/test_ict_workflow.py": "022a20847474e110c23cb0ae37b2c14d066c1333e8659f685a9c0eee58256dd7"
+  }
+}
