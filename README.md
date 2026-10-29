@@ -6,20 +6,19 @@
 
 ## 本次 A120/APB60 从哪里开始
 
-当前 A120 分支 `codex/nm37-a120-apb60` 对应 DUT/HBM AXI **120MHz**、HBM APB **60MHz**，PE 流水深度不变。详细来源、历史实现结果和本次迁移验证范围见 [A120 迁移记录](reports/ICT_FSA_A120_MIGRATION.md)。该分支目前仅本地提交，**不能通过 GitHub fetch 获取尚未推送的提交**。
+当前 A120 分支 `codex/nm37-a120-apb60` 对应 DUT/HBM AXI **120MHz**、HBM APB **60MHz**，PE 流水深度不变。详细来源、历史实现结果和本次迁移验证范围见 [A120 迁移记录](reports/ICT_FSA_A120_MIGRATION.md)。该分支通过 GitHub 仓库交付；默认分支 `codex/ict-fsa-integration` 同步提供本版 README。硬件迁移提交为 `f8d4748a8b1ce627103d81da591e4b5faa150109`，其后的本次发布提交只更新文档。请记录并固定本次交付的完整 commit，构建中途不要 pull 或 checkout。
 
-在本机从 `/home/zhangsi/tmp/ICT-FSA` clone；在另一台机器先传输本次交付的 `ICT-FSA-A120.bundle` 与 `SHA256SUMS`，校验后 clone。不要修改已有 A70/A100/A110 源码或输出目录：
+在 151 或其他构建服务器上使用新的目录，从 GitHub clone 后固定提交。不要修改已有 A70/A100/A110 源码或输出目录；如果下面目录已存在，改用新的 WORK，不要删除原结果：
 
 ```bash
-# 接收 bundle 的目录中执行（本机直接 clone 仓库时跳过校验）
-sha256sum -c SHA256SUMS
-export ICT_REPO="$PWD/ICT-FSA-A120.bundle"
-# 若在整理仓库所在机器：export ICT_REPO=/home/zhangsi/tmp/ICT-FSA
+export ICT_REPO=https://github.com/zs0922/ICT-FSA.git
 export WORK="$HOME/ict-fsa-a120-reproduce"
 mkdir -p "$WORK"
 git clone --no-hardlinks --branch codex/nm37-a120-apb60 "$ICT_REPO" "$WORK/a120-source"
 export SRC="$WORK/a120-source"
 export COMMIT="$(git -C "$SRC" rev-parse HEAD)"
+# 对照本次交付的完整 commit；如分支后来前进，改用交付时的固定值。
+printf 'Source commit: %s\n' "$COMMIT"
 git -C "$SRC" checkout --detach "$COMMIT"
 cd "$SRC"
 cat profiles/current.json  # 必须显示 A120-APB60 / 120 / 60
@@ -44,10 +43,10 @@ export BUILD_OUT="$WORK/a120-build-attempt01"
 
 例如复现 A70 时，将下方 `COMMIT` 设为表中 A70 的完整值。主分支另含操作说明、审查记录和维护工具修复；上表记录真正执行硬件构建的提交。冻结 profile 中的 `validation_status` 是创建候选时的状态，不会随外部构建自动更新；验收结论以对应提交的复现记录为准。
 
-已推送的 A70/A100/A110 提交可从 `https://github.com/zs0922/ICT-FSA.git` clone。未推送的 A120 使用上面的本地仓库或 bundle。`COMMIT` 使用交付记录中的完整新 commit，不使用旧 FSA 的 hash。
+A70/A100/A110/A120 的交付提交均从 `https://github.com/zs0922/ICT-FSA.git` 获取。A120 按上面的专用步骤开始。`COMMIT` 使用交付记录中的完整新 commit，不使用旧 FSA 的 hash。
 
 ```bash
-export ICT_REPO=/absolute/path/to/local/ICT-FSA
+export ICT_REPO=https://github.com/zs0922/ICT-FSA.git
 export COMMIT=填写本次要复现的新提交
 export WORK="$HOME/ict-fsa-reproduce"
 mkdir -p "$WORK"
