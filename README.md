@@ -1,6 +1,6 @@
 # original-nm37-civ：NM37-CIV 初始移植基线
 
-本分支从 ICT-FSA `00e021c635cd31d013cf00fd24cba687dc0b4be5` 建立，硬件来源为旧 FSA `57344208e4b88e4eed87e3bf4e9dd9a790d06e84`。这里只包含 U280 与 NM37 的板级迁移及历史正确性修复；**没有加入后续 P0/P1/P2/P3、ShiftRightJam 或 A100 流水优化**。70 MHz 是目标频率，不代表已完成本分支时序验收。
+本分支从 ICT-FSA `00e021c635cd31d013cf00fd24cba687dc0b4be5` 建立，硬件来源为旧 FSA `57344208e4b88e4eed87e3bf4e9dd9a790d06e84`。这里只包含 U280 与 NM37 的板级迁移及历史正确性修复；**没有加入后续 P0/P1/P2/P3、ShiftRightJam 或 A100 流水优化**。本次独立重建的70 MHz静态时序已通过（WNS +0.001 ns），实板与CDC审查尚未完成；完整证据和实际构建commit见下方复现报告。
 
 本分支保留自己的 FSA、easyfloat、FPGA shell 和依赖锁，不从优化分支拷贝 JAR/RTL/DCP。来源及补丁哈希见 [NM37 来源清单](docs/history/NM37/source-provenance.json)。本次整理不修改硬件目录。
 
@@ -19,7 +19,7 @@ git rev-parse HEAD | tee "$WORK/source-commit.txt"
 export BUILD_OUT="$WORK/build-attempt01"
 ```
 
-先按[环境说明](docs/reproduction/environment.md)安装并加载工具，然后逐条执行。不要在交互式 tmux shell 中开启 `set -e`。
+先按[环境说明](docs/reproduction/environment.md)安装并加载工具，然后逐条执行。工具入口 `python3` 要求 Python >=3.9；FSA/EasyFloat 的独立环境使用 Python 3.13。本基线不运行 `verify`，不需要 Yosys 或 formal-env。不要在交互式 tmux shell 中开启 `set -e`。
 
 ```bash
 # 检查工具版本；不编译。
@@ -46,7 +46,7 @@ python3 scripts/fsa.py export --out "$BUILD_OUT" --result-out "$EXPORT_OUT"
 (cd "$EXPORT_OUT" && sha256sum -c SHA256SUMS)
 ```
 
-本基线仅恢复 4x4 的固定仿真入口；板上 16x16 与仿真 4x4 不应混淆。没有后续版本的定向证明套件，因此不执行 `verify`、sim8 或 sim16。失败时保留输出和日志；用新的 attempt 输出重试，不手工补写成功记录。`implement` 的时序失败不表示源码构建失败，但不能据此宣称 70 MHz 通过。
+本基线仅恢复 4x4 的固定仿真入口；板上 16x16 与仿真 4x4 不应混淆。实际构建与仿真证据见 [复现报告](reports/ORIGINAL_NM37_BASELINE.md)。没有后续版本的定向证明套件，因此不执行 `verify`、sim8 或 sim16。失败时保留输出和日志；用新的 attempt 输出重试，不手工补写成功记录。`implement` 的时序失败不表示源码构建失败，但不能据此宣称 70 MHz 通过。
 
 ## 验收范围与失败恢复
 
