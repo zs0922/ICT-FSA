@@ -1,0 +1,36 @@
+{
+  "source_commit": "76858cc3aa178446584eae52f82e0a933e71f8db",
+  "source_status": "",
+  "cc": "13.3.0",
+  "cxx": "13.3.0",
+  "dtc": "Version: DTC 1.7.0",
+  "configure_args": [
+    "--prefix=/tmp/ict-spike-baseline-validation/install",
+    "--with-boost=no",
+    "--with-boost-asio=no",
+    "--with-boost-regex=no"
+  ],
+  "configure_status": 0,
+  "build_jobs": 4,
+  "hardware_rebuilt_using_this_install": false,
+  "status": "passed",
+  "make_status": 0,
+  "libfesvr-confirm_status": 0,
+  "install-confirm_status": 0,
+  "archive-install-confirm_status": 0,
+  "artifacts": {
+    "lib/libfesvr.a": {
+      "bytes": 6651522,
+      "sha256": "6bdc33518a3b873a0d546a8b64857df0f83519bc86c500ca39e29ed33781d4dd"
+    },
+    "lib/libriscv.so": {
+      "bytes": 180559904,
+      "sha256": "cf57970c6b9228ea6299fd38359c79c754948939c13c6a2f098cf4036dd59472"
+    },
+    "include/fesvr/htif.h": {
+      "bytes": 5965,
+      "sha256": "5aec4e8516d1ccc72941af7a728556027a9da88d199978c9434e0996e55be608"
+    }
+  },
+  "spike_help_status": 0
+}

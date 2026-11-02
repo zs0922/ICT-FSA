@@ -1,5 +1,4 @@
 {
-  "commit": "98c0401a289e255ca00a7d5a7f70c47f223ab66b",
   "upstream_commit": "54671054fedcd2c1f65bb2dd6939abdaf8071814",
   "changed_paths": [
     "README.md",
@@ -44,5 +43,8 @@
     }
   ],
   "physical_implementation_run": false,
-  "board_test_run": false
+  "board_test_run": false,
+  "initial_validation_commit": "98c0401a289e255ca00a7d5a7f70c47f223ab66b",
+  "delivery_commit": "474e92dc018df7a7a818aa329db967ebb829108c",
+  "delivery_changed_paths_verified": true
 }

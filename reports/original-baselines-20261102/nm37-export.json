@@ -1,0 +1,25 @@
+{
+  "bitstream": {
+    "path": "NM37_EXPERIMENTAL.bit",
+    "sha256": "46df2586ff7622002f9d164966a4f8195f8981cc9c16847fea2b8611ac632d26"
+  },
+  "cdc_review": "not_closed_by_export",
+  "clock_mhz": 70,
+  "config": {
+    "path": "FSAConfig.json",
+    "sha256": "d8c3330d60ee335601401365e6fa4de774b53bb099dccc0afd464048b262a6ba"
+  },
+  "created_utc": "2026-11-02T09:02:02.074334+00:00",
+  "dcp": "/tmp/ict-nm37-validation/build-attempt02/NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/post_route.dcp",
+  "dcp_sha256": "091b3edfc332c8366346699445a3a2d2bfbd8aaed58ca82b62a66bc4a5cba565",
+  "profile": "NM37",
+  "purpose": "EXPERIMENTAL_BOARD_TEST",
+  "release_approved": false,
+  "schema_version": 1,
+  "source": {
+    "commit": "eb16cafbc0ce4710e6c2e4f58a53f39c4e348a81",
+    "profile": "NM37",
+    "profile_sha256": "847398ef545d3b3f9fe6bcca9ce2394453f29d124b554974f65c48871d44d32a"
+  },
+  "status": "exported"
+}

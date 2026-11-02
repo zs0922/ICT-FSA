@@ -1,0 +1,86 @@
+[
+  {
+    "branch": "original-u280",
+    "path": "generators",
+    "tree_or_blob": "8f43d10c3c656add72cd2b5e3cf9566ffa50e174",
+    "unchanged_from": "3d1714de26aeaad172461bd96e6c8fc26e63109a"
+  },
+  {
+    "branch": "original-u280",
+    "path": "fpga",
+    "tree_or_blob": "1f3f97e71d967f7730091aabb122df6ddaed47b1",
+    "unchanged_from": "3d1714de26aeaad172461bd96e6c8fc26e63109a"
+  },
+  {
+    "branch": "original-u280",
+    "path": "build.sbt",
+    "tree_or_blob": "5cf55b083a562f1f1ddf248f5feef53bcc7b2cc3",
+    "unchanged_from": "3d1714de26aeaad172461bd96e6c8fc26e63109a"
+  },
+  {
+    "branch": "original-u280",
+    "path": "common.mk",
+    "tree_or_blob": "a42a05360e6ec7b93ee939656193fdf2403c6dd6",
+    "unchanged_from": "3d1714de26aeaad172461bd96e6c8fc26e63109a"
+  },
+  {
+    "branch": "original-u280",
+    "path": "variables.mk",
+    "tree_or_blob": "d5b0f5770c06673dfba2e4ec65d0064264f99549",
+    "unchanged_from": "3d1714de26aeaad172461bd96e6c8fc26e63109a"
+  },
+  {
+    "branch": "original-u280",
+    "path": "locks",
+    "tree_or_blob": "0ccd8315f83a11ead45e1d6b3cd5f24912c502de",
+    "unchanged_from": "3d1714de26aeaad172461bd96e6c8fc26e63109a"
+  },
+  {
+    "branch": "original-u280",
+    "path": "sims",
+    "tree_or_blob": "9460e40969531b43fccabd07a6448340d63b9762",
+    "unchanged_from": "3d1714de26aeaad172461bd96e6c8fc26e63109a"
+  },
+  {
+    "branch": "original-nm37-civ",
+    "path": "generators",
+    "tree_or_blob": "75ff9dc8682b6fd9f7d634aa307bbd8d6cb90983",
+    "unchanged_from": "00e021c635cd31d013cf00fd24cba687dc0b4be5"
+  },
+  {
+    "branch": "original-nm37-civ",
+    "path": "fpga",
+    "tree_or_blob": "0a4172283581c65fcd770ceb0566cfea300a2c3f",
+    "unchanged_from": "00e021c635cd31d013cf00fd24cba687dc0b4be5"
+  },
+  {
+    "branch": "original-nm37-civ",
+    "path": "build.sbt",
+    "tree_or_blob": "5cf55b083a562f1f1ddf248f5feef53bcc7b2cc3",
+    "unchanged_from": "00e021c635cd31d013cf00fd24cba687dc0b4be5"
+  },
+  {
+    "branch": "original-nm37-civ",
+    "path": "common.mk",
+    "tree_or_blob": "a42a05360e6ec7b93ee939656193fdf2403c6dd6",
+    "unchanged_from": "00e021c635cd31d013cf00fd24cba687dc0b4be5"
+  },
+  {
+    "branch": "original-nm37-civ",
+    "path": "variables.mk",
+    "tree_or_blob": "d5b0f5770c06673dfba2e4ec65d0064264f99549",
+    "unchanged_from": "00e021c635cd31d013cf00fd24cba687dc0b4be5"
+  },
+  {
+    "branch": "original-nm37-civ",
+    "path": "locks",
+    "tree_or_blob": "cf54e1e8788fc71d3f7777791db008aec8494636",
+    "unchanged_from": "00e021c635cd31d013cf00fd24cba687dc0b4be5"
+  },
+  {
+    "branch": "original-nm37-civ",
+    "path": "sims",
+    "tree_or_blob": "9460e40969531b43fccabd07a6448340d63b9762",
+    "unchanged_from": "00e021c635cd31d013cf00fd24cba687dc0b4be5"
+  }
+]

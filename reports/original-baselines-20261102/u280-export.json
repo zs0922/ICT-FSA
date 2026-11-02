@@ -1,0 +1,32 @@
+{
+  "bitstream": {
+    "path": "U280_EXPERIMENTAL.bit",
+    "sha256": "6bf687c68da923859f6196bab0c828dcba173362d4340335fbc2cc81a06a0832"
+  },
+  "build_source": {
+    "commit": "c9b39717ec6bd5fc5ac98e998b7f9d6c95fef05f",
+    "profile": "U280",
+    "profile_sha256": "0addc502ceb8f4fb9d908c0893415e1584e4b8b2fdf791c2c79d4c8562df04b1"
+  },
+  "cdc_review": "not_closed_by_export",
+  "clock_mhz": 70,
+  "config": {
+    "path": "FSAConfig.json",
+    "sha256": "d8c3330d60ee335601401365e6fa4de774b53bb099dccc0afd464048b262a6ba"
+  },
+  "created_utc": "2026-11-02T08:57:58.400207+00:00",
+  "dcp": "/tmp/ict-u280-run/build-attempt02/U280/fpga/chipyard.fpga.u280.U280FPGATestHarness.EmptyU280Config/obj/post_route.dcp",
+  "dcp_sha256": "f6871baf31783a64f008d935ce90fea0e7fdaa40bc8be86c72d5507d0fa2edf0",
+  "profile": "U280",
+  "purpose": "EXPERIMENTAL_BOARD_TEST",
+  "read_only_reaudit": true,
+  "release_approved": false,
+  "schema_version": 1,
+  "source": {
+    "commit": "b6fb959180167cce0cffb52016f1665963b065d9",
+    "profile": "U280",
+    "profile_sha256": "f6e11c7b86842aea67db7e88b19ab6b118313e0f048867b43da20bd2b88e7234"
+  },
+  "sta_expected_period_ns": 14.284285714285716,
+  "status": "exported"
+}

@@ -1,0 +1,292 @@
+{
+  "baseline_branch": "original-nm37-civ",
+  "validation_commit": "eb16cafbc0ce4710e6c2e4f58a53f39c4e348a81",
+  "hardware_base": "00e021c635cd31d013cf00fd24cba687dc0b4be5",
+  "original_commit": "57344208e4b88e4eed87e3bf4e9dd9a790d06e84",
+  "patch_order": [
+    {
+      "target": "fpga/fpga-shells",
+      "historical_path": "fpga/patches/u280/fpga-shells-u280.patch",
+      "sha256": "9deb1b244e7eaa68eb3b32816133d9f925c15b685ccdc5792e31e20e2b1c0752"
+    },
+    {
+      "target": "generators/fsa",
+      "historical_path": "fpga/patches/u280/fsa-u280.patch",
+      "sha256": "096eaf116a018ad08aebe6990d4f2b06089a61de025920a65adb8332b88c3b56"
+    },
+    {
+      "target": "fpga/fpga-shells",
+      "historical_path": "fpga/patches/nm37/fpga-shells-nm37.patch",
+      "sha256": "dec73c2a5899beb2f8f5200c7dd236cb1f20a93a907504099152c2dd24249e47"
+    },
+    {
+      "target": "generators/fsa",
+      "historical_path": "fpga/patches/nm37/fsa-nm37.patch",
+      "sha256": "7d52a3678f3aa2e617e5b2532774752a307344efd2793982a9bae38b605e1ead"
+    }
+  ],
+  "source_equivalence": {
+    "source_commit": "57344208e4b88e4eed87e3bf4e9dd9a790d06e84",
+    "checked_files": 358,
+    "mismatches": [],
+    "base_commit": "00e021c635cd31d013cf00fd24cba687dc0b4be5"
+  },
+  "target": {
+    "board": "NM37-CIV",
+    "dut_mhz": 70,
+    "apb_mhz": 70,
+    "array": "16x16",
+    "memory_ports": 1
+  },
+  "verification": {
+    "doctor": "passed",
+    "dependency_restore": "passed, 172 pinned dependencies",
+    "python": "both local project environments installed with frozen lock",
+    "build": "passed",
+    "sim": "passed sim4 seq4+seq8 bitwise equal to PyEasyFloat",
+    "elaborate": "passed",
+    "implement": "passed",
+    "board": "not_tested; runtime profile unsupported",
+    "tool_tests": "25 passed",
+    "export": "passed; actual write_bitstream and SHA256SUMS verification"
+  },
+  "artifact_root": "/tmp/ict-nm37-validation",
+  "hardware_modified": false,
+  "build_out": "/tmp/ict-nm37-validation/build-attempt02",
+  "timing": {
+    "dut_period_ns": 14.286,
+    "global_setup_wns_ns": 0.001,
+    "global_setup_tns_ns": 0.0,
+    "global_hold_whs_ns": 0.01,
+    "global_hold_ths_ns": 0.0,
+    "global_wpws_ns": 0.0,
+    "global_tpws_ns": 0.0,
+    "setup_failing_endpoints": 0,
+    "hold_failing_endpoints": 0,
+    "pulse_failing_endpoints": 0
+  },
+  "resources": {
+    "LUT": {
+      "used": 380891,
+      "available": 1303680,
+      "percent": 29.22
+    },
+    "logic_LUT": 375522,
+    "LUTRAM": 3814,
+    "SRL": 1555,
+    "FF": {
+      "used": 72500,
+      "available": 2607360,
+      "percent": 2.78
+    },
+    "DSP": {
+      "used": 320,
+      "available": 9024,
+      "percent": 3.55
+    },
+    "RAMB36": 80,
+    "RAMB18": 3,
+    "block_ram_tiles": {
+      "used": 81.5,
+      "available": 2016,
+      "percent": 4.04
+    },
+    "URAM": 0
+  },
+  "worst_setup": {
+    "startpoint": "dutDomain/fsa/fsa/mxControl/fsm_list_1/accumTimer_reg[0]/C",
+    "endpoint": "dutDomain/fsa/fsa/accRAM_sram/banks_subBanks_sram_mem_1/banks_subBanks_sram_mem_1_0_ext/mem_0_0/ram_reg_0_31_238_251/RAMG_D1/I",
+    "clock_group": "clk_out1_harnessSysPLL",
+    "logic_levels": 53,
+    "data_delay_ns": 13.918,
+    "logic_delay_ns": 5.462,
+    "route_delay_ns": 8.456,
+    "route_percent": 60.756
+  },
+  "cdc": {
+    "CDC-3_Info": 86,
+    "CDC-7_Critical": 12,
+    "CDC-8_Warning": 1,
+    "CDC-9_Info": 24,
+    "CDC-10_Critical": 2,
+    "CDC-11_Critical": 16,
+    "CDC-15_Warning": 170,
+    "review_status": "not_closed"
+  },
+  "constraints": {
+    "unconstrained_internal_endpoints": 30,
+    "no_input_delay": 1,
+    "no_clock": 0,
+    "review_status": "recorded_not_closed"
+  },
+  "drc": {
+    "errors": 0,
+    "critical_warnings": 0,
+    "warnings": 1234,
+    "advisories": 24
+  },
+  "sha256": {
+    "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/post_route.dcp": "091b3edfc332c8366346699445a3a2d2bfbd8aaed58ca82b62a66bc4a5cba565",
+    "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/report/timing.txt": "3592f5700fe8dcb734dbe2be779c0c1bd818ddf8f6ada0997db18ae9864f54cf",
+    "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/report/utilization_flat.txt": "8dee39a896a62dcdd112a6fc66b5b669a581285d9e20833d694befe422192ee2",
+    "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/report/drc.txt": "0cf796fb723ae1eef8062d1681a5ef736e744dbbf225d1ac907e89c82a119df3",
+    "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/audit/cdc.txt": "e6d2c2130dec217e186e79384e81e0912fe488bc288bae18b16374d0a825fa18",
+    "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/audit/check_timing.txt": "8bc2483ead8399f23b7c7740d5aeee6918ddcace42d5e530dfe197b3191c1f9f",
+    "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/audit/exceptions.txt": "6e40c9d7d79f44a4180dd27c87f46c16085820c5b174016f957f02355a425429",
+    "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/audit/dut_setup_top100.txt": "18a5327d3caecff972b7ff10a0aacd763db595bb4fdc3101843a573c8a6e9d3f",
+    "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/audit/bus_skew.txt": "0a60a23aaaede024112093552a416fac8b77134d13309466f7f78a3f7af92821"
+  },
+  "phase_receipts": {
+    "build": {
+      "commands": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "build",
+          "--out",
+          "/tmp/ict-nm37-validation/build-attempt02"
+        ]
+      ],
+      "finished_utc": "2026-11-02T07:27:28.006712+00:00",
+      "logs": [
+        "/tmp/ict-nm37-validation/build-attempt02.ict-state/build-0.log"
+      ],
+      "started_utc": "2026-11-02T07:24:09.518479+00:00",
+      "status": "completed"
+    },
+    "source": {
+      "commit": "eb16cafbc0ce4710e6c2e4f58a53f39c4e348a81",
+      "profile": "NM37",
+      "profile_sha256": "847398ef545d3b3f9fe6bcca9ce2394453f29d124b554974f65c48871d44d32a"
+    },
+    "implement": {
+      "commands": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "implement",
+          "--out",
+          "/tmp/ict-nm37-validation/build-attempt02"
+        ]
+      ],
+      "finished_utc": "2026-11-02T09:01:25.188374+00:00",
+      "logs": [
+        "/tmp/ict-nm37-validation/build-attempt02.ict-state/implement-0.log"
+      ],
+      "routed_artifact_scope": "produced by this implementation attempt; backend completion/CDC acceptance remains separate",
+      "routed_artifacts": {
+        "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config.FSAConfig.json": "d8c3330d60ee335601401365e6fa4de774b53bb099dccc0afd464048b262a6ba",
+        "NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/post_route.dcp": "091b3edfc332c8366346699445a3a2d2bfbd8aaed58ca82b62a66bc4a5cba565"
+      },
+      "started_utc": "2026-11-02T07:29:30.398450+00:00",
+      "status": "completed"
+    },
+    "elaborate": {
+      "commands": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "elaborate",
+          "--out",
+          "/tmp/ict-nm37-validation/build-attempt02"
+        ]
+      ],
+      "finished_utc": "2026-11-02T07:29:28.315885+00:00",
+      "logs": [
+        "/tmp/ict-nm37-validation/build-attempt02.ict-state/elaborate-0.log"
+      ],
+      "started_utc": "2026-11-02T07:28:50.936522+00:00",
+      "status": "completed"
+    },
+    "sim4": {
+      "artifacts": {
+        "sim4/build/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config.FSAConfig.json": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+        "sim4/simulator": "354d538853a63f50deeb0640d59c5f66e7e828dd6defd1c816467c7f482d46ab"
+      },
+      "commands": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "sim",
+          "--out",
+          "/tmp/ict-nm37-validation/build-attempt02",
+          "--array-size",
+          "4"
+        ]
+      ],
+      "finished_utc": "2026-11-02T07:28:49.170875+00:00",
+      "logs": [
+        "/tmp/ict-nm37-validation/build-attempt02.ict-state/sim4-0.log"
+      ],
+      "started_utc": "2026-11-02T07:27:38.925736+00:00",
+      "status": "completed"
+    }
+  },
+  "bus_skew": {
+    "constraints": 18,
+    "all_met": true,
+    "min_slack_ns": 2.389
+  },
+  "export": {
+    "bitstream": {
+      "path": "NM37_EXPERIMENTAL.bit",
+      "sha256": "46df2586ff7622002f9d164966a4f8195f8981cc9c16847fea2b8611ac632d26"
+    },
+    "cdc_review": "not_closed_by_export",
+    "clock_mhz": 70,
+    "config": {
+      "path": "FSAConfig.json",
+      "sha256": "d8c3330d60ee335601401365e6fa4de774b53bb099dccc0afd464048b262a6ba"
+    },
+    "created_utc": "2026-11-02T09:02:02.074334+00:00",
+    "dcp": "/tmp/ict-nm37-validation/build-attempt02/NM37/fpga/chipyard.fpga.nm37.NM37FPGATestHarness.EmptyNM37Config/obj/post_route.dcp",
+    "dcp_sha256": "091b3edfc332c8366346699445a3a2d2bfbd8aaed58ca82b62a66bc4a5cba565",
+    "profile": "NM37",
+    "purpose": "EXPERIMENTAL_BOARD_TEST",
+    "release_approved": false,
+    "schema_version": 1,
+    "source": {
+      "commit": "eb16cafbc0ce4710e6c2e4f58a53f39c4e348a81",
+      "profile": "NM37",
+      "profile_sha256": "847398ef545d3b3f9fe6bcca9ce2394453f29d124b554974f65c48871d44d32a"
+    },
+    "status": "exported"
+  },
+  "spike_recipe_validation": {
+    "source_commit": "76858cc3aa178446584eae52f82e0a933e71f8db",
+    "source_status": "",
+    "cc": "13.3.0",
+    "cxx": "13.3.0",
+    "dtc": "Version: DTC 1.7.0",
+    "configure_args": [
+      "--prefix=/tmp/ict-spike-baseline-validation/install",
+      "--with-boost=no",
+      "--with-boost-asio=no",
+      "--with-boost-regex=no"
+    ],
+    "configure_status": 0,
+    "build_jobs": 4,
+    "hardware_rebuilt_using_this_install": false,
+    "status": "passed",
+    "make_status": 0,
+    "libfesvr-confirm_status": 0,
+    "install-confirm_status": 0,
+    "archive-install-confirm_status": 0,
+    "artifacts": {
+      "lib/libfesvr.a": {
+        "bytes": 6651522,
+        "sha256": "6bdc33518a3b873a0d546a8b64857df0f83519bc86c500ca39e29ed33781d4dd"
+      },
+      "lib/libriscv.so": {
+        "bytes": 180559904,
+        "sha256": "cf57970c6b9228ea6299fd38359c79c754948939c13c6a2f098cf4036dd59472"
+      },
+      "include/fesvr/htif.h": {
+        "bytes": 5965,
+        "sha256": "5aec4e8516d1ccc72941af7a728556027a9da88d199978c9434e0996e55be608"
+      }
+    },
+    "spike_help_status": 0
+  },
+  "documentation_change_scope": "README, environment instructions and reports only; build tree remains frozen at validation_commit"
+}
