@@ -1,0 +1,218 @@
+[
+  {
+    "baseline": "original-u280",
+    "build_out": "/tmp/ict-u280-run/build-attempt02",
+    "source": {
+      "commit": "c9b39717ec6bd5fc5ac98e998b7f9d6c95fef05f",
+      "profile": "U280",
+      "profile_sha256": "0addc502ceb8f4fb9d908c0893415e1584e4b8b2fdf791c2c79d4c8562df04b1"
+    },
+    "phases": {
+      "build": {
+        "commands": [
+          [
+            "python3",
+            "scripts/ict_history.py",
+            "build",
+            "--out",
+            "/tmp/ict-u280-run/build-attempt02"
+          ]
+        ],
+        "finished_utc": "2026-11-02T07:27:27.136550+00:00",
+        "logs": [
+          "/tmp/ict-u280-run/build-attempt02.ict-state/build-0.log"
+        ],
+        "started_utc": "2026-11-02T07:24:14.822169+00:00",
+        "status": "completed"
+      },
+      "sim4": {
+        "artifacts": {
+          "sim4/build/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config.FSAConfig.json": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+          "sim4/simulator": "5d57c976661c2f69a667f7c8ece04f085ec91996ab7d0979a9e78a40c01172cc"
+        },
+        "commands": [
+          [
+            "python3",
+            "scripts/ict_history.py",
+            "sim",
+            "--out",
+            "/tmp/ict-u280-run/build-attempt02",
+            "--array-size",
+            "4"
+          ]
+        ],
+        "finished_utc": "2026-11-02T07:29:13.660489+00:00",
+        "logs": [
+          "/tmp/ict-u280-run/build-attempt02.ict-state/sim4-0.log"
+        ],
+        "started_utc": "2026-11-02T07:28:11.589604+00:00",
+        "status": "completed"
+      },
+      "elaborate": {
+        "commands": [
+          [
+            "python3",
+            "scripts/ict_history.py",
+            "elaborate",
+            "--out",
+            "/tmp/ict-u280-run/build-attempt02"
+          ]
+        ],
+        "finished_utc": "2026-11-02T07:29:03.076697+00:00",
+        "logs": [
+          "/tmp/ict-u280-run/build-attempt02.ict-state/elaborate-0.log"
+        ],
+        "started_utc": "2026-11-02T07:28:23.783061+00:00",
+        "status": "completed"
+      }
+    },
+    "sim_results": {
+      "4": {
+        "bitwise_equal": true,
+        "shape": [
+          4,
+          4
+        ],
+        "seed": 0,
+        "seq": 4,
+        "array_rows": 4,
+        "binary_sha256": "5d57c976661c2f69a667f7c8ece04f085ec91996ab7d0979a9e78a40c01172cc",
+        "config_sha256": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+        "actual_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+        "expected_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+        "input_sha256": {
+          "q": "62cb46524bdbcdcdc2c5c4adc3385c3d2b1072b412a53dd0576f5660070f935b",
+          "k": "cacc3b207612a51cd31dd458488d708673c2d19a194e17188cdc6010c8d53991",
+          "v": "381cec8c518080633ed2db4ed67d56f0064008d364bf29f9792a76c4f9f5b5cf"
+        }
+      },
+      "8": {
+        "bitwise_equal": true,
+        "shape": [
+          8,
+          4
+        ],
+        "seed": 0,
+        "seq": 8,
+        "array_rows": 4,
+        "binary_sha256": "5d57c976661c2f69a667f7c8ece04f085ec91996ab7d0979a9e78a40c01172cc",
+        "config_sha256": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+        "actual_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+        "expected_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+        "input_sha256": {
+          "q": "d94e4e580563a804846640f072da088f0ee3c93f16334b13cadc97d49ad7740d",
+          "k": "0c86a4b7d7041eb57831eb064fe645ff23b797e3711fa015d00c8bea5cab1452",
+          "v": "0173503f6a3b1775a8a9a76484332a5180dfc4e4c15f3185e8afd199a501292e"
+        }
+      }
+    }
+  },
+  {
+    "baseline": "original-nm37-civ",
+    "build_out": "/tmp/ict-nm37-validation/build-attempt02",
+    "source": {
+      "commit": "eb16cafbc0ce4710e6c2e4f58a53f39c4e348a81",
+      "profile": "NM37",
+      "profile_sha256": "847398ef545d3b3f9fe6bcca9ce2394453f29d124b554974f65c48871d44d32a"
+    },
+    "phases": {
+      "build": {
+        "commands": [
+          [
+            "python3",
+            "scripts/ict_history.py",
+            "build",
+            "--out",
+            "/tmp/ict-nm37-validation/build-attempt02"
+          ]
+        ],
+        "finished_utc": "2026-11-02T07:27:28.006712+00:00",
+        "logs": [
+          "/tmp/ict-nm37-validation/build-attempt02.ict-state/build-0.log"
+        ],
+        "started_utc": "2026-11-02T07:24:09.518479+00:00",
+        "status": "completed"
+      },
+      "sim4": {
+        "artifacts": {
+          "sim4/build/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config.FSAConfig.json": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+          "sim4/simulator": "354d538853a63f50deeb0640d59c5f66e7e828dd6defd1c816467c7f482d46ab"
+        },
+        "commands": [
+          [
+            "python3",
+            "scripts/ict_history.py",
+            "sim",
+            "--out",
+            "/tmp/ict-nm37-validation/build-attempt02",
+            "--array-size",
+            "4"
+          ]
+        ],
+        "finished_utc": "2026-11-02T07:28:49.170875+00:00",
+        "logs": [
+          "/tmp/ict-nm37-validation/build-attempt02.ict-state/sim4-0.log"
+        ],
+        "started_utc": "2026-11-02T07:27:38.925736+00:00",
+        "status": "completed"
+      },
+      "elaborate": {
+        "commands": [
+          [
+            "python3",
+            "scripts/ict_history.py",
+            "elaborate",
+            "--out",
+            "/tmp/ict-nm37-validation/build-attempt02"
+          ]
+        ],
+        "finished_utc": "2026-11-02T07:29:28.315885+00:00",
+        "logs": [
+          "/tmp/ict-nm37-validation/build-attempt02.ict-state/elaborate-0.log"
+        ],
+        "started_utc": "2026-11-02T07:28:50.936522+00:00",
+        "status": "completed"
+      }
+    },
+    "sim_results": {
+      "4": {
+        "bitwise_equal": true,
+        "shape": [
+          4,
+          4
+        ],
+        "seed": 0,
+        "seq": 4,
+        "array_rows": 4,
+        "binary_sha256": "354d538853a63f50deeb0640d59c5f66e7e828dd6defd1c816467c7f482d46ab",
+        "config_sha256": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+        "actual_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+        "expected_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+        "input_sha256": {
+          "q": "62cb46524bdbcdcdc2c5c4adc3385c3d2b1072b412a53dd0576f5660070f935b",
+          "k": "cacc3b207612a51cd31dd458488d708673c2d19a194e17188cdc6010c8d53991",
+          "v": "381cec8c518080633ed2db4ed67d56f0064008d364bf29f9792a76c4f9f5b5cf"
+        }
+      },
+      "8": {
+        "bitwise_equal": true,
+        "shape": [
+          8,
+          4
+        ],
+        "seed": 0,
+        "seq": 8,
+        "array_rows": 4,
+        "binary_sha256": "354d538853a63f50deeb0640d59c5f66e7e828dd6defd1c816467c7f482d46ab",
+        "config_sha256": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+        "actual_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+        "expected_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+        "input_sha256": {
+          "q": "d94e4e580563a804846640f072da088f0ee3c93f16334b13cadc97d49ad7740d",
+          "k": "0c86a4b7d7041eb57831eb064fe645ff23b797e3711fa015d00c8bea5cab1452",
+          "v": "0173503f6a3b1775a8a9a76484332a5180dfc4e4c15f3185e8afd199a501292e"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "branch": "original",
+    "commit": "98c0401a289e255ca00a7d5a7f70c47f223ab66b",
+    "clone_independent": true,
+    "check": [
+      "python3",
+      "scripts/verify-original.py"
+    ],
+    "exit_code": 0,
+    "dependencies_initialized": false
+  },
+  {
+    "branch": "original-u280",
+    "commit": "c9b39717ec6bd5fc5ac98e998b7f9d6c95fef05f",
+    "clone_independent": true,
+    "check": [
+      "python3",
+      "scripts/fsa.py",
+      "deps",
+      "--plan"
+    ],
+    "exit_code": 0,
+    "dependencies_initialized": false
+  },
+  {
+    "branch": "original-nm37-civ",
+    "commit": "eb16cafbc0ce4710e6c2e4f58a53f39c4e348a81",
+    "clone_independent": true,
+    "check": [
+      "python3",
+      "scripts/fsa.py",
+      "deps",
+      "--plan"
+    ],
+    "exit_code": 0,
+    "dependencies_initialized": false
+  }
+]

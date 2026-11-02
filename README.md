@@ -4,6 +4,12 @@
 
 阶段为 U280 → NM37 初始迁移 → NM37 A70-P3 → NM37 A100 → NM37 A110/APB55 → NM37 A120/APB60 → NM37 A150/APB100。具体 commit 与已验证范围见 [本地迁移记录](reports/ICT_FSA_LOCAL_MIGRATION.md)（完整映射：`docs/history/migration-map.json`）；候选提交可切换，验收标签要等对应复现通过后再创建。下面命令在 Bash/tmux 中逐条执行；**不要在交互终端执行 `set -euo pipefail`**。
 
+## 原始核心与未优化板卡移植基线（本地整理）
+
+需要从原始 FSA 移植新板卡时，请先读 [三个原始基线的来源、选择与复现](docs/baselines/README.md)。`original` 保存 VCA-EPFL FSA/U55C 的历史核心；`original-u280`、`original-nm37-civ` 保存初始板卡适配及必要正确性修复，不含后续 P0～P3、A100 流水或 A110/A150 修改。A70-P3 是优化配置，不是原始基线。
+
+这些分支本轮只在本地提交，尚未 push；不能从 GitHub clone 尚未发布的分支。现有 `codex/*` 分支及其构建不变。每个基线使用独立 checkout 和输出目录；该基线自己的 README 是其命令入口，不要在原始分支照抄下方 A150 命令。实际验证范围与固定提交见上述基线说明。
+
 ## 本次 A150/APB100 从哪里开始
 
 当前集成版本为 **A150-APB100：DUT/FSA/HBM AXI 150MHz，HBM APB 100MHz**，分支 `codex/nm37-a150-apb100`。可以直接从这个版本开始，不必先构建 A70/A100/A110/A120。A150 分支与默认分支 `codex/ict-fsa-integration` 通过 GitHub 同步交付。硬件迁移提交为 `dae09729028da1d6ba0319c91fa946ae1916a97a`，本次发布提交只更新文档。构建时使用交付的固定提交，不在已有构建中途 pull 或切换版本。

@@ -1,0 +1,48 @@
+{
+  "commit": "98c0401a289e255ca00a7d5a7f70c47f223ab66b",
+  "upstream_commit": "54671054fedcd2c1f65bb2dd6939abdaf8071814",
+  "changed_paths": [
+    "README.md",
+    "docs/baselines/original-provenance.json",
+    "docs/baselines/original-validation.md",
+    "docs/baselines/upstream-README.md",
+    "scripts/prepare-original-deps.py",
+    "scripts/verify-original.py"
+  ],
+  "verified_logs": [
+    {
+      "file": "/tmp/ict-original-validation/dependencies-attempt03.log",
+      "sha256": "de330973e4ca3b618881a627adf8a0ecbedf1e1a7a90efd06c8ca11ee2d973e3"
+    },
+    {
+      "file": "/tmp/ict-original-validation/assembly-attempt04.log",
+      "sha256": "1f9e4530e6e5dc5fc4b57c6cd9858e82bcc1301609677bd46d1dc69b259bf169"
+    },
+    {
+      "file": "/tmp/ict-original-validation/elaborate-u55c.log",
+      "sha256": "0051f1d4f907a0046b8d487fdf0d1a0a70791c6fb22ebaae1a9b21fe5afc90e7"
+    },
+    {
+      "file": "/tmp/ict-original-validation/sim-build-attempt04.log",
+      "sha256": "3e8ca30c3237525db0ba1aa58a333387a868e9207a485fe230783c317b2adc54"
+    },
+    {
+      "file": "/tmp/ict-original-validation/sim-seq4-attempt02.log",
+      "sha256": "e75afc1e969580bddfce86fc0e28f95de8e9564f18adedcec08ed8ddb93f1fef"
+    },
+    {
+      "file": "/tmp/ict-original-validation/uv-easyfloat.log",
+      "sha256": "a1673e153034267fc58cf4756c0c6ac81a5ac08a711b4b97d46e91642a127fc2"
+    },
+    {
+      "file": "/tmp/ict-original-validation/uv-fsa.log",
+      "sha256": "a541b6882c5286f9e1f2eaafaa8f97e5ccb480cff54a62537978116e85e78c1d"
+    },
+    {
+      "file": "/tmp/ict-original-validation/sim-seq8-attempt01.log",
+      "sha256": "dcb74fb9bee21dc02f1c7e4db5be073a21ce35109234a4ff4d2f1e373f3ed091"
+    }
+  ],
+  "physical_implementation_run": false,
+  "board_test_run": false
+}

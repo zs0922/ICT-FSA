@@ -1,0 +1,80 @@
+[
+  {
+    "repository": "/tmp/ict-u280-work",
+    "base": "3d1714de26aeaad172461bd96e6c8fc26e63109a",
+    "checked_commit": "c9b39717ec6bd5fc5ac98e998b7f9d6c95fef05f",
+    "trees_equal": {
+      "generators": {
+        "base": "8f43d10c3c656add72cd2b5e3cf9566ffa50e174",
+        "current": "8f43d10c3c656add72cd2b5e3cf9566ffa50e174"
+      },
+      "fpga": {
+        "base": "1f3f97e71d967f7730091aabb122df6ddaed47b1",
+        "current": "1f3f97e71d967f7730091aabb122df6ddaed47b1"
+      },
+      "build.sbt": {
+        "base": "5cf55b083a562f1f1ddf248f5feef53bcc7b2cc3",
+        "current": "5cf55b083a562f1f1ddf248f5feef53bcc7b2cc3"
+      },
+      "common.mk": {
+        "base": "a42a05360e6ec7b93ee939656193fdf2403c6dd6",
+        "current": "a42a05360e6ec7b93ee939656193fdf2403c6dd6"
+      },
+      "variables.mk": {
+        "base": "d5b0f5770c06673dfba2e4ec65d0064264f99549",
+        "current": "d5b0f5770c06673dfba2e4ec65d0064264f99549"
+      },
+      "locks": {
+        "base": "0ccd8315f83a11ead45e1d6b3cd5f24912c502de",
+        "current": "0ccd8315f83a11ead45e1d6b3cd5f24912c502de"
+      },
+      "profiles": {
+        "base": "a79d1f330884bbf1bb36edcd60e868d75a58ec14",
+        "current": "a79d1f330884bbf1bb36edcd60e868d75a58ec14"
+      },
+      "sims": {
+        "base": "9460e40969531b43fccabd07a6448340d63b9762",
+        "current": "9460e40969531b43fccabd07a6448340d63b9762"
+      }
+    }
+  },
+  {
+    "repository": "/tmp/ict-nm37-work",
+    "base": "00e021c635cd31d013cf00fd24cba687dc0b4be5",
+    "checked_commit": "eb16cafbc0ce4710e6c2e4f58a53f39c4e348a81",
+    "trees_equal": {
+      "generators": {
+        "base": "75ff9dc8682b6fd9f7d634aa307bbd8d6cb90983",
+        "current": "75ff9dc8682b6fd9f7d634aa307bbd8d6cb90983"
+      },
+      "fpga": {
+        "base": "0a4172283581c65fcd770ceb0566cfea300a2c3f",
+        "current": "0a4172283581c65fcd770ceb0566cfea300a2c3f"
+      },
+      "build.sbt": {
+        "base": "5cf55b083a562f1f1ddf248f5feef53bcc7b2cc3",
+        "current": "5cf55b083a562f1f1ddf248f5feef53bcc7b2cc3"
+      },
+      "common.mk": {
+        "base": "a42a05360e6ec7b93ee939656193fdf2403c6dd6",
+        "current": "a42a05360e6ec7b93ee939656193fdf2403c6dd6"
+      },
+      "variables.mk": {
+        "base": "d5b0f5770c06673dfba2e4ec65d0064264f99549",
+        "current": "d5b0f5770c06673dfba2e4ec65d0064264f99549"
+      },
+      "locks": {
+        "base": "cf54e1e8788fc71d3f7777791db008aec8494636",
+        "current": "cf54e1e8788fc71d3f7777791db008aec8494636"
+      },
+      "profiles": {
+        "base": "11813a2b27ab8f8449df0ef6b3df66c54b2d2c78",
+        "current": "11813a2b27ab8f8449df0ef6b3df66c54b2d2c78"
+      },
+      "sims": {
+        "base": "9460e40969531b43fccabd07a6448340d63b9762",
+        "current": "9460e40969531b43fccabd07a6448340d63b9762"
+      }
+    }
+  }
+]
