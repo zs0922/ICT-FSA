@@ -39,6 +39,7 @@ python3 scripts/fsa.py doctor
 python3 scripts/fsa.py deps --plan
 python3 scripts/fsa.py deps --report "$WORK/dependencies.json"
 uv sync --frozen --python 3.13 --project "$SRC/generators/fsa/python"
+uv sync --frozen --python 3.13 --project "$SRC/generators/easyfloat"
 export FSA_PYTHON="$SRC/generators/fsa/python/.venv/bin/python"
 "$FSA_PYTHON" -c 'import numpy, torch, pyeasyfloat; print("Python imports OK")'
 ```
