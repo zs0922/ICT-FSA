@@ -19,12 +19,15 @@ def prepare(parent,name,sha,relative):
   repo=Path(run(['git','-C',str(source),'rev-parse','--absolute-git-dir']))
   if repo==old/'.git':repo=old/'.git/modules'/relative
   if not repo.is_dir():raise RuntimeError('Missing mirror objects: '+str(repo))
-  subprocess.run(['git','clone','--shared','--no-checkout',str(repo),str(dest)],check=True)
+  subprocess.run(['git','clone','--no-hardlinks','--dissociate','--no-checkout',str(repo),str(dest)],check=True)
   subprocess.run(['git','-C',str(dest),'checkout','--detach',sha],check=True)
  else:
   subprocess.run(base+['-C',str(parent),'submodule','update','--init','--checkout','--',name],check=True)
  subprocess.run(base+['-C',str(parent),'submodule','init','--',name],check=True)
  subprocess.run(base+['-C',str(parent),'submodule','absorbgitdirs','--',name],check=True)
+ actual=run(['git','-C',str(dest),'rev-parse','HEAD'])
+ dirty=run(['git','-C',str(dest),'status','--porcelain','--untracked-files=normal'])
+ if actual!=sha or dirty:raise RuntimeError(f'Dependency verification failed: {dest}; preserve results and inspect before retry.')
 for name in paths:prepare(root,name,links[name],name)
 rocket=root/'generators/rocket-chip'
 for name in ['dependencies/cde','dependencies/chisel','dependencies/diplomacy','dependencies/hardfloat']:

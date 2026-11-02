@@ -70,15 +70,15 @@ ls "$RISCV/lib/libfesvr.a" "$RISCV/lib/libriscv.so"
 cd "$ORIGINAL_WORK/source"
 python3 scripts/prepare-original-deps.py
 python3 scripts/verify-original.py --require-core-deps
-uv sync --project generators/easyfloat --frozen
-uv sync --project generators/fsa/python --frozen
+uv sync --project generators/easyfloat --frozen --python 3.13
+uv sync --project generators/fsa/python --frozen --python 3.13
 ```
 
 依赖工具只获取当前编译涉及的顶层模块、Rocket 的四个 Scala 依赖和 Verilator 文件列表引用的 Vortex/fpnew 嵌套依赖，按各父 gitlink 固定
 commit；它不下载与 FSA 编译无关的完整 Linux/FireSim 软件树，也不安装 RISC-V 工具链。
 默认通过 `.gitmodules` 下载，仅本次 Git 命令把 GitHub SSH URL 转为 HTTPS。
 本机已有完整历史对象时可使用 `--mirror-root /path/to/old-chipyard`，只读旧 Git 对象，
-创建新的依赖工作树；该本地加速模式依赖旧对象存续，不可把它直接作为独立交付包。
+复制Git对象并创建新的依赖工作树，不使用共享alternates或硬链接，不依赖旧对象目录存续。
 本轮采用此加速路径，不能声称已对每个公网仓库完成全新网络下载。
 
 源检查工具检查全部顶层 gitlink 的固定值、根仓库文件差异，以及三个核心依赖的工作树；
