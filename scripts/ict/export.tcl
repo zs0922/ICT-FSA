@@ -5,6 +5,7 @@ set_param general.maxThreads 4
 open_checkpoint $dcp
 report_timing_summary -file [file join $out timing.txt]
 report_route_status -file [file join $out route-status.txt]
+report_bus_skew -file [file join $out bus-skew.txt]
 report_utilization -file [file join $out utilization.txt]
 report_clocks -file [file join $out clocks.txt]
 report_cdc -details -file [file join $out cdc.txt]

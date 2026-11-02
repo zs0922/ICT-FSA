@@ -1,0 +1,127 @@
+{
+  "profile": "U280",
+  "branch": "original-u280",
+  "build_source_commit": "c9b39717ec6bd5fc5ac98e998b7f9d6c95fef05f",
+  "output": "/tmp/ict-u280-run/build-attempt02",
+  "source_inventory_items_checked": 356,
+  "source_inventory_mismatches": [],
+  "entry_tests": {
+    "count": 25,
+    "passed": true
+  },
+  "dependencies_count": 172,
+  "stages": {
+    "build": {
+      "status": "completed",
+      "receipt_sha256": "2018ec7f69b5b9d093badda1671268dec1aaca17da2a91830e144525b1774a84"
+    },
+    "sim4": {
+      "status": "completed",
+      "receipt_sha256": "05b39fc6e47ab1c62e9f387ea1edb32d7c66bc50b10873f42db4f1b5fa6d31af"
+    },
+    "elaborate": {
+      "status": "completed",
+      "receipt_sha256": "f22219d1dd75e7cac7fa7dabbc322b763c440438f86561dbc6fdd5fcb219ae02"
+    }
+  },
+  "simulation_results": {
+    "4": {
+      "bitwise_equal": true,
+      "shape": [
+        4,
+        4
+      ],
+      "seed": 0,
+      "seq": 4,
+      "array_rows": 4,
+      "binary_sha256": "5d57c976661c2f69a667f7c8ece04f085ec91996ab7d0979a9e78a40c01172cc",
+      "config_sha256": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+      "actual_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+      "expected_sha256": "246254d73d3885b65b1fc3476fec2999381f13734835811a5b7f382358cf6d3c",
+      "input_sha256": {
+        "q": "62cb46524bdbcdcdc2c5c4adc3385c3d2b1072b412a53dd0576f5660070f935b",
+        "k": "cacc3b207612a51cd31dd458488d708673c2d19a194e17188cdc6010c8d53991",
+        "v": "381cec8c518080633ed2db4ed67d56f0064008d364bf29f9792a76c4f9f5b5cf"
+      }
+    },
+    "8": {
+      "bitwise_equal": true,
+      "shape": [
+        8,
+        4
+      ],
+      "seed": 0,
+      "seq": 8,
+      "array_rows": 4,
+      "binary_sha256": "5d57c976661c2f69a667f7c8ece04f085ec91996ab7d0979a9e78a40c01172cc",
+      "config_sha256": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+      "actual_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+      "expected_sha256": "42582643b7a6651270af53556ac54d6dc4fc6fb7727463280966b09b2a6254bd",
+      "input_sha256": {
+        "q": "d94e4e580563a804846640f072da088f0ee3c93f16334b13cadc97d49ad7740d",
+        "k": "0c86a4b7d7041eb57831eb064fe645ff23b797e3711fa015d00c8bea5cab1452",
+        "v": "0173503f6a3b1775a8a9a76484332a5180dfc4e4c15f3185e8afd199a501292e"
+      }
+    }
+  },
+  "audit_tool_commit": "b6fb959",
+  "export": {
+    "bitstream": {
+      "path": "U280_EXPERIMENTAL.bit",
+      "sha256": "6bf687c68da923859f6196bab0c828dcba173362d4340335fbc2cc81a06a0832"
+    },
+    "build_source": {
+      "commit": "c9b39717ec6bd5fc5ac98e998b7f9d6c95fef05f",
+      "profile": "U280",
+      "profile_sha256": "0addc502ceb8f4fb9d908c0893415e1584e4b8b2fdf791c2c79d4c8562df04b1"
+    },
+    "cdc_review": "not_closed_by_export",
+    "clock_mhz": 70,
+    "config": {
+      "path": "FSAConfig.json",
+      "sha256": "d8c3330d60ee335601401365e6fa4de774b53bb099dccc0afd464048b262a6ba"
+    },
+    "created_utc": "2026-11-02T08:57:58.400207+00:00",
+    "dcp": "/tmp/ict-u280-run/build-attempt02/U280/fpga/chipyard.fpga.u280.U280FPGATestHarness.EmptyU280Config/obj/post_route.dcp",
+    "dcp_sha256": "f6871baf31783a64f008d935ce90fea0e7fdaa40bc8be86c72d5507d0fa2edf0",
+    "profile": "U280",
+    "purpose": "EXPERIMENTAL_BOARD_TEST",
+    "read_only_reaudit": true,
+    "release_approved": false,
+    "schema_version": 1,
+    "source": {
+      "commit": "b6fb959180167cce0cffb52016f1665963b065d9",
+      "profile": "U280",
+      "profile_sha256": "f6e11c7b86842aea67db7e88b19ab6b118313e0f048867b43da20bd2b88e7234"
+    },
+    "sta_expected_period_ns": 14.284285714285716,
+    "status": "exported"
+  },
+  "timing": {
+    "wns_ns": 0.003,
+    "tns_ns": 0.0,
+    "whs_ns": 0.01,
+    "ths_ns": 0.0,
+    "wpws_ns": 0.0,
+    "tpws_ns": 0.0,
+    "bus_skew_constraints": 18,
+    "bus_skew_min_slack_ns": 2.884
+  },
+  "resources": {
+    "lut": 381056,
+    "ff": 72510,
+    "dsp": 320,
+    "ramb36": 80,
+    "ramb18": 3
+  },
+  "scope": "bitstream exported, not programmed, CDC review not closed; original implement receipt retained as failed clock-identity check",
+  "report_sha256": {
+    "timing.txt": "53e1c0e852b9bbde7c0e2974915431e11dfd6675a431026d29c2112189657b3f",
+    "utilization.txt": "074533f19f7f5eb09dcbfde601f1f60bd1a3148bc31dbbe2b861e2eb87419fc5",
+    "drc.txt": "df2cc4731271c891b57a8b8e39a561b3f170e55c3f8ad62a53da50f4a37c9714",
+    "cdc.txt": "9100c51278fcd32b0745ce2b6ffc4dec69aa8f53dc492c62f377b6ed7b2ce557",
+    "check-timing.txt": "df31446e904f81a95b0f8f6a523373922eddfbcf5adb26161e32db147abf12cb",
+    "exceptions.txt": "e7188add247adad1899ddef492b1dae7e3c06fa1d55d88ebf60017bded6a3fbf",
+    "bus-skew.txt": "04eacb3bba37847b7f079a9a5aafd7a417e3aa872a091594b2f19ca9189a5028"
+  }
+}

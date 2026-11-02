@@ -1,5 +1,7 @@
 # ICT-FSA original-u280：U280 初始移植基线
 
+**本次已完成独立编译、4×4数值仿真、完整布局布线和实验 bitstream 导出；未上板。** 详见[验收记录](reports/ORIGINAL_U280_BASELINE.md)。
+
 本分支保存 U280 初始移植及运行必需的正确性修复，不包含 NM37 后续 P0/P1/P2/P3、ShiftRightJam、PE/CMP 流水或复位复制优化。它是板卡移植起点，不是新的性能优化版本。
 
 ## 来源与范围
@@ -32,7 +34,7 @@ export BUILD_OUT="$WORK/build-attempt01"
 
 ## 2. 检查工具并获取锁定依赖
 
-先按[环境说明](docs/reproduction/environment.md)设置 JDK20.0.2、firtool1.75.0、Verilator5.022、Vivado2020.2_AR75986、GCC/G++13.3 和 RISCV/FESVR。不需要先运行 A70/A100/A110；本分支没有后续形式验证套件，不必安装该说明中的 Yosys。
+入口 `python3` 需要 Python 3.9 或以上（本轮3.10.14）；算法环境由 uv 使用 Python3.13。先按[环境说明](docs/reproduction/environment.md)设置 JDK20.0.2、firtool1.75.0、Verilator5.022、Vivado2020.2_AR75986、GCC/G++13.3 和 RISCV/FESVR。不需要先运行 A70/A100/A110；本分支没有后续形式验证套件，不必安装该说明中的 Yosys。
 
 ```bash
 python3 scripts/fsa.py doctor
@@ -64,6 +66,8 @@ python3 scripts/fsa.py implement --out "$BUILD_OUT"
 python3 scripts/fsa.py status --out "$BUILD_OUT"
 ```
 
+按顺序运行以上命令，不在同一源码目录并行 sim/elaborate：它们可能共享 tapeout.jar 生成缓存。
+
 `elaborate` 生成 U280 的16×16板级 RTL/IP；`implement` 完整运行 Vivado，保留 routed DCP、资源与时序报告。查看输出中的 `report/`、`audit/`，特别是实际 DUT70 MHz、setup/hold、脉宽和 DRC。脚本入口存在不等于布局布线已通过。
 
 ## 5. 导出 bitstream
@@ -84,3 +88,20 @@ cat "$EXPORT_OUT/experiment.json"
 查看 `$BUILD_OUT.ict-state/` 中对应阶段日志和 receipt。前一阶段成功不代表后一阶段成功；不要补写成功标记。工具或依赖错误先修环境，已有失败阶段保留，使用新的输出目录重新开始；源码发生改变时使用新 checkout 和新输出。下载缓存可以复制/复用，既有构建结果不得覆盖。
 
 本次独立验证状态见[验收记录](reports/ORIGINAL_U280_BASELINE.md)。
+
+## 已有历史 U280 routed DCP 的审计恢复
+
+本次发现的错误仅在工具的时钟身份检查：历史 MMCM 参数在300 MHz输入下产生70.0 MHz，但输入约束用3.333 ns表示300 MHz，STA传播周期约14.284285714 ns，报告显示14.284 ns/70.007 MHz。旧入口将其与1000/70比较，超过0.001 ns容差便拒绝；这不是 setup/hold 失败。修复锁定该历史 STA 周期，未修改时钟IP、XDC、RTL或slack门槛。`clock-observed.json`中由显示周期换算的频率仅是STA报告值，不是对晶振频率的实测。
+
+从本分支最新提交全新构建直接按上文执行。只有保留了旧失败记录和 routed DCP 的历史构建才使用下列恢复入口：
+
+```bash
+# 在独立的最新 original-u280 工具源码中执行；旧输出绝不能覆盖。
+export OLD_BUILD=/absolute/path/to/old-build
+export OLD_BUILD_COMMIT=填写旧构建source.json中的完整40位commit
+python3 scripts/fsa.py export --out "$OLD_BUILD" \
+  --build-source-commit "$OLD_BUILD_COMMIT" \
+  --result-out "$WORK/recovered-bits-attempt01"
+```
+
+工具核验旧源码身份、DCP/config哈希、祖先关系以及严格审计工具变更白名单；硬件、依赖或其他profile参数变动会拒绝。重新检查真实DCP的时序/DRC后写入全新导出目录，manifest分别记录build_source与审计工具source。它不修改原失败receipt，也不把旧implement改成成功。无完整原构建记录时重新构建，不能手工制造seal。
