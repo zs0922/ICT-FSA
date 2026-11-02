@@ -119,6 +119,13 @@ mkdir "$ORIGINAL_WORK/sim-seq4-attempt01"
 uv run main.py --seq_q 4 --seq_kv 4 --config FSA4X4Fp16Config --diff --max_cycles 10000000 --output_dir "$ORIGINAL_WORK/sim-seq4-attempt01"
 ```
 
+追加一个分块计算输入（同一个4×4 PE阵列，不需重编译）：
+
+```bash
+mkdir "$ORIGINAL_WORK/sim-seq8-attempt01"
+uv run main.py --seq_q 8 --seq_kv 8 --config FSA4X4Fp16Config --diff --max_cycles 10000000 --output_dir "$ORIGINAL_WORK/sim-seq8-attempt01"
+```
+
 检查仿真正常结束以及 FSA/PyEasyFloat 对 Torch 的 MAE、MSE、MaxErr、RelErr。
 `--seq_q/--seq_kv` 是输入序列长度，不是 PE 阵列尺寸。记录生成配置、输入规模和误差；
 程序完成不自动代表达到某个数值验收阈值。

@@ -15,7 +15,7 @@ ICT-FSA 原有整理历史未包含该对象，本次 original 分支导入该�
 | FPGA Scala assembly | PASS，实际从源码编译 |
 | U55C EmptyU55CConfig RTL生成 | PASS，16×16/70MHz，未进行物理实现 |
 | FSA4X4Fp16Config Verilator 编译 | PASS，实际编译并链接 |
-| seq_q=seq_kv=4 功能仿真 | PASS 完成，误差见下 |
+| seq_q=seq_kv=4 / 8 功能仿真 | 两者 PASS 完成，误差见下 |
 | U55C 综合、布局布线、bitstream | 未运行；make bitstream命令已dry-run验证 |
 | U55C 板测 | 未运行；本轮没有U55C板卡验收结果 |
 
@@ -24,6 +24,9 @@ MaxErr=0.00030440092，RelErr=0.00019886618。
 PyEasyFloat 与 Torch 打印指标相同；这不等于逐元素 bit-exact 证明。
 FSA execTime=353 cycles，mxBubble=206，mxActive=71，dmaActive=22，rawInst=32；
 整个 Verilator testbench 在4587周期结束。不要把testbench周期当FSA执行周期。
+同一4×4仿真器追加seq8分块回归：MAE=9.252038e-05，MSE=1.30638265e-08，
+MaxErr=0.00027418137，RelErr=0.00021823279；PyEasyFloat打印指标相同。
+execTime=1068，mxBubble=780，mxActive=232，dmaActive=68，rawInst=97；testbench=11737周期。
 本次仅4×4功能回归，不作为16×16板卡性能数据。
 
 ## 环境与恢复
@@ -65,3 +68,4 @@ FSA execTime=353 cycles，mxBubble=206，mxActive=71，dmaActive=22，rawInst=32
 | `sim-seq4-attempt02.log` | `e75afc1e969580bddfce86fc0e28f95de8e9564f18adedcec08ed8ddb93f1fef` |
 | `uv-easyfloat.log` | `a1673e153034267fc58cf4756c0c6ac81a5ac08a711b4b97d46e91642a127fc2` |
 | `uv-fsa.log` | `a541b6882c5286f9e1f2eaafaa8f97e5ccb480cff54a62537978116e85e78c1d` |
+| `sim-seq8-attempt01.log` | `dcb74fb9bee21dc02f1c7e4db5be073a21ce35109234a4ff4d2f1e373f3ed091` |
