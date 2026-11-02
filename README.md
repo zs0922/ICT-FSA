@@ -44,7 +44,8 @@ python3 scripts/verify-original.py
 
 主路径使用已有工具安装，不要求先运行任何优化版本。所需版本：JDK 20.0.2、
 CIRCT firtool 1.75.0、Verilator 5.022、GCC/G++ 13.3.0、Python 3.13（由 uv 管理），
-以及包含 `libfesvr.a` 和 `libriscv.so` 的 RISC-V/Spike 安装。sbt 1.8.2 已在源码锁定。
+以及包含 `libfesvr.a` 和 `libriscv.so` 的 RISC-V/Spike 安装。若首次机器没有这两个库，
+先按下方“2.1 首次安装 Spike/FESVR”准备，再返回继续；不需要先复现其他硬件版本。sbt 1.8.2 已在源码锁定。
 准备 Git、make、uv；以下路径必须替换为当前机器对应安装位置，不能指向不存在的目录。
 
 ```bash
@@ -95,6 +96,53 @@ source env.sh
 该替代方式本轮没有从空机器完整执行，不作为已验证主路径。脚本下载范围较大，
 固定源码不代表所有外部下载服务一直可用。网络中断保存日志并重试依赖准备；不要清空
 下载缓存或把 gitlink 改到新版。
+
+## 2.1 首次安装 Spike/FESVR
+
+这里需要的是运行在主机上的 Spike/FESVR 头文件和库，不是完整 RISC-V 交叉编译工具链。
+准备本机 GNU make、GCC/G++ 13.3.0 和 `dtc`（device-tree-compiler）；检查下面第一行
+可找到 dtc。缺少系统工具时先安装到用户工具环境或请管理员提供，不需要 sudo make install。
+
+本分支已经通过 gitlink 固定 Spike 源码为
+`76858cc3aa178446584eae52f82e0a933e71f8db`；常规依赖脚本没有下载这个工具链目录，
+所以需要显式初始化。以下命令不改变该 gitlink，也不修改 FSA/easyfloat。
+
+```bash
+command -v dtc
+cd "$ORIGINAL_WORK/source"
+git -c url.https://github.com/.insteadOf=git@github.com: \
+  submodule update --init --checkout -- toolchains/riscv-tools/riscv-isa-sim
+export SPIKE_SOURCE="$ORIGINAL_WORK/source/toolchains/riscv-tools/riscv-isa-sim"
+test "$(git -C "$SPIKE_SOURCE" rev-parse HEAD)" = 76858cc3aa178446584eae52f82e0a933e71f8db
+export SPIKE_BUILD="$ORIGINAL_WORK/spike-build-attempt01"
+export RISCV="$ORIGINAL_WORK/toolchain/spike-76858cc3-attempt01"
+# mkdir 不加 -p：拒绝悄悄复用以前的编译目录。
+mkdir "$SPIKE_BUILD"
+cd "$SPIKE_BUILD"
+CC=/usr/bin/gcc CXX=/usr/bin/g++ "$SPIKE_SOURCE/configure" \
+  --prefix="$RISCV" --with-boost=no --with-boost-asio=no --with-boost-regex=no
+make -j4
+make libfesvr.a
+make install
+install -m 644 libfesvr.a "$RISCV/lib/libfesvr.a"
+export PATH="$RISCV/bin:$PATH"
+export LD_LIBRARY_PATH="$RISCV/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+test -s "$RISCV/lib/libfesvr.a"
+test -s "$RISCV/lib/libriscv.so"
+test -s "$RISCV/include/fesvr/htif.h"
+ls -lh "$RISCV/lib/libfesvr.a" "$RISCV/lib/libriscv.so"
+cd "$ORIGINAL_WORK/source"
+```
+
+每条命令成功后再执行下一条；安装失败不要直接继续硬件构建。编译和安装目录都在
+`ORIGINAL_WORK` 下、源码树外，不会写入旧 `$HOME/riscv`，也不需要 sudo。
+失败时保留目录和日志，重新尝试使用新的 `attempt02` 编译/安装路径。
+返回第2节时把 RISCV 保持为这里安装的前缀，不要覆盖成示例 `/path/to/riscv`。
+后续新终端需恢复相同 RISCV/PATH/LD_LIBRARY_PATH。
+
+本轮验证实际使用已有 Spike/FESVR 安装，**没有执行这套从源码冷启动构建**。
+已核对固定提交的 configure 支持上述选项、Makefile 提供 `libfesvr.a` 和安装目标，
+且 riscv 子项目安装 `libriscv.so`；这不替代新机器实际编译验收。
 
 ## 3. 编译 Verilator 仿真器
 

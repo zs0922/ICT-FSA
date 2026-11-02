@@ -69,3 +69,12 @@ execTime=1068，mxBubble=780，mxActive=232，dmaActive=68，rawInst=97；testbe
 | `uv-easyfloat.log` | `a1673e153034267fc58cf4756c0c6ac81a5ac08a711b4b97d46e91642a127fc2` |
 | `uv-fsa.log` | `a541b6882c5286f9e1f2eaafaa8f97e5ccb480cff54a62537978116e85e78c1d` |
 | `sim-seq8-attempt01.log` | `dcb74fb9bee21dc02f1c7e4db5be073a21ce35109234a4ff4d2f1e373f3ed091` |
+
+
+## Spike/FESVR 首次安装文档补充
+
+README新增固定 `76858cc3aa178446584eae52f82e0a933e71f8db` 的独立工具构建步骤。
+本轮只检查该提交的 `configure --help`、`Makefile.in`、`fesvr/fesvr.mk.in` 和
+`riscv/riscv.mk.in`：支持 `--prefix` 及三个禁用 Boost 选项，提供静态 FESVR 和动态
+RISC-V 库安装规则。configure帮助输出在 `spike-configure-help.log`。
+没有执行另一套工具链编译或硬件构建；已有仿真验收仍使用原记录中的既有库。
