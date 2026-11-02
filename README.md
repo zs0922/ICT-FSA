@@ -4,14 +4,14 @@
 
 阶段为 U280 → NM37 初始迁移 → NM37 A70-P3 → NM37 A100 → NM37 A110/APB55 → NM37 A120/APB60 → NM37 A150/APB100。具体 commit 与已验证范围见 [本地迁移记录](reports/ICT_FSA_LOCAL_MIGRATION.md)（完整映射：`docs/history/migration-map.json`）；候选提交可切换，验收标签要等对应复现通过后再创建。下面命令在 Bash/tmux 中逐条执行；**不要在交互终端执行 `set -euo pipefail`**。
 
-## 本次 A150/APB100 从哪里开始（仅本地，未 push）
+## 本次 A150/APB100 从哪里开始
 
-当前本地集成版本为 **A150-APB100：DUT/FSA/HBM AXI 150MHz，HBM APB 100MHz**，分支 `codex/nm37-a150-apb100`。可以直接从这个版本开始，不必先构建 A70/A100/A110/A120。当前 GitHub 分支尚不包含本次修改；本机按下面从本地仓库 clone，其他服务器需先获得该提交的 Git bundle，或等待明确授权后的推送。
+当前集成版本为 **A150-APB100：DUT/FSA/HBM AXI 150MHz，HBM APB 100MHz**，分支 `codex/nm37-a150-apb100`。可以直接从这个版本开始，不必先构建 A70/A100/A110/A120。A150 分支与默认分支 `codex/ict-fsa-integration` 通过 GitHub 同步交付。硬件迁移提交为 `dae09729028da1d6ba0319c91fa946ae1916a97a`，本次发布提交只更新文档。构建时使用交付的固定提交，不在已有构建中途 pull 或切换版本。
 
 PE/CMP/scratchpad/accumulator 流水保持 1/1/2/3 拍；DUT:APB 从 A120 的 2:1 改为 3:2，两个时钟仍由同一 MMCM 产生。旧实验已导出 bit，DUT setup +0.049ns、整板最差 Max（Recovery）+0.047ns、Hold +0.010ns，但尚未板测。**迁入 ICT-FSA 后尚未完整重建；上述数字不是新提交的实现结果。** 具体差异和验证边界见 [A150 迁移记录](reports/ICT_FSA_A150_MIGRATION.md)。
 
 ```bash
-export ICT_REPO=/home/zhangsi/tmp/ICT-FSA
+export ICT_REPO=https://github.com/zs0922/ICT-FSA.git
 export WORK="$HOME/ict-fsa-a150-reproduce"
 mkdir -p "$WORK"
 git clone --no-hardlinks --branch codex/nm37-a150-apb100 "$ICT_REPO" "$WORK/a150-source"
