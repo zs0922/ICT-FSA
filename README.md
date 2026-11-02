@@ -140,9 +140,10 @@ cd "$ORIGINAL_WORK/source"
 返回第2节时把 RISCV 保持为这里安装的前缀，不要覆盖成示例 `/path/to/riscv`。
 后续新终端需恢复相同 RISCV/PATH/LD_LIBRARY_PATH。
 
-本轮验证实际使用已有 Spike/FESVR 安装，**没有执行这套从源码冷启动构建**。
-已核对固定提交的 configure 支持上述选项、Makefile 提供 `libfesvr.a` 和安装目标，
-且 riscv 子项目安装 `libriscv.so`；这不替代新机器实际编译验收。
+先前的硬件编译/仿真使用已有 Spike/FESVR 安装。随后已在独立目录实际完成上述固定源码的
+configure、make -j4、静态库构建及安装，双库、头文件与 `spike --help` 检查通过。
+这次工具安装没有覆盖旧库，也没有用新安装重新编译硬件；详情见验证记录。
+源码从本地固定 Git 对象取得，因此不把该结果称为所有网络下载的空机器验收。
 
 ## 3. 编译 Verilator 仿真器
 

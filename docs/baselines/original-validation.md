@@ -34,7 +34,7 @@ execTime=1068，mxBubble=780，mxActive=232，dmaActive=68，rawInst=97；testbe
 - Linux x86_64；JDK OpenJDK 20.0.2-internal；sbt 1.8.2（源码锁定）。
 - firtool 1.75.0；Verilator 5.022（Conda发行）；最终C++编译和链接强制系统GCC/G++13.3.0。
 - Python 3.13.14、uv 0.11.30、Torch 2.6.0；按上游uv.lock冻结安装。
-- Spike/FESVR库来自既有 `/home/zhangsi/riscv`；未从零重建工具链。
+- 先前硬件编译使用的Spike/FESVR库来自既有 `/home/zhangsi/riscv`；后续独立安装验证见文末。
 - Scala/Maven下载缓存复制到独立目录，未改旧构建缓存；源码依赖从本地对象取得，
   之后实际仓库全部repack解除alternates，原始分支不依赖旧FSA对象目录。
 - `XDG_RUNTIME_DIR` 指定可写独立目录，sbt需要本地socket；受限sandbox下需允许socket。
@@ -77,4 +77,45 @@ README新增固定 `76858cc3aa178446584eae52f82e0a933e71f8db` 的独立工具构
 本轮只检查该提交的 `configure --help`、`Makefile.in`、`fesvr/fesvr.mk.in` 和
 `riscv/riscv.mk.in`：支持 `--prefix` 及三个禁用 Boost 选项，提供静态 FESVR 和动态
 RISC-V 库安装规则。configure帮助输出在 `spike-configure-help.log`。
-没有执行另一套工具链编译或硬件构建；已有仿真验收仍使用原记录中的既有库。
+该文档补充提交时尚未执行另一套工具链编译；随后实际安装结果见下一节。已有仿真验收仍使用原记录中的既有库。
+
+
+## Spike/FESVR 独立安装实际验收（2026-11-02）
+
+在 `/tmp/ict-spike-baseline-validation` 新建 `source`、`build` 和 `install`，
+从只读本地Git对象独立clone固定 `76858cc3aa178446584eae52f82e0a933e71f8db`。
+没有共享alternates，没有修改 `/home/zhangsi/riscv`；源码工作树保持干净。
+CC=/usr/bin/gcc、CXX=/usr/bin/g++，均13.3.0；dtc版本为DTC 1.7.0。
+
+| 操作 | 结果 |
+|---|---|
+| configure，独立prefix，三个with-boost选项均no | exit 0 |
+| make -j4 | exit 0 |
+| make libfesvr.a | exit 0 |
+| make install，用户可写prefix | exit 0 |
+| 安装libfesvr.a到prefix/lib | exit 0 |
+| 双库及fesvr/htif.h存在且非空 | 通过 |
+| 新安装spike --help | exit 0，1.1.1-dev |
+| 新安装libriscv.so动态依赖解析 | 无not found |
+
+先前本分支Scala/RTL/Verilator验收仍使用旧安装。本节只验证独立工具构建安装流程，
+没有据此宣称硬件又用新库重建了一遍，也没有执行完整RISC-V交叉编译器构建。
+公网源码下载没有重新执行；本地对象只是源码获取加速，编译和安装产物均本次重新生成。
+
+| 新安装产物 | 字节数 | SHA256 |
+|---|---:|---|
+| `lib/libfesvr.a` | 6651522 | `6bdc33518a3b873a0d546a8b64857df0f83519bc86c500ca39e29ed33781d4dd` |
+| `lib/libriscv.so` | 180559904 | `cf57970c6b9228ea6299fd38359c79c754948939c13c6a2f098cf4036dd59472` |
+| `include/fesvr/htif.h` | 5965 | `5aec4e8516d1ccc72941af7a728556027a9da88d199978c9434e0996e55be608` |
+
+本地完整记录：`/tmp/ict-spike-baseline-validation/validation.json`。日志哈希：
+
+| 日志 | SHA256 |
+|---|---|
+| `configure.log` | `874c36a26ee4cef9355462e09c64cc0933cce2c722d3c10592a447b53a17fb02` |
+| `make.log` | `b3a720dc636a697a6da1048ed7a848e741272c86c66a5046bd857ff1c3b210d0` |
+| `libfesvr-confirm.log` | `292facd041a91cdeec3249613fd0e7250cc514861c1cb3230865295832c8495f` |
+| `install-confirm.log` | `691ca15ab3cc12c515c33476cdb1bdcb0105500c6244a18bdecf0c948dee7744` |
+| `archive-install-confirm.log` | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` |
+| `spike-help.log` | `c5573d08c9380e48fe3fca1042a02857ba6e265e996bd31c0953fc0f644dc98c` |
+| `validation.json` | `4bc00b272fe11566cdc37fef54e2fef9ddfbb3822015faf60125fd7e0e61595b` |
