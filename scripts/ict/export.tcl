@@ -1,6 +1,6 @@
 # Board experiments: do not waive DRC or declare CDC/release acceptance.
-if {$argc != 4} {error "Expected DCP NEW_EXPERIMENT_DIR DUT_MHZ BIT_PATH"}
-lassign $argv dcp out mhz bit
+if {$argc != 5} {error "Expected DCP NEW_EXPERIMENT_DIR DUT_MHZ BIT_PATH STA_DUT_PERIOD_NS"}
+lassign $argv dcp out mhz bit expected_period
 set_param general.maxThreads 4
 open_checkpoint $dcp
 report_timing_summary -file [file join $out timing.txt]
@@ -13,9 +13,16 @@ report_exceptions -file [file join $out exceptions.txt]
 report_drc -file [file join $out drc.txt]
 # Strict setup/hold guard for the DUT and every timed clock group.
 set dut [get_clocks clk_out1_harnessSysPLL]
-if {[llength $dut] != 1 || abs([get_property PERIOD $dut] - (1000.0 / $mhz)) > 0.001} {
+if {[llength $dut] != 1 || abs([get_property PERIOD $dut] - $expected_period) > 0.001} {
     error "Expected exactly one $mhz MHz DUT clock"
 }
+set fd [open [file join $out clock-observed.json] w]
+puts $fd "\{"
+puts $fd [format {"nominal_dut_mhz": %s, "sta_period_ns": %s, "sta_frequency_mhz": %s} $mhz [get_property PERIOD $dut] [expr {1000.0/[get_property PERIOD $dut]}]]
+puts $fd "\}"
+close $fd
+report_timing -from $dut -to $dut -delay_type max -max_paths 100 -input_pins -nets -file [file join $out dut_setup_top100.txt]
+report_timing -from $dut -to $dut -delay_type min -max_paths 100 -input_pins -nets -file [file join $out dut_hold_top100.txt]
 foreach kind {max min} {
     set paths [get_timing_paths -delay_type $kind -max_paths 1]
     if {[llength $paths] == 0 || [get_property SLACK $paths] < 0} { error "Global $kind timing failed" }

@@ -18,6 +18,7 @@ def main():
     a=parser.parse_args(); p=profile(); out=a.out.resolve(); stage=p['id']
     if stage not in ('U280','NM37','A70-P3'): parser.error('Historical backend used with modern profile')
     env=dict(os.environ,USE_CHISEL6='1',ICT_BUILD_OUT=str(out),ICT_DUT_MHZ=str(p['dut_mhz']))
+    env['ICT_DUT_PERIOD_NS']=str(p.get('sta_dut_period_ns',1000.0/p['dut_mhz']))
     env['JAVA_TOOL_OPTIONS']=env.get('JAVA_TOOL_OPTIONS','')+' -Xmx16G -Xss8M -XX:ActiveProcessorCount=16 -Dsbt.supershell=false -Dsbt.server.autostart=false'
     env['PYTHONPATH']=str(ROOT/'generators/easyfloat')+':'+str(ROOT/'generators/fsa/python')
     board=p['board'].lower(); model=p.get('model',p['board']+'FPGATestHarness'); cfg=p.get('config','Empty'+p['board']+'Config')

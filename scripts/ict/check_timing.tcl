@@ -1,6 +1,6 @@
 # Strict setup/hold guard for the DUT and every timed clock group.
 set dut [get_clocks clk_out1_harnessSysPLL]
-if {[llength $dut] != 1 || abs([get_property PERIOD $dut] - (1000.0 / $::env(ICT_DUT_MHZ))) > 0.001} {
+if {[llength $dut] != 1 || abs([get_property PERIOD $dut] - $::env(ICT_DUT_PERIOD_NS)) > 0.001} {
     error "Expected exactly one configured DUT clock"
 }
 foreach kind {max min} {

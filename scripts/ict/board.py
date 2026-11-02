@@ -1,5 +1,6 @@
 """Experimental export, explicit programming, and receipt-bound numerical tests."""
 import csv
+import hashlib
 from datetime import datetime, timezone
 import fcntl
 import json
@@ -12,7 +13,7 @@ import statistics
 import subprocess
 import sys
 import time
-from ict_cli import sha, save, source_identity, bind
+from ict_cli import sha, save, source_identity, bind, git, state_path
 from . import runtime
 
 
@@ -43,8 +44,41 @@ def routed_inputs(build,state):
     if expected!=artifacts:raise ValueError('Routed DCP/config changed after implementation; preserve mixed artifacts and rebuild in a new output')
     return dcps[0],configs[0]
 
+def recovery_binding(build, p, commit):
+    if p['id'] != 'U280' or not re.fullmatch('[0-9a-f]{40}', commit):
+        raise ValueError('Recovery requires U280 and a full original build commit')
+    source_identity(p)
+    state=state_path(build)
+    old=json.loads((state/'source.json').read_text())
+    if old.get('commit') != commit or old.get('profile') != p['id']:
+        raise ValueError('Original build source receipt does not match requested commit/profile')
+    if git('merge-base', commit, 'HEAD') != commit:
+        raise ValueError('Original build commit must be an ancestor of the audit tools')
+    old_profile_text=git('show', commit+':profiles/current.json')+'\n'
+    if hashlib.sha256(old_profile_text.encode()).hexdigest() != old.get('profile_sha256'):
+        raise ValueError('Original profile receipt hash mismatch')
+    old_profile=json.loads(old_profile_text)
+    new_profile=dict(p);new_profile.pop('sta_dut_period_ns',None)
+    old_profile.pop('sta_dut_period_ns',None)
+    if new_profile != old_profile or p.get('sta_dut_period_ns') != 14.284285714285715:
+        raise ValueError('Recovery permits only the documented U280 STA period metadata change')
+    allowed={'README.md','docs/reproduction/environment.md','reports/ORIGINAL_U280_BASELINE.md',
+             'reports/original-u280-validation.json','profiles/current.json','scripts/ict_cli.py',
+             'scripts/ict_history.py','scripts/ict/board.py','scripts/ict/export.tcl',
+             'scripts/ict/implement.tcl','scripts/ict/check_timing.tcl','tests/test_u280_recovery.py'}
+    changed=set(git('diff','--name-only',commit,'HEAD').splitlines())
+    if changed-allowed:
+        raise ValueError('Recovery rejected hardware/dependency/non-audit changes: '+str(sorted(changed-allowed)))
+    return state, old
+
+
 def export(a,p,root):
-    build=a.out.resolve(); state=bind(build,p)
+    build=a.out.resolve()
+    recovery=getattr(a,'build_source_commit',None)
+    if recovery: state, build_source=recovery_binding(build,p,recovery)
+    else:
+        state=bind(build,p)
+        build_source=json.loads((state/'source.json').read_text())
     routed_inputs(build,state)
     dcps=list(build.rglob('post_route.dcp'))
     if len(dcps)!=1: raise ValueError(f'Expected exactly one routed DCP, found {len(dcps)}; complete implementation first')
@@ -57,6 +91,8 @@ def export(a,p,root):
     shutil.copy2(configs[0],out/'FSAConfig.json')
     bit=out/(p['id']+'_EXPERIMENTAL.bit')
     manifest={'schema_version':1,'profile':p['id'],'clock_mhz':p['dut_mhz'],'source':identity,
+              'build_source':build_source,'read_only_reaudit':bool(recovery),
+              'sta_expected_period_ns':p.get('sta_dut_period_ns',1000.0/p['dut_mhz']),
               'purpose':'EXPERIMENTAL_BOARD_TEST','release_approved':False,'cdc_review':'not_closed_by_export',
               'dcp_sha256':sha(dcp),'dcp':str(dcp),'status':'running','created_utc':datetime.now(timezone.utc).isoformat(),
               'config':{'path':'FSAConfig.json','sha256':sha(out/'FSAConfig.json')}}
@@ -64,7 +100,7 @@ def export(a,p,root):
     script=root/'scripts/ict/export.tcl';shutil.copy2(script,out/'export.tcl')
     try:
         with (out/'console.log').open('x') as log:
-            subprocess.run([exe,'-mode','batch','-source',str(out/'export.tcl'),'-log',str(out/'vivado.log'),'-journal',str(out/'vivado.jou'),'-tclargs',str(dcp),str(out),str(p['dut_mhz']),str(bit)],cwd=out,stdout=log,stderr=subprocess.STDOUT,check=True)
+            subprocess.run([exe,'-mode','batch','-source',str(out/'export.tcl'),'-log',str(out/'vivado.log'),'-journal',str(out/'vivado.jou'),'-tclargs',str(dcp),str(out),str(p['dut_mhz']),str(bit),str(p.get('sta_dut_period_ns',1000.0/p['dut_mhz']))],cwd=out,stdout=log,stderr=subprocess.STDOUT,check=True)
         if not bit.is_file() or not bit.stat().st_size or sha(dcp)!=manifest['dcp_sha256']: raise ValueError('Missing bitstream or changed DCP')
         manifest.update(status='exported',bitstream={'path':bit.name,'sha256':sha(bit)})
         (out/'SHA256SUMS').write_text(f'{sha(bit)}  {bit.name}\n{sha(out/"FSAConfig.json")}  FSAConfig.json\n')

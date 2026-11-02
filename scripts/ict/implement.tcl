@@ -13,7 +13,7 @@ source [file join $scriptdir place.tcl]
 source [file join $scriptdir route.tcl]
 set dut [get_clocks clk_out1_harnessSysPLL]
 if {[llength $dut] != 1} {error "Expected exactly one DUT clock"}
-if {abs([get_property PERIOD $dut] - (1000.0 / $::env(ICT_DUT_MHZ))) > 0.001} {error "Expected configured DUT period"}
+if {abs([get_property PERIOD $dut] - $::env(ICT_DUT_PERIOD_NS)) > 0.001} {error "Expected configured DUT period"}
 report_bus_skew -file [file join $wrkdir audit bus_skew.txt]
 report_timing -from $dut -to $dut -delay_type max -max_paths 100 -nworst 1 -input_pins -nets -file [file join $wrkdir audit dut_setup_top100.txt]
 report_timing -from $dut -to $dut -delay_type min -max_paths 100 -nworst 1 -input_pins -nets -file [file join $wrkdir audit dut_hold_top100.txt]
