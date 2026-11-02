@@ -27,7 +27,7 @@ class WorkflowTests(unittest.TestCase):
     def run_cli(self,*args):
         with contextlib.redirect_stdout(io.StringIO()):cli.main(list(args))
     def test_a120_profile_dispatch_and_output_environment(self):
-        real = json.loads((Path(__file__).resolve().parents[1]/'profiles/current.json').read_text())
+        real = json.loads(subprocess.check_output(['git', '-C', str(Path(__file__).resolve().parents[1]), 'show', '462a341:profiles/current.json'], text=True))
         self.assertEqual((real['id'], real['dut_mhz'], real['apb_mhz']), ('A120-APB60', 120, 60))
         with patch.object(cli, 'profile', return_value=real):
             stream = io.StringIO()
@@ -39,6 +39,23 @@ class WorkflowTests(unittest.TestCase):
             self.assertFalse(cli.state_path(self.out).exists())
         p = {**real, 'driver': {'output_env': 'A120_OUT', 'commands': {'build': [
             [sys.executable, '-c', "import os; assert os.environ['ICT_DUT_MHZ']=='120'; assert os.environ['A120_OUT']==os.environ['ICT_BUILD_OUT']"]]}}}
+        with patch.object(cli, 'profile', return_value=p):
+            self.run_cli('build', '--out', str(self.out))
+        self.assertEqual(json.loads((cli.state_path(self.out)/'build.json').read_text())['status'], 'completed')
+
+    def test_a150_profile_dispatch_and_output_environment(self):
+        real = json.loads((Path(__file__).resolve().parents[1]/'profiles/current.json').read_text())
+        self.assertEqual((real['id'], real['dut_mhz'], real['apb_mhz']), ('A150-APB100', 150, 100))
+        with patch.object(cli, 'profile', return_value=real):
+            stream = io.StringIO()
+            with contextlib.redirect_stdout(stream):
+                cli.main(['verify', '--out', str(self.out), '--dry-run'])
+            plan = json.loads(stream.getvalue())
+            self.assertEqual([c[-1] for c in plan['commands']], ['units', 'formal', 'hbm-startup'])
+            self.assertTrue(all(c[1] == 'scripts/nm37-a150/run.sh' for c in plan['commands']))
+            self.assertFalse(cli.state_path(self.out).exists())
+        p = {**real, 'driver': {'output_env': 'A150_OUT', 'commands': {'build': [
+            [sys.executable, '-c', "import os; assert os.environ['ICT_DUT_MHZ']=='150'; assert os.environ['A150_OUT']==os.environ['ICT_BUILD_OUT']"]]}}}
         with patch.object(cli, 'profile', return_value=p):
             self.run_cli('build', '--out', str(self.out))
         self.assertEqual(json.loads((cli.state_path(self.out)/'build.json').read_text())['status'], 'completed')

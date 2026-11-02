@@ -1,0 +1,7 @@
+{
+  "baseline_commit": "e31e6314149d649446c284877bb01f8143719ff3",
+  "candidate_commit": "32480c2630fea1073c7666ea0e4c2f75a49ac358",
+  "dut_mhz": 150,
+  "apb_mhz": 100,
+  "source": "/home/zhangsi/tmp/FSA-m1/nm37-apb100-20261101/A150/src"
+}

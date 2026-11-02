@@ -1,0 +1,1 @@
+PASS: 14 FDCEs share clock/enable/async-clear; three output domains retain three-stage release chains.

@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "reviewer": "Codex: source, emitted RTL, routed DCP and digital reset regression review (2026-11-02)",
+  "build_sha256": "ad4c1ce0eeb69570f05288a85c365661c4822c6a24f9b4ebbe1bab9591778a69",
+  "checkpoint_sha256": "afa79b3259e82d5f39656b335febdc2bdb3580cef0d42aa31f472e249379bd03",
+  "cdc_report_sha256": "2cea8be9b3a41668d6b3f8d76cfd089bb6c43df9ce353233fc2b2da794ed1e96",
+  "reviewed_findings": [
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "Asynch Clock Groups",
+        "pcie/blackbox/inst/pcie4c_ip_i/inst/user_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[13]/CLR",
+        "_pcie_io_clocks_axi_aclk",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "accepted",
+      "classification": "equivalent_existing_structure",
+      "rationale": "APB75 to APB100 extends the unchanged 100us ResetWrangler debounce counter from 13 bits/7500 ticks to 14 bits/10000 ticks. Routed bit13 shares clock, CE and CLR with all existing bits; only these two reset-source endpoints are new. Registered deglitch and three-stage domain release chains are retained. 24 digital reset scenarios pass. This is scoped structural equivalence to the accepted baseline, not a metastability/board signoff or a timing waiver.",
+      "evidence": [
+        {
+          "path": "cdc-evidence/review.md",
+          "sha256": "58f910782e37bc2db12630cd545d9eeaa52a73c43bf23c73dc1a50a7c8e1ab44"
+        },
+        {
+          "path": "cdc-evidence/comparison.json",
+          "sha256": "457c15bb8f58a9660df69d47f5058cc7ef1a930f44b56c2606f74a50fade045c"
+        },
+        {
+          "path": "cdc-evidence/ResetWrangler.scala.txt",
+          "sha256": "5d1e214912c027e3ca96356532c6ee2704e35b0edc8542e6e236817930d6138b"
+        },
+        {
+          "path": "cdc-evidence/baseline-ResetWrangler.sv.txt",
+          "sha256": "75ab358403e5c8aea77b164bc117714cf0cd18315491f5528dd844f4760ec625"
+        },
+        {
+          "path": "cdc-evidence/ResetWrangler.sv",
+          "sha256": "d55d21a61399064a67fedc1aed702f346001dccf662c39e35524bc69048b2ee7"
+        },
+        {
+          "path": "cdc-evidence/AsyncResetRegVec_w14_i0.sv",
+          "sha256": "b6d5ccf81e9ad7e7f950399e74e3d9f1450efce4c448e508d1aea23a34cfd61f"
+        },
+        {
+          "path": "cdc-evidence/routed-structure.txt",
+          "sha256": "43c3880070a044b59e1d0e974fc1ef33343f5a4be8b5198534c3df411ee2be13"
+        },
+        {
+          "path": "cdc-evidence/inspect.tcl",
+          "sha256": "55bdaf9c47efbf64160c34670695db329de0cec58163e488b7d66e0d9dec9436"
+        },
+        {
+          "path": "cdc-evidence/structure-result.txt",
+          "sha256": "94838a6b5ac5192537461e5308f9d2440b9801905291019a44677279bda1b100"
+        },
+        {
+          "path": "cdc-evidence/check_structure.py",
+          "sha256": "771db4bdd69faa843a37472bf02481476181b11bd31fa5eff698dd12c43bd3cc"
+        },
+        {
+          "path": "cdc-evidence/reset_test.cpp",
+          "sha256": "f693cca747bdd5dabb6303159395c0e2482b9868696872461d33a71d2dcb1f1a"
+        },
+        {
+          "path": "cdc-evidence/run-rtl-test.sh",
+          "sha256": "04f757def21dbfd069edb443d57fa1d1585b11a34b2a20ef8881f46ad195cf1f"
+        },
+        {
+          "path": "cdc-evidence/test-result.txt",
+          "sha256": "5fcbdf454516c1a3a54a3330aa638ba412f73c3b824d50c9f83ecb7362bb646c"
+        },
+        {
+          "path": "cdc-evidence/audit-tests-python314.log",
+          "sha256": "4c2d85a6cdeb3f71ddb160afeeb6ccae79b8fc3bd8276d176ec434ea3f52df7e"
+        }
+      ]
+    },
+    {
+      "finding": [
+        "CDC-15",
+        "Warning",
+        "Clock enable controlled CDC structure detected",
+        "0",
+        "False Path",
+        "powerOnReset_fpga_power_on/power_on_reset_reg/C",
+        "wrangler/debounced_debounce/reg_0_reg[13]/CLR",
+        "sys_clock",
+        "clk_out2_harnessSysPLL"
+      ],
+      "disposition": "accepted",
+      "classification": "equivalent_existing_structure",
+      "rationale": "APB75 to APB100 extends the unchanged 100us ResetWrangler debounce counter from 13 bits/7500 ticks to 14 bits/10000 ticks. Routed bit13 shares clock, CE and CLR with all existing bits; only these two reset-source endpoints are new. Registered deglitch and three-stage domain release chains are retained. 24 digital reset scenarios pass. This is scoped structural equivalence to the accepted baseline, not a metastability/board signoff or a timing waiver.",
+      "evidence": [
+        {
+          "path": "cdc-evidence/review.md",
+          "sha256": "58f910782e37bc2db12630cd545d9eeaa52a73c43bf23c73dc1a50a7c8e1ab44"
+        },
+        {
+          "path": "cdc-evidence/comparison.json",
+          "sha256": "457c15bb8f58a9660df69d47f5058cc7ef1a930f44b56c2606f74a50fade045c"
+        },
+        {
+          "path": "cdc-evidence/ResetWrangler.scala.txt",
+          "sha256": "5d1e214912c027e3ca96356532c6ee2704e35b0edc8542e6e236817930d6138b"
+        },
+        {
+          "path": "cdc-evidence/baseline-ResetWrangler.sv.txt",
+          "sha256": "75ab358403e5c8aea77b164bc117714cf0cd18315491f5528dd844f4760ec625"
+        },
+        {
+          "path": "cdc-evidence/ResetWrangler.sv",
+          "sha256": "d55d21a61399064a67fedc1aed702f346001dccf662c39e35524bc69048b2ee7"
+        },
+        {
+          "path": "cdc-evidence/AsyncResetRegVec_w14_i0.sv",
+          "sha256": "b6d5ccf81e9ad7e7f950399e74e3d9f1450efce4c448e508d1aea23a34cfd61f"
+        },
+        {
+          "path": "cdc-evidence/routed-structure.txt",
+          "sha256": "43c3880070a044b59e1d0e974fc1ef33343f5a4be8b5198534c3df411ee2be13"
+        },
+        {
+          "path": "cdc-evidence/inspect.tcl",
+          "sha256": "55bdaf9c47efbf64160c34670695db329de0cec58163e488b7d66e0d9dec9436"
+        },
+        {
+          "path": "cdc-evidence/structure-result.txt",
+          "sha256": "94838a6b5ac5192537461e5308f9d2440b9801905291019a44677279bda1b100"
+        },
+        {
+          "path": "cdc-evidence/check_structure.py",
+          "sha256": "771db4bdd69faa843a37472bf02481476181b11bd31fa5eff698dd12c43bd3cc"
+        },
+        {
+          "path": "cdc-evidence/reset_test.cpp",
+          "sha256": "f693cca747bdd5dabb6303159395c0e2482b9868696872461d33a71d2dcb1f1a"
+        },
+        {
+          "path": "cdc-evidence/run-rtl-test.sh",
+          "sha256": "04f757def21dbfd069edb443d57fa1d1585b11a34b2a20ef8881f46ad195cf1f"
+        },
+        {
+          "path": "cdc-evidence/test-result.txt",
+          "sha256": "5fcbdf454516c1a3a54a3330aa638ba412f73c3b824d50c9f83ecb7362bb646c"
+        },
+        {
+          "path": "cdc-evidence/audit-tests-python314.log",
+          "sha256": "4c2d85a6cdeb3f71ddb160afeeb6ccae79b8fc3bd8276d176ec434ea3f52df7e"
+        }
+      ]
+    }
+  ]
+}

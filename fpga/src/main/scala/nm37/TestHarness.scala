@@ -41,11 +41,11 @@ class NM37FPGATestHarness(implicit p: Parameters) extends NM37ShellBasicOverlays
   dutFixedClockNode := wrangler.node := dutClockGroup := harnessSysPLL
   dutClockNode := dutFixedClockNode
 
-  // A120 uses APB60; existing configurations retain APB55.
-  // Both A110 and A120 preserve a 2:1 AXI/APB clock ratio.
+  // A150/APB100 experiment; other configurations retain their original clocks.
+  // DUT and APB remain related outputs of the same MMCM.
   // Both PLL outputs deliberately belong to the same ClockGroup: PLLFactory
   // must preserve their related generated-clock timing, not cut it as async.
-  val hbmAPBFrequencyMHz = if (dutFreqMHz == 120) 60.0 else 55.0
+  val hbmAPBFrequencyMHz = if (dutFreqMHz == 150) 100.0 else if (dutFreqMHz >= 120) dutFreqMHz / 2.0 else 55.0
   // Keep the board sink first: the ordinary broadcast forwards its selected APB frequency /
   // 230 ps contract. The fixed-frequency variant creates a fresh sink with
   // the library default 200 ps, discarding the declared jitter requirement.
