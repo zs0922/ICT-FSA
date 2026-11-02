@@ -1,102 +1,165 @@
-![CHIPYARD](https://github.com/ucb-bar/chipyard/raw/main/docs/_static/images/chipyard-logo-full.png)
+# ICT-FSA original：FSA/U55C 上游原始基线
 
-# Chipyard Framework [![Test](https://github.com/ucb-bar/chipyard/actions/workflows/chipyard-run-tests.yml/badge.svg)](https://github.com/ucb-bar/chipyard/actions)
+这是移植 U280/NM37 之前的原始基线，硬件、Python 主机软件和 gitlink 保持
+[VCA-EPFL/chipyard-fsa `54671054fedcd2c1f65bb2dd6939abdaf8071814`](https://github.com/VCA-EPFL/chipyard-fsa/commit/54671054fedcd2c1f65bb2dd6939abdaf8071814)
+原貌。该提交于 2025-07-24 合并 FSA/U55C PR #22。Berkeley Chipyard 是框架上游，
+不是本项目 FSA/U55C 的直接移植起点。原 Chipyard README 见
+[upstream-README.md](docs/baselines/upstream-README.md)。
 
-## Quick Links
+本分支只添加来源记录、README 和源一致性检查工具；不包含 U280/NM37 移植、P0～P3、
+ShiftRightJam、A100 流水、复位复制或 APB 分频等后续修改。
+`EmptyU55CConfig` 是 16×16、70MHz、单内存端口配置；仿真 `FSA4X4Fp16Config` 为 4×4，
+不是板卡配置。它们的运行时间不能直接比较。
 
-* **Latest Documentation**: https://chipyard.readthedocs.io/
-* **User Question Forum**: https://groups.google.com/forum/#!forum/chipyard
-* **Bugs and Feature Requests**: https://github.com/ucb-bar/chipyard/issues
+| 输入 | 固定版本 |
+|---|---|
+| Chipyard/FSA 集成 | `54671054fedcd2c1f65bb2dd6939abdaf8071814` |
+| generators/fsa | `f4051d9e6e1aac80b74fee9c9cff0096e19f7acf` |
+| generators/easyfloat | `44e1c369659c2c397548d2aecfc4ded3a74a111e` |
+| fpga/fpga-shells | `d7c353201c61f1879afdb2fddf3c52283d450147` |
 
-## Using Chipyard
+其余顶层依赖已由 gitlink 锁定，完整清单见
+[original-provenance.json](docs/baselines/original-provenance.json)。嵌套依赖使用各父仓库的 gitlink，
+不能使用 `git submodule update --remote`。这条历史分支仍然使用子模块，与新优化分支的
+FSA/easyfloat 直接跟踪方式不同。
 
-To get started using Chipyard, see the documentation on the Chipyard documentation site: https://chipyard.readthedocs.io/
+## 1. 创建独立源码目录
 
-## What is Chipyard
+目前分支仅在本地，尚未 push。当前开发服务器可执行：
 
-Chipyard is an open source framework for agile development of Chisel-based systems-on-chip.
-It will allow you to leverage the Chisel HDL, Rocket Chip SoC generator, and other [Berkeley][berkeley] projects to produce a [RISC-V][riscv] SoC with everything from MMIO-mapped peripherals to custom accelerators.
-Chipyard contains processor cores ([Rocket][rocket-chip], [BOOM][boom], [CVA6 (Ariane)][cva6]), vector units ([Saturn](saturn), [Ara](ara)), accelerators ([Gemmini][gemmini], [NVDLA][nvdla]), memory systems, and additional peripherals and tooling to help create a full featured SoC.
-Chipyard supports multiple concurrent flows of agile hardware development, including software RTL simulation, FPGA-accelerated simulation ([FireSim][firesim]), automated VLSI flows ([Hammer][hammer]), and software workload generation for bare-metal and Linux-based systems ([FireMarshal][firemarshal]).
-Chipyard is actively developed in the [Berkeley Architecture Research Group][ucb-bar] in the [Electrical Engineering and Computer Sciences Department][eecs] at the [University of California, Berkeley][berkeley].
-
-## Resources
-
-* Chipyard Documentation: https://chipyard.readthedocs.io/
-* Chipyard (x FireSim) Tutorial: https://fires.im/tutorial-recent/
-* Chipyard Basics slides: https://fires.im/asplos23-slides-pdf/02_chipyard_basics.pdf
-
-## Need help?
-
-* Join the Chipyard Mailing List: https://groups.google.com/forum/#!forum/chipyard
-* If you find a bug or would like propose a feature, post an issue on this repo: https://github.com/ucb-bar/chipyard/issues
-
-## Contributing
-
-* See [CONTRIBUTING.md](/CONTRIBUTING.md)
-
-## Attribution and Chipyard-related Publications
-
-If used for research, please cite Chipyard by the following publication:
-
-```
-@article{chipyard,
-  author={Amid, Alon and Biancolin, David and Gonzalez, Abraham and Grubb, Daniel and Karandikar, Sagar and Liew, Harrison and Magyar,   Albert and Mao, Howard and Ou, Albert and Pemberton, Nathan and Rigge, Paul and Schmidt, Colin and Wright, John and Zhao, Jerry and Shao, Yakun Sophia and Asanovi\'{c}, Krste and Nikoli\'{c}, Borivoje},
-  journal={IEEE Micro},
-  title={Chipyard: Integrated Design, Simulation, and Implementation Framework for Custom SoCs},
-  year={2020},
-  volume={40},
-  number={4},
-  pages={10-21},
-  doi={10.1109/MM.2020.2996616},
-  ISSN={1937-4143},
-}
+```bash
+export ORIGINAL_WORK="$HOME/ict-fsa-original-reproduce"
+mkdir -p "$ORIGINAL_WORK"
+git clone --branch original --single-branch /home/zhangsi/tmp/ICT-FSA "$ORIGINAL_WORK/source"
+cd "$ORIGINAL_WORK/source"
+git rev-parse HEAD
+python3 scripts/verify-original.py
 ```
 
-* **Chipyard**
-    * A. Amid, et al. *IEEE Micro'20* [PDF](https://ieeexplore.ieee.org/document/9099108).
-    * A. Amid, et al. *DAC'20* [PDF](https://ieeexplore.ieee.org/document/9218756).
-    * A. Amid, et al. *ISCAS'21* [PDF](https://ieeexplore.ieee.org/abstract/document/9401515).
+发布后可把 clone 的仓库地址替换为 `https://github.com/zs0922/ICT-FSA.git`；正式交付应再
+`git switch --detach <交付记录中的完整commit>`，不要把随时可能变化的分支名当作固定版本。
+不要复用 A70/A100 的源码目录或生成目录。
 
-These additional publications cover many of the internal components used in Chipyard. However, for the most up-to-date details, users should refer to the Chipyard docs.
+## 2. 准备依赖和工具环境
 
-* **Generators**
-    * **Rocket Chip**: K. Asanovic, et al., *UCB EECS TR*. [PDF](http://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-17.pdf).
-    * **BOOM**: C. Celio, et al., *Hot Chips 30*. [PDF](https://old.hotchips.org/hc30/1conf/1.03_Berkeley_BROOM_HC30.Berkeley.Celio.v02.pdf).
-      * **SonicBOOM (BOOMv3)**: J. Zhao, et al., *CARRV'20*. [PDF](https://carrv.github.io/2020/papers/CARRV2020_paper_15_Zhao.pdf).
-      * **COBRA (BOOM Branch Prediction)**: J. Zhao, et al., *ISPASS'21*. [PDF](https://ieeexplore.ieee.org/document/9408173).
-    * **Gemmini**: H. Genc, et al., *DAC'21*. [PDF](https://arxiv.org/pdf/1911.09925).
-* **Sims**
-    * **FireSim**: S. Karandikar, et al., *ISCA'18*. [PDF](https://sagark.org/assets/pubs/firesim-isca2018.pdf).
-        * **FireSim Micro Top Picks**: S. Karandikar, et al., *IEEE Micro, Top Picks 2018*. [PDF](https://sagark.org/assets/pubs/firesim-micro-top-picks2018.pdf).
-        * **FASED**: D. Biancolin, et al., *FPGA'19*. [PDF](https://people.eecs.berkeley.edu/~biancolin/papers/fased-fpga19.pdf).
-        * **Golden Gate**: A. Magyar, et al., *ICCAD'19*. [PDF](https://davidbiancolin.github.io/papers/goldengate-iccad19.pdf).
-        * **FirePerf**: S. Karandikar, et al., *ASPLOS'20*. [PDF](https://sagark.org/assets/pubs/fireperf-asplos2020.pdf).
-        * **FireSim ISCA@50 Retrospective**: S. Karandikar, et al., *ISCA@50 Retrospective: 1996-2020*. [PDF](https://sites.coecis.cornell.edu/isca50retrospective/files/2023/06/Karandikar_2018_FireSim.pdf)
-* **Tools**
-    * **Chisel**: J. Bachrach, et al., *DAC'12*. [PDF](https://people.eecs.berkeley.edu/~krste/papers/chisel-dac2012.pdf).
-    * **FIRRTL**: A. Izraelevitz, et al., *ICCAD'17*. [PDF](https://ieeexplore.ieee.org/document/8203780).
-    * **Chisel DSP**: A. Wang, et al., *DAC'18*. [PDF](https://ieeexplore.ieee.org/document/8465790).
-    * **FireMarshal**: N. Pemberton, et al., *ISPASS'21*. [PDF](https://ieeexplore.ieee.org/document/9408192).
-* **VLSI**
-    * **Hammer**: E. Wang, et al., *ISQED'20*. [PDF](https://www.isqed.org/English/Archives/2020/Technical_Sessions/113.html).
-    * **Hammer**: H. Liew, et al., *DAC'22*. [PDF](https://dl.acm.org/doi/abs/10.1145/3489517.3530672).
+主路径使用已有工具安装，不要求先运行任何优化版本。所需版本：JDK 20.0.2、
+CIRCT firtool 1.75.0、Verilator 5.022、GCC/G++ 13.3.0、Python 3.13（由 uv 管理），
+以及包含 `libfesvr.a` 和 `libriscv.so` 的 RISC-V/Spike 安装。sbt 1.8.2 已在源码锁定。
+准备 Git、make、uv；以下路径必须替换为当前机器对应安装位置，不能指向不存在的目录。
 
-## Acknowledgements
+```bash
+export JAVA_HOME=/path/to/jdk-20.0.2
+export RISCV=/path/to/riscv
+export CHISEL_FIRTOOL_PATH=/path/to/circt/bin
+export VERILATOR_BIN=/path/to/verilator/bin
+export PATH="$JAVA_HOME/bin:$CHISEL_FIRTOOL_PATH:$VERILATOR_BIN:$PATH"
+export CC=/usr/bin/gcc CXX=/usr/bin/g++
+export USE_CHISEL6=1
+export LD_LIBRARY_PATH="$RISCV/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export XDG_RUNTIME_DIR="$ORIGINAL_WORK/runtime"
+export COURSIER_CACHE="$ORIGINAL_WORK/download-cache/coursier/v1"
+export SBT_OPTS="-Dsbt.ivy.home=$ORIGINAL_WORK/download-cache/sbt/ivy2 -Dsbt.global.base=$ORIGINAL_WORK/download-cache/sbt/global -Dsbt.boot.directory=$ORIGINAL_WORK/download-cache/sbt/boot"
+export JAVA_TOOL_OPTIONS="-Dsbt.supershell=false -Dsbt.server.forcestart=false -Dsbt.server.autostart=false $SBT_OPTS"
+mkdir -p "$XDG_RUNTIME_DIR"
+java -version
+verilator --version
+firtool --version
+"$CXX" --version
+ls "$RISCV/lib/libfesvr.a" "$RISCV/lib/libriscv.so"
 
-This work is supported by the NSF CCRI ENS Chipyard Award #2016662.
+cd "$ORIGINAL_WORK/source"
+python3 scripts/prepare-original-deps.py
+python3 scripts/verify-original.py --require-core-deps
+uv sync --project generators/easyfloat --frozen
+uv sync --project generators/fsa/python --frozen
+```
 
-[hammer]:https://github.com/ucb-bar/hammer
-[firesim]:https://fires.im
-[ucb-bar]: http://bar.eecs.berkeley.edu
-[eecs]: https://eecs.berkeley.edu
-[berkeley]: https://berkeley.edu
-[riscv]: https://riscv.org/
-[rocket-chip]: https://github.com/freechipsproject/rocket-chip
-[boom]: https://github.com/riscv-boom/riscv-boom
-[firemarshal]: https://github.com/firesim/FireMarshal/
-[cva6]: https://github.com/openhwgroup/cva6/
-[gemmini]: https://github.com/ucb-bar/gemmini
-[nvdla]: http://nvdla.org/
-[saturn]: https://github.com/ucb-bar/saturn-vectors
-[ara]: https://github.com/pulp-platform/ara
+依赖工具只获取当前编译涉及的顶层模块、Rocket 的四个 Scala 依赖和 Verilator 文件列表引用的 Vortex/fpnew 嵌套依赖，按各父 gitlink 固定
+commit；它不下载与 FSA 编译无关的完整 Linux/FireSim 软件树，也不安装 RISC-V 工具链。
+默认通过 `.gitmodules` 下载，仅本次 Git 命令把 GitHub SSH URL 转为 HTTPS。
+本机已有完整历史对象时可使用 `--mirror-root /path/to/old-chipyard`，只读旧 Git 对象，
+创建新的依赖工作树；该本地加速模式依赖旧对象存续，不可把它直接作为独立交付包。
+本轮采用此加速路径，不能声称已对每个公网仓库完成全新网络下载。
+
+源检查工具检查全部顶层 gitlink 的固定值、根仓库文件差异，以及三个核心依赖的工作树；
+它不等价于所有依赖递归完整性审计。实际验证环境和结果见
+[original-validation.md](docs/baselines/original-validation.md)。
+
+上游替代环境准备方式是安装 Conda 后运行：
+
+```bash
+bash build-setup.sh --skip-ctags --skip-firesim --skip-marshal --skip-clean
+source env.sh
+```
+
+该替代方式本轮没有从空机器完整执行，不作为已验证主路径。脚本下载范围较大，
+固定源码不代表所有外部下载服务一直可用。网络中断保存日志并重试依赖准备；不要清空
+下载缓存或把 gitlink 改到新版。
+
+## 3. 编译 Verilator 仿真器
+
+```bash
+cd "$ORIGINAL_WORK/source/sims/verilator"
+make -j8 CONFIG=FSA4X4Fp16Config CXX="$CXX" CC="$CC" LINK="$CXX" AR=/usr/bin/ar
+```
+
+这一步编译 Scala、生成 RTL，再编译 4×4 PE 阵列的 Verilator 仿真器。
+命令行显式传入编译器，防止 Conda Verilator 的内置 CXX/LINK 覆盖环境变量，导致它与系统编译的
+RISC-V 库产生 `__isoc23_*@GLIBC_2.38` 链接错误。
+保存完整终端日志；出现任何失败先停止，不能只依据前面的来源 PASS 判断构建完成。
+
+## 4. 运行 attention 功能仿真
+
+安装 uv 后执行（原始 Python 项目要求 Python ≥3.13，uv 会按项目要求准备环境）；下面先确认生成的配置存在，避免原始 Python 入口回退到默认配置。
+
+```bash
+cd "$ORIGINAL_WORK/source/generators/fsa/python"
+test -s ../../../sims/verilator/generated-src/chipyard.harness.TestHarness.FSA4X4Fp16Config/chipyard.harness.TestHarness.FSA4X4Fp16Config.FSAConfig.json
+mkdir "$ORIGINAL_WORK/sim-seq4-attempt01"
+uv run main.py --seq_q 4 --seq_kv 4 --config FSA4X4Fp16Config --diff --max_cycles 10000000 --output_dir "$ORIGINAL_WORK/sim-seq4-attempt01"
+```
+
+检查仿真正常结束以及 FSA/PyEasyFloat 对 Torch 的 MAE、MSE、MaxErr、RelErr。
+`--seq_q/--seq_kv` 是输入序列长度，不是 PE 阵列尺寸。记录生成配置、输入规模和误差；
+程序完成不自动代表达到某个数值验收阈值。
+
+## 5. 生成 U55C RTL 和 bitstream
+
+先加载支持 U55C 的 Vivado 环境并检查许可证；下面以本机可用的 2020.2_AR75986 为路径示例，原始 U55C 的完整实现尚未验收。这是 **U55C** 构建，不能烧到 U280/NM37。
+
+```bash
+source /path/to/Xilinx/Vivado/2020.2/settings64.sh
+cd "$ORIGINAL_WORK/source/fpga"
+make SUB_PROJECT=u55c CONFIG=EmptyU55CConfig TOP=EmptyChipTop bitstream
+```
+
+该上游命令串行执行 Scala/RTL 生成、综合、布局布线和 bitstream 导出。目标文件是：
+
+```text
+fpga/generated-src/chipyard.fpga.u55c.U55CFPGATestHarness.EmptyU55CConfig/obj/U55CFPGATestHarness.bit
+```
+
+检查完整实现日志、实际约束时钟、setup/hold 的 WNS/TNS、DRC 和导出日志；文件存在不能
+代替验收。本分支没有引入手写 CDC 审查文件作为实验导出的前置条件。
+保存 routed DCP、时序/资源报告、生成的 FSAConfig.json、bitstream 和 SHA256。
+不要将后续 NM37 的已验证 Vivado 版本自动视为原始 U55C 的已验证工具版本。
+
+## 6. U55C 上板小输入测试
+
+使用 Vivado Hardware Manager 选择正确 U55C 设备并烧录上述 bitstream，保存烧录记录。
+重新枚举正确的 PCIe 设备并加载 XDMA 驱动，检查设备节点访问权限；不要照抄其他机器的 BDF。
+原始主机程序默认使用 `/dev/xdma0_*`，存在多块板时必须核对设备身份。
+
+```bash
+cd "$ORIGINAL_WORK/source/generators/fsa/python"
+test -s ../../../fpga/generated-src/chipyard.fpga.u55c.U55CFPGATestHarness.EmptyU55CConfig/chipyard.fpga.u55c.U55CFPGATestHarness.EmptyU55CConfig.FSAConfig.json
+uv run main.py --seq_q 16 --seq_kv 16 --config EmptyU55CConfig --engine FPGA --diff
+```
+
+保留 RelErr 等指标和性能计数器，但不要将原始主机软件多次执行行为默认视为已经修复。
+U280 之后的历史正确性修复不在此分支；这是保留原貌的参考起点。
+
+## 验证状态
+
+以[original-validation.md](docs/baselines/original-validation.md)为准。来源核验、make dry-run、
+编译、仿真、布局布线、板测是不同层次，不能相互替代。
