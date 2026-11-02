@@ -1,6 +1,6 @@
 # 原始 FSA 与板卡移植基线
 
-这里管理可追溯的原始起点，不替换既有 A70-P3/A100/A110/A120/A150 分支。本轮只本地提交，未 push，未创建验收标签。分支具体提交与实测范围见 [本轮记录](../../reports/ORIGINAL_BASELINES_20261102.md)。
+这里管理可追溯的原始起点，不替换既有 A70-P3/A100/A110/A120/A150 分支。三个基线通过同名 GitHub 分支交付，尚未创建验收标签；历史验收报告中的“未 push”指验证完成时的状态。分支具体提交与实测范围见 [本轮记录](../../reports/ORIGINAL_BASELINES_20261102.md)。
 
 ## 选择正确的起点
 
@@ -26,26 +26,72 @@ U280/NM37 基线沿用 ICT-FSA 已物化、由主仓直接跟踪的核心；补�
 
 “未优化”允许板级必需适配和历史正确性修复，例如 XDMA 设备访问与完成后再次启动。不包含后来的主机 MMIO 映射复用性能提交，也不包含 ShiftRightJam、PE/CMP/scratchpad 流水或 HBM 独立 APB 优化。各分支具体保留内容以源码差异和来源报告为准。
 
-## 从本地仓库获取独立源码
+## 在151服务器获取固定源码
 
-以下是尚未发布时的操作。`ICT_REPO` 必须指向已经包含三个新分支的本地 ICT-FSA 仓库。未来发布后才能换为 GitHub 地址。
+仓库地址为 `https://github.com/zs0922/ICT-FSA.git`，默认分支 `codex/ict-fsa-integration` 提供本入口。三个基线固定为：
+
+| 分支 | 固定提交 | README 已实际验证范围 |
+|---|---|---|
+| original | `474e92dc018df7a7a818aa329db967ebb829108c` | 编译、4×4仿真、U55C RTL展开；未执行U55C完整布局布线 |
+| original-u280 | `ab28e170feb2c29d347dd476f45fd29456cf0d7b` | 编译、4×4仿真、16×16完整实现及实验bit导出 |
+| original-nm37-civ | `87cd26500fc88f7051771e3cb1670001375c6b1f` | 编译、4×4仿真、16×16完整实现及实验bit导出 |
+
+在151的Bash/tmux终端逐条执行。每个版本使用新目录，不在已有构建目录中 pull/checkout，不必先运行优化版本。
 
 ```bash
-export ICT_REPO=/absolute/path/to/ICT-FSA
-export BASELINE=original-nm37-civ  # 可换为 original 或 original-u280
-export WORK="$HOME/ict-fsa-$BASELINE-attempt01"
-mkdir -p "$WORK"
-git clone --no-hardlinks --branch "$BASELINE" "$ICT_REPO" "$WORK/source"
+export ICT_REPO=https://github.com/zs0922/ICT-FSA.git
+export BASELINE=original-nm37-civ  # 三选一：original / original-u280 / original-nm37-civ
+case "$BASELINE" in
+  original) export COMMIT=474e92dc018df7a7a818aa329db967ebb829108c ;;
+  original-u280) export COMMIT=ab28e170feb2c29d347dd476f45fd29456cf0d7b ;;
+  original-nm37-civ) export COMMIT=87cd26500fc88f7051771e3cb1670001375c6b1f ;;
+  *) echo 'BASELINE错误：请重新选择，不要继续' ;;
+esac
+export WORK="$HOME/ict-fsa-$BASELINE-reproduce-attempt01"
+mkdir "$WORK"  # 已存在时改用attempt02；不删除原目录
+git clone --branch "$BASELINE" --single-branch "$ICT_REPO" "$WORK/source"
 export SRC="$WORK/source"
-export COMMIT="$(git -C "$SRC" rev-parse HEAD)"
 git -C "$SRC" checkout --detach "$COMMIT"
+git -C "$SRC" rev-parse HEAD  # 应与上表完整commit一致
 printf '%s\n' "$COMMIT" > "$WORK/source-commit.txt"
 cd "$SRC"
 ```
 
-然后执行**这个 checkout 的 README**。每个基线有自己的环境、依赖和构建步骤。不要继续执行集成分支 README 中的 A150 流程，也不要在已有构建中途 checkout 新版本。若 source 或输出目录已存在，改用新的 WORK；不要删除旧结果。
+每条命令成功后再继续。基线README中“本地尚未发布”是验证时保留的历史描述；上面的GitHub获取与固定commit步骤替代各README第1节，之后直接从第2节准备环境，不要再次clone。
 
-U280/NM37 使用 `scripts/fsa.py`：deps → doctor/Python 环境 → build → sim4 → elaborate → implement → export。original 保留上游结构，使用其 README 所述原始 make 入口。固定 4×4 仿真并不表示板上阵列为 4×4；U280/NM37 板级配置为 16×16。
+**original-u280 / original-nm37-civ：** 先按本分支 `docs/reproduction/environment.md` 设置真实工具路径（含RISCV/FESVR），再执行本分支README第2～5节：
+
+```bash
+export BUILD_OUT="$WORK/build-attempt01"
+export EXPORT_OUT="$WORK/bits-attempt01"
+python3 scripts/fsa.py doctor
+python3 scripts/fsa.py deps --plan
+python3 scripts/fsa.py deps --report "$WORK/dependencies.json"
+uv sync --frozen --python 3.13 --project "$SRC/generators/fsa/python"
+uv sync --frozen --python 3.13 --project "$SRC/generators/easyfloat"
+export FSA_PYTHON="$SRC/generators/fsa/python/.venv/bin/python"
+"$FSA_PYTHON" -c 'import numpy, torch, pyeasyfloat; print("Python imports OK")'
+python3 scripts/fsa.py build --out "$BUILD_OUT"
+python3 scripts/fsa.py sim --out "$BUILD_OUT" --array-size 4
+python3 scripts/fsa.py elaborate --out "$BUILD_OUT"
+python3 scripts/fsa.py implement --out "$BUILD_OUT"
+python3 scripts/fsa.py export --out "$BUILD_OUT" --result-out "$EXPORT_OUT"
+python3 scripts/fsa.py status --out "$BUILD_OUT"
+(cd "$EXPORT_OUT" && sha256sum -c SHA256SUMS)
+```
+
+串行执行；任一步失败就查看该阶段日志，不继续后续阶段。正常全新U280构建无需使用历史DCP恢复参数 `--build-source-commit`。两个版本均为名义70MHz、板上16×16，仿真4×4并非板上规模。两者尚未实板验收，历史profile不能直接套用优化版统一板测命令。
+
+**original（U55C）：** 使用其原始make入口，不能运行上面的 `scripts/fsa.py`。先设置 `export ORIGINAL_WORK="$WORK"`，然后从该分支README第2节配置工具、初始化固定子模块及两个Python环境，依次执行第3节编译、第4节seq4/seq8仿真、第5节U55C实现。第5节命令为：
+
+```bash
+cd "$ORIGINAL_WORK/source/fpga"
+make SUB_PROJECT=u55c CONFIG=EmptyU55CConfig TOP=EmptyChipTop bitstream
+```
+
+原始U55C完整实现尚未在本轮运行，此命令不代表已有U55C时序通过证据。U55C/U280 bit不能烧到NM37。所有版本都需先读对应README的环境要求，不能将此汇总替代工具安装步骤。
+
+下载缓存可复用，生成的JAR/RTL/仿真器/DCP/bit使用独立目录。已有本地完整依赖时可按各分支README使用只读本地依赖来源；公网下载受网络和上游服务可用性影响。
 
 ## 每一步证明什么
 
