@@ -142,6 +142,20 @@ ifeq ($(SUB_PROJECT),nm37)
 	FPGA_BRAND        ?= xilinx
 endif
 
+ifeq ($(SUB_PROJECT),np19a)
+ SBT_PROJECT       ?= chipyard_fpga
+ MODEL             ?= NP19AFSACore
+ VLOG_MODEL        ?= NP19AFSACore
+ MODEL_PACKAGE     ?= chipyard.fpga.np19a
+ CONFIG            ?= EmptyNP19AConfig
+ CONFIG_PACKAGE    ?= chipyard.fpga.np19a
+ GENERATOR_PACKAGE ?= chipyard
+ TB                ?= none
+ TOP               ?= EmptyChipTop
+ BOARD             ?= np19a
+ FPGA_BRAND        ?= xilinx
+endif
+
 # ICT-FSA vendors the complete patched source; no build-time source mutations.
 export USE_CHISEL6=1
 

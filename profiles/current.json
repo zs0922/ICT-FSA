@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
-  "id": "NM37",
-  "board": "NM37",
+  "id": "NP19A",
+  "board": "NP19A",
   "dut_mhz": 70,
-  "apb_mhz": 70,
+  "apb_mhz": null,
   "array_sizes": [
     4
   ],
   "default_array_size": 4,
-  "build_label": "NM37",
+  "build_label": "NP19A",
   "validation_status": "organized_local_candidate_not_rebuilt_or_board_accepted",
   "expected_tools": {
     "java": "20.0.2",
     "firtool": "firtool-1.75.0",
     "verilator": "Verilator 5.022",
-    "vivado": "2020.2_AR75986"
+    "vivado": "2024.2"
   },
   "driver": {
     "output_env": "ICT_BUILD_OUT",
@@ -58,5 +58,8 @@
         ]
       ]
     }
-  }
+  },
+  "model": "NP19AFSACore",
+  "config": "EmptyNP19AConfig",
+  "part": "xcvu19p-fsva3824-2-e"
 }

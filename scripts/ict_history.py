@@ -16,7 +16,7 @@ def main():
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--array-size',type=int,default=16)
     a=parser.parse_args(); p=profile(); out=a.out.resolve(); stage=p['id']
-    if stage not in ('U280','NM37','A70-P3'): parser.error('Historical backend used with modern profile')
+    if stage not in ('U280','NM37','NP19A','A70-P3'): parser.error('Historical backend used with modern profile')
     env=dict(os.environ,USE_CHISEL6='1',ICT_BUILD_OUT=str(out),ICT_DUT_MHZ=str(p['dut_mhz']))
     env['JAVA_TOOL_OPTIONS']=env.get('JAVA_TOOL_OPTIONS','')+' -Xmx16G -Xss8M -XX:ActiveProcessorCount=16 -Dsbt.supershell=false -Dsbt.server.autostart=false'
     env['PYTHONPATH']=str(ROOT/'generators/easyfloat')+':'+str(ROOT/'generators/fsa/python')
@@ -59,6 +59,9 @@ def main():
         fresh(build)
         run(base+['-o',str(jar),'build_dir='+str(build),str(build/(name+'.vsrcs.f'))])
     elif a.phase=='implement':
+        if stage == 'NP19A':
+            run([sys.executable, str(ROOT/'scripts/np19a/implement.py'), '--build', str(build)])
+            return
         fresh(build/'obj')
         ip=sorted(str(f) for f in build.rglob('*.vivado.tcl'))
         run(['vivado','-mode','batch','-source',str(ROOT/'scripts/ict/implement.tcl'),'-tclargs','-top-module',model,'-F',str(build/(name+'.vsrcs.f')),'-board',board,'-ip-vivado-tcls',' '.join(ip)],cwd=build)
