@@ -10,6 +10,24 @@
 
 三个基线通过 ICT-FSA 的 `original`、`original-u280`、`original-nm37-civ` 分支交付。GitHub 拉取、固定提交与151服务器操作命令见上述基线说明。既有硬件里程碑分支及其构建不变。每个基线使用独立 checkout 和输出目录；该基线自己的 README 是其命令入口，不要在原始分支照抄下方 A150 命令。实际验证范围与固定提交见上述基线说明。
 
+## NP19A 原始核心迁移入口
+
+无HBM的NP19A使用独立分支 **`original-np19a`**，固定交付提交 **`8407bdd8d4bd6d0aae56a1a549353f8c35f2124f`**。请按[该版本完整README](https://github.com/zs0922/ICT-FSA/blob/8407bdd8d4bd6d0aae56a1a549353f8c35f2124f/README.md)执行，不使用下方NM37命令。
+
+器件`xcvu19p-fsva3824-2-e`、Vivado2024.2、原始16×16 FSA 70MHz、PCIe Gen3×8和单通道DDR4（配置MTA16ATF2G64HZ-2G3）。原始FSA/easyfloat保持不变。已完成源码编译、4×4 seq4/seq8逐位仿真、16×16完整布局布线及实验bit导出；全局WNS+0.058ns、WHS+0.010ns。尚未NP19A实板验收；两条复位启动相关CDC Critical和其他CDC告警的范围见[构建记录](https://github.com/zs0922/ICT-FSA/blob/8407bdd8d4bd6d0aae56a1a549353f8c35f2124f/reports/ORIGINAL_NP19A_BASELINE.md)。
+
+```bash
+export WORK="$HOME/ict-fsa-original-np19a-8407bdd8"
+mkdir -p "$WORK"
+git clone --branch original-np19a https://github.com/zs0922/ICT-FSA.git "$WORK/source"
+export SRC="$WORK/source"
+git -C "$SRC" checkout --detach 8407bdd8d4bd6d0aae56a1a549353f8c35f2124f
+cd "$SRC"
+# 从本分支README第2节开始：环境/依赖 → build → sim → elaborate → implement → export → program → attention。
+```
+
+无需先构建NM37/U280或优化版本。先核对板卡实际SO-DIMM型号，再构建；实际安装与配置不同不能直接烧录。原有分支和结果保持独立。
+
 ## 本次 A150/APB100 从哪里开始
 
 当前集成版本为 **A150-APB100：DUT/FSA/HBM AXI 150MHz，HBM APB 100MHz**，分支 `codex/nm37-a150-apb100`。可以直接从这个版本开始，不必先构建 A70/A100/A110/A120。A150 分支与默认分支 `codex/ict-fsa-integration` 通过 GitHub 同步交付。硬件迁移提交为 `dae09729028da1d6ba0319c91fa946ae1916a97a`，本次发布提交只更新文档。构建时使用交付的固定提交，不在已有构建中途 pull 或切换版本。
