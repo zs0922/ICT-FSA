@@ -64,7 +64,7 @@ def export(a,p,root):
     script=root/'scripts/ict/export.tcl';shutil.copy2(script,out/'export.tcl')
     try:
         with (out/'console.log').open('x') as log:
-            subprocess.run([exe,'-mode','batch','-source',str(out/'export.tcl'),'-log',str(out/'vivado.log'),'-journal',str(out/'vivado.jou'),'-tclargs',str(dcp),str(out),str(p['dut_mhz']),str(bit)],cwd=out,stdout=log,stderr=subprocess.STDOUT,check=True)
+            subprocess.run([exe,'-mode','batch','-source',str(out/'export.tcl'),'-log',str(out/'vivado.log'),'-journal',str(out/'vivado.jou'),'-tclargs',str(dcp),str(out),str(p['dut_mhz']),str(bit)]+(['*harnessSysPLL*',p['part']] if p['board']=='NP19A' else []),cwd=out,stdout=log,stderr=subprocess.STDOUT,check=True)
         if not bit.is_file() or not bit.stat().st_size or sha(dcp)!=manifest['dcp_sha256']: raise ValueError('Missing bitstream or changed DCP')
         manifest.update(status='exported',bitstream={'path':bit.name,'sha256':sha(bit)})
         (out/'SHA256SUMS').write_text(f'{sha(bit)}  {bit.name}\n{sha(out/"FSAConfig.json")}  FSAConfig.json\n')

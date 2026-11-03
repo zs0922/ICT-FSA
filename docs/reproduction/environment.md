@@ -1,13 +1,13 @@
 # 环境准备
 
-本次候选沿用已有 NM37 验证环境：JDK 20.0.2、firtool 1.75.0、Verilator 5.022、Vivado 2020.2 + AR75986。Python 使用源码自带 uv.lock 和 Python 3.13，Torch 2.6。本分支已用该环境完成初始NM37的独立构建、仿真及布局布线，见 reports/ORIGINAL_NM37_BASELINE.md；不把这些记录当作其他板卡证据。
+NP19A 使用以下工具环境：JDK 20.0.2、firtool 1.75.0、Verilator 5.022、Vivado 2024.2（安装 Virtex UltraScale+ xcvu19p 器件支持）。Python 使用源码自带 uv.lock 和 Python 3.13，Torch 2.6。NP19A 当前验证状态见根 README；历史 NM37 报告不是 NP19A 验收证据。
 
 ```bash
 # 按机器实际安装位置修改这三行；不要原样使用示例路径。
 export JAVA_HOME=/absolute/path/to/jdk-20.0.2
 export RISCV=/absolute/path/to/riscv-toolchain
 export PATH="$JAVA_HOME/bin:/absolute/path/to/circt/bin:/absolute/path/to/verilator/bin:$RISCV/bin:$PATH"
-source /absolute/path/to/Vivado/2020.2/settings64.sh
+source /absolute/path/to/Vivado/2024.2/settings64.sh
 export CC=/absolute/path/to/gcc-13.3.0
 export CXX=/absolute/path/to/g++-13.3.0
 export LD_LIBRARY_PATH="$RISCV/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"

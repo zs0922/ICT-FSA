@@ -61,5 +61,6 @@
   },
   "model": "NP19AFSACore",
   "config": "EmptyNP19AConfig",
-  "part": "xcvu19p-fsva3824-2-e"
+  "part": "xcvu19p-fsva3824-2-e",
+  "jtag_part": "xcvu19p"
 }

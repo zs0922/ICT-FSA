@@ -151,7 +151,7 @@ ifeq ($(SUB_PROJECT),np19a)
  CONFIG_PACKAGE    ?= chipyard.fpga.np19a
  GENERATOR_PACKAGE ?= chipyard
  TB                ?= none
- TOP               ?= EmptyChipTop
+ TOP               ?= AXI4FSA
  BOARD             ?= np19a
  FPGA_BRAND        ?= xilinx
 endif

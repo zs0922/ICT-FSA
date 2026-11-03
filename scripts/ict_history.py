@@ -58,6 +58,8 @@ def main():
     elif a.phase=='elaborate':
         fresh(build)
         run(base+['-o',str(jar),'build_dir='+str(build),str(build/(name+'.vsrcs.f'))])
+        if stage == 'NP19A':
+            run([sys.executable,str(ROOT/'scripts/np19a/wrap_axi.py'),str(build)])
     elif a.phase=='implement':
         if stage == 'NP19A':
             run([sys.executable, str(ROOT/'scripts/np19a/implement.py'), '--build', str(build)])

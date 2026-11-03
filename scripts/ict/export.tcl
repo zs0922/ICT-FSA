@@ -1,5 +1,5 @@
 # Board experiments: do not waive DRC or declare CDC/release acceptance.
-if {$argc != 4} {error "Expected DCP NEW_EXPERIMENT_DIR DUT_MHZ BIT_PATH"}
+if {$argc != 4 && $argc != 6} {error "Expected DCP NEW_EXPERIMENT_DIR DUT_MHZ BIT_PATH [CLOCK_PATTERN PART]"}
 lassign $argv dcp out mhz bit
 set_param general.maxThreads 4
 open_checkpoint $dcp
@@ -12,7 +12,12 @@ check_timing -verbose -file [file join $out check-timing.txt]
 report_exceptions -file [file join $out exceptions.txt]
 report_drc -file [file join $out drc.txt]
 # Strict setup/hold guard for the DUT and every timed clock group.
-set dut [get_clocks clk_out1_harnessSysPLL]
+set clockPattern clk_out1_harnessSysPLL
+if {$argc == 6} {
+    set clockPattern [lindex $argv 4]
+    if {[get_property PART [current_design]] ne [lindex $argv 5]} {error "Checkpoint device mismatch"}
+}
+set dut [get_clocks -quiet $clockPattern]
 if {[llength $dut] != 1 || abs([get_property PERIOD $dut] - (1000.0 / $mhz)) > 0.001} {
     error "Expected exactly one $mhz MHz DUT clock"
 }
@@ -40,7 +45,7 @@ foreach index {1 2 5 6 9 10} {
 
 set bad [get_drc_violations -quiet -filter {SEVERITY == Error || SEVERITY == {Critical Warning}}]
 if {[llength $bad]} {error "DRC errors or critical warnings prohibit export: $bad"}
-set_property BITSTREAM.Config.SPI_buswidth 8 [current_design]
+if {$argc == 4} {set_property BITSTREAM.Config.SPI_buswidth 8 [current_design]}
 write_bitstream $bit
 close_design
 exit

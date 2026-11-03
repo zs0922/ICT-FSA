@@ -20,7 +20,7 @@ class NP19AFSACore(implicit p: Parameters) extends LazyModule {
       interleavedId = Some(0))), beatBytes = 32)))
   val fsa = LazyModule(new AXI4FSA(p(FpFSAImplKey).get))
   fsa.configNode := AXI4Fragmenter() := AXI4Buffer() := control
-  memory := AXI4UserYanker() := fsa.memNode
+  memory := AXI4UserYanker(capMaxFlight = Some(8)) := fsa.memNode
   lazy val module = new LazyModuleImp(this) {
     val s_axi = control.makeIOs()
     val m_axi = memory.makeIOs()

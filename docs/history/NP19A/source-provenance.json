@@ -1,0 +1,15 @@
+{
+  "branch": "original-np19a",
+  "parent": "87cd26500fc88f7051771e3cb1670001375c6b1f",
+  "arithmetic_source": "original-nm37-civ materialized original FSA/easyfloat, unchanged",
+  "board_reference": {
+    "repository": "https://github.com/NEXST-TOOL/nexst.git",
+    "commit": "cc81d9363efc27f2a1ef2ebe9005c575daf21596"
+  },
+  "part": "xcvu19p-fsva3824-2-e",
+  "vivado": "2024.2",
+  "inputs": {
+    "reference-top.xdc": "801bbaa40a84883a60c9ba4c106c802935a854d650d700b553ad56caf97319f9",
+    "reference-xiangshan.tcl": "c5754cd030be999a718ccb3106c7c0b61c7492489c611c3a78b83bb435152376"
+  }
+}

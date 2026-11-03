@@ -1,57 +1,99 @@
-# original-nm37-civ：NM37-CIV 初始移植基线
+# original-np19a：NP19A 原始 FSA 迁移
 
-本分支从 ICT-FSA `00e021c635cd31d013cf00fd24cba687dc0b4be5` 建立，硬件来源为旧 FSA `57344208e4b88e4eed87e3bf4e9dd9a790d06e84`。这里只包含 U280 与 NM37 的板级迁移及历史正确性修复；**没有加入后续 P0/P1/P2/P3、ShiftRightJam 或 A100 流水优化**。本次独立重建的70 MHz静态时序已通过（WNS +0.001 ns），实板与CDC审查尚未完成；完整证据和实际构建commit见下方复现报告。
+本分支将原始 16×16 FSA 接到 NP19A 的 PCIe/XDMA 和 DDR4，目标器件 **xcvu19p-fsva3824-2-e**、Vivado **2024.2**、FSA **70 MHz**。不包含 P3、A100、A150 算术/流水优化；`generators/fsa` 和 `generators/easyfloat` 相对 `original-nm37-civ` 未修改。独立 AXI 顶层也可作为后续计算模块封装的起点。
 
-本分支保留自己的 FSA、easyfloat、FPGA shell 和依赖锁，不从优化分支拷贝 JAR/RTL/DCP。来源及补丁哈希见 [NM37 来源清单](docs/history/NM37/source-provenance.json)。本次整理不修改硬件目录。
+**当前为迁移验证中的候选，尚未完成 NP19A 实板验收。** 历史 NM37 报告不证明 NP19A 可用。验证证据、限制和板级配置见 [NP19A 迁移说明](docs/reproduction/np19a.md)。分支仅本地提交，未 push。
 
-## 本分支的最短完整流程
-
-仅在本地交付时使用本地 ICT-FSA 路径；本分支尚未 push，不要假定远端已有它。发布后可将 `ICT_REPO` 换为 GitHub URL。
+## 1. 独立取得源码
 
 ```bash
 export ICT_REPO=/absolute/path/to/ICT-FSA
-export WORK="$HOME/ict-fsa-original-nm37-civ"
+export WORK="$HOME/ict-fsa-original-np19a"
 mkdir -p "$WORK"
-git clone --no-hardlinks --branch original-nm37-civ "$ICT_REPO" "$WORK/source"
+git clone --no-hardlinks --branch original-np19a "$ICT_REPO" "$WORK/source"
 export SRC="$WORK/source"
 cd "$SRC"
 git rev-parse HEAD | tee "$WORK/source-commit.txt"
 export BUILD_OUT="$WORK/build-attempt01"
 ```
 
-先按[环境说明](docs/reproduction/environment.md)安装并加载工具，然后逐条执行。工具入口 `python3` 要求 Python >=3.9；FSA/EasyFloat 的独立环境使用 Python 3.13。本基线不运行 `verify`，不需要 Yosys 或 formal-env。不要在交互式 tmux shell 中开启 `set -e`。
+分支发布后才把 ICT_REPO 换成 GitHub URL。不要覆盖已有 NM37、U280 构建或复制其 JAR/RTL/DCP。交互式终端不要启用 `set -e`；每一步成功后才继续。
+
+## 2. 准备环境和依赖
+
+按 [环境说明](docs/reproduction/environment.md) 安装 JDK20.0.2、firtool1.75、Verilator5.022、GCC13.3、Spike/FESVR 库、uv，以及带 **xcvu19p 器件支持和实现许可证** 的 Vivado2024.2。无需先构建其他板卡/优化版本。
 
 ```bash
-# 检查工具版本；不编译。
-python3 scripts/fsa.py doctor
-# 准备锁定的第三方源码；必须完成后再启动 build。
+source /absolute/path/to/Vivado/2024.2/settings64.sh
+# 先按环境说明设置 JAVA_HOME、RISCV、PATH、CC、CXX 等。
 python3 scripts/fsa.py deps --report "$WORK/dependencies.json"
-# 可选离线替代：deps --local-source /absolute/path/to/compatible/source --report ...
-# 准备与本分支匹配的 Python 与 EasyFloat，不继承其他源码的 PYTHONPATH。
+python3 scripts/fsa.py doctor
 uv sync --frozen --python 3.13 --project "$SRC/generators/easyfloat"
 uv sync --frozen --python 3.13 --project "$SRC/generators/fsa/python"
 export FSA_PYTHON="$SRC/generators/fsa/python/.venv/bin/python"
-# 编译 Scala/Chisel 生成器 JAR。
+```
+
+`deps` 下载锁定源码；`doctor` 检查工具而不编译。仅缺 Spike/FESVR 时可按环境文档从本分支锁定源码安装，不要把 RISCV 指向空目录。
+
+## 3. 编译、仿真、展开与布局布线
+
+```bash
+# 编译本次 Scala/Chisel 生成器。
 python3 scripts/fsa.py build --out "$BUILD_OUT"
-# 编译 4x4 Verilator 仿真器，执行 seq4/seq8 并逐位比对 PyEasyFloat。
+# 构建 4×4 仿真器，运行 seq4/seq8，与 PyEasyFloat 逐位比较。
 python3 scripts/fsa.py sim --out "$BUILD_OUT" --array-size 4
-# 展开板上 16x16 设计及 IP 描述。
+# 展开板上 16×16 FSA、外露 AXI 接口并生成端口映射包装层。
 python3 scripts/fsa.py elaborate --out "$BUILD_OUT"
-# 执行完整综合、布局布线，记录真实时序与资源。
+# 创建 DDR4/PCIe BD，验证地址/时钟连接，再综合和完整布局布线。
 python3 scripts/fsa.py implement --out "$BUILD_OUT"
 python3 scripts/fsa.py status --out "$BUILD_OUT"
-# 在实际时序与 DRC 满足导出条件时生成实验 bit，尚未烧录。
+```
+
+4×4 仿真检查原始计算/调度；不等价于板级 DDR4/PCIe 仿真，更不代替实板验证。本原始分支没有优化版本的 `verify` 套件，不执行该阶段。布局布线报告位于 `$BUILD_OUT/NP19A/fpga/chipyard.fpga.np19a.NP19AFSACore.EmptyNP19AConfig/obj/report/`。
+
+## 4. 导出实验 bitstream
+
+```bash
 export EXPORT_OUT="$WORK/bits-attempt01"
 python3 scripts/fsa.py export --out "$BUILD_OUT" --result-out "$EXPORT_OUT"
 (cd "$EXPORT_OUT" && sha256sum -c SHA256SUMS)
 ```
 
-本基线仅恢复 4x4 的固定仿真入口；板上 16x16 与仿真 4x4 不应混淆。实际构建与仿真证据见 [复现报告](reports/ORIGINAL_NM37_BASELINE.md)。没有后续版本的定向证明套件，因此不执行 `verify`、sim8 或 sim16。失败时保留输出和日志；用新的 attempt 输出重试，不手工补写成功记录。`implement` 的时序失败不表示源码构建失败，但不能据此宣称 70 MHz 通过。
+导出检查实际器件、70MHz 时钟、全局 setup/hold/pulse-width 与 DRC，不需要手写审查 JSON。成功产物是 `$EXPORT_OUT/NP19A_EXPERIMENTAL.bit` 和配套 `FSAConfig.json`。它们不是实板通过的声明。CDC/未约束路径仍需结合报告检查。
 
-## 验收范围与失败恢复
+## 5. 烧录与上板 attention
 
-本次流程止于源码构建、固定仿真、板级展开和完整布局布线。只有布局布线时序与 DRC 满足要求时才能导出实验 bit。板测入口 `scripts/ict/runtime.py` 尚未声明 `NM37` profile，不能直接照搬 A70-P3/A100 的板测命令；本分支尚无新实板验收证据。
+先通过 Vivado Hardware Manager 确定准确 JTAG target/device 和本板 PCI BDF。下列值需按实际板卡填写；不得复制 NM37 的设备号。首次无 PCI 枚举时，应先在 Hardware Manager 烧录，再重启主机使 PCIe 枚举，记录烧录日志与 bit SHA256。
 
-运行记录在 `$BUILD_OUT.ict-state/`，详细产物在 `$BUILD_OUT/`。检查 `status` 和阶段日志；完整通过看明确 `COMPLETE`，不能把 doctor/source 的 PASS 当成阶段通过。出现失败不要清空依赖缓存，不覆盖已有日志、不手写 seal；参考[恢复说明](docs/reproduction/recovery.md)，用新的输出 attempt 重新执行必要阶段。切换版本必须使用独立源码与输出。
+```bash
+export HW_TARGET='actual/exact/target'
+export HW_DEVICE='xcvu19p_0'
+export BDF='0000:18:00.0'  # 示例，必须核对实际 NP19A
+python3 scripts/fsa.py program --export "$EXPORT_OUT" \
+  --hw-target "$HW_TARGET" --hw-device "$HW_DEVICE" --bdf "$BDF" \
+  --out "$WORK/program-attempt01" --dry-run
+# 检查 dry-run 后，移除 --dry-run 执行真实 SRAM 烧录；不写配置 flash。
+```
 
-[归档的通用说明](docs/reproduction/historical-common-readme.md)仅供查阅工具历史，不是本分支的执行清单。
+烧录后等待 DDR 校准、确认 PCIe 枚举与 XDMA 驱动设备；必要时重启主机。**更换环境变量不会更换 FPGA 电路。** 对照 sysfs 确认 `/dev/xdmaN_*` 对应选定 BDF。
+
+```bash
+lspci -Dnn
+ls -l /dev/xdma*
+export DEVICE=xdma0  # 示例，按 sysfs 映射核对
+readlink -f "/sys/class/xdma/${DEVICE}_user/device"
+export RESULT="$WORK/board/seq16-attempt01"
+"$FSA_PYTHON" scripts/np19a/attention.py \
+  --config "$EXPORT_OUT/FSAConfig.json" --bit "$EXPORT_OUT/NP19A_EXPERIMENTAL.bit" \
+  --device "$DEVICE" --bdf "$BDF" --seq 16 --out "$RESULT" --dry-run
+sudo timeout --signal=TERM --kill-after=10s 600s "$FSA_PYTHON" -u \
+  "$SRC/scripts/np19a/attention.py" \
+  --config "$EXPORT_OUT/FSAConfig.json" --bit "$EXPORT_OUT/NP19A_EXPERIMENTAL.bit" \
+  --device "$DEVICE" --bdf "$BDF" --seq 16 --out "$RESULT"
+```
+
+只有存在真实烧录记录、板卡映射正确且 seq16 通过后，才以新结果目录改跑 seq64/128/256/512/1024（1024 建议 timeout7200s）。保存输入/输出 `.npy`、`result.json`、终端输出、烧录记录、bit/config SHA256。`RelErr` 与原始软件定义一致：`mean(abs((FSA−torch)/(torch+1e-8)))`；是否逐位符合 PyEasyFloat 独立记录。`execTime/70e6` 是按目标频率换算的计数器时间，不是整段 Python 墙钟时间。
+
+## 6. 失败恢复
+
+检查 `$BUILD_OUT.ict-state/` 与阶段日志。阶段失败时保留输出、依赖缓存和日志；修复代码后本地提交，选新源码/新输出 attempt。不要手写成功标记、删除日志伪装首次运行，或直接用旧时序结果覆盖新工程。板测超时后先核对 DDR 校准、PCIe、复位状态和地址映射，不要据此修改原始计算算法。
