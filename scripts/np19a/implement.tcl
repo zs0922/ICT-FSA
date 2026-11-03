@@ -10,7 +10,9 @@ create_project np19a [file join $obj project] -part xcvu19p-fsva3824-2-e
 set_property target_language Verilog [current_project]
 set fd [open [lindex [glob $build/*.vsrcs.f] 0] r]
 set sources [split [read $fd] \n];close $fd
-foreach f $sources {if {[string trim $f] ne ""} {add_files -norecurse $f}}
+set rtl {}
+foreach f $sources {if {[string trim $f] ne ""} {lappend rtl $f}}
+add_files -norecurse $rtl
 add_files -norecurse [file join $build fsa_axi_wrapper.v]
 create_bd_design np19a
 set fsa [create_bd_cell -type module -reference fsa_axi_wrapper fsa]
@@ -38,7 +40,7 @@ connect_bd_intf_net [get_bd_intf_ports c0_ddr4] [get_bd_intf_pins ddr4_mig/C0_DD
 connect_bd_net [get_bd_pins sysbuf/IBUF_OUT] [get_bd_pins ddr4_mig/c0_sys_clk_i]
 connect_bd_net [get_bd_pins perst_inv/Res] [get_bd_pins ddr4_mig/sys_rst]
 set pll [create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 harnessSysPLL]
-set_property -dict [list CONFIG.PRIM_IN_FREQ 100 CONFIG.CLKOUT1_REQUESTED_OUT_FREQ 70 CONFIG.USE_RESET true] $pll
+set_property -dict [list CONFIG.PRIM_SOURCE No_buffer CONFIG.PRIM_IN_FREQ 100 CONFIG.CLKOUT1_REQUESTED_OUT_FREQ 70 CONFIG.USE_RESET true] $pll
 connect_bd_net [get_bd_pins sysbuf/IBUF_OUT] [get_bd_pins harnessSysPLL/clk_in1]
 connect_bd_net [get_bd_pins perst_inv/Res] [get_bd_pins harnessSysPLL/reset]
 set xd [create_bd_cell -type ip -vlnv xilinx.com:ip:xdma:4.1 xdma_ep]
