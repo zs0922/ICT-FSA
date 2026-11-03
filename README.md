@@ -1,216 +1,228 @@
-# ICT-FSA：全部板卡与版本的复现入口
+# ICT-FSA：选择版本与复现
 
-本README是默认分支`codex/ict-fsa-integration`的统一导航。先选择板卡/配置，再到固定commit的独立源码目录构建；**默认分支当前代码是NM37 A150配置，不是任意板卡通用硬件配置**。不需要依次构建A70→A100→A150，也不需要旧FSA仓库或另一套integration-tools。
+**先从表中选择版本并固定commit，再执行该版本的流程。** 本文以`original`完整演示从源码到仿真、bitstream和上板测试。其他版本的独立README直接点击表格最后一列；它们的构建入口与original不同。
 
-## 1. 选择分支与固定版本
+## 1. 版本与commit对照表
 
-“支持”表示提供对应源码和入口，验证程度以表中证据为准；源码可用、时序通过、bit导出、实板通过是不同阶段。所有分支尚不能一概视为完整板级发布验收完成。
-
-| 分支 | 板卡 / 配置 | 固定commit及该版本README | 验证范围 / 建议 |
+| 版本 | Git分支 | 应切换到的完整commit | 对应完整流程 |
 |---|---|---|---|
-| `original` | U55C原始上游 | [`474e92dc018df7a7a818aa329db967ebb829108c`](https://github.com/zs0922/ICT-FSA/blob/474e92dc018df7a7a818aa329db967ebb829108c/README.md) | 编译、sim4、RTL通过；完整实现未验证 |
-| `original-u280` | U280未优化，70MHz | [`ab28e170feb2c29d347dd476f45fd29456cf0d7b`](https://github.com/zs0922/ICT-FSA/blob/ab28e170feb2c29d347dd476f45fd29456cf0d7b/README.md) | 编译、sim4、完整实现及bit导出通过；未实板验收 |
-| `original-nm37-civ` | NM37未优化，70MHz | [`87cd26500fc88f7051771e3cb1670001375c6b1f`](https://github.com/zs0922/ICT-FSA/blob/87cd26500fc88f7051771e3cb1670001375c6b1f/README.md) | 编译、sim4、完整实现及bit导出通过；未实板验收 |
-| `original-np19a` | NP19A未优化，70MHz，DDR4 | [`8407bdd8d4bd6d0aae56a1a549353f8c35f2124f`](https://github.com/zs0922/ICT-FSA/blob/8407bdd8d4bd6d0aae56a1a549353f8c35f2124f/README.md) | 编译、sim4、完整实现及bit导出通过；未实板验收 |
-| `codex/nm37-a70-p3` | NM37 A70-P3 | [`8cc6b42536334892b88f6214f39d3afe5daa2504`](https://github.com/zs0922/ICT-FSA/blob/8cc6b42536334892b88f6214f39d3afe5daa2504/README.md) | 固定回归、seq1024及约束时序通过；非完整板级验收 |
-| `codex/a100-reproduction-fix` | NM37 A100，推荐复现 | [`9b8911f4e9e5c6af49fe6b6287e9c88ee1031352`](https://github.com/zs0922/ICT-FSA/blob/9b8911f4e9e5c6af49fe6b6287e9c88ee1031352/README.md) | 固定回归、seq1024及约束时序通过；非完整板级验收 |
-| `codex/a110-reproduction-fix` | NM37 A110/APB55，推荐复现 | [`7deb8e3e9416f2f3d25df9d45a5f65fc38302cda`](https://github.com/zs0922/ICT-FSA/blob/7deb8e3e9416f2f3d25df9d45a5f65fc38302cda/README.md) | 固定回归、seq1024及约束时序通过；CDC未完全闭合 |
-| `codex/nm37-a120-apb60` | NM37 A120/APB60 | [`462a341eb250f74a3d0c7ca415ef765f693c1839`](https://github.com/zs0922/ICT-FSA/blob/462a341eb250f74a3d0c7ca415ef765f693c1839/README.md) | 迁入源码；旧实验有实现证据，本仓独立全流程未验收 |
-| `codex/nm37-a150-apb100` | NM37 A150/APB100 | [`1e07e6b09422435ce2914cbbb8a34bf793df708b`](https://github.com/zs0922/ICT-FSA/blob/1e07e6b09422435ce2914cbbb8a34bf793df708b/README.md) | 迁入源码；旧实验有实现证据，本仓独立全流程未验收 |
-| `codex/u280-port` | 历史U280迁移里程碑 | [`3d1714de26aeaad172461bd96e6c8fc26e63109a`](https://github.com/zs0922/ICT-FSA/blob/3d1714de26aeaad172461bd96e6c8fc26e63109a/README.md) | 保留来源；新复现优先original-u280 |
-| `codex/nm37-port` | 历史NM37迁移里程碑 | [`00e021c635cd31d013cf00fd24cba687dc0b4be5`](https://github.com/zs0922/ICT-FSA/blob/00e021c635cd31d013cf00fd24cba687dc0b4be5/README.md) | 保留来源；新复现优先original-nm37-civ |
-| `codex/nm37-a100` | 原A100迁移里程碑 | [`f8650f9576bf681bfae38a2ab40718fc2ace4262`](https://github.com/zs0922/ICT-FSA/blob/f8650f9576bf681bfae38a2ab40718fc2ace4262/README.md) | 保留原提交；推荐上面的复现修复分支 |
-| `codex/nm37-a110-apb55` | 原A110/APB55迁移里程碑 | [`b595900e91bda33925f059ff585771ae5ecddfcd`](https://github.com/zs0922/ICT-FSA/blob/b595900e91bda33925f059ff585771ae5ecddfcd/README.md) | 保留原提交；推荐上面的复现修复分支 |
+| **original** | `original` | `474e92dc018df7a7a818aa329db967ebb829108c` | [README](https://github.com/zs0922/ICT-FSA/blob/474e92dc018df7a7a818aa329db967ebb829108c/README.md) |
+| **original-nm37** | `original-nm37-civ` | `87cd26500fc88f7051771e3cb1670001375c6b1f` | [README](https://github.com/zs0922/ICT-FSA/blob/87cd26500fc88f7051771e3cb1670001375c6b1f/README.md) |
+| **original-u280** | `original-u280` | `ab28e170feb2c29d347dd476f45fd29456cf0d7b` | [README](https://github.com/zs0922/ICT-FSA/blob/ab28e170feb2c29d347dd476f45fd29456cf0d7b/README.md) |
+| **original-np19a** | `original-np19a` | `8407bdd8d4bd6d0aae56a1a549353f8c35f2124f` | [README](https://github.com/zs0922/ICT-FSA/blob/8407bdd8d4bd6d0aae56a1a549353f8c35f2124f/README.md) |
+| **nm37-A70-P3** | `codex/nm37-a70-p3` | `8cc6b42536334892b88f6214f39d3afe5daa2504` | [README](https://github.com/zs0922/ICT-FSA/blob/8cc6b42536334892b88f6214f39d3afe5daa2504/README.md) |
+| **nm37-A100** | `codex/a100-reproduction-fix` | `9b8911f4e9e5c6af49fe6b6287e9c88ee1031352` | [README](https://github.com/zs0922/ICT-FSA/blob/9b8911f4e9e5c6af49fe6b6287e9c88ee1031352/README.md) |
+| **nm37-a110** | `codex/a110-reproduction-fix` | `7deb8e3e9416f2f3d25df9d45a5f65fc38302cda` | [README](https://github.com/zs0922/ICT-FSA/blob/7deb8e3e9416f2f3d25df9d45a5f65fc38302cda/README.md) |
+| **nm37-a120** | `codex/nm37-a120-apb60` | `462a341eb250f74a3d0c7ca415ef765f693c1839` | [README](https://github.com/zs0922/ICT-FSA/blob/462a341eb250f74a3d0c7ca415ef765f693c1839/README.md) |
+| **nm37-a150** | `codex/nm37-a150-apb100` | `1e07e6b09422435ce2914cbbb8a34bf793df708b` | [README](https://github.com/zs0922/ICT-FSA/blob/1e07e6b09422435ce2914cbbb8a34bf793df708b/README.md) |
 
-其他分支：`codex/ict-fsa-integration`是当前总入口；`codex/original-baselines`保存早期三个原始基线的整理记录。远端`dependabot/*`是自动依赖更新提议，不是支持/验收配置。仅本地的`codex/ict-fsa-reproduction`是复现报告整理分支，不是单独板卡配置。
+- `original`是FSA/U55C原始基线；`original-nm37`的实际分支名为`original-nm37-civ`。
+- A100/A110选择已独立复现的修复分支；原始迁移里程碑仍保留。A110/A120/A150分别为APB55/APB60/APB100。
+- 默认分支只作为总入口，其硬件配置不是original；必须先切换。无需先构建其他版本。
 
-原始FSA/U55C集成来自VCA-EPFL/chipyard-fsa，Berkeley Chipyard是框架上游。来源见[原始基线说明](docs/baselines/README.md)。A70-P3已经包含优化，不属于“original”。A100/A110修复分支清理了无效历史约束并更新复现记录，不代表原FSA算法错误。证据见[独立复现记录](reports/ICT_FSA_REPRODUCTION_20261028.md)、[原始基线记录](reports/ORIGINAL_BASELINES_20261102.md)。NP19A验收报告在其固定分支的`reports/ORIGINAL_NP19A_BASELINE.md`。
+## 2. original：下载并固定源码
 
-## 2. 独立拉取与切换
-
-以下用NP19A示例；选择其他版本时，把BRANCH和COMMIT同时替换为表中同一行。目录已存在时换attempt02，不删除旧结果。交互终端不要启用`set -euo pipefail`；每条成功后再继续。
+以下在Bash中逐块执行，每步成功后再继续。路径已存在时换attempt02，不删除旧构建；不要在交互终端设置`set -euo pipefail`。
 
 ```bash
-export BRANCH=original-np19a
-export COMMIT=8407bdd8d4bd6d0aae56a1a549353f8c35f2124f
-export WORK="$HOME/ict-fsa-${BRANCH//\//-}-${COMMIT:0:8}-attempt01"
-mkdir "$WORK"
-git clone --branch "$BRANCH" https://github.com/zs0922/ICT-FSA.git "$WORK/source"
-export SRC="$WORK/source"
-git -C "$SRC" checkout --detach "$COMMIT"
+export ORIGINAL_WORK="$HOME/ict-fsa-original-attempt01"
+mkdir "$ORIGINAL_WORK"
+git clone --branch original --single-branch \
+  https://github.com/zs0922/ICT-FSA.git "$ORIGINAL_WORK/source"
+export SRC="$ORIGINAL_WORK/source"
 cd "$SRC"
-git rev-parse HEAD | tee "$WORK/source-commit.txt"
-export BUILD_OUT="$WORK/build-attempt01"
-export EXPORT_OUT="$WORK/bits-attempt01"
+git checkout --detach 474e92dc018df7a7a818aa329db967ebb829108c
+git rev-parse HEAD | tee "$ORIGINAL_WORK/source-commit.txt"
+python3 scripts/verify-original.py
 ```
 
-构建期间不pull/checkout。`original`使用上游make流程，直接按其README配置`ORIGINAL_WORK`并执行；不能运行下面的统一`scripts/fsa.py`入口。
+这个original保留VCA-EPFL/chipyard-fsa的FSA/U55C集成原貌，不含后续板卡迁移和性能优化。板上配置为16×16、70MHz；下面的功能仿真使用4×4阵列。
 
-## 3. 环境、依赖和共享缓存
+## 3. original：环境与依赖
 
-首先读取**所选checkout自身**的`docs/reproduction/environment.md`和README。NP19A要求Vivado2024.2和VU19P支持；NM37优化流程使用Vivado2020.2_AR75986；其他板卡按各自文档。不能全仓统一替换Vivado版本。还需指定版本的JDK20.0.2、firtool1.75、Verilator5.022、GCC/G++13.3、RISCV/FESVR和uv；原始上游的具体环境以其README为准。
-
-先设置真实工具路径、JAVA_HOME、RISCV、CC/CXX、CHISEL_FIRTOOL_PATH和LD_LIBRARY_PATH，避免继承旧实验的`-Dfsa.*`参数。缺Spike/FESVR时按所选分支环境文档安装，不能把RISCV指向空目录。
-
-### Git依赖：优先复用已有本地下载
-
-同一commit不必重复联网下载，但每个分支仍按自己的`locks/dependencies.json`取版本。以下三种方式**选择一种**，报告文件须为新路径、位于源码外。
+需先安装Git、make、uv、JDK20.0.2、firtool1.75.0、Verilator5.022、GCC/G++13.3.0，以及Spike/FESVR头文件和库。Python3.13由uv准备。下面的`/path/to/...`必须改为实际路径。
 
 ```bash
-# 推荐：已有其他版本下载齐全的源码根目录；不是build目录。
-export DEPS_SOURCE=/absolute/path/to/existing-source
-python3 scripts/fsa.py deps --local-source "$DEPS_SOURCE" \
-  --report "$WORK/dependencies.json"
-```
+export JAVA_HOME=/path/to/jdk-20.0.2
+export RISCV=/path/to/riscv
+export CHISEL_FIRTOOL_PATH=/path/to/circt/bin
+export VERILATOR_BIN=/path/to/verilator/bin
+export PATH="$JAVA_HOME/bin:$CHISEL_FIRTOOL_PATH:$VERILATOR_BIN:$RISCV/bin:$PATH"
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+export USE_CHISEL6=1
+export LD_LIBRARY_PATH="$RISCV/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export XDG_RUNTIME_DIR="$ORIGINAL_WORK/runtime"
+mkdir -p "$XDG_RUNTIME_DIR"
+chmod 700 "$XDG_RUNTIME_DIR"
 
-```bash
-# 没有可复用依赖时，首次从网络初始化。
-python3 scripts/fsa.py deps --report "$WORK/dependencies.json"
-```
-
-```bash
-# 已有符合脚本manifest格式的离线Git bundle包时。
-python3 scripts/fsa.py deps --offline-dir /absolute/path/to/dependency-bundles \
-  --report "$WORK/dependencies.json"
-```
-
-`--local-source`不修改旧仓库，按目标pin独立复制Git仓库，不使用软链接、alternates或硬链接。因此节省重复网络下载，但仍占独立磁盘空间；删除旧源码不会破坏新构建。来源缺少所需commit时会报错，不会偷偷使用错误版本。当前脚本不会自动搜索其他工程缓存，也不会自动重置已有错误HEAD；检查报错后保留原目录并选新checkout。原始`original`的子模块初始化按其自身README执行。
-
-### 软件包缓存可以共用，构建产物独立
-
-在uv sync或build之前设置（新终端需重新设置）：
-
-```bash
-export ICT_DOWNLOAD_CACHE="$HOME/.cache/ict-fsa-downloads"
-mkdir -p "$ICT_DOWNLOAD_CACHE"
-export UV_CACHE_DIR="$ICT_DOWNLOAD_CACHE/uv"
-export COURSIER_CACHE="$ICT_DOWNLOAD_CACHE/coursier/v1"
-export SBT_OPTS="-Dsbt.ivy.home=$ICT_DOWNLOAD_CACHE/sbt/ivy2 -Dsbt.boot.directory=$ICT_DOWNLOAD_CACHE/sbt/boot -Dsbt.supershell=false -Dsbt.server.forcestart=false"
+# 各版本可以共用这些下载缓存。
+export ICT_CACHE="$HOME/.cache/ict-fsa-downloads"
+export COURSIER_CACHE="$ICT_CACHE/coursier/v1"
+export UV_CACHE_DIR="$ICT_CACHE/uv"
+export SBT_OPTS="-Dsbt.ivy.home=$ICT_CACHE/sbt/ivy2 -Dsbt.boot.directory=$ICT_CACHE/sbt/boot -Dsbt.global.base=$ORIGINAL_WORK/sbt-global"
 export JAVA_TOOL_OPTIONS="-Dsbt.supershell=false -Dsbt.server.forcestart=false -Dsbt.server.autostart=false $SBT_OPTS"
 unset JDK_JAVA_OPTIONS _JAVA_OPTIONS
+
+java -version
+firtool --version
+verilator --version
+"$CXX" --version
+ls -lh "$RISCV/lib/libfesvr.a" "$RISCV/lib/libriscv.so"
+```
+
+若最后两个库不存在，先执行文末“首次安装Spike/FESVR”，然后继续；不需要构建A70等版本。
+
+下载锁定的源码依赖，并建立两个Python环境：
+
+```bash
+cd "$SRC"
+python3 scripts/prepare-original-deps.py
+python3 scripts/verify-original.py --require-core-deps
+uv sync --project generators/easyfloat --frozen --python 3.13
+uv sync --project generators/fsa/python --frozen --python 3.13
+```
+
+已有完整依赖时，用以下命令**替代**上面的prepare命令，避免重复联网下载：
+
+```bash
+python3 scripts/prepare-original-deps.py --mirror-root /absolute/path/to/existing-chipyard-source
+```
+
+来源必须包含目标gitlink所需对象。不要使用`git submodule update --remote`改变固定版本。
+
+## 4. original：编译并运行功能仿真
+
+编译Scala/Chisel生成器、RTL和4×4 Verilator仿真器：
+
+```bash
+cd "$SRC/sims/verilator"
+make -j8 CONFIG=FSA4X4Fp16Config \
+  CXX="$CXX" CC="$CC" LINK="$CXX" AR=/usr/bin/ar
+```
+
+先确认生成配置存在，再运行seq4：
+
+```bash
+cd "$SRC/generators/fsa/python"
+test -s ../../../sims/verilator/generated-src/chipyard.harness.TestHarness.FSA4X4Fp16Config/chipyard.harness.TestHarness.FSA4X4Fp16Config.FSAConfig.json
+mkdir "$ORIGINAL_WORK/sim-seq4-attempt01"
+uv run main.py --seq_q 4 --seq_kv 4 --config FSA4X4Fp16Config \
+  --diff --max_cycles 10000000 --output_dir "$ORIGINAL_WORK/sim-seq4-attempt01"
+```
+
+同一个4×4仿真器追加seq8分块计算，无需重新编译：
+
+```bash
+mkdir "$ORIGINAL_WORK/sim-seq8-attempt01"
+uv run main.py --seq_q 8 --seq_kv 8 --config FSA4X4Fp16Config \
+  --diff --max_cycles 10000000 --output_dir "$ORIGINAL_WORK/sim-seq8-attempt01"
+```
+
+观察运行完成及FSA/PyEasyFloat相对Torch的MAE、MSE、MaxErr、RelErr，保留输出。序列长度与PE阵列规模不同；程序退出成功不自动代表满足数值验收阈值。
+
+## 5. original：生成U55C bitstream
+
+加载安装了U55C器件支持和许可证的Vivado。下面2020.2路径是环境示例；**本轮已验证original编译、仿真和RTL展开，尚未完成U55C完整布局布线及实板验收**，不能把NM37的工具验收直接算到U55C上。
+
+```bash
+source /path/to/Xilinx/Vivado/2020.2/settings64.sh
+cd "$SRC/fpga"
+make SUB_PROJECT=u55c CONFIG=EmptyU55CConfig TOP=EmptyChipTop bitstream
+```
+
+该命令依次执行板级RTL生成、综合、布局布线和bit导出。成功后的目标文件：
+
+```text
+fpga/generated-src/chipyard.fpga.u55c.U55CFPGATestHarness.EmptyU55CConfig/obj/U55CFPGATestHarness.bit
+```
+
+检查实际setup/hold时序、DRC和导出日志。保留routed DCP、时序/资源报告及同次生成的FSAConfig.json；不能只看bit文件是否存在。
+
+```bash
+export U55C_BUILD="$SRC/fpga/generated-src/chipyard.fpga.u55c.U55CFPGATestHarness.EmptyU55CConfig"
+sha256sum "$U55C_BUILD/obj/U55CFPGATestHarness.bit" \
+  "$U55C_BUILD/chipyard.fpga.u55c.U55CFPGATestHarness.EmptyU55CConfig.FSAConfig.json" \
+  | tee "$ORIGINAL_WORK/u55c-sha256.txt"
+```
+
+## 6. original：烧录后运行attention、查看RelErr
+
+在Vivado Hardware Manager中连接**实际U55C**，选择上述bit并执行Program Device，保存烧录日志。这是U55C镜像，不能烧到U280/NM37/NP19A。更换环境变量不等于烧录。
+
+烧录后恢复PCIe枚举并加载匹配内核的XDMA驱动。必要时保持板卡供电进行主机软重启。原始软件默认使用`/dev/xdma0_*`，多卡机器先核对设备身份。
+
+```bash
+lspci -Dnnk
+ls -l /dev/xdma0_*
+readlink -f /sys/class/xdma/xdma0_user/device
+cd "$SRC/generators/fsa/python"
+test -s "$U55C_BUILD/chipyard.fpga.u55c.U55CFPGATestHarness.EmptyU55CConfig.FSAConfig.json"
+uv run main.py --seq_q 16 --seq_kv 16 \
+  --config EmptyU55CConfig --engine FPGA --diff
+```
+
+如设备访问权限不足，使用已准备好的venv Python绝对路径运行：
+
+```bash
+sudo "$SRC/generators/fsa/python/.venv/bin/python" -u main.py \
+  --seq_q 16 --seq_kv 16 --config EmptyU55CConfig --engine FPGA --diff
+```
+
+查看终端打印的RelErr等数值及性能计数器，保存完整终端日志。original保留上游软件原貌，后续板卡分支的多次启动正确性修复不在本分支，不能假定重复运行已验收。
+
+## 补充A：其他版本怎么复现
+
+表格最后一列是各固定版本的完整README。其他版本通常使用以下入口，**不能把它替换进上面的original流程**：
+
+```bash
+python3 scripts/fsa.py deps --local-source /absolute/path/to/existing-source --report "$WORK/dependencies.json"
 python3 scripts/fsa.py doctor
-uv sync --frozen --python 3.13 --project "$SRC/generators/easyfloat"
-uv sync --frozen --python 3.13 --project "$SRC/generators/fsa/python"
-export FSA_PYTHON="$SRC/generators/fsa/python/.venv/bin/python"
-```
-
-Coursier/Ivy/uv缓存可复用；`.venv`、target、JAR、RTL、仿真器、DCP、bit按版本独立。不要将旧产物复制到新目录冒充重新构建。优化版本的`verify`还需要按对应环境文档安装形式验证工具。
-
-## 4. 编译、验证与仿真
-
-适用于统一入口的分支：
-
-```bash
 python3 scripts/fsa.py build --out "$BUILD_OUT"
-```
-
-按下表选择命令，不要把全部命令无条件运行：
-
-| 配置 | verify | 固定sim阵列 |
-|---|---|---|
-| original-u280 / original-nm37-civ / original-np19a、历史U280/NM37迁移 | 跳过 | 4 |
-| A70-P3 | 执行 | 4、16 |
-| A100 / A110 / A120 / A150及复现修复版 | 执行 | 4、8、16 |
-| original U55C | 上游README流程 | 上游README流程 |
-
-```bash
-# 仅优化配置执行
-python3 scripts/fsa.py verify --out "$BUILD_OUT"
-# 按上表逐个执行支持的规模
+# 优化版本再执行verify；sim规模按该版本README选择。
 python3 scripts/fsa.py sim --out "$BUILD_OUT" --array-size 4
-# 支持8/16的配置再执行：
-# python3 scripts/fsa.py sim --out "$BUILD_OUT" --array-size 8
-# python3 scripts/fsa.py sim --out "$BUILD_OUT" --array-size 16
-```
-
-`array-size`是PE阵列规模，seq1024是序列长度，二者不同。原始迁移的sim4不表示板上阵列只有4×4；板上为16×16。优化配置已有sim16后可追加：
-
-```bash
-timeout --signal=TERM --kill-after=10s 7200s \
-  python3 scripts/fsa.py sim-extra --out "$BUILD_OUT" \
-  --array-size 16 --seq 1024 --max-cycles 10000000 \
-  --result-out "$WORK/sim-seq1024-attempt01"
-```
-
-此命令不适用于仅恢复sim4的原始基线。A70与后续版本仿真的内存端口/带宽不同，周期不能直接当作纯提频收益，详见[NM37详细说明](docs/reproduction/nm37-optimized-workflow.md)。
-
-## 5. RTL、布局布线与bitstream
-
-```bash
 python3 scripts/fsa.py elaborate --out "$BUILD_OUT"
 python3 scripts/fsa.py implement --out "$BUILD_OUT"
-python3 scripts/fsa.py status --out "$BUILD_OUT"
 python3 scripts/fsa.py export --out "$BUILD_OUT" --result-out "$EXPORT_OUT"
-(cd "$EXPORT_OUT" && sha256sum -c SHA256SUMS)
-cat "$EXPORT_OUT/experiment.json"
 ```
 
-elaborate生成RTL；implement综合并完整布局布线；export单独生成bit。不能把source PASS当成阶段成功。实验导出检查实际时序、器件/时钟及阻断性DRC，不要求手写CDC审查JSON；时序通过不代表CDC全部闭合或已经上板。A110等若仅CDC审查门阻塞、实际routed产物已记录，可按其文档执行实验export；综合/布线/时序失败不可绕过。
+此处是入口概览，WORK/BUILD_OUT/EXPORT_OUT、工具环境和Python准备必须按对应README设置。原始U280/NM37/NP19A仅固定sim4；A70-P3为sim4/16；A100及以后为sim4/8/16。NM37优化版板测用统一test；NP19A用独立attention.py；原始U280/NM37板测尚不能套用这两种入口。
 
-bit名称按profile确定，例如NP19A为`NP19A_EXPERIMENTAL.bit`，A150为`A150-APB100_EXPERIMENTAL.bit`；以experiment.json为准，勿猜测文件名。U55C original使用自身README的make bitstream流程；本轮未验证U55C完整实现。
+NP19A使用Vivado2024.2、xcvu19p-fsva3824-2-e和指定DDR4；NM37优化版使用Vivado2020.2_AR75986。板卡内存、工具版本和时钟配置不能混用。详细分支状态、历史里程碑、缓存与板测差异保留在[补充指南](docs/reproduction/all-versions.md)。
 
-## 6. 实际烧录与板测入口
+## 补充B：首次安装Spike/FESVR（已有双库可跳过）
 
-先核对实际板卡、内存配置、JTAG target/device和PCI BDF。NP19A目前使用MTA16ATF2G64HZ-2G3 16GB DDR4；实装不符须调整配置再构建。更改环境变量不等于烧录。
-
-对于提供统一program入口的版本，参考以下模板（实际硬件名称必须修改）：
+先准备GCC/G++13.3、make及dtc；Ubuntu缺少dtc时安装device-tree-compiler。这里安装主机库，不需要完整RISC-V交叉编译器。
 
 ```bash
-export HW_TARGET='实际完整JTAG target'
-export HW_DEVICE='实际器件名称'
-export BDF='0000:18:00.0'  # 示例，按本机确认
-export PROGRAM_OUT="$WORK/program-attempt01"
-python3 scripts/fsa.py program --export "$EXPORT_OUT" \
-  --hw-target "$HW_TARGET" --hw-device "$HW_DEVICE" --bdf "$BDF" \
-  --out "$PROGRAM_OUT" --dry-run
-python3 scripts/fsa.py program --export "$EXPORT_OUT" \
-  --hw-target "$HW_TARGET" --hw-device "$HW_DEVICE" --bdf "$BDF" \
-  --out "$PROGRAM_OUT"
+command -v dtc
+cd "$SRC"
+git -c url.https://github.com/.insteadOf=git@github.com: \
+  submodule update --init --checkout -- toolchains/riscv-tools/riscv-isa-sim
+export SPIKE_SOURCE="$SRC/toolchains/riscv-tools/riscv-isa-sim"
+test "$(git -C "$SPIKE_SOURCE" rev-parse HEAD)" = 76858cc3aa178446584eae52f82e0a933e71f8db
+export SPIKE_BUILD="$ORIGINAL_WORK/spike-build-attempt01"
+export RISCV="$ORIGINAL_WORK/toolchain/spike-76858cc3"
+mkdir "$SPIKE_BUILD"
+cd "$SPIKE_BUILD"
+CC=/usr/bin/gcc CXX=/usr/bin/g++ "$SPIKE_SOURCE/configure" \
+  --prefix="$RISCV" --with-boost=no --with-boost-asio=no --with-boost-regex=no
+make -j4
+make libfesvr.a
+make install
+install -m 644 libfesvr.a "$RISCV/lib/libfesvr.a"
+export PATH="$RISCV/bin:$PATH"
+export LD_LIBRARY_PATH="$RISCV/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+test -s "$RISCV/lib/libfesvr.a"
+test -s "$RISCV/lib/libriscv.so"
+test -s "$RISCV/include/fesvr/htif.h"
+cd "$SRC"
 ```
 
-program配置SRAM，不写flash。首次未枚举时先通过Hardware Manager烧录，保持板卡供电进行主机软重启，再确认BDF。需要匹配内核的XDMA驱动；不自动卸载/复位其他板卡。
+成功后返回第3节的源码依赖准备步骤，保留这里设置的RISCV，不要再覆盖成示例路径。
 
-```bash
-lspci -Dnnk -s "$BDF"
-ls -l /dev/xdma*
-export DEVICE=xdma0  # 核对实际映射
-readlink -f "/sys/class/xdma/${DEVICE}_user/device"
-export RESULT="$WORK/board/seq16-attempt01"
-```
+## 补充C：结果保留与失败恢复
 
-### NM37优化版本 A70-P3/A100/A110/A120/A150
+下载缓存可以共用，依赖源码按各版本pin独立恢复；不要软链接共享可变源码。JAR、RTL、仿真器、DCP和bit不得混用。固定源码与输入后才能比较运行时间；bubble不直接等于PE空闲率。
 
-使用对应源码、配套config/bit和本次真实烧录记录，完整命令见[NM37板测流程](docs/reproduction/nm37-optimized-workflow.md)：
-
-```bash
-sudo timeout --signal=TERM --kill-after=10s 600s \
-  "$FSA_PYTHON" -u "$SRC/scripts/fsa.py" test --export "$EXPORT_OUT" \
-  --receipt "$PROGRAM_OUT/program.json" --device "$DEVICE" --bdf "$BDF" \
-  --seq 16 --repeat 5 --warmup 1 --out "$RESULT"
-```
-
-### NP19A
-
-使用该分支独立板测脚本；不要调用NM37统一test：
-
-```bash
-sudo timeout --signal=TERM --kill-after=10s 600s \
-  "$FSA_PYTHON" -u "$SRC/scripts/np19a/attention.py" \
-  --config "$EXPORT_OUT/FSAConfig.json" --bit "$EXPORT_OUT/NP19A_EXPERIMENTAL.bit" \
-  --device "$DEVICE" --bdf "$BDF" --seq 16 --seed 0 --out "$RESULT"
-sudo python3 -m json.tool "$RESULT/result.json"
-```
-
-关注`bitwise_equal_pyeasyfloat`、`errors_vs_torch.RelErr`及counters。该脚本中的bit路径不是实时硬件身份回读，须保留真实烧录记录。seq16通过后换新RESULT、改`--seq 1024`和timeout7200s再测。完整NP19A命令见上表固定README。
-
-### 原始U55C、U280、NM37迁移基线
-
-使用各自README的板级说明。U280统一test会拒绝设备映射；original-nm37-civ的runtime未声明原始NM37 profile；U55C使用原始软件流程。这些版本的源码/实现入口可复现，但尚不能承诺一组已验收的统一attention命令。不要把优化NM37或NP19A脚本套上去声称板测通过。
-
-## 7. 结果、性能比较与失败恢复
-
-保存源码commit、profile、依赖报告、工具版本、阶段日志/收据、时序/资源/CDC/约束报告、bit/config/manifest/校验和、烧录日志及完整板测结果目录。NM37优化版可用`scripts/fsa.py summarize`汇总，详见详细流程；NP19A的result.json格式不同，当前不能直接混入该汇总器。
-
-RelErr是对Torch的相对误差，PyEasyFloat逐位一致是另一项检验。execTime按实际配置频率换算；bubble计数比不直接等于PE空闲率。跨板卡比较必须固定输入、seed、精度、主机软件和测试方式，DDR与HBM差异也会影响性能。没有重新烧录的历史A100/A110数据不能作为对应硬件验收证据。
-
-发生失败先查看`$BUILD_OUT.ict-state/`与阶段日志，保留失败产物和下载缓存。修复后使用独立源码/新输出，不手工制造成功标记，不覆盖已有结果。详细见[恢复说明](docs/reproduction/recovery.md)。正式验收标签应在对应源码复现和实板通过后再创建。
+每一步失败先看完整日志，保留源码commit、工具版本、依赖记录、生成配置、报告、bit校验和和板测输出。修复后使用新的attempt，不删除缓存或制造成功标记。不要在构建期间切换commit。旧FSA仓库和已有结果继续保留。
