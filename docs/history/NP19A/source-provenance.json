@@ -11,5 +11,11 @@
   "inputs": {
     "reference-top.xdc": "801bbaa40a84883a60c9ba4c106c802935a854d650d700b553ad56caf97319f9",
     "reference-xiangshan.tcl": "c5754cd030be999a718ccb3106c7c0b61c7492489c611c3a78b83bb435152376"
+  },
+  "schematic": {
+    "filename": "np19a_sch_231020.pdf",
+    "sha256": "381b3fc9c77f5de4f81b50fd076035d1b802bbb0948608cad4d127be12e642fe",
+    "stored_in_repository": false,
+    "note": "User-provided schematic; explicit user device xcvu19p-fsva3824-2-e governs build."
   }
 }

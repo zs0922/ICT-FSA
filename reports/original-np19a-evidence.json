@@ -1,0 +1,169 @@
+{
+  "source_commit": "bcaa1c761794445c6a6e70caec07a5842a06a217",
+  "parent_baseline": "87cd26500fc88f7051771e3cb1670001375c6b1f",
+  "build_out": "/tmp/ict-np19a-validation/build-attempt03",
+  "part": "xcvu19p-fsva3824-2-e",
+  "vivado": "2024.2",
+  "dut_mhz": 70,
+  "board_tested": false,
+  "stages": {
+    "build": {
+      "commands": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "build",
+          "--out",
+          "/tmp/ict-np19a-validation/build-attempt03"
+        ]
+      ],
+      "finished_utc": "2026-11-03T05:55:16.310057+00:00",
+      "logs": [
+        "/tmp/ict-np19a-validation/build-attempt03.ict-state/build-0.log"
+      ],
+      "started_utc": "2026-11-03T05:53:38.668567+00:00",
+      "status": "completed"
+    },
+    "sim4": {
+      "artifacts": {
+        "sim4/build/chipyard.harness.TestHarness.AXI4FSA4X4Fp16Config.FSAConfig.json": "8ad7608d5cfa11e21295d1632efeff2e3b3e079a152e4804f43016c320c93fd2",
+        "sim4/simulator": "584eba3c2b7ffbc03dd4dafb9d5ce580a5f725829216392741df94946def1a3c"
+      },
+      "commands": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "sim",
+          "--out",
+          "/tmp/ict-np19a-validation/build-attempt03",
+          "--array-size",
+          "4"
+        ]
+      ],
+      "finished_utc": "2026-11-03T05:56:15.852855+00:00",
+      "logs": [
+        "/tmp/ict-np19a-validation/build-attempt03.ict-state/sim4-0.log"
+      ],
+      "started_utc": "2026-11-03T05:55:19.283455+00:00",
+      "status": "completed"
+    },
+    "elaborate": {
+      "commands": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "elaborate",
+          "--out",
+          "/tmp/ict-np19a-validation/build-attempt03"
+        ]
+      ],
+      "finished_utc": "2026-11-03T05:57:03.664026+00:00",
+      "logs": [
+        "/tmp/ict-np19a-validation/build-attempt03.ict-state/elaborate-0.log"
+      ],
+      "started_utc": "2026-11-03T05:56:18.308806+00:00",
+      "status": "completed"
+    },
+    "implement": {
+      "commands": [
+        [
+          "python3",
+          "scripts/ict_history.py",
+          "implement",
+          "--out",
+          "/tmp/ict-np19a-validation/build-attempt03"
+        ]
+      ],
+      "finished_utc": "2026-11-03T07:31:12.809678+00:00",
+      "logs": [
+        "/tmp/ict-np19a-validation/build-attempt03.ict-state/implement-0.log"
+      ],
+      "routed_artifact_scope": "produced by this implementation attempt; backend completion/CDC acceptance remains separate",
+      "routed_artifacts": {
+        "NP19A/fpga/chipyard.fpga.np19a.NP19AFSACore.EmptyNP19AConfig/chipyard.fpga.np19a.NP19AFSACore.EmptyNP19AConfig.FSAConfig.json": "7d4c23efe55309954faf72970f19617d2195359be7063c508bf16191a53654d3",
+        "NP19A/fpga/chipyard.fpga.np19a.NP19AFSACore.EmptyNP19AConfig/obj/post_route.dcp": "97968c42c5c0112ecf213c4ae290968b9a19622a692d6e2d0b3a9a2d8cd5b96c"
+      },
+      "started_utc": "2026-11-03T05:57:06.544281+00:00",
+      "status": "completed"
+    }
+  },
+  "timing": {
+    "global_wns_ns": 0.058,
+    "global_whs_ns": 0.01,
+    "global_wpws_ns": 0,
+    "fsa_wns_ns": 0.142,
+    "fsa_whs_ns": 0.013,
+    "unconstrained_internal_endpoints": 0
+  },
+  "resources": {
+    "clb_lut": 402192,
+    "clb_registers": 100142,
+    "flip_flops": 100141,
+    "dsp": 323,
+    "bram_tiles": 83.5,
+    "uram": 0
+  },
+  "report_sha256": {
+    "bus_skew.txt": "1ab294c573895559feb0cb075feaee1c6a6853f63a27aa1b74165d675ea81d37",
+    "cdc.txt": "c4f07bc28d0b0d086db320fd68038c5f2055f8eb7b39eb64567595bf5f91f682",
+    "check_timing.txt": "e7ca0165cc4d82fae64ce22322b3beb5e62ac28151e6bcb4e8b624723a2a01ba",
+    "clocks.txt": "ff979e0224ffa987143b91f85ddefe491b93938b1871ed6627e20e808135d517",
+    "drc.txt": "411889bdedbefc04e43a3e7a31219cee56682f030edb117042d4484a8265cd93",
+    "exceptions.txt": "bc3eb46d7a29677abcb71af448120196cdfe0c9eb72aa3eb54de69b3a5ae8bb6",
+    "route_status.txt": "27c55274708c4b4aca7a00e366d342031df4e6ac99915f46244c16f471a81951",
+    "timing.txt": "cfb24acf3258aa44bc28fd8050989c4b9ccf8f7845c3285100656eb84346435b",
+    "utilization.txt": "366ab7543c983e28ca7be60df1de12bea268a6dd804ed11c369a74db0277ce5b"
+  },
+  "cdc": {
+    "CDC-3_info": 272,
+    "CDC-9_info": 17,
+    "CDC-12_critical": 2,
+    "CDC-15_warning": 2729,
+    "release_review_complete": false,
+    "critical_context": "MIG calibrated and XDMA reset readiness combine before core proc_sys_reset four-stage synchronizer"
+  },
+  "unconstrained_ports": {
+    "no_input_delay": [
+      "pcie_ep_perstn"
+    ],
+    "no_output_delay": [
+      "c0_ddr4_reset_n"
+    ]
+  },
+  "export": {
+    "bitstream": {
+      "path": "NP19A_EXPERIMENTAL.bit",
+      "sha256": "eebe2bb9ca279463c5e5ca263d0e21bada851c325712eba904c050b7eb949f66"
+    },
+    "cdc_review": "not_closed_by_export",
+    "clock_mhz": 70,
+    "config": {
+      "path": "FSAConfig.json",
+      "sha256": "7d4c23efe55309954faf72970f19617d2195359be7063c508bf16191a53654d3"
+    },
+    "created_utc": "2026-11-03T07:41:50.785100+00:00",
+    "dcp": "/tmp/ict-np19a-validation/build-attempt03/NP19A/fpga/chipyard.fpga.np19a.NP19AFSACore.EmptyNP19AConfig/obj/post_route.dcp",
+    "dcp_sha256": "97968c42c5c0112ecf213c4ae290968b9a19622a692d6e2d0b3a9a2d8cd5b96c",
+    "profile": "NP19A",
+    "purpose": "EXPERIMENTAL_BOARD_TEST",
+    "release_approved": false,
+    "schema_version": 1,
+    "source": {
+      "commit": "bcaa1c761794445c6a6e70caec07a5842a06a217",
+      "profile": "NP19A",
+      "profile_sha256": "3959e4eded812c43b85f0fed9dfcd9fc00d4dfc84807f265221f18057cf509a6"
+    },
+    "status": "exported"
+  },
+  "export_report_sha256": {
+    "check-timing.txt": "6387c1a7a44c9dd7e3c12cb26f4f1a7faa256b508362ab09e40785391237475d",
+    "drc.txt": "a0a85e88f4cd4fe61a1ba4f044a95d9e88a5c027594efd3a619c22722dd82f66",
+    "route-status.txt": "27c55274708c4b4aca7a00e366d342031df4e6ac99915f46244c16f471a81951",
+    "exceptions.txt": "27eca7e772d72528f830494d12608d579d6a8dedae51e5ee49c1310548a36b89",
+    "clocks.txt": "3b6947c6cfc8111dfb8788a0c4c5fbb262170bda32b93d72fccc5e447310c413",
+    "cdc.txt": "2d936a333dc6fe1ec2b2d44d3de603ed4f507c5cd94e1a76dfb04f58e4b3686c",
+    "timing.txt": "fd921bfb359cf67c845f49976fdaf04d8e722f23957d9e12dcfc06157fa08da4",
+    "utilization.txt": "d2251fc333fae4dadc1233ecc7538b66a2166a0ea6b79c047c2597f8ade910cd"
+  },
+  "bus_skew_min_reported_slack_ns": 3.203
+}

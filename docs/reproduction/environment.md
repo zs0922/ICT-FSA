@@ -27,7 +27,7 @@ vivado -version
 
 脚本中的 `JAVA_TOOL_OPTIONS` 只在子进程设置所需堆栈、内存和硬件配置。不要用宿主机默认的 JDK21/25 替代锁定 JDK20；旧 sbt/Scala 解析 JDK 类文件可能报 `bad constant pool index` 或 `Could not initialize class sbt.internal.parser.SbtParser`。
 
-还需要 Python >=3.9（统一脚本入口）、GNU make、Git、uv、本机C/C++编译器及Vivado器件支持/许可证。FSA/EasyFloat使用Python3.13独立环境。本原始NM37基线不运行verify，不需要Yosys或formal-env。XDMA驱动和实际板卡连接仅在未来板测时需要。
+还需要 Python >=3.9（统一脚本入口）、GNU make、Git、uv、本机C/C++编译器及Vivado器件支持/许可证。FSA/EasyFloat使用Python3.13独立环境。本原始NP19A基线不运行verify，不需要Yosys或formal-env。XDMA驱动和实际板卡连接仅在未来板测时需要。
 
 `RISCV` 是 Chipyard make 的必需变量，即使目标设计不运行 RISC-V 指令也不能省略；Verilator 需要其中的 FESVR/Spike 头文件和库。若使用已有 Chipyard conda 环境，先激活对应环境，再检查其 `$RISCV/lib/libfesvr.a` 和 `libriscv.so`，不能只设置一个空目录。
 
@@ -69,7 +69,7 @@ sudo apt-get update
 sudo apt-get install build-essential device-tree-compiler
 
 git -C "$SRC/toolchains/riscv-tools/riscv-isa-sim" rev-parse HEAD
-# 当前 NM37 初始基线锁定值：76858cc3aa178446584eae52f82e0a933e71f8db
+# 当前 NP19A 基线锁定值：76858cc3aa178446584eae52f82e0a933e71f8db
 export SPIKE_SOURCE="$SRC/toolchains/riscv-tools/riscv-isa-sim"
 export SPIKE_BUILD="$WORK/spike-build-attempt01"
 export RISCV="$WORK/toolchain/spike-76858cc3"

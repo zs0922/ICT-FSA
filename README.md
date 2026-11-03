@@ -2,7 +2,7 @@
 
 本分支将原始 16×16 FSA 接到 NP19A 的 PCIe/XDMA 和 DDR4，目标器件 **xcvu19p-fsva3824-2-e**、Vivado **2024.2**、FSA **70 MHz**。不包含 P3、A100、A150 算术/流水优化；`generators/fsa` 和 `generators/easyfloat` 相对 `original-nm37-civ` 未修改。独立 AXI 顶层也可作为后续计算模块封装的起点。
 
-**当前为迁移验证中的候选，尚未完成 NP19A 实板验收。** 历史 NM37 报告不证明 NP19A 可用。验证证据、限制和板级配置见 [NP19A 迁移说明](docs/reproduction/np19a.md)。分支仅本地提交，未 push。
+**已完成源码编译、4×4计算回归与16×16完整布局布线；尚未完成 NP19A 实板验收。** 历史 NM37 报告不证明 NP19A 可用。70MHz下全局WNS为+0.058ns，FSA域WNS为+0.142ns。验证证据见 [本次构建记录](reports/ORIGINAL_NP19A_BASELINE.md)，板级配置见 [NP19A 迁移说明](docs/reproduction/np19a.md)。分支仅本地提交，未 push。
 
 ## 1. 独立取得源码
 
@@ -63,7 +63,7 @@ python3 scripts/fsa.py export --out "$BUILD_OUT" --result-out "$EXPORT_OUT"
 
 ## 5. 烧录与上板 attention
 
-先通过 Vivado Hardware Manager 确定准确 JTAG target/device 和本板 PCI BDF。下列值需按实际板卡填写；不得复制 NM37 的设备号。首次无 PCI 枚举时，应先在 Hardware Manager 烧录，再重启主机使 PCIe 枚举，记录烧录日志与 bit SHA256。
+先通过 Vivado Hardware Manager 确定准确 JTAG target/device 和本板 PCI BDF。下列值需按实际板卡填写；不得复制 NM37 的设备号。首次无 PCI 枚举时，应先在 Hardware Manager 烧录，再保持板卡供电进行主机软重启，使 PCIe 枚举，记录烧录日志与 bit SHA256。
 
 ```bash
 export HW_TARGET='actual/exact/target'
@@ -72,10 +72,13 @@ export BDF='0000:18:00.0'  # 示例，必须核对实际 NP19A
 python3 scripts/fsa.py program --export "$EXPORT_OUT" \
   --hw-target "$HW_TARGET" --hw-device "$HW_DEVICE" --bdf "$BDF" \
   --out "$WORK/program-attempt01" --dry-run
-# 检查 dry-run 后，移除 --dry-run 执行真实 SRAM 烧录；不写配置 flash。
+# 确认目标无误后执行真实 SRAM 烧录；不写配置 flash。
+python3 scripts/fsa.py program --export "$EXPORT_OUT" \
+  --hw-target "$HW_TARGET" --hw-device "$HW_DEVICE" --bdf "$BDF" \
+  --out "$WORK/program-attempt01"
 ```
 
-烧录后等待 DDR 校准、确认 PCIe 枚举与 XDMA 驱动设备；必要时重启主机。**更换环境变量不会更换 FPGA 电路。** 对照 sysfs 确认 `/dev/xdmaN_*` 对应选定 BDF。
+烧录后等待 DDR 校准、确认 PCIe 枚举与 XDMA 驱动设备；必要时保持板卡供电进行主机软重启；SRAM 烧录不写 flash，板卡断电会丢失此配置。**更换环境变量不会更换 FPGA 电路。** 对照 sysfs 确认 `/dev/xdmaN_*` 对应选定 BDF。
 
 ```bash
 lspci -Dnn
@@ -92,7 +95,7 @@ sudo timeout --signal=TERM --kill-after=10s 600s "$FSA_PYTHON" -u \
   --device "$DEVICE" --bdf "$BDF" --seq 16 --out "$RESULT"
 ```
 
-只有存在真实烧录记录、板卡映射正确且 seq16 通过后，才以新结果目录改跑 seq64/128/256/512/1024（1024 建议 timeout7200s）。保存输入/输出 `.npy`、`result.json`、终端输出、烧录记录、bit/config SHA256。`RelErr` 与原始软件定义一致：`mean(abs((FSA−torch)/(torch+1e-8)))`；是否逐位符合 PyEasyFloat 独立记录。`execTime/70e6` 是按目标频率换算的计数器时间，不是整段 Python 墙钟时间。
+只有存在真实烧录记录、板卡映射正确且 seq16 通过后，才以新结果目录改跑 seq64/128/256/512/1024（1024 建议 timeout7200s）。保存输入/输出 `.npy`、`result.json`、终端输出、烧录记录、bit/config SHA256，以及 `$WORK/source-commit.txt`、依赖报告和工具版本输出。`RelErr` 与原始软件定义一致：`mean(abs((FSA−torch)/(torch+1e-8)))`；是否逐位符合 PyEasyFloat 独立记录。`execTime/70e6` 是按目标频率换算的计数器时间，不是整段 Python 墙钟时间。
 
 ## 6. 失败恢复
 

@@ -41,6 +41,8 @@ flowchart LR
 | CS/BG宽度 | 由MIG内存型号派生为2；不强制使用示例片段中的1 |
 | 内部存储 | 原始scratchpad/accumulator配置保持不变 |
 
+DDR MIG 自带的校准 MicroBlaze 和调试核心属于厂商 IP；它们不是香山或 Chipyard CPU，也不参与 FSA 算法执行。资源表会包含这部分开销。
+
 不能从容量和频率推断与HBM相同的性能。DDR4只有一个通道，DMA排队与bubble需要实板测量；不同板卡必须使用相同序列、随机种子和计算配置比较。
 
 ## 复位和启动
@@ -51,7 +53,7 @@ PCIe PERST反相后复位MIG与PLL。MIG校准完成、XDMA AXI复位释放共�
 
 ## 验证记录
 
-开发输出在独立工作目录，保留失败日志。当前完成：生成器编译、16×16原始FSA RTL展开、AXI包装层生成。正在验证BD与后续完整实现，**暂不声明静态时序或上板通过**。
+独立工作区已完成生成器编译、4×4 seq4/seq8逐位回归、16×16 RTL展开及完整布局布线。70MHz下全局setup/hold/pulse-width检查通过；内部未约束端点为0。详见 [实际构建记录](../../reports/ORIGINAL_NP19A_BASELINE.md)。**尚未进行NP19A实板验收，CDC分类告警保留并单独记录。**
 
 已修复的迁移问题：
 
