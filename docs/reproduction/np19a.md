@@ -60,5 +60,6 @@ PCIe PERST反相后复位MIG与PLL。MIG校准完成、XDMA AXI复位释放共�
 3. XDMA BAR转换不允许0x8000；通过板级包装层实现原始寄存器协议重映射。
 4. proc_sys_reset辅助复位默认低有效，接常数1保持非有效；脚本检查派生极性。
 5. 外部共享IBUFDS已经缓冲100MHz参考钟，Clock Wizard必须设置PRIM_SOURCE=No_buffer，避免重复输入缓冲。
+6. sbt-assembly2.1.1在更换输出目录时可能复用旧路径的assembly缓存；关闭assembly输出缓存（保留依赖和编译缓存），并以非空JAR检查替代touch，防止创建空JAR伪装成功。
 
 最终通过程度以新的验证报告及真实产物为准；未完成的DDR校准、PCIe链路、实际attention数值与性能必须在NP19A实板验收。
